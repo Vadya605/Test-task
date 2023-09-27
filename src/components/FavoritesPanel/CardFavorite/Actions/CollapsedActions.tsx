@@ -1,18 +1,17 @@
-import Favorite from '../../../../assets/img/side-bar/Favorites/Favorites.svg';
+import Favorite from '../../../../assets/img/side-bar/Favorites/Favorites.svg'
 import ExpandMoreIcon from '../../../../assets/img/Arrow.svg'
-import CollapsedActionsStyle from './CollapsedActionsStyle';
+import { Actions } from '../Styled/Actions';
 
 interface CollapsedActionsProps{
     handleClickExpandMore: () => void
 }
 
 export default function CollapsedActions({handleClickExpandMore}: CollapsedActionsProps){
-    const ActionsStyle = CollapsedActionsStyle()
 
     return (
-        <div className={ActionsStyle.classes.collapsedActions}>
+        <Actions>
             <img src={Favorite} alt="" />
             <img src={ExpandMoreIcon} alt="" onClick={handleClickExpandMore} />
-        </div>
+        </Actions>
     )
 }

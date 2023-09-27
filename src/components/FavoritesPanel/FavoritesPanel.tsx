@@ -1,5 +1,5 @@
 import CardFavorite from "./CardFavorite/CardFavorite";
-import FavoritesPanelStyle from "./FavoritesPanelStyle";
+import { Box } from '@mui/material'
 
 const favorites = [
     {
@@ -35,13 +35,15 @@ const favorites = [
 ]
 
 export default function FavoritesPanel(){
-    const FavoritesStyle = FavoritesPanelStyle()
     return(
-        <div className={FavoritesStyle.classes.favoritesPanel}>
+        <Box>
             <h3>Избранное</h3>
             { favorites.map(favoriteItem => 
-                <CardFavorite favoriteItem={favoriteItem} key={favoriteItem.name} />
-            )}
-        </div>
+                <CardFavorite 
+                    favoriteItem={favoriteItem} 
+                    key={favoriteItem.id} 
+                />
+            ) }
+        </Box>
     )
 }
