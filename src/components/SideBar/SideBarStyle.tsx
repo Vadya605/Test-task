@@ -1,14 +1,23 @@
 import { styled, Theme, CSSObject } from '@mui/material/styles';
 import MuiDrawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
 import Search from '../svg/Search';
 import { Box, Input } from '@mui/material';
+import Avatar from '@mui/material/Avatar';
 
 export const Aside = styled('div')(() => ({
     display: 'flex',
     flexDirection: 'column',
+    justifyContent: 'space-between',
     alignItems: 'center',
+    borderRight: '3px solid #F5F5F5',
+    padding: '30px 25px',
+}))
+
+export const Logo = styled('div')(() => ({
+    display: 'flex',
+    justifyContent:'center',
+    alignItems: 'center'
 }))
 
 export const AsideButtonSearch = styled('div')(() => ({
@@ -32,29 +41,19 @@ export const AsideButtonFavorites = styled('div')(() => ({
     backgroundColor: '#C75E5E',
     transition: 'all .2s ease-in-out',
 }))
-
-const drawerWidth = 550
+  
+export const AvatarAside = styled(Avatar)(() => ({
+    border: '3px solid rgba(0, 0, 0, .2)',
+    width: '48px',
+    height: '48px'
+}))
 
 const openedMixin = (theme: Theme): CSSObject => ({
-    width: drawerWidth,
     transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
     }),
-    overflowX: 'hidden',
-
-   '&::-webkit-scrollbar': {
-        width: '5px'
-    },
-       
-    '&::-webkit-scrollbar-track': {
-        backgroundColor:' transparent'
-    },
-    
-    '&::-webkit-scrollbar-thumb': {
-        borderRadius: '4px',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    }
+    overflowY: 'hidden',
 });
   
 const closedMixin = (theme: Theme): CSSObject => ({
@@ -71,7 +70,6 @@ const closedMixin = (theme: Theme): CSSObject => ({
   
 export const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
-        width: drawerWidth,
         flexShrink: 0,
         whiteSpace: 'nowrap',
         boxSizing: 'border-box',
@@ -88,15 +86,29 @@ export const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 
   
 export const DrawerWrapper = styled('div')(() => ({
     display: 'flex',
-    justifyContent: 'space-between',
-    columnGap: '20px',
-    padding: '25px'
+    height: '100%',
+    overflow: 'hidden'
 }))
 
 export const DrawerContent = styled('div')(() => ({
     display: 'flex',
     flexDirection: 'column',
-    rowGap: '20px'
+    rowGap: '20px',
+    padding: '25px',
+    overflowY: 'auto',
+    maxHeight: '100vh',
+    '&::-webkit-scrollbar': {
+        width: '5px'
+    },
+       
+    '&::-webkit-scrollbar-track': {
+        backgroundColor:' transparent'
+    },
+    
+    '&::-webkit-scrollbar-thumb': {
+        borderRadius: '4px',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    }
 }))
 
 export const SearchBox = styled(Box)(() => ({
@@ -124,15 +136,4 @@ export const SearchInput = styled(Input)(() => ({
 
 export const ListSections = styled(List)(() => ({
     marginTop: '40px'
-}))
-  
-export const SectionItem = styled(ListItem)(() => ({
-    // marginBottom: '10px',
-    // width: '60px',
-    // height: '60px',
-    // borderRadius: '6px',
-    // display: 'flex',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // backgroundColor: '#5E7BC7'
 }))

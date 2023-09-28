@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import Box from '@mui/material/Box';
-import Logo from '../../assets/img/Logo.svg'
+import LogoImg from '../../assets/img/Logo.svg'
 import Favorite from '../svg/Favorite';
 import Search from '../svg/Search'
-import { Drawer, DrawerContent, DrawerWrapper, ListSections, SectionItem, 
-    Aside, SearchBox, SearchIcon, SearchInput, AsideButtonFavorites, AsideButtonSearch } from './SideBarStyle';
+import { Drawer, DrawerContent, DrawerWrapper, ListSections, 
+    Aside, SearchBox, SearchIcon, SearchInput, AsideButtonFavorites, 
+    AsideButtonSearch, AvatarAside, Logo } from './SideBarStyle';
 import FavoritesPanel from '../FavoritesPanel/FavoritesPanel';
 import SearchPanel from '../SearchPanel/SearchPanel';
+import { ListItem } from '@mui/material';
 
 const itemsDrawer = [
   {
@@ -36,18 +38,21 @@ export default function SideBar() {
       <Drawer variant="permanent" open={open} className='drawer'>
         <DrawerWrapper>
           <Aside>
-              <div className="logo" onClick={() => setOpen(!open)}>
-                <img src={Logo} alt="" />
-              </div>
+            <Box>
+              <Logo onClick={() => setOpen(!open)}>
+                <img src={LogoImg} alt="" />
+              </Logo>
               <ListSections>
                   {itemsDrawer.map(item => (
-                    <SectionItem disablePadding key={item.name} onClick={() => handleClickSectionItem(item.name)}>
+                    <ListItem disablePadding key={item.name} onClick={() => handleClickSectionItem(item.name)}>
                       <div style={{ display: 'flex', alignItems: 'center' }}>
                         {item.button}
                       </div>
-                  </SectionItem>
+                  </ListItem>
                   ))}
               </ListSections>
+            </Box>
+            <AvatarAside src='/Person.jpg' />
           </Aside>
           <DrawerContent>
             <SearchBox>
