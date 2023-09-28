@@ -1,6 +1,6 @@
-import Favorite from '../../../../assets/img/side-bar/Favorites/Favorites.svg'
-import ExpandMoreIcon from '../../../../assets/img/Arrow.svg'
-import { Actions } from '../Styled/Actions';
+import Favorite from '../../../assets/img/side-bar/Favorites/Favorites.svg'
+import ExpandMoreIcon from '../../../assets/img/Arrow.svg'
+import { Actions } from '../CardFavoriteStyle';
 
 interface CollapsedActionsProps{
     handleClickExpandMore: () => void

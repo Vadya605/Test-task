@@ -1,5 +1,5 @@
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
-import { mapContainerStyle, MapWrapper } from './StyledMap';
+import { mapContainerStyle, MapWrapper } from './MapStyle.tsx';
 
 export default function Map() {
     const { isLoaded } = useJsApiLoader({

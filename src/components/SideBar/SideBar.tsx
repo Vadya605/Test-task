@@ -3,13 +3,10 @@ import Box from '@mui/material/Box';
 import Logo from '../../assets/img/Logo.svg'
 import Favorite from '../svg/Favorite';
 import Search from '../svg/Search'
-import { Drawer, DrawerContent, DrawerWrapper } from './Styled/Drawer';
-import { ListSections, SectionItem } from './Styled/List';
-import { Aside } from './Styled/Aside';
+import { Drawer, DrawerContent, DrawerWrapper, ListSections, SectionItem, 
+    Aside, SearchBox, SearchIcon, SearchInput, AsideButtonFavorites, AsideButtonSearch } from './SideBarStyle';
 import FavoritesPanel from '../FavoritesPanel/FavoritesPanel';
 import SearchPanel from '../SearchPanel/SearchPanel';
-import { SearchBox, SearchIcon, SearchInput } from './Styled/Search';
-import { AsideButtonFavorites, AsideButtonSearch } from './Styled/Aside';
 
 const itemsDrawer = [
   {

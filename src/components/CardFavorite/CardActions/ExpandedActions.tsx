@@ -1,6 +1,6 @@
-import { Actions, ButtonRoute, ButtonSave } from "../Styled/Actions";
-import Favorite from '../../../svg/Favorite';
-import Geo from "../../../svg/Geo";
+import { Actions, ButtonRoute, ButtonSave } from "../CardFavoriteStyle";
+import Favorite from '../../svg/Favorite';
+import Geo from "../../svg/Geo";
 export default function ExpandedActions(){
     return (
         <Actions>

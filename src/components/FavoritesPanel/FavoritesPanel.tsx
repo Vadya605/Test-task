@@ -1,4 +1,4 @@
-import CardFavorite from "./CardFavorite/CardFavorite";
+import CardFavorite from "../CardFavorite/CardFavorite";
 import { Box } from '@mui/material'
 
 const favorites = [
@@ -29,6 +29,21 @@ const favorites = [
     },
     {
         id: 6, 
+        name: 'Фантаcмагарический музей им. П.М. Машерова',
+        description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et, reprehenderit inventore est accusantium eos ab tenetur vitae, repudiandae doloribus exercitationem assumenda voluptate, temporibus cum corrupti iste eius. Accusamus, dignissimos voluptatibus!'
+    },
+    {
+        id: 7, 
+        name: 'Фантаcмагарический музей им. П.М. Машерова',
+        description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et, reprehenderit inventore est accusantium eos ab tenetur vitae, repudiandae doloribus exercitationem assumenda voluptate, temporibus cum corrupti iste eius. Accusamus, dignissimos voluptatibus!'
+    },
+    {
+        id: 8, 
+        name: 'Фантаcмагарический музей им. П.М. Машерова',
+        description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et, reprehenderit inventore est accusantium eos ab tenetur vitae, repudiandae doloribus exercitationem assumenda voluptate, temporibus cum corrupti iste eius. Accusamus, dignissimos voluptatibus!'
+    },
+    {
+        id: 9, 
         name: 'Фантаcмагарический музей им. П.М. Машерова',
         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et, reprehenderit inventore est accusantium eos ab tenetur vitae, repudiandae doloribus exercitationem assumenda voluptate, temporibus cum corrupti iste eius. Accusamus, dignissimos voluptatibus!'
     },

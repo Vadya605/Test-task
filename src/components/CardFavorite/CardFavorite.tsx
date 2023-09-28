@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import Car from '../../../assets/img/icons-markers/car1.svg'
-import Car2 from '../../../assets/img/icons-markers/car2.svg'
-import ExpandedActions from './Actions/ExpandedActions';
-import CollapsedActions from './Actions/CollapsedActions';
-import { strLimit } from '../../../utils/textHelpers';
-import { FavoriteCard, CardHeader, CardWrapper } from './Styled/Card';
-import { Photo, PhotoIconsWrapper, PhotoIcon } from './Styled/Photo';
+import Car from '../../assets/img/icons-markers/car1.svg'
+import Car2 from '../../assets/img/icons-markers/car2.svg'
+import ExpandedActions from './CardActions/ExpandedActions';
+import CollapsedActions from './CardActions/CollapsedActions';
+import { strLimit } from '../../utils/textHelpers';
+import { FavoriteCard, CardHeader, CardWrapper, Photo, PhotoIconsWrapper, PhotoIcon } from './CardFavoriteStyle.tsx';
 import { Typography } from '@mui/material';
 
 interface CardFavoriteProps{

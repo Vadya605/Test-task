@@ -1,16 +1,16 @@
 import { styled } from '@mui/material/styles';
-import { Card } from '@mui/material';
-  
+import { Card, Button, CardActions } from '@mui/material';
+
+interface CardHeaderProps {
+    isExpanded: boolean
+}
+
 interface PhotoProps {
     backgroundUrl: string,
     isExpanded: boolean
 }
 
 interface PlaceIconProps {
-    isExpanded: boolean
-}
-
-interface CardHeaderProps {
     isExpanded: boolean
 }
 
@@ -34,7 +34,8 @@ export const CardWrapper = styled('div')(() => ({
 export const CardHeader = styled('div')<CardHeaderProps>(({isExpanded}) => ({
     display: 'flex',
     gap: '15px',
-    flexDirection: isExpanded? 'column': 'row'
+    flexDirection: isExpanded? 'column': 'row',
+    alignItems: 'center'
 }))
 
 export const Photo = styled('div')<PhotoProps>(({ backgroundUrl, isExpanded }) => ({
@@ -50,15 +51,50 @@ export const Photo = styled('div')<PhotoProps>(({ backgroundUrl, isExpanded }) =
     transition: 'height .3s ease-in-out',
 }));
 
-export const PlaceIconsWrapper = styled('div')(() => ({
+export const PhotoIconsWrapper = styled('div')(() => ({
     padding: '8px',
     display: 'flex',
     columnGap: '5px'
 }))
 
-export const PlaceIcon = styled('img')<PlaceIconProps>(({isExpanded}) => ({
+export const PhotoIcon = styled('img')<PlaceIconProps>(({isExpanded}) => ({
     width: isExpanded? '30px': '18px' 
 }))
+
+export const Actions = styled(CardActions)(() => ({
+    padding: '0px',
+    display: 'flex',
+    width: '100%',
+    justifyContent: 'space-between'
+}))
+
+export const ButtonSave = styled(Button)(() => ({
+    border: '3px solid #C4C4C4',
+    borderRadius: '5px',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '12px',
+    color: '#808080',
+    fontSize: '14px',
+    padding: '10px 15px',
+    textTransform: 'none',
+    '& svg path':{
+        fill: '#C75E5E'
+    }
+}))
+
+export const ButtonRoute = styled(Button)(() => ({
+    borderRadius: '5px',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '12px',
+    color: '#FFF',
+    fontSize: '14px',
+    padding: '10px 15px',
+    backgroundColor: '#5E7BC7',
+    textTransform: 'none'
+}))
+
 
 
 

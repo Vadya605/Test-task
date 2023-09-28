@@ -1,11 +1,8 @@
 import { useState } from 'react'
 import { places } from '../../utils/consts'
 import Search from '../svg/Search'
-import { SearchPanelWrapper } from './Styled/SearchPanelWrapper'
 import { Box } from '@mui/material'
-import { Place, Places, PlacesWrapper } from './Styled/Places'
-import { RadiusBox, RadiusInput, RadiusLabel } from './Styled/Radius'
-import { ButtonSearch } from './Styled/ButtonSearch'
+import { SearchPanelWrapper, Place, Places, PlacesWrapper, RadiusBox, RadiusInput, RadiusLabel, ButtonSearch } from './SearchPanelStyle'
 
 export default function SearchPanel(){
     const [selectedPlaces, setSelectedPlaces] = useState<string[]>([])
