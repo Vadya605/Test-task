@@ -1,26 +1,16 @@
 import { styled } from '@mui/material/styles';
 import { Card, Button, CardActions } from '@mui/material';
 
-interface CardHeaderProps {
-    isExpanded: boolean
-}
-
 interface PhotoProps {
-    backgroundUrl: string,
-    isExpanded: boolean
+    backgroundUrl: string
 }
 
-interface PlaceIconProps {
-    isExpanded: boolean
-}
-
-export const FavoriteCard = styled(Card)(() => ({
-    width: '400px',
+export const CardExpanded = styled(Card)(() => ({
+    maxWidth: '440px',
     whiteSpace: 'normal',
     borderRadius: '10px',
     border: '3px solid #C4C4C4',
     boxShadow: 'none',
-    marginBottom: '25px'
 }))
 
 export const CardWrapper = styled('div')(() => ({
@@ -31,17 +21,16 @@ export const CardWrapper = styled('div')(() => ({
     margin: '0px'
 }))
 
-export const CardHeader = styled('div')<CardHeaderProps>(({isExpanded}) => ({
+export const CardHeader = styled('div')(() => ({
     display: 'flex',
     gap: '15px',
-    flexDirection: isExpanded? 'column': 'row',
-    alignItems: 'center'
+    flexDirection: 'column',
 }))
 
-export const Photo = styled('div')<PhotoProps>(({ backgroundUrl, isExpanded }) => ({
+export const Photo = styled('div')<PhotoProps>(({ backgroundUrl }) => ({
     borderRadius: '10px',
-    width: isExpanded?'350px':'200px',
-    height: isExpanded? '280px': '100px',
+    width: '400px',
+    height: '300px',
     background: `url('${backgroundUrl}')`,
     backgroundSize: 'cover',
     backgroundPosition: 'center center',
@@ -57,8 +46,8 @@ export const PhotoIconsWrapper = styled('div')(() => ({
     columnGap: '5px'
 }))
 
-export const PhotoIcon = styled('img')<PlaceIconProps>(({isExpanded}) => ({
-    width: isExpanded? '30px': '18px' 
+export const PhotoIcon = styled('img')(() => ({
+    width: '30px'
 }))
 
 export const Actions = styled(CardActions)(() => ({
@@ -80,6 +69,9 @@ export const ButtonSave = styled(Button)(() => ({
     textTransform: 'none',
     '& svg path':{
         fill: '#C75E5E'
+    },
+    '&:hover':{
+        border: '3px solid #C4C4C4',
     }
 }))
 
@@ -92,7 +84,12 @@ export const ButtonRoute = styled(Button)(() => ({
     fontSize: '14px',
     padding: '10px 15px',
     backgroundColor: '#5E7BC7',
-    textTransform: 'none'
+    textTransform: 'none',
+
+    '&:hover':{
+        backgroundColor: '#5E7BC7',
+        border: 'none'
+    }
 }))
 
 
