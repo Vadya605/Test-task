@@ -1,19 +1,29 @@
-import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
+import React from 'react'
+import { GoogleMap, Marker } from "@react-google-maps/api";
 import { mapContainerStyle, MapWrapper } from './MapStyle.tsx';
 
-export default function Map() {
-    const { isLoaded } = useJsApiLoader({
-        id: 'google-map-script',
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY as string
-    });
+interface MapProps {
+    center: {
+        lat: number,
+        lng: number
+    },
+    isLoaded: boolean
+}
 
-    const center = {
-        lat: -34.397,
-        lng: 150.644
-    };
+export default function Map({ center, isLoaded }: MapProps) {
+    
+    const mapRef = React.useRef<google.maps.Map | null>(null)
+
+    const onLoad = React.useCallback(function callback(map: google.maps.Map) {
+        mapRef.current = map
+    }, [])
+
+    const onUnmount = React.useCallback(function callback() {
+        mapRef.current = null
+    }, [])
 
     return (
-        <MapWrapper className='map-wrapper'>
+        <MapWrapper>
             {isLoaded ? (
                 <GoogleMap
                     mapContainerStyle={mapContainerStyle}

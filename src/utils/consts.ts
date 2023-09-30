@@ -37,3 +37,8 @@ export const places = [
     {id: 1, name: 'Банки', icon: Bank},
     {id: 1, name: 'Место для сна', icon: Sleep},
 ]
+
+export const defaultCenter = {
+    lat: 51.5085300, 
+    lng: -0.1257400
+}

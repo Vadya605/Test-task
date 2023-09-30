@@ -3,12 +3,19 @@ import Box from '@mui/material/Box';
 import LogoImg from '../../assets/img/Logo.svg'
 import Favorite from '../svg/Favorite';
 import Search from '../svg/Search'
-import { Drawer, DrawerContent, DrawerWrapper, ListSections, 
-    Aside, SearchBox, SearchIcon, SearchInput, AsideButtonFavorites, 
-    AsideButtonSearch, AvatarAside, Logo } from './SideBarStyle';
+import {
+  Drawer, DrawerContent, DrawerWrapper, ListSections,
+  Aside, AsideButtonFavorites,
+  AsideButtonSearch, AvatarAside, Logo
+} from './SideBarStyle';
 import FavoritesPanel from '../FavoritesPanel/FavoritesPanel';
 import SearchPanel from '../SearchPanel/SearchPanel';
 import { ListItem } from '@mui/material';
+import AutoCompleteSearch from '../AutoCompleteSearch/AutoCompeteSearch';
+
+interface SideBarProps {
+  isLoaded: boolean
+}
 
 const itemsDrawer = [
   {
@@ -24,7 +31,7 @@ const itemsDrawer = [
 ]
 
 
-export default function SideBar() {
+export default function SideBar({ isLoaded }: SideBarProps) {
   const [open, setOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState('')
 
@@ -32,7 +39,7 @@ export default function SideBar() {
     setOpen(true)
     setSelectedItem(name)
   }
- 
+
   return (
     <Box>
       <Drawer variant="permanent" open={open} className='drawer'>
@@ -43,23 +50,18 @@ export default function SideBar() {
                 <img src={LogoImg} alt="" />
               </Logo>
               <ListSections>
-                  {itemsDrawer.map(item => (
-                    <ListItem disablePadding key={item.name} onClick={() => handleClickSectionItem(item.name)}>
-                      <div style={{ display: 'flex', alignItems: 'center' }}>
-                        {item.button}
-                      </div>
+                {itemsDrawer.map(item => (
+                  <ListItem disablePadding key={item.name} onClick={() => handleClickSectionItem(item.name)}>
+                      {item.button}
                   </ListItem>
-                  ))}
+                ))}
               </ListSections>
             </Box>
             <AvatarAside src='/Person.jpg' />
           </Aside>
           <DrawerContent>
-            <SearchBox>
-              <SearchIcon />
-              <SearchInput placeholder='Место адрес...' />
-            </SearchBox>
-          { open && (selectedItem === 'search'? <SearchPanel />: <FavoritesPanel/>)} 
+            <AutoCompleteSearch isLoaded={isLoaded} />
+            {open && (selectedItem === 'search' ? <SearchPanel /> : <FavoritesPanel />)}
           </DrawerContent>
         </DrawerWrapper>
       </Drawer>
