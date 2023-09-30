@@ -1,6 +1,8 @@
 import React from 'react'
 import { GoogleMap, Marker } from "@react-google-maps/api";
 import { mapContainerStyle, MapWrapper } from './MapStyle.tsx';
+import CurrentLocation from '../CurrentLocation/CurrentLocation.tsx';
+import { mapOptions } from '../../utils/consts.ts';
 
 interface MapProps {
     center: {
@@ -29,8 +31,9 @@ export default function Map({ center, isLoaded }: MapProps) {
                     mapContainerStyle={mapContainerStyle}
                     center={center}
                     zoom={8}
+                    options={mapOptions}
                 >
-                    <Marker position={center} />
+                    <CurrentLocation position={center} />
                 </GoogleMap>
             ) : (
                 <p>Loading...</p>
