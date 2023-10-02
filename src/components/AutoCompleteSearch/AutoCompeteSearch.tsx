@@ -1,4 +1,4 @@
-import { SearchBox, SearchIcon, SearchInput } from "./AutoCompeteSearchStyle"
+import { AutoCompeteSearchWrapper, ListSuggestions, ListSuggestionsItem, SearchBox, SearchIcon, SearchInput, Wrapper } from "./AutoCompeteSearchStyle"
 import usePlacesAutocomplete, {
     getGeocode,
     getLatLng,
@@ -7,81 +7,61 @@ import useOnclickOutside from "react-cool-onclickoutside";
 import React from "react";
 
 interface AutoCompeteSearchProps {
-    isLoaded: boolean
+    isLoaded: boolean,
+    handleSelectItem: React.Dispatch<React.SetStateAction<{ lat: number; lng: number; }>>
 }
 
-const AutoCompleteSearch = ({ isLoaded }: AutoCompeteSearchProps) => {
+export default function AutoCompleteSearch({ isLoaded, handleSelectItem }: AutoCompeteSearchProps) {
     React.useEffect(() => {
-        if (isLoaded) {
-            init()
-        }
+        isLoaded && init()
     }, [isLoaded])
-    const {
-        ready,
-        value,
-        suggestions: { status, data },
-        setValue,
-        init,
-        clearSuggestions,
-    } = usePlacesAutocomplete({
-        initOnMount: false,
-        debounce: 300,
-    });
+
+    const { ready, value, suggestions: { status, data }, setValue, init, clearSuggestions, } = usePlacesAutocomplete({ initOnMount: false, debounce: 300 });
+
     const ref = useOnclickOutside(() => {
-        // When the user clicks outside of the component, we can dismiss
-        // the searched suggestions by calling this method
         clearSuggestions();
     });
 
-    const handleInput = (e: any) => {
-        // Update the keyword of the input element
+    const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value);
     };
 
     const handleSelect =
-        ({ description }: any) =>
+        (description: string) =>
             () => {
-                console.log(description);
-
-                // When the user selects a place, we can replace the keyword without request data from API
-                // by setting the second parameter to "false"
                 setValue(description, false);
                 clearSuggestions();
 
-                // Get latitude and longitude via utility functions
                 getGeocode({ address: description }).then((results) => {
                     const { lat, lng } = getLatLng(results[0]);
-                    console.log("📍 Coordinates: ", { lat, lng });
+                    handleSelectItem({ lat, lng })
                 });
             };
 
     const renderSuggestions = () =>
         data.map((suggestion) => {
-            const {
-                place_id,
-                structured_formatting: { main_text, secondary_text },
-            } = suggestion;
+            const { place_id, structured_formatting: { main_text, secondary_text } } = suggestion;
 
             return (
-                <li key={place_id} onClick={handleSelect(suggestion)}>
-                    <strong>{main_text}</strong> <small>{secondary_text}</small>
-                </li>
+                <ListSuggestionsItem key={place_id} onClick={handleSelect(suggestion.description)}>
+                    <strong>{main_text}</strong>
+                    <small>{secondary_text}</small>
+                </ListSuggestionsItem>
             );
         });
     return (
-        <div>
-            <SearchBox ref={ref}>
+        <AutoCompeteSearchWrapper ref={ref}>
+            <SearchBox isActive={ status==='OK' }>
                 <SearchIcon />
-                <SearchInput 
-                    placeholder='Место адрес...' 
+                <SearchInput
+                    placeholder='Место адрес...'
                     value={value}
                     onChange={handleInput}
-                    disabled={!ready} 
+                    disabled={!ready}
                 />
             </SearchBox>
-            {status === "OK" && <ul>{renderSuggestions()}</ul>}
-        </div>
+            {status === "OK" && <ListSuggestions>{renderSuggestions()}</ListSuggestions> }
+        </AutoCompeteSearchWrapper>
+
     )
 };
-
-export default AutoCompleteSearch

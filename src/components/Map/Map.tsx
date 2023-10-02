@@ -14,15 +14,15 @@ interface MapProps {
 
 export default function Map({ center, isLoaded }: MapProps) {
     
-    const mapRef = React.useRef<google.maps.Map | null>(null)
+    // const mapRef = React.useRef<google.maps.Map | null>(null)
 
-    const onLoad = React.useCallback(function callback(map: google.maps.Map) {
-        mapRef.current = map
-    }, [])
+    // const onLoad = React.useCallback(function callback(map: google.maps.Map) {
+    //     mapRef.current = map
+    // }, [])
 
-    const onUnmount = React.useCallback(function callback() {
-        mapRef.current = null
-    }, [])
+    // const onUnmount = React.useCallback(function callback() {
+    //     mapRef.current = null
+    // }, [])
 
     return (
         <MapWrapper>
@@ -30,7 +30,7 @@ export default function Map({ center, isLoaded }: MapProps) {
                 <GoogleMap
                     mapContainerStyle={mapContainerStyle}
                     center={center}
-                    zoom={8}
+                    zoom={15}
                     options={mapOptions}
                 >
                     <CurrentLocation position={center} />

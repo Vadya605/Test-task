@@ -28,7 +28,7 @@ function App() {
 
     return (
         <ContainerApp>
-            <SideBar isLoaded={isLoaded} />
+            <SideBar handleSelectItem={setCenter} isLoaded={isLoaded} />
             <Map isLoaded={isLoaded} center={center} />
         </ContainerApp>
     )

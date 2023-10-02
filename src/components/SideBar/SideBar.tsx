@@ -14,7 +14,8 @@ import { ListItem } from '@mui/material';
 import AutoCompleteSearch from '../AutoCompleteSearch/AutoCompeteSearch';
 
 interface SideBarProps {
-  isLoaded: boolean
+  isLoaded: boolean,
+  handleSelectItem: React.Dispatch<React.SetStateAction<{ lat: number; lng: number; }>>;
 }
 
 const itemsDrawer = [
@@ -31,7 +32,7 @@ const itemsDrawer = [
 ]
 
 
-export default function SideBar({ isLoaded }: SideBarProps) {
+export default function SideBar({ isLoaded, handleSelectItem }: SideBarProps) {
   const [open, setOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState('')
 
@@ -60,7 +61,7 @@ export default function SideBar({ isLoaded }: SideBarProps) {
             <AvatarAside src='/Person.jpg' />
           </Aside>
           <DrawerContent>
-            <AutoCompleteSearch isLoaded={isLoaded} />
+            <AutoCompleteSearch handleSelectItem={handleSelectItem} isLoaded={isLoaded} />
             {open && (selectedItem === 'search' ? <SearchPanel /> : <FavoritesPanel />)}
           </DrawerContent>
         </DrawerWrapper>
