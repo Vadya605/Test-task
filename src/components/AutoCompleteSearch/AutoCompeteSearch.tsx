@@ -62,6 +62,5 @@ export default function AutoCompleteSearch({ isLoaded, handleSelectItem }: AutoC
             </SearchBox>
             {status === "OK" && <ListSuggestions>{renderSuggestions()}</ListSuggestions> }
         </AutoCompeteSearchWrapper>
-
     )
 };

@@ -8,8 +8,6 @@ interface SearchBoxProps {
 
 export const AutoCompeteSearchWrapper = styled('div')(() => ({
     position:'relative',
-    display: 'flex',
-    flexDirection: 'column',
 }))
 
 export const SearchBox = styled(Box)<SearchBoxProps>(({ isActive }) => ({

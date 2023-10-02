@@ -15,13 +15,3 @@ export const getBrowserLocation = (): Promise<{ lat: number; lng: number }> => {
         }
     });
 };
-
-// React.useEffect(() => {
-//     getBrowserLocation()
-//       .then((location) => {
-//         setCenter(location);
-//       })
-//       .catch((defaultLocation) => {
-//         setCenter(defaultLocation);
-//       });
-//   }, []);
