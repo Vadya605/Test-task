@@ -1,24 +1,49 @@
-import { useState } from 'react'
 import { places } from '../../utils/consts'
 import Search from '../svg/Search'
 import { Box } from '@mui/material'
 import { SearchPanelWrapper, Place, Places, PlacesWrapper, RadiusBox, RadiusInput, RadiusLabel, ButtonSearch } from './SearchPanelStyle'
+import { useAppDispath, useTypeSelector } from '../../hooks/redux'
+import { SearchServices } from '../../store/reducers/'
+import React from 'react'
 
 export default function SearchPanel(){
-    const [selectedPlaces, setSelectedPlaces] = useState<string[]>([])
+    const dispatch = useAppDispath()
+    const {selectedPlaces, searchRadius} = useTypeSelector(state => state.Search)
+    const {map} = useTypeSelector(state => state.Map)
 
     const handleClickPlace = (name: string) => {
-        if(selectedPlaces.includes(name)){
-            return setSelectedPlaces(
-                selectedPlaces.filter(place => place !== name)
-            )
+        if(!selectedPlaces.includes(name)){
+            return dispatch(SearchServices.actions.addSelectedPlace(name))
         }
 
-        return setSelectedPlaces([
-            ...selectedPlaces,
-            name
-        ])
+        return dispatch(SearchServices.actions.removeSelectedPlace(name))
     }
+
+    const handleChangeRadius = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(SearchServices.actions.setSearchRadius(Number(e.target.value)*1000))
+    }
+
+    const handleSearch = () => {
+        if(!map){
+            return
+        }
+        
+        const request = {
+            location: map.getCenter(),
+            radius: searchRadius,
+            keyword: selectedPlaces.toString()
+        };
+        
+        const placesService = new google.maps.places.PlacesService(map);
+
+        placesService.nearbySearch(request, (results, status) => {     
+            if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+                dispatch(SearchServices.actions.setFoundPlaces(results))
+            } else {
+                dispatch(SearchServices.actions.setFoundPlaces([]))
+            }
+        });
+    };
 
     return (
         <Box>
@@ -40,10 +65,10 @@ export default function SearchPanel(){
                 </Places>
                 <h3>В радиусе</h3>
                 <RadiusBox>
-                    <RadiusInput name='radius' id='radius' />
+                    <RadiusInput name='radius' id='radius' onChange={handleChangeRadius} />
                     <RadiusLabel>км</RadiusLabel>
                 </RadiusBox>
-                <ButtonSearch>
+                <ButtonSearch onClick={handleSearch}>
                     <Search />
                 </ButtonSearch>
             </SearchPanelWrapper>

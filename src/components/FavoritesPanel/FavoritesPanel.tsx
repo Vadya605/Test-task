@@ -1,9 +1,10 @@
-import { useState } from "react";
 import { Box } from '@mui/material'
 import CollapsedCard from "../CardFavorite/CollapsedCard/CollapsedCard";
 import ExpandedCard from "../CardFavorite/ExpandedCard/ExpandedCard";
 import BackIcon from '../../assets/img/Arrow.svg'
 import { IconBack, HeaderPanel } from "./FavoritesPanelStyle";
+import { useAppDispath, useTypeSelector } from "../../hooks/redux";
+import { SelectedFavoriteServices } from "../../store/reducers";
 
 const favorites = [
     {
@@ -54,13 +55,14 @@ const favorites = [
 ]
 
 export default function FavoritesPanel(){
-    const [selectedFavoriteId, setSelectedFavoriteId] = useState<number>()
+    const dispatch = useAppDispath()
+    const selectedFavoriteId = useTypeSelector(state => state.SelectedFavorite.id)
     
     return(
         <Box>
             <HeaderPanel>
                 { selectedFavoriteId? 
-                    <IconBack src={BackIcon} onClick={() => setSelectedFavoriteId(undefined)} />
+                    <IconBack src={BackIcon} onClick={() => dispatch(SelectedFavoriteServices.actions.setSelected(null))} />
                     :null
                 }
                 <h3>Избранное</h3>
@@ -73,7 +75,7 @@ export default function FavoritesPanel(){
                     />
                     :favorites.map(favoriteItem => 
                         <CollapsedCard
-                            handleClickExpandMore={() => setSelectedFavoriteId(favoriteItem.id)}
+                            handleClickExpandMore={() => dispatch(SelectedFavoriteServices.actions.setSelected(favoriteItem.id))}
                             favoriteItem={ favoriteItem }
                             key={favoriteItem.id}
                         />

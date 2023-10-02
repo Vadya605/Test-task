@@ -1,20 +1,30 @@
-import { AutoCompeteSearchWrapper, ListSuggestions, ListSuggestionsItem, SearchBox, SearchIcon, SearchInput, Wrapper } from "./AutoCompeteSearchStyle"
+import {
+    AutoCompeteSearchWrapper,
+    ListSuggestions,
+    ListSuggestionsItem,
+    SearchBox,
+    SearchIcon,
+    SearchInput
+} from "./AutoCompeteSearchStyle"
 import usePlacesAutocomplete, {
     getGeocode,
     getLatLng,
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
 import React from "react";
+import { useAppDispath } from "../../hooks/redux";
+import { MapServices } from "../../store/reducers";
 
 interface AutoCompeteSearchProps {
     isLoaded: boolean,
-    handleSelectItem: React.Dispatch<React.SetStateAction<{ lat: number; lng: number; }>>
 }
 
-export default function AutoCompleteSearch({ isLoaded, handleSelectItem }: AutoCompeteSearchProps) {
+export default function AutoCompleteSearch({ isLoaded }: AutoCompeteSearchProps) {
     React.useEffect(() => {
         isLoaded && init()
     }, [isLoaded])
+
+    const dispatch = useAppDispath()
 
     const { ready, value, suggestions: { status, data }, setValue, init, clearSuggestions, } = usePlacesAutocomplete({ initOnMount: false, debounce: 300 });
 
@@ -34,7 +44,7 @@ export default function AutoCompleteSearch({ isLoaded, handleSelectItem }: AutoC
 
                 getGeocode({ address: description }).then((results) => {
                     const { lat, lng } = getLatLng(results[0]);
-                    handleSelectItem({ lat, lng })
+                    dispatch(MapServices.actions.setCenter({ lat, lng }))
                 });
             };
 
@@ -51,7 +61,7 @@ export default function AutoCompleteSearch({ isLoaded, handleSelectItem }: AutoC
         });
     return (
         <AutoCompeteSearchWrapper ref={ref}>
-            <SearchBox isActive={ status==='OK' }>
+            <SearchBox isActive={status === 'OK'}>
                 <SearchIcon />
                 <SearchInput
                     placeholder='Место адрес...'
@@ -60,7 +70,7 @@ export default function AutoCompleteSearch({ isLoaded, handleSelectItem }: AutoC
                     disabled={!ready}
                 />
             </SearchBox>
-            {status === "OK" && <ListSuggestions>{renderSuggestions()}</ListSuggestions> }
+            {status === "OK" && <ListSuggestions>{renderSuggestions()}</ListSuggestions>}
         </AutoCompeteSearchWrapper>
     )
 };

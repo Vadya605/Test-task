@@ -49,7 +49,7 @@ export const Place = styled('div')<PlaceProps>(({ isSelected }) => ({
     display: 'flex',
     alignItems: 'center',
     columnGap: '20px',
-    opacity: isSelected? '0.5': 1,
+    opacity: !isSelected? '0.5': 1,
     '& img': {
         width: '30px'
     }

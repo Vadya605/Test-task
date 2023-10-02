@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Box from '@mui/material/Box';
 import LogoImg from '../../assets/img/Logo.svg'
 import Favorite from '../svg/Favorite';
@@ -12,10 +11,11 @@ import FavoritesPanel from '../FavoritesPanel/FavoritesPanel';
 import SearchPanel from '../SearchPanel/SearchPanel';
 import { ListItem } from '@mui/material';
 import AutoCompleteSearch from '../AutoCompleteSearch/AutoCompeteSearch';
+import { useAppDispath, useTypeSelector } from '../../hooks/redux';
+import { DrawerServices } from '../../store/reducers/';
 
 interface SideBarProps {
   isLoaded: boolean,
-  handleSelectItem: React.Dispatch<React.SetStateAction<{ lat: number; lng: number; }>>;
 }
 
 const itemsDrawer = [
@@ -32,28 +32,29 @@ const itemsDrawer = [
 ]
 
 
-export default function SideBar({ isLoaded, handleSelectItem }: SideBarProps) {
-  const [open, setOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState('')
+export default function SideBar({ isLoaded }: SideBarProps) {
+  const dispatch = useAppDispath()
+  const { isOpen, selectedSection } = useTypeSelector(state => state.Drawer)
 
   const handleClickSectionItem = (name: string) => {
-    setOpen(true)
-    setSelectedItem(name)
+    dispatch(DrawerServices.actions.setOpen(true))
+    dispatch(DrawerServices.actions.setSelectedSection(name))
   }
+
 
   return (
     <Box>
-      <Drawer variant="permanent" open={open} className='drawer'>
+      <Drawer variant="permanent" open={isOpen} className='drawer'>
         <DrawerWrapper>
           <Aside>
             <Box>
-              <Logo onClick={() => setOpen(!open)}>
+              <Logo onClick={() => dispatch(DrawerServices.actions.setOpen(!isOpen))}>
                 <img src={LogoImg} alt="" />
               </Logo>
               <ListSections>
                 {itemsDrawer.map(item => (
                   <ListItem disablePadding key={item.name} onClick={() => handleClickSectionItem(item.name)}>
-                      {item.button}
+                    {item.button}
                   </ListItem>
                 ))}
               </ListSections>
@@ -61,8 +62,8 @@ export default function SideBar({ isLoaded, handleSelectItem }: SideBarProps) {
             <AvatarAside src='/Person.jpg' />
           </Aside>
           <DrawerContent>
-            <AutoCompleteSearch handleSelectItem={handleSelectItem} isLoaded={isLoaded} />
-            {open && (selectedItem === 'search' ? <SearchPanel /> : <FavoritesPanel />)}
+            <AutoCompleteSearch isLoaded={isLoaded} />
+            {isOpen && (selectedSection === 'search' ? <SearchPanel /> : <FavoritesPanel />)}
           </DrawerContent>
         </DrawerWrapper>
       </Drawer>
