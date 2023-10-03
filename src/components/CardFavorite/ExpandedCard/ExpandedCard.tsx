@@ -1,6 +1,6 @@
 import { Actions, CardExpanded, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper, ButtonRoute, ButtonSave } from "./ExpandedCardStyle";
-import Car from '../../../assets/img/icons-markers/car1.svg'
-import Car2 from '../../../assets/img/icons-markers/car2.svg'
+import Car from '../../../assets/img/icons-markers/car-rear.svg'
+import Car2 from '../../../assets/img/icons-markers/car-side.svg'
 import Favorite from "../../svg/Favorite";
 import Geo from "../../svg/Geo";
 

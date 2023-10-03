@@ -2,11 +2,11 @@ import React from 'react'
 import { GoogleMap, Marker } from "@react-google-maps/api";
 import { mapContainerStyle, MapWrapper } from './MapStyle.tsx';
 import CurrentLocation from '../CurrentLocation/CurrentLocation.tsx';
-import { mapOptions } from '../../utils/consts.ts';
-import CurrentLocationIcon from '../../assets/img/CurrentLocation.svg'
+import { mapOptions, places } from '../../utils/consts.ts';
 import { useAppDispath, useTypeSelector } from '../../hooks/redux.ts';
 import { getBrowserLocation } from '../../utils/geo.ts';
 import { MapServices } from '../../store/reducers/'
+import { IPlace } from '../../models/IPlace.ts';
 
 interface MapProps {
     isLoaded: boolean
@@ -14,13 +14,8 @@ interface MapProps {
 
 export default function Map({ isLoaded }: MapProps) {
     const dispatch = useAppDispath()
-    const {center, map} = useTypeSelector(state => state.Map)
+    const {center} = useTypeSelector(state => state.Map)
     const {foundPlaces} = useTypeSelector(state => state.Search)
-
-    if(foundPlaces.length){
-        console.log(foundPlaces);
-        
-    }
 
     const onLoad = React.useCallback(async function callback(map: google.maps.Map) {
         getBrowserLocation()
@@ -29,9 +24,14 @@ export default function Map({ isLoaded }: MapProps) {
             })
             .catch((defaultLocation) => {
                 dispatch(MapServices.actions.setCenter(defaultLocation))
-            });
-        dispatch(MapServices.actions.setMap(map))
+            }).finally(() => {
+                dispatch(MapServices.actions.setMap(map))
+            })
     }, [])
+
+    const checkMath = (place: IPlace, types: string[]) => {
+        return place.types.some(type => types.includes(type))
+    }
 
     const onUnmount = React.useCallback(function callback() {
         dispatch(MapServices.actions.setMap(null))
@@ -55,14 +55,13 @@ export default function Map({ isLoaded }: MapProps) {
                                 lat: place.geometry.location.lat(),
                                 lng: place.geometry.location.lng(),
                             }}
-                            // icon={CurrentLocationIcon}
-                            title={place.name}
+                            icon={(places.find(p => checkMath(p, place.types)).icon)}
                         />
                     ))}
                     <CurrentLocation position={center} />
                 </GoogleMap>
             ) : (
-                <p>Loading...</p>
+                <p>Мы загружаемся</p>
             )}
         </MapWrapper>
     );

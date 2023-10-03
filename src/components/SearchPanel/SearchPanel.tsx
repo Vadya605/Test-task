@@ -20,18 +20,20 @@ export default function SearchPanel(){
     }
 
     const handleChangeRadius = (e: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(SearchServices.actions.setSearchRadius(Number(e.target.value)*1000))
+        const searchRadiusValue = e.target.value.replace(/[^0-9]/g, '')
+        
+        dispatch(SearchServices.actions.setSearchRadius(searchRadiusValue))
     }
 
     const handleSearch = () => {
-        if(!map){
-            return
+        if(!map || !selectedPlaces.length || !searchRadius){
+            return console.log('Ввод');
         }
         
         const request = {
             location: map.getCenter(),
-            radius: searchRadius,
-            keyword: selectedPlaces.toString()
+            radius: Number(searchRadius) * 1000,
+            keyword: selectedPlaces
         };
         
         const placesService = new google.maps.places.PlacesService(map);
@@ -65,7 +67,7 @@ export default function SearchPanel(){
                 </Places>
                 <h3>В радиусе</h3>
                 <RadiusBox>
-                    <RadiusInput name='radius' id='radius' onChange={handleChangeRadius} />
+                    <RadiusInput name='radius' id='radius' value={searchRadius} onChange={handleChangeRadius} />
                     <RadiusLabel>км</RadiusLabel>
                 </RadiusBox>
                 <ButtonSearch onClick={handleSearch}>

@@ -1,8 +1,6 @@
 import { Actions, CardCollapsed, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper } from "./CollapsedCardStyle";
-import Car from '../../../assets/img/icons-markers/car1.svg'
-import Car2 from '../../../assets/img/icons-markers/car2.svg'
-// import { Typography } from "@mui/material";
-// import Favorite from '../../../assets/img/side-bar/Favorites/Favorites.svg'
+import Car from '../../../assets/img/icons-markers/car-rear.svg'
+import Car2 from '../../../assets/img/icons-markers/car-side.svg'
 import Favorite from "../../svg/Favorite";
 import ExpandMore from '../../../assets/img/Arrow.svg'
 import { strLimit } from "../../../utils/textHelpers";
