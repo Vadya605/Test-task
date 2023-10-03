@@ -56,5 +56,8 @@ export const Actions = styled(CardActions)(() => ({
     padding: '0px',
     display: 'flex',
     width: '100%',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    '& svg path': {
+        fill: '#C75E5E'
+    }
 }))

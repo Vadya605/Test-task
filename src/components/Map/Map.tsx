@@ -14,9 +14,13 @@ interface MapProps {
 
 export default function Map({ isLoaded }: MapProps) {
     const dispatch = useAppDispath()
-    const {center} = useTypeSelector(state => state.Map)
+    const {center, map} = useTypeSelector(state => state.Map)
     const {foundPlaces} = useTypeSelector(state => state.Search)
-    console.log(foundPlaces)
+
+    if(foundPlaces.length){
+        console.log(foundPlaces);
+        
+    }
 
     const onLoad = React.useCallback(async function callback(map: google.maps.Map) {
         getBrowserLocation()
@@ -51,7 +55,7 @@ export default function Map({ isLoaded }: MapProps) {
                                 lat: place.geometry.location.lat(),
                                 lng: place.geometry.location.lng(),
                             }}
-                            icon={CurrentLocationIcon}
+                            // icon={CurrentLocationIcon}
                             title={place.name}
                         />
                     ))}

@@ -18,7 +18,7 @@ const initialState: MapState = {
 }
 
 export const MapSlice = createSlice({
-    name: 'centerMap',
+    name: 'map',
     initialState,
     reducers: {
         setCenter(state, action: PayloadAction<{ lat: number, lng: number }>){
