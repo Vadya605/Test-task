@@ -23,8 +23,11 @@ export const SearchSlice = createSlice({
         removeSelectedPlace(state, action: PayloadAction<string>){
             state.selectedPlaces = state.selectedPlaces.filter(place => place !== action.payload)
         },
-        setFoundPlaces(state, action: PayloadAction<google.maps.places.PlaceResult[]>){
-            state.foundPlaces = action.payload
+        addFoundPlaces(state, action: PayloadAction<google.maps.places.PlaceResult[]>){
+            state.foundPlaces = state.foundPlaces.concat(action.payload)
+        },
+        clearFoundPlaces(state){
+            state.foundPlaces = []
         },
         setSearchRadius(state, action: PayloadAction<string>){
             state.searchRadius = action.payload

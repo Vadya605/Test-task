@@ -2,11 +2,10 @@ import React from 'react'
 import { GoogleMap, Marker } from "@react-google-maps/api";
 import { mapContainerStyle, MapWrapper } from './MapStyle.tsx';
 import CurrentLocation from '../CurrentLocation/CurrentLocation.tsx';
-import { mapOptions, places } from '../../utils/consts.ts';
+import { mapOptions } from '../../utils/consts.ts';
 import { useAppDispath, useTypeSelector } from '../../hooks/redux.ts';
 import { getBrowserLocation } from '../../utils/geo.ts';
 import { MapServices } from '../../store/reducers/'
-import { IPlace } from '../../models/IPlace.ts';
 
 interface MapProps {
     isLoaded: boolean
@@ -29,10 +28,6 @@ export default function Map({ isLoaded }: MapProps) {
             })
     }, [])
 
-    const checkMath = (place: IPlace, types: string[]) => {
-        return place.types.some(type => types.includes(type))
-    }
-
     const onUnmount = React.useCallback(function callback() {
         dispatch(MapServices.actions.setMap(null))
     }, [])
@@ -48,14 +43,14 @@ export default function Map({ isLoaded }: MapProps) {
                     zoom={15}
                     options={mapOptions}
                 >
-                    {foundPlaces && foundPlaces.map((place) => (
+                    {foundPlaces && foundPlaces.map((place, index) => (
                         <Marker
-                            key={place.place_id}
+                            key={`${place.place_id}-${index}`}
                             position={{
                                 lat: place.geometry.location.lat(),
                                 lng: place.geometry.location.lng(),
                             }}
-                            icon={(places.find(p => checkMath(p, place.types)).icon)}
+                            icon={place.icon}
                         />
                     ))}
                     <CurrentLocation position={center} />
