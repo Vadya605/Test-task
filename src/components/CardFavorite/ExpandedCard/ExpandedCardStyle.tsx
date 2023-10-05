@@ -57,41 +57,6 @@ export const Actions = styled(CardActions)(() => ({
     justifyContent: 'space-between'
 }))
 
-export const ButtonSave = styled(Button)(() => ({
-    border: '3px solid #C4C4C4',
-    borderRadius: '5px',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '12px',
-    color: '#808080',
-    fontSize: '14px',
-    padding: '10px 15px',
-    textTransform: 'none',
-    '& svg path':{
-        fill: '#C75E5E'
-    },
-    '&:hover':{
-        border: '3px solid #C4C4C4',
-    }
-}))
-
-export const ButtonRoute = styled(Button)(() => ({
-    borderRadius: '5px',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '12px',
-    color: '#FFF',
-    fontSize: '14px',
-    padding: '10px 15px',
-    backgroundColor: '#5E7BC7',
-    textTransform: 'none',
-
-    '&:hover':{
-        backgroundColor: '#5E7BC7',
-        border: 'none'
-    }
-}))
-
 
 
 

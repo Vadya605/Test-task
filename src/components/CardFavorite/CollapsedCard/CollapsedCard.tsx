@@ -1,22 +1,29 @@
 import { Actions, CardCollapsed, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper } from "./CollapsedCardStyle";
 import Car from '../../../assets/img/icons-markers/car-rear.svg'
 import Car2 from '../../../assets/img/icons-markers/car-side.svg'
-import Favorite from "../../svg/Favorite";
+import Favorite from '../../../assets/img/Favorite.svg'
 import ExpandMore from '../../../assets/img/Arrow.svg'
 import { strLimit } from "../../../utils/textHelpers";
 import { IFavorite } from "../../../models/IFavorite";
-import { useAppDispath } from "../../../hooks/redux";
-import { FavoriteServices } from '../../../store/reducers';
+import { useAppDispatch } from "../../../hooks/redux";
+import { FavoriteServices, SelectedFavoriteServices } from '../../../store/reducers';
+import { Button } from "@mui/material";
 
 
 interface CardCollapsedProps {
     favoriteItem: IFavorite
-    handleClickExpandMore: () => void
 }
 
-export default function CollapsedCard({ favoriteItem, handleClickExpandMore }: CardCollapsedProps){
+export default function CollapsedCard({ favoriteItem }: CardCollapsedProps){
+    const dispatch = useAppDispatch()
 
-    const dispatch = useAppDispath()
+    const handleClickExpandMore = () => {
+        dispatch(SelectedFavoriteServices.actions.setSelected(favoriteItem.place_id))
+    }
+
+    const handleClickFavorite = () => {
+        dispatch(FavoriteServices.actions.removeFavorite(favoriteItem))
+    }
     
     return (
         <CardCollapsed>
@@ -32,11 +39,12 @@ export default function CollapsedCard({ favoriteItem, handleClickExpandMore }: C
                 </CardHeader>
                 <p>{  strLimit(favoriteItem.description, 100) }</p>
                 <Actions>
-                    <button onClick={() => dispatch(FavoriteServices.actions.removeFavorite(favoriteItem))}>
-                        <Favorite />
-                    </button> 
-                    {/* fix */}
-                    <img src={ExpandMore} alt="" onClick={handleClickExpandMore} />
+                    <Button onClick={handleClickFavorite}>
+                        <img src={Favorite} alt="" />
+                    </Button> 
+                    <Button onClick={handleClickExpandMore}>
+                        <img src={ExpandMore} alt="" />
+                    </Button>
                 </Actions>
             </CardWrapper>
         </CardCollapsed>

@@ -7,7 +7,7 @@ interface PhotoProps{
 
 export const CardCollapsed = styled(Card)(() => ({
     marginTop: '10px',
-    maxWidth: '350px',
+    width: '350px',
     whiteSpace: 'normal',
     borderRadius: '10px',
     border: '3px solid #C4C4C4',
