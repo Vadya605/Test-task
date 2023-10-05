@@ -9,7 +9,7 @@ import { SelectedFavoriteServices } from "../../store/reducers";
 
 export default function FavoritesPanel(){
     const dispatch = useAppDispath()
-    const {id: selectedFavoriteId} = useTypeSelector(state => state.SelectedFavorite)
+    const {place_id: selectedFavoriteId} = useTypeSelector(state => state.SelectedFavorite)
     const {favorites} = useTypeSelector(state => state.Favorites)
     
     return(
@@ -24,14 +24,14 @@ export default function FavoritesPanel(){
             {
                 selectedFavoriteId? 
                     <ExpandedCard
-                        favoriteItem={ favorites.find(item => item.id === selectedFavoriteId) }
+                        favoriteItem={ favorites.find(item => item.place_id === selectedFavoriteId) }
                         key={selectedFavoriteId}
                     />
                     :favorites.map(favoriteItem => 
                         <CollapsedCard
-                            handleClickExpandMore={() => dispatch(SelectedFavoriteServices.actions.setSelected(favoriteItem.id))}
+                            handleClickExpandMore={() => dispatch(SelectedFavoriteServices.actions.setSelected(favoriteItem.place_id))}
                             favoriteItem={ favoriteItem }
-                            key={favoriteItem.id}
+                            key={favoriteItem.place_id}
                         />
                     )
             }

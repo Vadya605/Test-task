@@ -2,19 +2,19 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 
 interface SelectedFavoriteState {
-    id: number | null
+    place_id: string
 }
 
 const initialState: SelectedFavoriteState = {
-    id: null
+    place_id: ''
 }
 
 export const SelectedFavoriteSlice = createSlice({
     name: 'selectedFavorite',
     initialState,
     reducers: {
-        setSelected(state, action: PayloadAction<number | null>){
-            state.id = action.payload
+        setSelected(state, action: PayloadAction<string>){
+            state.place_id = action.payload
         }
     },
 })

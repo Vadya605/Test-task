@@ -198,6 +198,8 @@ export const mapOptions = {
     scrollwheel: true,
     disableClickZoom: false,
     fullScreenControl: false,
+    disableDefaultUI: true,
+    clickableIcons: false,
     styles: mapTheme
 }
 

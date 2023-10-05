@@ -1,5 +1,5 @@
 export interface IFavorite {
-    id: number,
+    place_id: string,
     name: string,
     description: string,
     photo: string,

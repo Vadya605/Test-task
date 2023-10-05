@@ -4,6 +4,7 @@ import DrawerReducer from './reducers/DrawerSlice'
 import MapReducer from './reducers/MapSlice'
 import SearchReducer from './reducers/SearchSlice'
 import FavoriteReducer from './reducers/FavoriteSlice'
+import SelectedPlaceReducer from './reducers/SelectedPlaceSlice'
 import {
     persistStore, 
     persistReducer, 
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
     Map: MapReducer,
     Search: SearchReducer,
     Favorites: FavoriteReducer,
+    SelectedPlace: SelectedPlaceReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

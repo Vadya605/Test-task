@@ -3,13 +3,10 @@ import Car from '../../../assets/img/icons-markers/car-rear.svg'
 import Car2 from '../../../assets/img/icons-markers/car-side.svg'
 import Favorite from "../../svg/Favorite";
 import Geo from "../../svg/Geo";
+import { IFavorite } from "../../../models/IFavorite";
 
 interface ExpandedCardProps {
-    favoriteItem: {
-        id:number, 
-        name: string, 
-        description: string,
-    },
+    favoriteItem: IFavorite
 }
 
 export default function ExpandedCard({ favoriteItem }: ExpandedCardProps){
@@ -17,7 +14,7 @@ export default function ExpandedCard({ favoriteItem }: ExpandedCardProps){
         <CardExpanded>
             <CardWrapper>
                 <CardHeader>
-                    <Photo backgroundUrl="/ExamplePhoto.png" >
+                    <Photo backgroundUrl={favoriteItem.photo} >
                         <PhotoIconsWrapper>
                             <PhotoIcon src={Car} />
                             <PhotoIcon src={Car2} />
