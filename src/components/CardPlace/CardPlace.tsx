@@ -1,4 +1,4 @@
-import { CardPlaceWrapper, PhotoPlace, CardPlaceHeader, Actions } from "./CardPlaceStyle";
+import { CardPlaceWrapper, PhotoPlace, Actions } from "./CardPlaceStyle";
 import FavoriteSvg from "../svg/Favorite";
 import GeoSvg from '../svg/Geo'
 import { useAppDispatch, useTypeSelector } from "../../hooks/redux";
@@ -8,6 +8,7 @@ import { ButtonFavorite } from "../ElementsUI/ButtonFavorite";
 import { ButtonRoute } from "../ElementsUI/ButtonRoute";
 import { InfoWindow } from "@react-google-maps/api";
 import { SelectedPlaceServices } from "../../store/reducers/SelectedPlaceSlice";
+import DoesntExistPhoto from '../../../public/doesntExist.jpg'
 
 interface CardPlaceProps {
     place: google.maps.places.PlaceResult
@@ -41,14 +42,14 @@ export default function CardPlace({ place }: CardPlaceProps) {
     return (
         <InfoWindow
             position={{
-                lat: place.geometry.location.lat(),
-                lng: place.geometry.location.lng(),
+                lat: place?.geometry?.location?.lat() || 0,
+                lng: place?.geometry?.location?.lng() || 0,
             }}
             onCloseClick={handleClickClose}
         >
             <CardPlaceWrapper>
                 <h3>{place.name}</h3>
-                <PhotoPlace src={place.photos[0].getUrl()} />
+                <PhotoPlace src={ place.photos?.[0]?.getUrl() || DoesntExistPhoto} />
                 <Actions>
                     <ButtonFavorite onClick={handleClickSave}>
                         <FavoriteSvg />
