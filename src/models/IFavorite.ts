@@ -3,5 +3,9 @@ export interface IFavorite {
     name: string,
     description: string,
     photo: string,
-    types: string[]
+    types: string[],
+    location: {
+        lat: number,
+        lng: number
+    }
 }

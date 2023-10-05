@@ -1,5 +1,5 @@
 import React from 'react'
-import { GoogleMap, Marker, InfoWindow } from "@react-google-maps/api";
+import { GoogleMap, Marker, InfoWindow, DirectionsRenderer } from "@react-google-maps/api";
 import { mapContainerStyle, MapWrapper } from './MapStyle.tsx';
 import CurrentLocation from '../CurrentLocation/CurrentLocation.tsx';
 import { mapOptions } from '../../utils/consts.ts';
@@ -8,6 +8,7 @@ import { getBrowserLocation } from '../../utils/geo.ts';
 import { MapServices } from '../../store/reducers/'
 import CardPlace from '../CardPlace/CardPlace.tsx';
 import { SelectedPlaceServices } from '../../store/reducers/SelectedPlaceSlice.ts';
+import { RouteServices } from '../../store/reducers/DirectionsRendererSlice.ts';
 
 interface MapProps {
     isLoaded: boolean
@@ -15,9 +16,13 @@ interface MapProps {
 
 export default function Map({ isLoaded }: MapProps) {
     const dispatch = useAppDispatch()
-    const { center } = useTypeSelector(state => state.Map)
+    const { center, map } = useTypeSelector(state => state.Map)
     const { foundPlaces } = useTypeSelector(state => state.Search)
     const {selectedPlace} = useTypeSelector(state => state.SelectedPlace)
+    const {directionsRenderer} = useTypeSelector(state => state.DirectionsRenderer)
+
+    console.log('Route', directionsRenderer)
+    directionsRenderer && directionsRenderer.getDirections()
 
     const onLoad = React.useCallback(async function callback(map: google.maps.Map) {
         getBrowserLocation()
@@ -67,6 +72,7 @@ export default function Map({ isLoaded }: MapProps) {
                         />
                     ))}
                     {selectedPlace && <CardPlace place={selectedPlace} />}
+                    {/* { directionsRenderer && <DirectionsRenderer directions={directionsRenderer.getDirections() || undefined} />} */}
                     <CurrentLocation position={center} />
                 </GoogleMap>
             ) : (

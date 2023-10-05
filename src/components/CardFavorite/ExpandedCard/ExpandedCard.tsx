@@ -6,8 +6,9 @@ import Geo from "../../svg/Geo";
 import { IFavorite } from "../../../models/IFavorite";
 import { ButtonFavorite } from "../../ElementsUI/ButtonFavorite";
 import { ButtonRoute } from "../../ElementsUI/ButtonRoute";
-import { useAppDispatch } from "../../../hooks/redux";
-import { FavoriteServices, SelectedFavoriteServices } from "../../../store/reducers";
+import { useAppDispatch, useTypeSelector } from "../../../hooks/redux";
+import { FavoriteServices, SelectedFavoriteServices, DirectionsRendererServices } from "../../../store/reducers";
+
 
 interface ExpandedCardProps {
     favoriteItem: IFavorite
@@ -15,14 +16,35 @@ interface ExpandedCardProps {
 
 export default function ExpandedCard({ favoriteItem }: ExpandedCardProps) {
     const dispatch = useAppDispatch()
-    
+    const {center, map} = useTypeSelector(state => state.Map)
+
     const handleClickFavorite = () => {
         dispatch(SelectedFavoriteServices.actions.setSelected(''))
         dispatch(FavoriteServices.actions.removeFavorite(favoriteItem))
     }
 
     const handleClickRoute = () => {
-        //
+        const directionService = new google.maps.DirectionsService()
+        const directionRequest = {
+            origin: center,
+            destination: {
+                lat: favoriteItem.location.lat,
+                lng: favoriteItem.location.lng
+            },
+            travelMode: google.maps.TravelMode.WALKING
+        }
+        directionService.route(directionRequest, (result, status) => {
+            if(status === google.maps.DirectionsStatus.OK){
+                const directionsRenderer = new google.maps.DirectionsRenderer({
+                    map: map,
+                    directions: result
+                })
+                
+                dispatch(DirectionsRendererServices.actions.setDirectionsRenderer(directionsRenderer))
+            } else {
+                console.log('Error');
+            }
+        })
     }
     
     return (
