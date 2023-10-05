@@ -48,4 +48,4 @@ export const persistor = persistStore(store)
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppStore = ReturnType<typeof store.getState>
-export type AppDispath = typeof store.dispatch
+export type AppDispatch = typeof store.dispatch

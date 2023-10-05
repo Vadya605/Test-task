@@ -3,7 +3,7 @@ import { GoogleMap, Marker, InfoWindow } from "@react-google-maps/api";
 import { mapContainerStyle, MapWrapper } from './MapStyle.tsx';
 import CurrentLocation from '../CurrentLocation/CurrentLocation.tsx';
 import { mapOptions } from '../../utils/consts.ts';
-import { useAppDispath, useTypeSelector } from '../../hooks/redux.ts';
+import { useAppDispatch, useTypeSelector } from '../../hooks/redux.ts';
 import { getBrowserLocation } from '../../utils/geo.ts';
 import { MapServices } from '../../store/reducers/'
 import CardPlace from '../CardPlace/CardPlace.tsx';
@@ -14,7 +14,7 @@ interface MapProps {
 }
 
 export default function Map({ isLoaded }: MapProps) {
-    const dispatch = useAppDispath()
+    const dispatch = useAppDispatch()
     const { center } = useTypeSelector(state => state.Map)
     const { foundPlaces } = useTypeSelector(state => state.Search)
     const {selectedPlace} = useTypeSelector(state => state.SelectedPlace)
@@ -43,9 +43,6 @@ export default function Map({ isLoaded }: MapProps) {
     const handleCloseInfoWindow = () => {
         dispatch(SelectedPlaceServices.actions.setSelected(null))
     }
-
-    foundPlaces && console.log(foundPlaces);
-    
 
     return (
         <MapWrapper>

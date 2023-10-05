@@ -3,12 +3,12 @@ import CollapsedCard from "../CardFavorite/CollapsedCard/CollapsedCard";
 import ExpandedCard from "../CardFavorite/ExpandedCard/ExpandedCard";
 import BackIcon from '../../assets/img/Arrow.svg'
 import { IconBack, HeaderPanel } from "./FavoritesPanelStyle";
-import { useAppDispath, useTypeSelector } from "../../hooks/redux";
+import { useAppDispatch, useTypeSelector } from "../../hooks/redux";
 import { SelectedFavoriteServices } from "../../store/reducers";
 
 
 export default function FavoritesPanel(){
-    const dispatch = useAppDispath()
+    const dispatch = useAppDispatch()
     const {place_id: selectedFavoriteId} = useTypeSelector(state => state.SelectedFavorite)
     const {favorites} = useTypeSelector(state => state.Favorites)
     
@@ -29,7 +29,6 @@ export default function FavoritesPanel(){
                     />
                     :favorites.map(favoriteItem => 
                         <CollapsedCard
-                            handleClickExpandMore={() => dispatch(SelectedFavoriteServices.actions.setSelected(favoriteItem.place_id))}
                             favoriteItem={ favoriteItem }
                             key={favoriteItem.place_id}
                         />

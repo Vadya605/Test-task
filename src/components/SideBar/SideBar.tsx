@@ -11,36 +11,21 @@ import FavoritesPanel from '../FavoritesPanel/FavoritesPanel';
 import SearchPanel from '../SearchPanel/SearchPanel';
 import { ListItem } from '@mui/material';
 import AutoCompleteSearch from '../AutoCompleteSearch/AutoCompeteSearch';
-import { useAppDispath, useTypeSelector } from '../../hooks/redux';
+import { useAppDispatch, useTypeSelector } from '../../hooks/redux';
 import { DrawerServices } from '../../store/reducers/';
 
 interface SideBarProps {
   isLoaded: boolean,
 }
 
-const itemsDrawer = [
-  {
-    id: 1,
-    name: 'search',
-    button: <AsideButtonSearch><Search /></AsideButtonSearch>,
-  },
-  {
-    id: 2,
-    name: 'favorites',
-    button: <AsideButtonFavorites><Favorite /></AsideButtonFavorites>,
-  }
-]
-
-
 export default function SideBar({ isLoaded }: SideBarProps) {
-  const dispatch = useAppDispath()
+  const dispatch = useAppDispatch()
   const { isOpen, selectedSection } = useTypeSelector(state => state.Drawer)
 
   const handleClickSectionItem = (name: string) => {
     dispatch(DrawerServices.actions.setOpen(true))
     dispatch(DrawerServices.actions.setSelectedSection(name))
   }
-
 
   return (
     <Box>
@@ -52,11 +37,16 @@ export default function SideBar({ isLoaded }: SideBarProps) {
                 <img src={LogoImg} alt="" />
               </Logo>
               <ListSections>
-                {itemsDrawer.map(item => (
-                  <ListItem disablePadding key={item.name} onClick={() => handleClickSectionItem(item.name)}>
-                    {item.button}
-                  </ListItem>
-                ))}
+                <ListItem disablePadding onClick={() => handleClickSectionItem('search')}>
+                  <AsideButtonSearch>
+                    <Search />
+                  </AsideButtonSearch>
+                </ListItem>
+                <ListItem disablePadding onClick={() => handleClickSectionItem('favorite')}>
+                  <AsideButtonFavorites>
+                      <Favorite />
+                  </AsideButtonFavorites>
+                </ListItem>
               </ListSections>
             </Box>
             <AvatarAside src='/Person.jpg' />

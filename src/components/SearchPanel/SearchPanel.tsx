@@ -2,13 +2,13 @@ import { places } from '../../utils/consts'
 import Search from '../svg/Search'
 import { Box } from '@mui/material'
 import { SearchPanelWrapper, Place, Places, PlacesWrapper, RadiusBox, RadiusInput, RadiusLabel, ButtonSearch } from './SearchPanelStyle'
-import { useAppDispath, useTypeSelector } from '../../hooks/redux'
+import { useAppDispatch, useTypeSelector } from '../../hooks/redux'
 import { SearchServices } from '../../store/reducers/'
 import Adult from '../../assets/img/icons-markers/18+.svg'
 import React from 'react'
 
 export default function SearchPanel() {
-    const dispatch = useAppDispath()
+    const dispatch = useAppDispatch()
     const { selectedPlaces, searchRadius } = useTypeSelector(state => state.Search)
     const { map } = useTypeSelector(state => state.Map)
 
@@ -51,8 +51,6 @@ export default function SearchPanel() {
                     }));
 
                     dispatch(SearchServices.actions.addFoundPlaces(updatedResults))
-                } else{ 
-                    console.log('empty');
                 }
             });
         })

@@ -1,10 +1,10 @@
 import { CardPlaceWrapper, PhotoPlace, CardPlaceHeader, Actions } from "./CardPlaceStyle";
 import FavoriteSvg from "../svg/Favorite";
 import GeoSvg from '../svg/Geo'
-import { useAppDispath, useTypeSelector } from "../../hooks/redux";
+import { useAppDispatch, useTypeSelector } from "../../hooks/redux";
 import { FavoriteServices } from "../../store/reducers";
 import { convertPlaceResultToFavorite } from "../../utils/convert";
-import { ButtonSave } from "../ElementsUI/ButtonSave";
+import { ButtonFavorite } from "../ElementsUI/ButtonFavorite";
 import { ButtonRoute } from "../ElementsUI/ButtonRoute";
 import { InfoWindow } from "@react-google-maps/api";
 import { SelectedPlaceServices } from "../../store/reducers/SelectedPlaceSlice";
@@ -14,12 +14,11 @@ interface CardPlaceProps {
 }
 
 export default function CardPlace({ place }: CardPlaceProps) {
-    const dispatch = useAppDispath()
+    const dispatch = useAppDispatch()
     const {favorites} = useTypeSelector(state => state.Favorites)
 
     const handleClickSave = () => {
         const favorite = convertPlaceResultToFavorite(place)
-
         if(isFavorite()){
             return dispatch(FavoriteServices.actions.removeFavorite(favorite))
         }
@@ -51,10 +50,10 @@ export default function CardPlace({ place }: CardPlaceProps) {
                 <h3>{place.name}</h3>
                 <PhotoPlace src={place.photos[0].getUrl()} />
                 <Actions>
-                    <ButtonSave onClick={handleClickSave}>
+                    <ButtonFavorite onClick={handleClickSave}>
                         <FavoriteSvg />
                         <span>{ isFavorite()?'Удалить': 'Добавить' }</span>
-                    </ButtonSave>
+                    </ButtonFavorite>
                     <ButtonRoute onClick={handleClickRoute}>
                         <GeoSvg />
                         <span>Маршрут</span>

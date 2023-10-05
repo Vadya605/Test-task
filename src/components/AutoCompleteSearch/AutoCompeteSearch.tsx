@@ -12,7 +12,7 @@ import usePlacesAutocomplete, {
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
 import React from "react";
-import { useAppDispath } from "../../hooks/redux";
+import { useAppDispatch } from "../../hooks/redux";
 import { MapServices } from "../../store/reducers";
 
 interface AutoCompeteSearchProps {
@@ -24,7 +24,7 @@ export default function AutoCompleteSearch({ isLoaded }: AutoCompeteSearchProps)
         isLoaded && init()
     }, [isLoaded])
 
-    const dispatch = useAppDispath()
+    const dispatch = useAppDispatch()
 
     const { ready, value, suggestions: { status, data }, setValue, init, clearSuggestions, } = usePlacesAutocomplete({ initOnMount: false, debounce: 300 });
 
