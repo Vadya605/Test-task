@@ -5,17 +5,12 @@ import { ButtonRoute } from "@/components/ElementsUI/ButtonRoute";
 import Favorite from "@/components/svg/Favorite";
 import Geo from "@/components/svg/Geo";
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
-import { IFavorite } from "@/models/IFavorite";
 import { DirectionsRendererServices,FavoriteServices, SelectedFavoriteServices } from "@/store/reducers";
 
+import { CardProps } from '../interface';
 import { Actions, CardExpanded, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper } from "./styled";
 
-
-interface ExpandedCardProps {
-    favoriteItem: IFavorite
-}
-
-export default function ExpandedCard({ favoriteItem }: ExpandedCardProps) {
+export default function ExpandedCard({ favoriteItem }: CardProps) {
     const dispatch = useAppDispatch()
     const {center, map} = useTypeSelector(state => state.Map)
 

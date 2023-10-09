@@ -1,13 +1,7 @@
 import CurrentLocationIcon from '@/assets/img/CurrentLocation.svg'
 
+import { CurrentLocationProps } from './interface'
 import { CustomMarker } from './styled'
-
-interface CurrentLocationProps {
-    position: {
-        lat: number,
-        lng: number
-    }
-}
 
 export default function CurrentLocation({ position }: CurrentLocationProps){
     return(

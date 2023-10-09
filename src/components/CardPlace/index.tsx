@@ -9,11 +9,8 @@ import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
 import { DirectionsRendererServices, FavoriteServices, SelectedPlaceServices } from "@/store/reducers";
 import { convertPlaceResultToFavorite } from "@/utils/convert";
 
+import { CardPlaceProps } from "./interface";
 import { Actions,CardPlaceWrapper, PhotoPlace } from "./styled";
-
-interface CardPlaceProps {
-    place: google.maps.places.PlaceResult
-}
 
 export default function CardPlace({ place }: CardPlaceProps) {
     const dispatch = useAppDispatch()

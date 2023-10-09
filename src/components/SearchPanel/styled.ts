@@ -1,10 +1,8 @@
 import { Button, Input, InputLabel } from '@mui/material';
 import { styled } from '@mui/material/styles';
-  
-interface PlaceProps {
-    isSelected: boolean;
-}
 
+import { PlaceProps } from './interface';
+  
 export const ButtonSearch = styled(Button)(() => ({
     display: 'flex',
     justifyContent: 'center',

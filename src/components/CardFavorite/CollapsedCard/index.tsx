@@ -5,18 +5,14 @@ import Favorite from '@/assets/img/Favorite.svg'
 import Car from '@/assets/img/icons-markers/car-rear.svg'
 import Car2 from '@/assets/img/icons-markers/car-side.svg'
 import { useAppDispatch } from "@/hooks/redux";
-import { IFavorite } from "@/models/IFavorite";
 import { FavoriteServices, SelectedFavoriteServices } from '@/store/reducers';
 import { strLimit } from "@/utils/textHelpers";
 
+import { CardProps } from "../interface";
 import { Actions, CardCollapsed, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper } from "./styled";
 
 
-interface CardCollapsedProps {
-    favoriteItem: IFavorite
-}
-
-export default function CollapsedCard({ favoriteItem }: CardCollapsedProps){
+export default function CollapsedCard({ favoriteItem }: CardProps){
     const dispatch = useAppDispatch()
 
     const handleClickExpandMore = () => {
