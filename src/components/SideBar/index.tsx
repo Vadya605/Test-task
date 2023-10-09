@@ -1,18 +1,19 @@
+import { ListItem } from '@mui/material';
 import Box from '@mui/material/Box';
+
 import LogoImg from '../../assets/img/Logo.svg'
+import { useAppDispatch, useTypeSelector } from '../../hooks/redux';
+import { DrawerServices } from '../../store/reducers';
+import AutoCompleteSearch from '../AutoCompleteSearch';
+import FavoritesPanel from '../FavoritesPanel';
+import SearchPanel from '../SearchPanel';
 import Favorite from '../svg/Favorite';
 import Search from '../svg/Search'
 import {
-  Drawer, DrawerContent, DrawerWrapper, ListSections,
   Aside, AsideButtonFavorites,
-  AsideButtonSearch, AvatarAside, Logo
+  AsideButtonSearch, AvatarAside,   Drawer, DrawerContent, DrawerWrapper, ListSections,
+Logo
 } from './styled';
-import FavoritesPanel from '../FavoritesPanel';
-import SearchPanel from '../SearchPanel';
-import { ListItem } from '@mui/material';
-import AutoCompleteSearch from '../AutoCompleteSearch';
-import { useAppDispatch, useTypeSelector } from '../../hooks/redux';
-import { DrawerServices } from '../../store/reducers';
 
 export default function SideBar() {
   const dispatch = useAppDispatch()

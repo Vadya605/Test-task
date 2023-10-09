@@ -1,5 +1,6 @@
-import { styled } from '@mui/material/styles';
 import { Box, Input, List, ListItem } from '@mui/material';
+import { styled } from '@mui/material/styles';
+
 import Search from '../svg/Search';
 
 interface SearchBoxProps {

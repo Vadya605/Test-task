@@ -1,20 +1,20 @@
-import React from 'react'
 import { GoogleMap, Marker } from "@react-google-maps/api";
-import { mapContainerStyle, MapWrapper } from './styled';
-import CurrentLocation from '../CurrentLocation';
-import { mapOptions } from '../../utils/consts.ts';
+import React from 'react'
+
 import { useAppDispatch, useTypeSelector } from '../../hooks/redux.ts';
-import { getBrowserLocation } from '../../utils/geo.ts';
-import { MapServices, SelectedPlaceServices } from '../../store/reducers'
-import CardPlace from '../CardPlace';
 import { useGoogleMaps } from '../../hooks/useGoogleMaps.ts';
+import { MapServices, SelectedPlaceServices } from '../../store/reducers'
+import { mapOptions } from '../../utils/consts.ts';
+import { getBrowserLocation } from '../../utils/geo.ts';
+import CardPlace from '../CardPlace';
+import CurrentLocation from '../CurrentLocation';
+import { mapContainerStyle, MapWrapper } from './styled';
 
 export default function Map() {
     const dispatch = useAppDispatch()
-    const { center, map } = useTypeSelector(state => state.Map)
+    const { center } = useTypeSelector(state => state.Map)
     const { foundPlaces } = useTypeSelector(state => state.Search)
     const {selectedPlace} = useTypeSelector(state => state.SelectedPlace)
-    const {directionsRenderer} = useTypeSelector(state => state.DirectionsRenderer)
     const isLoaded = useGoogleMaps()
 
     const onLoad = React.useCallback(async function callback(map: google.maps.Map) {
@@ -37,10 +37,6 @@ export default function Map() {
     const handleClickMarker = (place: google.maps.places.PlaceResult) => {
         dispatch(SelectedPlaceServices.actions.setSelected(place))
     } 
-
-    const handleCloseInfoWindow = () => {
-        dispatch(SelectedPlaceServices.actions.setSelected(null))
-    }
 
     return (
         <MapWrapper>

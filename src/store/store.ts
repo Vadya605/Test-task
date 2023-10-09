@@ -1,22 +1,23 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit'
-import SelectedFavoriteReducer from './reducers/SelectedFavoriteSlice'
-import DrawerReducer from './reducers/DrawerSlice'
-import MapReducer from './reducers/MapSlice'
-import SearchReducer from './reducers/SearchSlice'
-import FavoriteReducer from './reducers/FavoriteSlice'
-import SelectedPlaceReducer from './reducers/SelectedPlaceSlice'
-import DirectionsRendererReducer from './reducers/DirectionsRendererSlice'
+import { combineReducers,configureStore } from '@reduxjs/toolkit'
 import {
-    persistStore, 
-    persistReducer, 
     FLUSH,
-    REHYDRATE,
     PAUSE,
     PERSIST,
+    persistReducer, 
+    persistStore, 
     PURGE,
     REGISTER,
+    REHYDRATE,
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+
+import DirectionsRendererReducer from './reducers/DirectionsRendererSlice'
+import DrawerReducer from './reducers/DrawerSlice'
+import FavoriteReducer from './reducers/FavoriteSlice'
+import MapReducer from './reducers/MapSlice'
+import SearchReducer from './reducers/SearchSlice'
+import SelectedFavoriteReducer from './reducers/SelectedFavoriteSlice'
+import SelectedPlaceReducer from './reducers/SelectedPlaceSlice'
 
 const persistConfig = {
     key: 'root',

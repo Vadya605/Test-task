@@ -1,9 +1,10 @@
-import { styled, Theme, CSSObject } from '@mui/material/styles';
-import MuiDrawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import Search from '../svg/Search';
 import { Box, Input } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
+import MuiDrawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import { CSSObject,styled, Theme } from '@mui/material/styles';
+
+import Search from '../svg/Search';
 
 export const Aside = styled('div')(() => ({
     display: 'flex',

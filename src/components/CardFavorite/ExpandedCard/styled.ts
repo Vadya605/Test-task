@@ -1,5 +1,5 @@
+import { Card, CardActions } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Card, Button, CardActions } from '@mui/material';
 
 interface PhotoProps {
     backgroundUrl: string

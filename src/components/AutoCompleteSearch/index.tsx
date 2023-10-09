@@ -1,3 +1,13 @@
+import React from "react";
+import useOnclickOutside from "react-cool-onclickoutside";
+import usePlacesAutocomplete, {
+    getGeocode,
+    getLatLng,
+} from "use-places-autocomplete";
+
+import { useAppDispatch } from "../../hooks/redux";
+import { useGoogleMaps } from "../../hooks/useGoogleMaps";
+import { MapServices } from "../../store/reducers";
 import {
     AutoCompeteSearchWrapper,
     ListSuggestions,
@@ -6,15 +16,6 @@ import {
     SearchIcon,
     SearchInput
 } from "./styled"
-import usePlacesAutocomplete, {
-    getGeocode,
-    getLatLng,
-} from "use-places-autocomplete";
-import useOnclickOutside from "react-cool-onclickoutside";
-import React from "react";
-import { useAppDispatch } from "../../hooks/redux";
-import { MapServices } from "../../store/reducers";
-import { useGoogleMaps } from "../../hooks/useGoogleMaps";
 
 export default function AutoCompleteSearch() {
     const isLoaded = useGoogleMaps()
@@ -72,4 +73,4 @@ export default function AutoCompleteSearch() {
             {status === "OK" && <ListSuggestions>{renderSuggestions()}</ListSuggestions>}
         </AutoCompeteSearchWrapper>
     )
-};
+}

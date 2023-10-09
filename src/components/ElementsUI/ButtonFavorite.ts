@@ -1,5 +1,5 @@
-import { styled } from '@mui/material/styles';
 import { Button } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 export const ButtonFavorite = styled(Button)(() => ({
     border: '3px solid #C4C4C4',

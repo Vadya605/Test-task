@@ -1,13 +1,13 @@
-import { Actions, CardExpanded, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper } from "./styled";
 import Car from '../../../assets/img/icons-markers/car-rear.svg'
 import Car2 from '../../../assets/img/icons-markers/car-side.svg'
-import Favorite from "../../svg/Favorite";
-import Geo from "../../svg/Geo";
+import { useAppDispatch, useTypeSelector } from "../../../hooks/redux";
 import { IFavorite } from "../../../models/IFavorite";
+import { DirectionsRendererServices,FavoriteServices, SelectedFavoriteServices } from "../../../store/reducers";
 import { ButtonFavorite } from "../../ElementsUI/ButtonFavorite";
 import { ButtonRoute } from "../../ElementsUI/ButtonRoute";
-import { useAppDispatch, useTypeSelector } from "../../../hooks/redux";
-import { FavoriteServices, SelectedFavoriteServices, DirectionsRendererServices } from "../../../store/reducers";
+import Favorite from "../../svg/Favorite";
+import Geo from "../../svg/Geo";
+import { Actions, CardExpanded, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper } from "./styled";
 
 
 interface ExpandedCardProps {

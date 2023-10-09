@@ -1,5 +1,5 @@
-import SideBar from '../SideBar'
 import Map from '../Map'
+import SideBar from '../SideBar'
 import { ContainerApp } from './styled'
 
 function App() {
