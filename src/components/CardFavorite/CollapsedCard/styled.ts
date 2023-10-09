@@ -1,11 +1,11 @@
 import { Card, CardActions } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-interface PhotoProps{
+interface PhotoProps {
     backgroundUrl: string
 }
 
-export const CardCollapsed = styled(Card)(() => ({
+export const CardCollapsed = styled(Card)(({theme}) => ({
     marginTop: '10px',
     width: '350px',
     whiteSpace: 'normal',
@@ -13,6 +13,10 @@ export const CardCollapsed = styled(Card)(() => ({
     border: '3px solid #C4C4C4',
     boxShadow: 'none',
 }))
+
+// export const CustomComponent = styled('div')(({ theme }) => ({
+//     backgroundColor: theme.palette.customColor,
+// }));
 
 export const CardWrapper = styled('div')(() => ({
     padding: '20px',
@@ -49,7 +53,7 @@ export const PhotoIconsWrapper = styled('div')(() => ({
 }))
 
 export const PhotoIcon = styled('img')(() => ({
-    width: '18px' 
+    width: '18px'
 }))
 
 export const Actions = styled(CardActions)(() => ({

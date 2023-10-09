@@ -32,7 +32,7 @@ export default function SideBar() {
           <Aside>
             <Box>
               <Logo onClick={() => dispatch(DrawerServices.actions.setOpen(!isOpen))}>
-                <img src={LogoImg} alt="" />
+                <img src={LogoImg} alt="Logo" />
               </Logo>
               <ListSections>
                 <ListItem disablePadding onClick={() => handleClickSectionItem('search')}>
@@ -47,7 +47,7 @@ export default function SideBar() {
                 </ListItem>
               </ListSections>
             </Box>
-            <AvatarAside src='/Person.jpg' />
+            <AvatarAside src='/Person.jpg' alt='Avatar' />
           </Aside>
           <DrawerContent>
             <AutoCompleteSearch />

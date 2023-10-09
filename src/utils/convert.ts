@@ -6,7 +6,7 @@ export function convertPlaceResultToFavorite(placeResult: google.maps.places.Pla
         place_id: placeResult.place_id || '',
         name: placeResult.name || '',
         description: 'description', // как получить описание места
-        photo:  DoesntExistPhoto,
+        photo:  placeResult.photos?.[0]?.getUrl() ||  DoesntExistPhoto,
         types: [], // так как в типах неверные значения
         location: {
             lat: placeResult.geometry?.location?.lat() || 0,

@@ -49,8 +49,8 @@ export default function ExpandedCard({ favoriteItem }: CardProps) {
                 <CardHeader>
                     <Photo backgroundUrl={favoriteItem.photo} >
                         <PhotoIconsWrapper>
-                            <PhotoIcon src={Car} />
-                            <PhotoIcon src={Car2} />
+                            <PhotoIcon src={Car} alt='Photo icon' />
+                            <PhotoIcon src={Car2} alt='Photo icon' />
                         </PhotoIconsWrapper>
                     </Photo>
                     <span>{favoriteItem.name}</span>

@@ -72,7 +72,7 @@ export default function CardPlace({ place }: CardPlaceProps) {
         >
             <CardPlaceWrapper>
                 <h3>{place.name}</h3>
-                <PhotoPlace src={ place.photos?.[0]?.getUrl() || DoesntExistPhoto} />
+                <PhotoPlace src={ place.photos?.[0]?.getUrl() || DoesntExistPhoto} alt="Photo place" />
                 <Actions>
                     <ButtonFavorite onClick={handleClickSave}>
                         <FavoriteSvg />

@@ -69,7 +69,7 @@ export default function SearchPanel() {
                                 isSelected={selectedPlaces.includes(place.name)}
                                 onClick={() => handleClickPlace(place.name)}
                             >
-                                <img src={place.icon} alt="" />
+                                <img src={place.icon} alt="Place icon" />
                                 <span>{place.name}</span>
                             </Place>
                         )}

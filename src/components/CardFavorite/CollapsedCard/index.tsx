@@ -29,8 +29,8 @@ export default function CollapsedCard({ favoriteItem }: CardProps){
                 <CardHeader>
                     <Photo backgroundUrl={favoriteItem.photo} >
                         <PhotoIconsWrapper>
-                            <PhotoIcon src={Car} />
-                            <PhotoIcon src={Car2} />
+                            <PhotoIcon src={Car} alt="Photo icon" />
+                            <PhotoIcon src={Car2} alt="Photo icon" />
                         </PhotoIconsWrapper>
                     </Photo>
                     <span>{ favoriteItem.name }</span>
@@ -38,10 +38,10 @@ export default function CollapsedCard({ favoriteItem }: CardProps){
                 <p>{  strLimit(favoriteItem.description, 100) }</p>
                 <Actions>
                     <Button onClick={handleClickFavorite}>
-                        <img src={Favorite} alt="" />
+                        <img src={Favorite} alt="Favorite" />
                     </Button> 
                     <Button onClick={handleClickExpandMore}>
-                        <img src={ExpandMore} alt="" />
+                        <img src={ExpandMore} alt="ExpandMore" />
                     </Button>
                 </Actions>
             </CardWrapper>
