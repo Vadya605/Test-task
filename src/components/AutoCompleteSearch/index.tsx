@@ -17,6 +17,7 @@ import {
     SearchIcon,
     SearchInput
 } from "./styled"
+import { STATUSES } from "@/constants";
 
 export default function AutoCompleteSearch() {
     const isLoaded = useGoogleMaps()
@@ -62,7 +63,7 @@ export default function AutoCompleteSearch() {
         });
     return (
         <AutoCompeteSearchWrapper ref={ref}>
-            <SearchBox isActive={status === 'OK'}>
+            <SearchBox isActive={status === STATUSES.OK}>
                 <SearchIcon />
                 <SearchInput
                     placeholder='Место адрес...'
@@ -71,7 +72,7 @@ export default function AutoCompleteSearch() {
                     disabled={!ready}
                 />
             </SearchBox>
-            {status === "OK" && <ListSuggestions>{renderSuggestions()}</ListSuggestions>}
+            {status === STATUSES.OK && <ListSuggestions>{renderSuggestions()}</ListSuggestions>}
         </AutoCompeteSearchWrapper>
     )
 }

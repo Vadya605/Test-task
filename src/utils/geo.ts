@@ -1,4 +1,4 @@
-import { defaultCenter } from "./consts";
+import { DEFAULT_CENTER } from "@/constants";
 
 export const getBrowserLocation = (): Promise<{ lat: number; lng: number }> => {
     return new Promise((resolve, reject) => {
@@ -8,10 +8,10 @@ export const getBrowserLocation = (): Promise<{ lat: number; lng: number }> => {
                     const { latitude: lat, longitude: lng } = position.coords;
                     resolve({ lat, lng });
                 },
-                () => reject(defaultCenter)
+                () => reject(DEFAULT_CENTER)
             );
         } else {
-            reject(defaultCenter);
+            reject(DEFAULT_CENTER);
         }
     });
 };

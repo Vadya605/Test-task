@@ -4,7 +4,7 @@ import React from 'react'
 import Search from '@/components/svg/Search'
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux'
 import { SearchServices } from '@/store/reducers'
-import { places } from '@/utils/consts'
+import { PLACES } from '@/constants'
 
 import { ButtonSearch,Place, Places, PlacesWrapper, RadiusBox, RadiusInput, RadiusLabel, SearchPanelWrapper } from './styled'
 
@@ -48,7 +48,7 @@ export default function SearchPanel() {
                 if (status === google.maps.places.PlacesServiceStatus.OK && results) {
                     const updatedResults = results.map(result => ({
                         ...result,
-                        icon: places.find(p => p.name === selectedPlace)?.icon
+                        icon: PLACES.find(p => p.name === selectedPlace)?.icon
                     }));
 
                     dispatch(SearchServices.actions.addFoundPlaces(updatedResults))
@@ -63,7 +63,7 @@ export default function SearchPanel() {
                 <h3>Искать</h3>
                 <Places>
                     <PlacesWrapper>
-                        {places.map(place =>
+                        {PLACES.map(place =>
                             <Place
                                 key={place.name}
                                 isSelected={selectedPlaces.includes(place.name)}

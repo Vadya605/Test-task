@@ -6,7 +6,7 @@ import CurrentLocation from '@/components/CurrentLocation';
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux.ts';
 import { useGoogleMaps } from '@/hooks/useGoogleMaps.ts';
 import { MapServices, SelectedPlaceServices } from '@/store/reducers'
-import { mapOptions } from '@/utils/consts.ts';
+import { MAP_OPTIONS } from '@/constants';
 import { getBrowserLocation } from '@/utils/geo.ts';
 
 import { mapContainerStyle, MapWrapper } from './styled';
@@ -48,7 +48,7 @@ export default function Map() {
                     mapContainerStyle={mapContainerStyle}
                     center={center}
                     zoom={15}
-                    options={mapOptions}
+                    options={MAP_OPTIONS}
                 >
                     {foundPlaces && foundPlaces.map((place, index) => (
                         <Marker
