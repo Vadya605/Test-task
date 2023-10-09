@@ -1,4 +1,4 @@
-import { CardPlaceWrapper, PhotoPlace, Actions } from "./CardPlaceStyle";
+import { CardPlaceWrapper, PhotoPlace, Actions } from "./styled";
 import FavoriteSvg from "../svg/Favorite";
 import GeoSvg from '../svg/Geo'
 import { useAppDispatch, useTypeSelector } from "../../hooks/redux";

@@ -1,4 +1,4 @@
-import { CustomMarker } from './CurrentLocationStyle'
+import { CustomMarker } from './styled'
 import CurrentLocationIcon from '../../assets/img/CurrentLocation.svg'
 
 interface CurrentLocationProps {

@@ -6,13 +6,13 @@ import {
   Drawer, DrawerContent, DrawerWrapper, ListSections,
   Aside, AsideButtonFavorites,
   AsideButtonSearch, AvatarAside, Logo
-} from './SideBarStyle';
-import FavoritesPanel from '../FavoritesPanel/FavoritesPanel';
-import SearchPanel from '../SearchPanel/SearchPanel';
+} from './styled';
+import FavoritesPanel from '../FavoritesPanel';
+import SearchPanel from '../SearchPanel';
 import { ListItem } from '@mui/material';
-import AutoCompleteSearch from '../AutoCompleteSearch/AutoCompeteSearch';
+import AutoCompleteSearch from '../AutoCompleteSearch';
 import { useAppDispatch, useTypeSelector } from '../../hooks/redux';
-import { DrawerServices } from '../../store/reducers/';
+import { DrawerServices } from '../../store/reducers';
 
 interface SideBarProps {
   isLoaded: boolean,

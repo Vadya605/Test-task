@@ -1,4 +1,4 @@
-import { Actions, CardCollapsed, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper } from "./CollapsedCardStyle";
+import { Actions, CardCollapsed, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper } from "./styled";
 import Car from '../../../assets/img/icons-markers/car-rear.svg'
 import Car2 from '../../../assets/img/icons-markers/car-side.svg'
 import Favorite from '../../../assets/img/Favorite.svg'

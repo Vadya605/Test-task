@@ -1,14 +1,12 @@
 import React from 'react'
-import { GoogleMap, Marker, InfoWindow, DirectionsRenderer } from "@react-google-maps/api";
-import { mapContainerStyle, MapWrapper } from './MapStyle.tsx';
-import CurrentLocation from '../CurrentLocation/CurrentLocation.tsx';
+import { GoogleMap, Marker } from "@react-google-maps/api";
+import { mapContainerStyle, MapWrapper } from './styled';
+import CurrentLocation from '../CurrentLocation';
 import { mapOptions } from '../../utils/consts.ts';
 import { useAppDispatch, useTypeSelector } from '../../hooks/redux.ts';
 import { getBrowserLocation } from '../../utils/geo.ts';
-import { MapServices } from '../../store/reducers/'
-import CardPlace from '../CardPlace/CardPlace.tsx';
-import { SelectedPlaceServices } from '../../store/reducers/SelectedPlaceSlice.ts';
-import { RouteServices } from '../../store/reducers/DirectionsRendererSlice.ts';
+import { MapServices, SelectedPlaceServices } from '../../store/reducers'
+import CardPlace from '../CardPlace';
 
 interface MapProps {
     isLoaded: boolean

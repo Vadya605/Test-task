@@ -5,7 +5,7 @@ import {
     SearchBox,
     SearchIcon,
     SearchInput
-} from "./AutoCompeteSearchStyle"
+} from "./styled"
 import usePlacesAutocomplete, {
     getGeocode,
     getLatLng,

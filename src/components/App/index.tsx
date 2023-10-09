@@ -1,7 +1,7 @@
 import React from 'react'
-import SideBar from '../SideBar/SideBar'
-import Map from '../Map/Map'
-import { ContainerApp } from './AppStyle'
+import SideBar from '../SideBar'
+import Map from '../Map'
+import { ContainerApp } from './styled'
 import { useJsApiLoader, Libraries } from "@react-google-maps/api";
 
 function App() {

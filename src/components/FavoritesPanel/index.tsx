@@ -1,8 +1,8 @@
 import { Box } from '@mui/material'
-import CollapsedCard from "../CardFavorite/CollapsedCard/CollapsedCard";
-import ExpandedCard from "../CardFavorite/ExpandedCard/ExpandedCard";
+import CollapsedCard from "../CardFavorite/CollapsedCard";
+import ExpandedCard from "../CardFavorite/ExpandedCard";
 import BackIcon from '../../assets/img/Arrow.svg'
-import { IconBack, HeaderPanel } from "./FavoritesPanelStyle";
+import { IconBack, HeaderPanel } from "./styled";
 import { useAppDispatch, useTypeSelector } from "../../hooks/redux";
 import { SelectedFavoriteServices } from "../../store/reducers";
 
