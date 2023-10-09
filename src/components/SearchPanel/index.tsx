@@ -1,10 +1,11 @@
 import { Box } from '@mui/material'
 import React from 'react'
 
-import { useAppDispatch, useTypeSelector } from '../../hooks/redux'
-import { SearchServices } from '../../store/reducers'
-import { places } from '../../utils/consts'
-import Search from '../svg/Search'
+import Search from '@/components/svg/Search'
+import { useAppDispatch, useTypeSelector } from '@/hooks/redux'
+import { SearchServices } from '@/store/reducers'
+import { places } from '@/utils/consts'
+
 import { ButtonSearch,Place, Places, PlacesWrapper, RadiusBox, RadiusInput, RadiusLabel, SearchPanelWrapper } from './styled'
 
 export default function SearchPanel() {

@@ -1,13 +1,14 @@
 import { Button } from "@mui/material";
 
-import ExpandMore from '../../../assets/img/Arrow.svg'
-import Favorite from '../../../assets/img/Favorite.svg'
-import Car from '../../../assets/img/icons-markers/car-rear.svg'
-import Car2 from '../../../assets/img/icons-markers/car-side.svg'
-import { useAppDispatch } from "../../../hooks/redux";
-import { IFavorite } from "../../../models/IFavorite";
-import { FavoriteServices, SelectedFavoriteServices } from '../../../store/reducers';
-import { strLimit } from "../../../utils/textHelpers";
+import ExpandMore from '@/assets/img/Arrow.svg'
+import Favorite from '@/assets/img/Favorite.svg'
+import Car from '@/assets/img/icons-markers/car-rear.svg'
+import Car2 from '@/assets/img/icons-markers/car-side.svg'
+import { useAppDispatch } from "@/hooks/redux";
+import { IFavorite } from "@/models/IFavorite";
+import { FavoriteServices, SelectedFavoriteServices } from '@/store/reducers';
+import { strLimit } from "@/utils/textHelpers";
+
 import { Actions, CardCollapsed, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper } from "./styled";
 
 

@@ -1,12 +1,13 @@
-import Car from '../../../assets/img/icons-markers/car-rear.svg'
-import Car2 from '../../../assets/img/icons-markers/car-side.svg'
-import { useAppDispatch, useTypeSelector } from "../../../hooks/redux";
-import { IFavorite } from "../../../models/IFavorite";
-import { DirectionsRendererServices,FavoriteServices, SelectedFavoriteServices } from "../../../store/reducers";
-import { ButtonFavorite } from "../../ElementsUI/ButtonFavorite";
-import { ButtonRoute } from "../../ElementsUI/ButtonRoute";
-import Favorite from "../../svg/Favorite";
-import Geo from "../../svg/Geo";
+import Car from '@/assets/img/icons-markers/car-rear.svg'
+import Car2 from '@/assets/img/icons-markers/car-side.svg'
+import { ButtonFavorite } from "@/components/ElementsUI/ButtonFavorite";
+import { ButtonRoute } from "@/components/ElementsUI/ButtonRoute";
+import Favorite from "@/components/svg/Favorite";
+import Geo from "@/components/svg/Geo";
+import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
+import { IFavorite } from "@/models/IFavorite";
+import { DirectionsRendererServices,FavoriteServices, SelectedFavoriteServices } from "@/store/reducers";
+
 import { Actions, CardExpanded, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper } from "./styled";
 
 

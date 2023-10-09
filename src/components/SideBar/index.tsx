@@ -1,14 +1,15 @@
 import { ListItem } from '@mui/material';
 import Box from '@mui/material/Box';
 
-import LogoImg from '../../assets/img/Logo.svg'
-import { useAppDispatch, useTypeSelector } from '../../hooks/redux';
-import { DrawerServices } from '../../store/reducers';
-import AutoCompleteSearch from '../AutoCompleteSearch';
-import FavoritesPanel from '../FavoritesPanel';
-import SearchPanel from '../SearchPanel';
-import Favorite from '../svg/Favorite';
-import Search from '../svg/Search'
+import LogoImg from '@/assets/img/Logo.svg'
+import AutoCompleteSearch from '@/components/AutoCompleteSearch';
+import FavoritesPanel from '@/components/FavoritesPanel';
+import SearchPanel from '@/components/SearchPanel';
+import Favorite from '@/components/svg/Favorite';
+import Search from '@/components/svg/Search'
+import { useAppDispatch, useTypeSelector } from '@/hooks/redux';
+import { DrawerServices } from '@/store/reducers';
+
 import {
   Aside, AsideButtonFavorites,
   AsideButtonSearch, AvatarAside,   Drawer, DrawerContent, DrawerWrapper, ListSections,

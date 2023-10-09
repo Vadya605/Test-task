@@ -5,9 +5,10 @@ import usePlacesAutocomplete, {
     getLatLng,
 } from "use-places-autocomplete";
 
-import { useAppDispatch } from "../../hooks/redux";
-import { useGoogleMaps } from "../../hooks/useGoogleMaps";
-import { MapServices } from "../../store/reducers";
+import { useAppDispatch } from "@/hooks/redux";
+import { useGoogleMaps } from "@/hooks/useGoogleMaps";
+import { MapServices } from "@/store/reducers";
+
 import {
     AutoCompeteSearchWrapper,
     ListSuggestions,

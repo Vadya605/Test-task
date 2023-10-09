@@ -1,5 +1,6 @@
-import Map from '../Map'
-import SideBar from '../SideBar'
+import Map from '@/components/Map'
+import SideBar from '@/components/SideBar'
+
 import { ContainerApp } from './styled'
 
 function App() {

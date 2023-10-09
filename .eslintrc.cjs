@@ -14,16 +14,6 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
-    'simple-import-sort/imports': [
-      'error',
-      {
-        groups: [
-          ['^\\u0000'],
-          ['^@?\\w'],
-          ['^\\.'],
-          ['^']
-        ]
-      }
-    ],
+    "simple-import-sort/imports": "error"
   },
 }

@@ -1,13 +1,14 @@
 import { GoogleMap, Marker } from "@react-google-maps/api";
 import React from 'react'
 
-import { useAppDispatch, useTypeSelector } from '../../hooks/redux.ts';
-import { useGoogleMaps } from '../../hooks/useGoogleMaps.ts';
-import { MapServices, SelectedPlaceServices } from '../../store/reducers'
-import { mapOptions } from '../../utils/consts.ts';
-import { getBrowserLocation } from '../../utils/geo.ts';
-import CardPlace from '../CardPlace';
-import CurrentLocation from '../CurrentLocation';
+import CardPlace from '@/components/CardPlace';
+import CurrentLocation from '@/components/CurrentLocation';
+import { useAppDispatch, useTypeSelector } from '@/hooks/redux.ts';
+import { useGoogleMaps } from '@/hooks/useGoogleMaps.ts';
+import { MapServices, SelectedPlaceServices } from '@/store/reducers'
+import { mapOptions } from '@/utils/consts.ts';
+import { getBrowserLocation } from '@/utils/geo.ts';
+
 import { mapContainerStyle, MapWrapper } from './styled';
 
 export default function Map() {

@@ -1,15 +1,14 @@
 import { InfoWindow } from "@react-google-maps/api";
 
-import DoesntExistPhoto from '../../../public/doesntExist.jpg'
-import { useAppDispatch, useTypeSelector } from "../../hooks/redux";
-import { FavoriteServices } from "../../store/reducers";
-import { DirectionsRendererServices } from "../../store/reducers/DirectionsRendererSlice";
-import { SelectedPlaceServices } from "../../store/reducers/SelectedPlaceSlice";
-import { convertPlaceResultToFavorite } from "../../utils/convert";
-import { ButtonFavorite } from "../ElementsUI/ButtonFavorite";
-import { ButtonRoute } from "../ElementsUI/ButtonRoute";
-import FavoriteSvg from "../svg/Favorite";
-import GeoSvg from '../svg/Geo'
+import DoesntExistPhoto from '/public/doesntExist.jpg'
+import { ButtonFavorite } from "@/components/ElementsUI/ButtonFavorite";
+import { ButtonRoute } from "@/components/ElementsUI/ButtonRoute";
+import FavoriteSvg from "@/components/svg/Favorite";
+import GeoSvg from '@/components/svg/Geo'
+import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
+import { DirectionsRendererServices, FavoriteServices, SelectedPlaceServices } from "@/store/reducers";
+import { convertPlaceResultToFavorite } from "@/utils/convert";
+
 import { Actions,CardPlaceWrapper, PhotoPlace } from "./styled";
 
 interface CardPlaceProps {
