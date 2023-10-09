@@ -14,11 +14,7 @@ import AutoCompleteSearch from '../AutoCompleteSearch';
 import { useAppDispatch, useTypeSelector } from '../../hooks/redux';
 import { DrawerServices } from '../../store/reducers';
 
-interface SideBarProps {
-  isLoaded: boolean,
-}
-
-export default function SideBar({ isLoaded }: SideBarProps) {
+export default function SideBar() {
   const dispatch = useAppDispatch()
   const { isOpen, selectedSection } = useTypeSelector(state => state.Drawer)
 
@@ -52,7 +48,7 @@ export default function SideBar({ isLoaded }: SideBarProps) {
             <AvatarAside src='/Person.jpg' />
           </Aside>
           <DrawerContent>
-            <AutoCompleteSearch isLoaded={isLoaded} />
+            <AutoCompleteSearch />
             {isOpen && (selectedSection === 'search' ? <SearchPanel /> : <FavoritesPanel />)}
           </DrawerContent>
         </DrawerWrapper>

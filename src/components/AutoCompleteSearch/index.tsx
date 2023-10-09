@@ -14,12 +14,11 @@ import useOnclickOutside from "react-cool-onclickoutside";
 import React from "react";
 import { useAppDispatch } from "../../hooks/redux";
 import { MapServices } from "../../store/reducers";
+import { useGoogleMaps } from "../../hooks/useGoogleMaps";
 
-interface AutoCompeteSearchProps {
-    isLoaded: boolean,
-}
+export default function AutoCompleteSearch() {
+    const isLoaded = useGoogleMaps()
 
-export default function AutoCompleteSearch({ isLoaded }: AutoCompeteSearchProps) {
     React.useEffect(() => {
         isLoaded && init()
     }, [isLoaded])

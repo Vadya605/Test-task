@@ -7,20 +7,15 @@ import { useAppDispatch, useTypeSelector } from '../../hooks/redux.ts';
 import { getBrowserLocation } from '../../utils/geo.ts';
 import { MapServices, SelectedPlaceServices } from '../../store/reducers'
 import CardPlace from '../CardPlace';
+import { useGoogleMaps } from '../../hooks/useGoogleMaps.ts';
 
-interface MapProps {
-    isLoaded: boolean
-}
-
-export default function Map({ isLoaded }: MapProps) {
+export default function Map() {
     const dispatch = useAppDispatch()
     const { center, map } = useTypeSelector(state => state.Map)
     const { foundPlaces } = useTypeSelector(state => state.Search)
     const {selectedPlace} = useTypeSelector(state => state.SelectedPlace)
     const {directionsRenderer} = useTypeSelector(state => state.DirectionsRenderer)
-
-    console.log('Route', directionsRenderer)
-    directionsRenderer && directionsRenderer.getDirections()
+    const isLoaded = useGoogleMaps()
 
     const onLoad = React.useCallback(async function callback(map: google.maps.Map) {
         getBrowserLocation()
