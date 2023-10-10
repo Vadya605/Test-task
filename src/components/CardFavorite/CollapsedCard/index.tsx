@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import Typography from '@mui/material/Typography';
 
 import ExpandMore from '@/assets/img/Arrow.svg'
 import Favorite from '@/assets/img/Favorite.svg'
@@ -10,7 +11,6 @@ import { strLimit } from "@/utils/textHelpers";
 
 import { CardProps } from "../interface";
 import { Actions, CardCollapsed, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper } from "./styled";
-
 
 export default function CollapsedCard({ favoriteItem }: CardProps){
     const dispatch = useAppDispatch()
@@ -33,9 +33,9 @@ export default function CollapsedCard({ favoriteItem }: CardProps){
                             <PhotoIcon src={Car2} alt="Photo icon" />
                         </PhotoIconsWrapper>
                     </Photo>
-                    <span>{ favoriteItem.name }</span>
+                    <Typography variant="h3">{favoriteItem.name}</Typography>
                 </CardHeader>
-                <p>{  strLimit(favoriteItem.description, 100) }</p>
+                <Typography variant="body2">{ strLimit(favoriteItem.description, 100) }</Typography>
                 <Actions>
                     <Button onClick={handleClickFavorite}>
                         <img src={Favorite} alt="Favorite" />

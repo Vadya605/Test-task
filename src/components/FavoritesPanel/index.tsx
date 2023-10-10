@@ -1,12 +1,13 @@
 import { Box } from '@mui/material'
+import Typography from '@mui/material/Typography';
 
 import BackIcon from '@/assets/img/Arrow.svg'
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
 import { SelectedFavoriteServices } from "@/store/reducers";
+
 import CollapsedCard from "../CardFavorite/CollapsedCard";
 import ExpandedCard from "../CardFavorite/ExpandedCard";
 import { HeaderPanel, IconBack } from "./styled";
-
 
 export default function FavoritesPanel() {
     const dispatch = useAppDispatch()
@@ -31,7 +32,7 @@ export default function FavoritesPanel() {
         <Box>
             <HeaderPanel>
                 {selectedFavorite ? <IconBack src={BackIcon} alt='Back' onClick={handleClickBack} /> : null}
-                <h3>Избранное</h3>
+                <Typography variant='h2' >Избранное</Typography>
             </HeaderPanel>
             {
                 selectedFavorite ? (

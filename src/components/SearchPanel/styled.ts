@@ -1,84 +1,77 @@
-import { Button, Input, InputLabel } from '@mui/material';
+import { Button, Input } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 import { PlaceProps } from './interface';
   
-export const ButtonSearch = styled(Button)(() => ({
+export const ButtonSearch = styled(Button)(({theme}) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#4496B9',
-    padding: '19px 161px',
-    borderRadius: '10px',
+    backgroundColor: theme.palette.buttonPrimary.main,
+    padding: theme.spacing(1.9, 16.1),
+    borderRadius: theme.spacing(1),
     '&:hover':{
-        backgroundColor: '#4496B9'
+        backgroundColor: theme.palette.buttonPrimary.main
     }
 }))
 
-  export const Places = styled('div')(() => ({
-    padding: '10px 17px 3px 17px',
-    border: '3px solid #C4C4C4',
-    borderRadius: '10px'
+  export const Places = styled('div')(({theme}) => ({
+    padding: theme.spacing(1, 1.7, .3, 1.7),
+    border: `${theme.spacing(.3)} solid ${theme.palette.borderPrimary.main}`,
+    borderRadius: theme.spacing(1),
 }))
 
-export const PlacesWrapper = styled('div')(() => ({
+export const PlacesWrapper = styled('div')(({theme}) => ({
     display: 'flex',
     flexDirection: 'column',
-    rowGap: '20px',
-    height: '456px',
-    paddingRight: '35px',
+    rowGap: theme.spacing(2),
+    height: theme.spacing(45.6),
+    paddingRight: theme.spacing(3.5),
     overflowY: 'scroll',
 
     '&::-webkit-scrollbar': {
-        width: '5px'
+        width: theme.spacing(.5)
     },
        
     '&::-webkit-scrollbar-track': {
-        backgroundColor:' transparent'
+        backgroundColor: 'transparent'
     },
     
     '&::-webkit-scrollbar-thumb': {
-        borderRadius: '4px',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        borderRadius: theme.spacing(.4),
+        backgroundColor: theme.palette.scroll.main,
     }
 }))
 
-export const Place = styled('div')<PlaceProps>(({ isSelected }) => ({
+export const Place = styled('div')<PlaceProps>(({ isSelected, theme }) => ({
     display: 'flex',
     alignItems: 'center',
-    columnGap: '20px',
+    columnGap: theme.spacing(2),
     opacity: !isSelected? '0.5': 1,
     '& img': {
-        width: '30px'
+        width: theme.spacing(3)
     }
 }));
   
-export const RadiusBox = styled('div')(() => ({
+export const RadiusBox = styled('div')(({theme}) => ({
     display: 'flex',
     alignItems: 'center',
-    columnGap: '15px'
+    columnGap: theme.spacing(1.5)
 }))
 
-export const RadiusInput = styled(Input)(() => ({
-    border: '3px solid #C4C4C4',
-    borderRadius: '10px',
-    padding: '10px 25px 10px 25px',
+export const RadiusInput = styled(Input)(({theme}) => ({
+    border: `${theme.spacing(.3)} solid ${theme.palette.borderPrimary.main}`,
+    borderRadius: theme.spacing(1),
+    padding: theme.spacing(1, 2.5),
     lineHeight: 'none',
-    width: '100px',
-    fontSize: '16px',
+    width: theme.spacing(10),
     '&::before, &::after':{
         content: 'none'
     },
 }))
 
-export const RadiusLabel = styled(InputLabel)(() => ({
-    color: '#000',
-    fontSize: '16px',
-    fontWeight: '600'
-}))
-
-export const SearchPanelWrapper = styled('div')(() => ({
+export const SearchPanelWrapper = styled('div')(({theme}) => ({
     display: 'flex',
     flexDirection: 'column',
-    rowGap: '20px',
+    rowGap: theme.spacing(2)
 }))

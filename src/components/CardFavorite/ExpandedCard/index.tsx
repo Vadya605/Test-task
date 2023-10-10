@@ -1,3 +1,5 @@
+import Typography from '@mui/material/Typography';
+
 import Car from '@/assets/img/icons-markers/car-rear.svg'
 import Car2 from '@/assets/img/icons-markers/car-side.svg'
 import { ButtonFavorite } from "@/components/ElementsUI/ButtonFavorite";
@@ -53,17 +55,17 @@ export default function ExpandedCard({ favoriteItem }: CardProps) {
                             <PhotoIcon src={Car2} alt='Photo icon' />
                         </PhotoIconsWrapper>
                     </Photo>
-                    <span>{favoriteItem.name}</span>
+                    <Typography variant='h1' >{favoriteItem.name}</Typography>
                 </CardHeader>
-                <p>{favoriteItem.description}</p>
+                <Typography variant='body1'>{favoriteItem.description}</Typography>
                 <Actions>
                     <ButtonFavorite onClick={handleClickFavorite}>
                         <Favorite />
-                        <span>Удалить</span>
+                        <Typography variant='button' >Удалить</Typography>
                     </ButtonFavorite>
                     <ButtonRoute onClick={handleClickRoute}>
                         <Geo />
-                        <span>Маршрут</span>
+                        <Typography variant='button' >Маршрут</Typography>
                     </ButtonRoute>
                 </Actions>
             </CardWrapper>

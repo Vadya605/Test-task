@@ -5,58 +5,53 @@ interface PhotoProps {
     backgroundUrl: string
 }
 
-export const CardExpanded = styled(Card)(() => ({
-    maxWidth: '440px',
+export const CardExpanded = styled(Card)(({theme}) => ({
+    maxWidth: theme.spacing(44),
     whiteSpace: 'normal',
-    borderRadius: '10px',
-    border: '3px solid #C4C4C4',
+    borderRadius: theme.spacing(1),
+    border: `${theme.spacing(.3)} solid ${theme.palette.borderPrimary.main}`,
     boxShadow: 'none',
 }))
 
-export const CardWrapper = styled('div')(() => ({
-    padding: '20px 25px',
+export const CardWrapper = styled('div')(({theme}) => ({
+    padding: theme.spacing(2, 2.5),
     display: 'flex',
     flexDirection: 'column',
-    rowGap: '20px',
-    margin: '0px'
+    rowGap: theme.spacing(2),
+    margin: theme.spacing(0)
 }))
 
-export const CardHeader = styled('div')(() => ({
+export const CardHeader = styled('div')(({theme}) => ({
     display: 'flex',
-    gap: '15px',
+    gap: theme.spacing(1.5),
     flexDirection: 'column',
 }))
 
-export const Photo = styled('div')<PhotoProps>(({ backgroundUrl }) => ({
-    borderRadius: '10px',
-    width: '400px',
-    height: '300px',
+export const Photo = styled('div')<PhotoProps>(({ backgroundUrl, theme }) => ({
+    borderRadius: theme.spacing(1),
+    width: theme.spacing(40),
+    height: theme.spacing(30),
     background: `url('${backgroundUrl}')`,
     backgroundSize: 'cover',
     backgroundPosition: 'center center',
     display: 'flex',
     justifyContent: 'end',
     alignItems: 'end',
-    transition: 'height .3s ease-in-out',
 }));
 
-export const PhotoIconsWrapper = styled('div')(() => ({
-    padding: '8px',
+export const PhotoIconsWrapper = styled('div')(({theme}) => ({
+    padding: theme.spacing(.8),
     display: 'flex',
-    columnGap: '5px'
+    columnGap: theme.spacing(.5)
 }))
 
-export const PhotoIcon = styled('img')(() => ({
-    width: '30px'
+export const PhotoIcon = styled('img')(({theme}) => ({
+    width: theme.spacing(3)
 }))
 
-export const Actions = styled(CardActions)(() => ({
-    padding: '0px',
+export const Actions = styled(CardActions)(({theme}) => ({
+    padding: theme.spacing(0),
     display: 'flex',
     width: '100%',
     justifyContent: 'space-between'
 }))
-
-
-
-

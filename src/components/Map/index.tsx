@@ -3,10 +3,10 @@ import React from 'react'
 
 import CardPlace from '@/components/CardPlace';
 import CurrentLocation from '@/components/CurrentLocation';
+import { MAP_OPTIONS } from '@/constants';
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux.ts';
 import { useGoogleMaps } from '@/hooks/useGoogleMaps.ts';
 import { MapServices, SelectedPlaceServices } from '@/store/reducers'
-import { MAP_OPTIONS } from '@/constants';
 import { getBrowserLocation } from '@/utils/geo.ts';
 
 import { mapContainerStyle, MapWrapper } from './styled';

@@ -1,3 +1,4 @@
+import Typography from '@mui/material/Typography';
 import { InfoWindow } from "@react-google-maps/api";
 
 import DoesntExistPhoto from '/public/doesntExist.jpg'
@@ -11,6 +12,7 @@ import { convertPlaceResultToFavorite } from "@/utils/convert";
 
 import { CardPlaceProps } from "./interface";
 import { Actions,CardPlaceWrapper, PhotoPlace } from "./styled";
+
 
 export default function CardPlace({ place }: CardPlaceProps) {
     const dispatch = useAppDispatch()
@@ -71,16 +73,16 @@ export default function CardPlace({ place }: CardPlaceProps) {
             onCloseClick={handleClickClose}
         >
             <CardPlaceWrapper>
-                <h3>{place.name}</h3>
+                <Typography variant="h2" >{place.name}</Typography>
                 <PhotoPlace src={ place.photos?.[0]?.getUrl() || DoesntExistPhoto} alt="Photo place" />
                 <Actions>
                     <ButtonFavorite onClick={handleClickSave}>
                         <FavoriteSvg />
-                        <span>{ isFavorite()?'Удалить': 'Добавить' }</span>
+                        <Typography variant="button" >{ isFavorite()?'Удалить': 'Добавить' }</Typography>
                     </ButtonFavorite>
                     <ButtonRoute onClick={handleClickRoute}>
                         <GeoSvg />
-                        <span>Маршрут</span>
+                        <Typography variant="button" >Маршрут</Typography>
                     </ButtonRoute>
                 </Actions>
             </CardPlaceWrapper>

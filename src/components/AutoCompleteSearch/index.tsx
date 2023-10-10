@@ -5,6 +5,7 @@ import usePlacesAutocomplete, {
     getLatLng,
 } from "use-places-autocomplete";
 
+import { STATUSES } from "@/constants";
 import { useAppDispatch } from "@/hooks/redux";
 import { useGoogleMaps } from "@/hooks/useGoogleMaps";
 import { MapServices } from "@/store/reducers";
@@ -17,7 +18,6 @@ import {
     SearchIcon,
     SearchInput
 } from "./styled"
-import { STATUSES } from "@/constants";
 
 export default function AutoCompleteSearch() {
     const isLoaded = useGoogleMaps()

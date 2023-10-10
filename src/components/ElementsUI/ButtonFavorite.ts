@@ -1,21 +1,19 @@
 import { Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-export const ButtonFavorite = styled(Button)(() => ({
-    border: '3px solid #C4C4C4',
-    borderRadius: '5px',
+export const ButtonFavorite = styled(Button)(({ theme }) => ({
+    border: `${theme.spacing(.3)} solid ${theme.palette.borderPrimary}`,
+    borderRadius: theme.spacing(.5),
     display: 'flex',
     alignItems: 'center',
-    gap: '12px',
-    color: '#808080',
-    fontSize: '14px',
-    padding: '10px 15px',
-    textTransform: 'none',
+    gap: theme.spacing(1.2),
+    color: theme.palette.textButtonSecondary.main,
+    padding: theme.spacing(1, 1.5),
     '& svg path':{
-        fill: '#C75E5E'
+        fill: theme.palette.favoriteIconPrimary.main
     },
     '&:hover':{
-        border: '3px solid #C4C4C4',
+        border: `${theme.spacing(.3)} solid ${theme.palette.borderPrimary}`,
     }
 }))
 

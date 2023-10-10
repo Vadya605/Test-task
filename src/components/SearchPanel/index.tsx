@@ -1,12 +1,13 @@
 import { Box } from '@mui/material'
+import Typography from '@mui/material/Typography';
 import React from 'react'
 
 import Search from '@/components/svg/Search'
+import { PLACES } from '@/constants'
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux'
 import { SearchServices } from '@/store/reducers'
-import { PLACES } from '@/constants'
 
-import { ButtonSearch,Place, Places, PlacesWrapper, RadiusBox, RadiusInput, RadiusLabel, SearchPanelWrapper } from './styled'
+import { ButtonSearch,Place, Places, PlacesWrapper, RadiusBox, RadiusInput, SearchPanelWrapper } from './styled'
 
 export default function SearchPanel() {
     const dispatch = useAppDispatch()
@@ -60,7 +61,7 @@ export default function SearchPanel() {
     return (
         <Box>
             <SearchPanelWrapper>
-                <h3>Искать</h3>
+                <Typography variant='h2'>Искать</Typography>
                 <Places>
                     <PlacesWrapper>
                         {PLACES.map(place =>
@@ -70,15 +71,15 @@ export default function SearchPanel() {
                                 onClick={() => handleClickPlace(place.name)}
                             >
                                 <img src={place.icon} alt="Place icon" />
-                                <span>{place.name}</span>
+                                <Typography variant='h4'>{place.name}</Typography>
                             </Place>
                         )}
                     </PlacesWrapper>
                 </Places>
-                <h3>В радиусе</h3>
+                <Typography variant='h2'>В радиусе</Typography>
                 <RadiusBox>
                     <RadiusInput name='radius' id='radius' value={searchRadius} onChange={handleChangeRadius} />
-                    <RadiusLabel>км</RadiusLabel>
+                    <Typography variant='h3'>км</Typography>
                 </RadiusBox>
                 <ButtonSearch onClick={handleSearch}>
                     <Search />

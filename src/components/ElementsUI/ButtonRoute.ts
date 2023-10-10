@@ -1,19 +1,17 @@
 import { Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-export const ButtonRoute = styled(Button)(() => ({
-    borderRadius: '5px',
+export const ButtonRoute = styled(Button)(({theme}) => ({
+    borderRadius: theme.spacing(.5),
     display: 'flex',
     alignItems: 'center',
-    gap: '12px',
-    color: '#FFF',
-    fontSize: '14px',
-    padding: '10px 15px',
-    backgroundColor: '#5E7BC7',
-    textTransform: 'none',
+    gap: theme.spacing(1.2),
+    color: theme.palette.common.white,
+    padding: theme.spacing(1, 1.5),
+    backgroundColor: theme.palette.buttonPrimary.main,
 
     '&:hover':{
-        backgroundColor: '#5E7BC7',
+        backgroundColor: theme.palette.buttonPrimary.main,
         border: 'none'
     }
 }))
