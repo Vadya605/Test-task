@@ -1,24 +1,22 @@
-import Box from '@mui/material/Box';
-import LogoImg from '../../assets/img/Logo.svg'
-import Favorite from '../svg/Favorite';
-import Search from '../svg/Search'
-import {
-  Drawer, DrawerContent, DrawerWrapper, ListSections,
-  Aside, AsideButtonFavorites,
-  AsideButtonSearch, AvatarAside, Logo
-} from './SideBarStyle';
-import FavoritesPanel from '../FavoritesPanel/FavoritesPanel';
-import SearchPanel from '../SearchPanel/SearchPanel';
 import { ListItem } from '@mui/material';
-import AutoCompleteSearch from '../AutoCompleteSearch/AutoCompeteSearch';
-import { useAppDispatch, useTypeSelector } from '../../hooks/redux';
-import { DrawerServices } from '../../store/reducers/';
+import Box from '@mui/material/Box';
 
-interface SideBarProps {
-  isLoaded: boolean,
-}
+import LogoImg from '@/assets/img/Logo.svg'
+import AutoCompleteSearch from '@/components/AutoCompleteSearch';
+import FavoritesPanel from '@/components/FavoritesPanel';
+import SearchPanel from '@/components/SearchPanel';
+import Favorite from '@/components/svg/Favorite';
+import Search from '@/components/svg/Search'
+import { useAppDispatch, useTypeSelector } from '@/hooks/redux';
+import { DrawerServices } from '@/store/reducers';
 
-export default function SideBar({ isLoaded }: SideBarProps) {
+import {
+  Aside, AsideButtonFavorites,
+  AsideButtonSearch, AvatarAside,   Drawer, DrawerContent, DrawerWrapper, ListSections,
+Logo
+} from './styled';
+
+export default function SideBar() {
   const dispatch = useAppDispatch()
   const { isOpen, selectedSection } = useTypeSelector(state => state.Drawer)
 
@@ -34,7 +32,7 @@ export default function SideBar({ isLoaded }: SideBarProps) {
           <Aside>
             <Box>
               <Logo onClick={() => dispatch(DrawerServices.actions.setOpen(!isOpen))}>
-                <img src={LogoImg} alt="" />
+                <img src={LogoImg} alt="Logo" />
               </Logo>
               <ListSections>
                 <ListItem disablePadding onClick={() => handleClickSectionItem('search')}>
@@ -49,10 +47,10 @@ export default function SideBar({ isLoaded }: SideBarProps) {
                 </ListItem>
               </ListSections>
             </Box>
-            <AvatarAside src='/Person.jpg' />
+            <AvatarAside src='/Person.jpg' alt='Avatar' />
           </Aside>
           <DrawerContent>
-            <AutoCompleteSearch isLoaded={isLoaded} />
+            <AutoCompleteSearch />
             {isOpen && (selectedSection === 'search' ? <SearchPanel /> : <FavoritesPanel />)}
           </DrawerContent>
         </DrawerWrapper>

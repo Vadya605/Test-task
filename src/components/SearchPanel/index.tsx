@@ -1,11 +1,13 @@
-import { places } from '../../utils/consts'
-import Search from '../svg/Search'
 import { Box } from '@mui/material'
-import { SearchPanelWrapper, Place, Places, PlacesWrapper, RadiusBox, RadiusInput, RadiusLabel, ButtonSearch } from './SearchPanelStyle'
-import { useAppDispatch, useTypeSelector } from '../../hooks/redux'
-import { SearchServices } from '../../store/reducers/'
-import Adult from '../../assets/img/icons-markers/18+.svg'
+import Typography from '@mui/material/Typography';
 import React from 'react'
+
+import Search from '@/components/svg/Search'
+import { PLACES } from '@/constants'
+import { useAppDispatch, useTypeSelector } from '@/hooks/redux'
+import { SearchServices } from '@/store/reducers'
+
+import { ButtonSearch,Place, Places, PlacesWrapper, RadiusBox, RadiusInput, SearchPanelWrapper } from './styled'
 
 export default function SearchPanel() {
     const dispatch = useAppDispatch()
@@ -47,7 +49,7 @@ export default function SearchPanel() {
                 if (status === google.maps.places.PlacesServiceStatus.OK && results) {
                     const updatedResults = results.map(result => ({
                         ...result,
-                        icon: places.find(p => p.name === selectedPlace)?.icon
+                        icon: PLACES.find(p => p.name === selectedPlace)?.icon
                     }));
 
                     dispatch(SearchServices.actions.addFoundPlaces(updatedResults))
@@ -59,25 +61,25 @@ export default function SearchPanel() {
     return (
         <Box>
             <SearchPanelWrapper>
-                <h3>Искать</h3>
+                <Typography variant='h2'>Искать</Typography>
                 <Places>
                     <PlacesWrapper>
-                        {places.map(place =>
+                        {PLACES.map(place =>
                             <Place
                                 key={place.name}
                                 isSelected={selectedPlaces.includes(place.name)}
                                 onClick={() => handleClickPlace(place.name)}
                             >
-                                <img src={place.icon} alt="" />
-                                <span>{place.name}</span>
+                                <img src={place.icon} alt="Place icon" />
+                                <Typography variant='h4'>{place.name}</Typography>
                             </Place>
                         )}
                     </PlacesWrapper>
                 </Places>
-                <h3>В радиусе</h3>
+                <Typography variant='h2'>В радиусе</Typography>
                 <RadiusBox>
                     <RadiusInput name='radius' id='radius' value={searchRadius} onChange={handleChangeRadius} />
-                    <RadiusLabel>км</RadiusLabel>
+                    <Typography variant='h3'>км</Typography>
                 </RadiusBox>
                 <ButtonSearch onClick={handleSearch}>
                     <Search />

@@ -1,20 +1,18 @@
-import { Actions, CardExpanded, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper } from "./ExpandedCardStyle";
-import Car from '../../../assets/img/icons-markers/car-rear.svg'
-import Car2 from '../../../assets/img/icons-markers/car-side.svg'
-import Favorite from "../../svg/Favorite";
-import Geo from "../../svg/Geo";
-import { IFavorite } from "../../../models/IFavorite";
-import { ButtonFavorite } from "../../ElementsUI/ButtonFavorite";
-import { ButtonRoute } from "../../ElementsUI/ButtonRoute";
-import { useAppDispatch, useTypeSelector } from "../../../hooks/redux";
-import { FavoriteServices, SelectedFavoriteServices, DirectionsRendererServices } from "../../../store/reducers";
+import Typography from '@mui/material/Typography';
 
+import Car from '@/assets/img/icons-markers/car-rear.svg'
+import Car2 from '@/assets/img/icons-markers/car-side.svg'
+import { ButtonFavorite } from "@/components/ElementsUI/ButtonFavorite";
+import { ButtonRoute } from "@/components/ElementsUI/ButtonRoute";
+import Favorite from "@/components/svg/Favorite";
+import Geo from "@/components/svg/Geo";
+import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
+import { DirectionsRendererServices,FavoriteServices, SelectedFavoriteServices } from "@/store/reducers";
 
-interface ExpandedCardProps {
-    favoriteItem: IFavorite
-}
+import { CardProps } from '../interface';
+import { Actions, CardExpanded, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper } from "./styled";
 
-export default function ExpandedCard({ favoriteItem }: ExpandedCardProps) {
+export default function ExpandedCard({ favoriteItem }: CardProps) {
     const dispatch = useAppDispatch()
     const {center, map} = useTypeSelector(state => state.Map)
 
@@ -53,21 +51,21 @@ export default function ExpandedCard({ favoriteItem }: ExpandedCardProps) {
                 <CardHeader>
                     <Photo backgroundUrl={favoriteItem.photo} >
                         <PhotoIconsWrapper>
-                            <PhotoIcon src={Car} />
-                            <PhotoIcon src={Car2} />
+                            <PhotoIcon src={Car} alt='Photo icon' />
+                            <PhotoIcon src={Car2} alt='Photo icon' />
                         </PhotoIconsWrapper>
                     </Photo>
-                    <span>{favoriteItem.name}</span>
+                    <Typography variant='h1' >{favoriteItem.name}</Typography>
                 </CardHeader>
-                <p>{favoriteItem.description}</p>
+                <Typography variant='body1'>{favoriteItem.description}</Typography>
                 <Actions>
                     <ButtonFavorite onClick={handleClickFavorite}>
                         <Favorite />
-                        <span>Удалить</span>
+                        <Typography variant='button' >Удалить</Typography>
                     </ButtonFavorite>
                     <ButtonRoute onClick={handleClickRoute}>
                         <Geo />
-                        <span>Маршрут</span>
+                        <Typography variant='button' >Маршрут</Typography>
                     </ButtonRoute>
                 </Actions>
             </CardWrapper>

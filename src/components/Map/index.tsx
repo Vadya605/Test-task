@@ -1,28 +1,23 @@
+import { GoogleMap, Marker } from "@react-google-maps/api";
 import React from 'react'
-import { GoogleMap, Marker, InfoWindow, DirectionsRenderer } from "@react-google-maps/api";
-import { mapContainerStyle, MapWrapper } from './MapStyle.tsx';
-import CurrentLocation from '../CurrentLocation/CurrentLocation.tsx';
-import { mapOptions } from '../../utils/consts.ts';
-import { useAppDispatch, useTypeSelector } from '../../hooks/redux.ts';
-import { getBrowserLocation } from '../../utils/geo.ts';
-import { MapServices } from '../../store/reducers/'
-import CardPlace from '../CardPlace/CardPlace.tsx';
-import { SelectedPlaceServices } from '../../store/reducers/SelectedPlaceSlice.ts';
-import { RouteServices } from '../../store/reducers/DirectionsRendererSlice.ts';
 
-interface MapProps {
-    isLoaded: boolean
-}
+import CardPlace from '@/components/CardPlace';
+import CurrentLocation from '@/components/CurrentLocation';
+import { MAP_OPTIONS } from '@/constants';
+import { useAppDispatch, useTypeSelector } from '@/hooks/redux.ts';
+import { useGoogleMaps } from '@/hooks/useGoogleMaps.ts';
+import { MapServices, SelectedPlaceServices } from '@/store/reducers'
+import { getBrowserLocation } from '@/utils/geo.ts';
 
-export default function Map({ isLoaded }: MapProps) {
+import Loader from "../Loader";
+import { mapContainerStyle, MapWrapper } from './styled';
+
+export default function Map() {
     const dispatch = useAppDispatch()
-    const { center, map } = useTypeSelector(state => state.Map)
+    const { center } = useTypeSelector(state => state.Map)
     const { foundPlaces } = useTypeSelector(state => state.Search)
     const {selectedPlace} = useTypeSelector(state => state.SelectedPlace)
-    const {directionsRenderer} = useTypeSelector(state => state.DirectionsRenderer)
-
-    console.log('Route', directionsRenderer)
-    directionsRenderer && directionsRenderer.getDirections()
+    const isLoaded = useGoogleMaps()
 
     const onLoad = React.useCallback(async function callback(map: google.maps.Map) {
         getBrowserLocation()
@@ -45,10 +40,6 @@ export default function Map({ isLoaded }: MapProps) {
         dispatch(SelectedPlaceServices.actions.setSelected(place))
     } 
 
-    const handleCloseInfoWindow = () => {
-        dispatch(SelectedPlaceServices.actions.setSelected(null))
-    }
-
     return (
         <MapWrapper>
             {isLoaded ? (
@@ -58,7 +49,7 @@ export default function Map({ isLoaded }: MapProps) {
                     mapContainerStyle={mapContainerStyle}
                     center={center}
                     zoom={15}
-                    options={mapOptions}
+                    options={MAP_OPTIONS}
                 >
                     {foundPlaces && foundPlaces.map((place, index) => (
                         <Marker
@@ -76,7 +67,7 @@ export default function Map({ isLoaded }: MapProps) {
                     <CurrentLocation position={center} />
                 </GoogleMap>
             ) : (
-                <p>Мы загружаемся</p>
+                <Loader />
             )}
         </MapWrapper>
     );

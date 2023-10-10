@@ -1,3 +1,15 @@
+import React from "react";
+import useOnclickOutside from "react-cool-onclickoutside";
+import usePlacesAutocomplete, {
+    getGeocode,
+    getLatLng,
+} from "use-places-autocomplete";
+
+import { STATUSES } from "@/constants";
+import { useAppDispatch } from "@/hooks/redux";
+import { useGoogleMaps } from "@/hooks/useGoogleMaps";
+import { MapServices } from "@/store/reducers";
+
 import {
     AutoCompeteSearchWrapper,
     ListSuggestions,
@@ -5,21 +17,11 @@ import {
     SearchBox,
     SearchIcon,
     SearchInput
-} from "./AutoCompeteSearchStyle"
-import usePlacesAutocomplete, {
-    getGeocode,
-    getLatLng,
-} from "use-places-autocomplete";
-import useOnclickOutside from "react-cool-onclickoutside";
-import React from "react";
-import { useAppDispatch } from "../../hooks/redux";
-import { MapServices } from "../../store/reducers";
+} from "./styled"
 
-interface AutoCompeteSearchProps {
-    isLoaded: boolean,
-}
+export default function AutoCompleteSearch() {
+    const isLoaded = useGoogleMaps()
 
-export default function AutoCompleteSearch({ isLoaded }: AutoCompeteSearchProps) {
     React.useEffect(() => {
         isLoaded && init()
     }, [isLoaded])
@@ -61,7 +63,7 @@ export default function AutoCompleteSearch({ isLoaded }: AutoCompeteSearchProps)
         });
     return (
         <AutoCompeteSearchWrapper ref={ref}>
-            <SearchBox isActive={status === 'OK'}>
+            <SearchBox isActive={status === STATUSES.OK}>
                 <SearchIcon />
                 <SearchInput
                     placeholder='Место адрес...'
@@ -70,7 +72,7 @@ export default function AutoCompleteSearch({ isLoaded }: AutoCompeteSearchProps)
                     disabled={!ready}
                 />
             </SearchBox>
-            {status === "OK" && <ListSuggestions>{renderSuggestions()}</ListSuggestions>}
+            {status === STATUSES.OK && <ListSuggestions>{renderSuggestions()}</ListSuggestions>}
         </AutoCompeteSearchWrapper>
     )
-};
+}

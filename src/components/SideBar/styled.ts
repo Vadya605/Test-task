@@ -1,17 +1,18 @@
-import { styled, Theme, CSSObject } from '@mui/material/styles';
-import MuiDrawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import Search from '../svg/Search';
 import { Box, Input } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
+import MuiDrawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import { CSSObject,styled, Theme } from '@mui/material/styles';
 
-export const Aside = styled('div')(() => ({
+import Search from '../svg/Search';
+
+export const Aside = styled('div')(({theme}) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderRight: '3px solid #F5F5F5',
-    padding: '30px 25px',
+    borderRight: `${theme.spacing(.3)} solid ${theme.palette.borderSecondary.main}`,
+    padding: theme.spacing(3, 2.5),
 }))
 
 export const Logo = styled('div')(() => ({
@@ -20,32 +21,31 @@ export const Logo = styled('div')(() => ({
     alignItems: 'center'
 }))
 
-export const AsideButtonSearch = styled('div')(() => ({
-    marginBottom: '10px',
-    width: '60px',
-    height: '60px',
-    borderRadius: '6px',
+export const AsideButtonSearch = styled('div')(({theme}) => ({
+    marginBottom: theme.spacing(1),
+    width: theme.spacing(6),
+    height: theme.spacing(6),
+    borderRadius: theme.spacing(.6),
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#5E7BC7'
+    backgroundColor: theme.palette.buttonPrimary.main
 }))
 
-export const AsideButtonFavorites = styled('div')(() => ({
-    marginBottom: '10px',
-    padding: '18px 21px',
-    borderRadius: '6px',
+export const AsideButtonFavorites = styled('div')(({theme}) => ({
+    marginBottom: theme.spacing(1),
+    padding: theme.spacing(1.8, 2.1),
+    borderRadius: theme.spacing(.6),
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#C75E5E',
-    transition: 'all .2s ease-in-out',
+    backgroundColor: theme.palette.buttonSecondary.main,
 }))
   
-export const AvatarAside = styled(Avatar)(() => ({
-    border: '3px solid rgba(0, 0, 0, .2)',
-    width: '48px',
-    height: '48px'
+export const AvatarAside = styled(Avatar)(({theme}) => ({
+    border: `${theme.spacing(.3)} solid ${theme.palette.borderPrimary.main}`,
+    width: theme.spacing(4.8),
+    height: theme.spacing(4.8)
 }))
 
 const openedMixin = (theme: Theme): CSSObject => ({
@@ -62,9 +62,9 @@ const closedMixin = (theme: Theme): CSSObject => ({
         duration: theme.transitions.duration.leavingScreen,
     }),
     overflowX: 'hidden',
-    width: `calc(${theme.spacing(11)} + 1px)`,
+    width: theme.spacing(11),
     [theme.breakpoints.up('sm')]: {
-        width: `calc(${theme.spacing(13)} + 1px)`,
+        width: theme.spacing(11),
     },
 });
   
@@ -90,15 +90,15 @@ export const DrawerWrapper = styled('div')(() => ({
     overflow: 'hidden'
 }))
 
-export const DrawerContent = styled('div')(() => ({
+export const DrawerContent = styled('div')(({theme}) => ({
     display: 'flex',
     flexDirection: 'column',
-    rowGap: '20px',
-    padding: '25px',
+    rowGap: theme.spacing(2),
+    padding: theme.spacing(2.5),
     overflowY: 'auto',
     maxHeight: '100vh',
     '&::-webkit-scrollbar': {
-        width: '5px'
+        width: theme.spacing(.5)
     },
        
     '&::-webkit-scrollbar-track': {
@@ -106,34 +106,33 @@ export const DrawerContent = styled('div')(() => ({
     },
     
     '&::-webkit-scrollbar-thumb': {
-        borderRadius: '4px',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        borderRadius: theme.spacing(.4),
+        backgroundColor: theme.palette.scroll.main,
     }
 }))
 
-export const SearchBox = styled(Box)(() => ({
-    border: '3px solid #C4C4C4',
-    borderRadius: '10px',
-    padding: '15px 30px',
+export const SearchBox = styled(Box)(({theme}) => ({
+    border: `${theme.spacing(.3)} solid ${theme.palette.borderPrimary.main}`,
+    borderRadius: theme.spacing(1),
+    padding: theme.spacing(1.5, 3),
     display: 'flex',
     alignItems: 'center',
-    columnGap: '20px'
+    columnGap: theme.spacing(2)
 }))
 
-export const SearchIcon = styled(Search)(() => ({
+export const SearchIcon = styled(Search)(({theme}) => ({
     '& path':{
-        fill: '#C4C4C4'
+        fill: theme.palette.common.white
     }
 }))
 
 
 export const SearchInput = styled(Input)(() => ({
-    fontSize: '16px',
     '&::before, &::after':{
         content: 'none'
     },
 }))
 
-export const ListSections = styled(List)(() => ({
-    marginTop: '40px'
+export const ListSections = styled(List)(({theme}) => ({
+    marginTop: theme.spacing(4)
 }))

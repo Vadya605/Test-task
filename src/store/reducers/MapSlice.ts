@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 
 interface MapState {
+    isLoaded: boolean,
     map: google.maps.Map | null,
     center: {
         lat: number,
@@ -10,6 +11,7 @@ interface MapState {
 }
 
 const initialState: MapState = {
+    isLoaded: false,
     map: null,
     center: {
         lat: 51.5085300, 
@@ -27,6 +29,9 @@ export const MapSlice = createSlice({
         },
         setMap(state, action: PayloadAction<google.maps.Map | null>){
             state.map = action.payload
+        },
+        setIsLoaded(state, action: PayloadAction<boolean>){
+            state.isLoaded = action.payload
         }
     },
 })

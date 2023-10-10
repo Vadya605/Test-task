@@ -1,19 +1,18 @@
-import { CardPlaceWrapper, PhotoPlace, Actions } from "./CardPlaceStyle";
-import FavoriteSvg from "../svg/Favorite";
-import GeoSvg from '../svg/Geo'
-import { useAppDispatch, useTypeSelector } from "../../hooks/redux";
-import { FavoriteServices } from "../../store/reducers";
-import { convertPlaceResultToFavorite } from "../../utils/convert";
-import { ButtonFavorite } from "../ElementsUI/ButtonFavorite";
-import { ButtonRoute } from "../ElementsUI/ButtonRoute";
+import Typography from '@mui/material/Typography';
 import { InfoWindow } from "@react-google-maps/api";
-import { SelectedPlaceServices } from "../../store/reducers/SelectedPlaceSlice";
-import DoesntExistPhoto from '../../../public/doesntExist.jpg'
-import { DirectionsRendererServices } from "../../store/reducers/DirectionsRendererSlice";
 
-interface CardPlaceProps {
-    place: google.maps.places.PlaceResult
-}
+import DoesntExistPhoto from '/public/doesntExist.jpg'
+import { ButtonFavorite } from "@/components/ElementsUI/ButtonFavorite";
+import { ButtonRoute } from "@/components/ElementsUI/ButtonRoute";
+import FavoriteSvg from "@/components/svg/Favorite";
+import GeoSvg from '@/components/svg/Geo'
+import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
+import { DirectionsRendererServices, FavoriteServices, SelectedPlaceServices } from "@/store/reducers";
+import { convertPlaceResultToFavorite } from "@/utils/convert";
+
+import { CardPlaceProps } from "./interface";
+import { Actions,CardPlaceWrapper, PhotoPlace } from "./styled";
+
 
 export default function CardPlace({ place }: CardPlaceProps) {
     const dispatch = useAppDispatch()
@@ -74,16 +73,16 @@ export default function CardPlace({ place }: CardPlaceProps) {
             onCloseClick={handleClickClose}
         >
             <CardPlaceWrapper>
-                <h3>{place.name}</h3>
-                <PhotoPlace src={ place.photos?.[0]?.getUrl() || DoesntExistPhoto} />
+                <Typography variant="h2" >{place.name}</Typography>
+                <PhotoPlace src={ place.photos?.[0]?.getUrl() || DoesntExistPhoto} alt="Photo place" />
                 <Actions>
                     <ButtonFavorite onClick={handleClickSave}>
                         <FavoriteSvg />
-                        <span>{ isFavorite()?'Удалить': 'Добавить' }</span>
+                        <Typography variant="button" >{ isFavorite()?'Удалить': 'Добавить' }</Typography>
                     </ButtonFavorite>
                     <ButtonRoute onClick={handleClickRoute}>
                         <GeoSvg />
-                        <span>Маршрут</span>
+                        <Typography variant="button" >Маршрут</Typography>
                     </ButtonRoute>
                 </Actions>
             </CardPlaceWrapper>
