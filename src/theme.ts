@@ -25,6 +25,9 @@ declare module '@mui/material/styles' {
         },
         scroll: {
             main: string
+        },
+        loader: {
+            main: string
         }
     }
     interface PaletteOptions {
@@ -50,6 +53,9 @@ declare module '@mui/material/styles' {
             main: string
         },
         scroll: {
+            main: string
+        },
+        loader: {
             main: string
         }
     }
@@ -80,6 +86,9 @@ export const theme = createTheme({
         },
         scroll: {
             main: '#00000080'
+        },
+        loader: {
+            main: '#4496B9'
         }
     },
     typography: {

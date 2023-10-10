@@ -9,6 +9,7 @@ import { useGoogleMaps } from '@/hooks/useGoogleMaps.ts';
 import { MapServices, SelectedPlaceServices } from '@/store/reducers'
 import { getBrowserLocation } from '@/utils/geo.ts';
 
+import Loader from "../Loader";
 import { mapContainerStyle, MapWrapper } from './styled';
 
 export default function Map() {
@@ -66,7 +67,7 @@ export default function Map() {
                     <CurrentLocation position={center} />
                 </GoogleMap>
             ) : (
-                <p>Мы загружаемся</p>
+                <Loader />
             )}
         </MapWrapper>
     );
