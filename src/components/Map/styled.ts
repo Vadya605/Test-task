@@ -7,5 +7,6 @@ export const mapContainerStyle = {
 
 export const MapWrapper = styled('div')(() => ({
     width: '100%',
-    height: '100%'
+    height: '100%',
+    position: 'relative'
 }))

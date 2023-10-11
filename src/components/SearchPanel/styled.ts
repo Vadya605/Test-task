@@ -7,11 +7,11 @@ export const ButtonSearch = styled(Button)(({theme}) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: theme.palette.buttonPrimary.main,
+    backgroundColor: theme.palette.primary.main,
     padding: theme.spacing(1.9, 16.1),
     borderRadius: theme.spacing(1),
     '&:hover':{
-        backgroundColor: theme.palette.buttonPrimary.main
+        backgroundColor: theme.palette.primary.main
     }
 }))
 

@@ -57,7 +57,7 @@ const MAP_THEME = [
 
 export const MAP_OPTIONS = {
     panControl: true,
-    zoomControl: true,
+    zoomControl: false,
     mapTypeControl: false,
     scaleControl: false,
     streetViewControl: false,

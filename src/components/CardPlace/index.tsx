@@ -7,8 +7,9 @@ import { ButtonRoute } from "@/components/ElementsUI/ButtonRoute";
 import FavoriteSvg from "@/components/svg/Favorite";
 import GeoSvg from '@/components/svg/Geo'
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
-import { DirectionsRendererServices, FavoriteServices, SelectedPlaceServices } from "@/store/reducers";
+import { DirectionsRendererServices, FavoriteServices, RouteDetailsServices, SelectedPlaceServices } from "@/store/reducers";
 import { convertPlaceResultToFavorite } from "@/utils/convert";
+import { getDirections } from '@/utils/route';
 
 import { CardPlaceProps } from "./interface";
 import { Actions,CardPlaceWrapper, PhotoPlace } from "./styled";
@@ -36,28 +37,35 @@ export default function CardPlace({ place }: CardPlaceProps) {
         // при установке null оно все равно остается
     }
 
-    const handleClickRoute = () => {
-        const directionService = new google.maps.DirectionsService()
-        const directionRequest = {
-            origin: center,
-            destination: {
-                lat: place.geometry?.location?.lat(),
-                lng: place.geometry?.location?.lng()
-            },
-            travelMode: google.maps.TravelMode.WALKING
-        }
-        directionService.route(directionRequest, (result, status) => {
-            if(status === google.maps.DirectionsStatus.OK){
-                const directionsRenderer = new google.maps.DirectionsRenderer({
-                    map: map,
-                    directions: result
-                })
-                
-                dispatch(DirectionsRendererServices.actions.setDirectionsRenderer(directionsRenderer))
-            } else {
-                console.log('Error');
+    const handleClickRoute = async () => {
+        try {
+            const placeLocation = {
+                lat: place.geometry?.location?.lat() || 0,
+                lng: place.geometry?.location?.lng() || 0
             }
-        })
+            
+            const directionRequest = {
+                origin: center,
+                destination: placeLocation,
+                travelMode: google.maps.TravelMode.WALKING
+            }
+
+            const result = await getDirections(directionRequest)
+            const distance = result?.routes[0].legs[0].distance?.value || 0
+            const time = result?.routes[0].legs[0].duration?.text || ''
+            
+            const directionsRenderer = new google.maps.DirectionsRenderer({
+                map: map,
+                directions: result
+            })
+
+            dispatch(RouteDetailsServices.actions.setDistanceTotal(distance))
+            dispatch(RouteDetailsServices.actions.setPlaceLocation(placeLocation))
+            dispatch(RouteDetailsServices.actions.setTime(time))
+            dispatch(DirectionsRendererServices.actions.setDirectionsRenderer(directionsRenderer))
+        }catch(e){
+            console.log(e);
+        }
     }
 
     const isFavorite = () => {

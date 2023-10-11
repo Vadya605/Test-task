@@ -28,6 +28,9 @@ declare module '@mui/material/styles' {
         },
         loader: {
             main: string
+        },
+        progress: {
+            main: string
         }
     }
     interface PaletteOptions {
@@ -58,22 +61,25 @@ declare module '@mui/material/styles' {
         loader: {
             main: string
         }
+        progress: {
+            main: string
+        }
     }
 }
 
 export const theme = createTheme({
     palette: {
+        primary: {
+            main: '#5E7BC7'
+        },
+        secondary: {
+            main: '#C75E5E'
+        },
         borderPrimary: {
             main: '#C4C4C4',
         },
         borderSecondary: {
             main: '#F5F5F5'
-        },
-        buttonPrimary: {
-            main: '#5E7BC7'
-        },
-        buttonSecondary: {
-            main: '#C75E5E'
         },
         textButtonPrimary: {
             main: '#FFFFFF'
@@ -89,6 +95,9 @@ export const theme = createTheme({
         },
         loader: {
             main: '#4496B9'
+        },
+        progress: {
+            main: '#E8EDF1'
         }
     },
     typography: {
@@ -121,6 +130,11 @@ export const theme = createTheme({
             textTransform: 'none',
             fontSize: 14,
             fontWeight: 600
+        },
+        caption: {
+            fontSize: 16,
+            opacity: .5,
+            fontWeight: 400
         }
     },
     spacing: 10,

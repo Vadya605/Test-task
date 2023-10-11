@@ -8,10 +8,10 @@ export const ButtonRoute = styled(Button)(({theme}) => ({
     gap: theme.spacing(1.2),
     color: theme.palette.common.white,
     padding: theme.spacing(1, 1.5),
-    backgroundColor: theme.palette.buttonPrimary.main,
+    backgroundColor: theme.palette.primary.main,
 
     '&:hover':{
-        backgroundColor: theme.palette.buttonPrimary.main,
+        backgroundColor: theme.palette.primary.main,
         border: 'none'
     }
 }))
