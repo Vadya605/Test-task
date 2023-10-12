@@ -24,6 +24,8 @@ export default function ExpandedCard({ favoriteItem }: CardProps) {
 
     const handleClickRoute = async () => {
         try {
+            dispatch(DirectionsRendererServices.actions.clearDirections())
+
             const directionRequest = {
                 origin: center,
                 destination: favoriteItem.location,

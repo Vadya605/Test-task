@@ -33,12 +33,12 @@ export default function CardPlace({ place }: CardPlaceProps) {
 
     const handleClickClose = () => {
         dispatch(SelectedPlaceServices.actions.setSelected(null))
-        dispatch(DirectionsRendererServices.actions.setDirectionsRenderer(null))
-        // при установке null оно все равно остается
     }
 
     const handleClickRoute = async () => {
         try {
+            dispatch(DirectionsRendererServices.actions.clearDirections())
+
             const placeLocation = {
                 lat: place.geometry?.location?.lat() || 0,
                 lng: place.geometry?.location?.lng() || 0

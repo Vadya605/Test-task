@@ -16,6 +16,9 @@ export const DirectionsRendererSlice = createSlice({
         setDirectionsRenderer(state, action: PayloadAction<google.maps.DirectionsRenderer | null>){
             state.directionsRenderer = action.payload
         },
+        clearDirections(state){
+            state.directionsRenderer?.setMap(null)
+        }
     },
 })
 
