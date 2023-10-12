@@ -7,7 +7,8 @@ import { ButtonRoute } from "@/components/ElementsUI/ButtonRoute";
 import Favorite from "@/components/svg/Favorite";
 import Geo from "@/components/svg/Geo";
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
-import { DirectionsRendererServices,FavoriteServices, SelectedFavoriteServices } from "@/store/reducers";
+import { DirectionsRendererServices,FavoriteServices, RouteDetailsServices, SelectedFavoriteServices } from "@/store/reducers";
+import { getDirections } from '@/utils/route';
 
 import { CardProps } from '../interface';
 import { Actions, CardExpanded, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper } from "./styled";
@@ -21,28 +22,32 @@ export default function ExpandedCard({ favoriteItem }: CardProps) {
         dispatch(FavoriteServices.actions.removeFavorite(favoriteItem))
     }
 
-    const handleClickRoute = () => {
-        const directionService = new google.maps.DirectionsService()
-        const directionRequest = {
-            origin: center,
-            destination: {
-                lat: favoriteItem.location.lat,
-                lng: favoriteItem.location.lng
-            },
-            travelMode: google.maps.TravelMode.WALKING
-        }
-        directionService.route(directionRequest, (result, status) => {
-            if(status === google.maps.DirectionsStatus.OK){
-                const directionsRenderer = new google.maps.DirectionsRenderer({
-                    map: map,
-                    directions: result
-                })
-                
-                dispatch(DirectionsRendererServices.actions.setDirectionsRenderer(directionsRenderer))
-            } else {
-                console.log('Error');
+    const handleClickRoute = async () => {
+        try {
+            dispatch(DirectionsRendererServices.actions.clearDirections())
+
+            const directionRequest = {
+                origin: center,
+                destination: favoriteItem.location,
+                travelMode: google.maps.TravelMode.WALKING
             }
-        })
+
+            const result = await getDirections(directionRequest)
+            const distance = result?.routes[0].legs[0].distance?.value || 0
+            const time = result?.routes[0].legs[0].duration?.text || ''
+            
+            const directionsRenderer = new google.maps.DirectionsRenderer({
+                map: map,
+                directions: result
+            })
+
+            dispatch(RouteDetailsServices.actions.setDistanceTotal(distance))
+            dispatch(RouteDetailsServices.actions.setPlaceLocation(favoriteItem.location))
+            dispatch(RouteDetailsServices.actions.setTime(time))
+            dispatch(DirectionsRendererServices.actions.setDirectionsRenderer(directionsRenderer))
+        }catch(e){
+            console.log(e);
+        }
     }
     
     return (

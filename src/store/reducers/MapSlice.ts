@@ -7,6 +7,13 @@ interface MapState {
     center: {
         lat: number,
         lng: number
+    },
+    travelInfo: {
+        distanceTraveled: string,
+        distance: string,
+        placeGeometry: google.maps.LatLng | null,
+        time: string,
+        progress: number
     }
 }
 
@@ -16,6 +23,13 @@ const initialState: MapState = {
     center: {
         lat: 51.5085300, 
         lng: -0.1257400
+    },
+    travelInfo: {
+        distanceTraveled: '',
+        distance: '',
+        placeGeometry: null,
+        time: '',
+        progress: 0
     }
 }
 

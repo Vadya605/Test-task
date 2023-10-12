@@ -29,7 +29,7 @@ export const AsideButtonSearch = styled('div')(({theme}) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: theme.palette.buttonPrimary.main
+    backgroundColor: theme.palette.primary.main
 }))
 
 export const AsideButtonFavorites = styled('div')(({theme}) => ({
@@ -39,7 +39,7 @@ export const AsideButtonFavorites = styled('div')(({theme}) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: theme.palette.buttonSecondary.main,
+    backgroundColor: theme.palette.secondary.main,
 }))
   
 export const AvatarAside = styled(Avatar)(({theme}) => ({
