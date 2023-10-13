@@ -8,7 +8,8 @@ export const ButtonFavorite = styled(Button)(({ theme }) => ({
     alignItems: 'center',
     gap: theme.spacing(1.2),
     color: theme.palette.textButtonSecondary.main,
-    padding: theme.spacing(1, 1.5),
+    width: '100%',
+    padding: theme.spacing(1, 0),
     '& svg path':{
         fill: theme.palette.favoriteIconPrimary.main
     },

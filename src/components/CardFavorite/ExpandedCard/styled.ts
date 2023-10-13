@@ -1,10 +1,6 @@
 import { Card, CardActions } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-interface PhotoProps {
-    backgroundUrl: string
-}
-
 export const CardExpanded = styled(Card)(({theme}) => ({
     maxWidth: theme.spacing(44),
     whiteSpace: 'normal',
@@ -14,11 +10,14 @@ export const CardExpanded = styled(Card)(({theme}) => ({
 }))
 
 export const CardWrapper = styled('div')(({theme}) => ({
-    padding: theme.spacing(2, 2.5),
+    padding: theme.spacing(2),
     display: 'flex',
     flexDirection: 'column',
     rowGap: theme.spacing(2),
-    margin: theme.spacing(0)
+    margin: theme.spacing(0),
+    [theme.breakpoints.down('sm')]: {
+        padding: theme.spacing(1.5)
+    }
 }))
 
 export const CardHeader = styled('div')(({theme}) => ({
@@ -27,19 +26,23 @@ export const CardHeader = styled('div')(({theme}) => ({
     flexDirection: 'column',
 }))
 
-export const Photo = styled('div')<PhotoProps>(({ backgroundUrl, theme }) => ({
-    borderRadius: theme.spacing(1),
-    width: theme.spacing(40),
-    height: theme.spacing(30),
-    background: `url('${backgroundUrl}')`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center center',
+export const PhotoWrapper = styled('div')(({theme}) => ({
+    width: 'auto',
     display: 'flex',
     justifyContent: 'end',
     alignItems: 'end',
+    position: 'relative'
+}))
+
+export const Photo = styled('img')(({theme}) => ({
+    borderRadius: theme.spacing(1),
+    width: '100%',
+    maxWidth: '400px',
+    minWidth: '90px'
 }));
 
 export const PhotoIconsWrapper = styled('div')(({theme}) => ({
+    position: 'absolute',
     padding: theme.spacing(.8),
     display: 'flex',
     columnGap: theme.spacing(.5)

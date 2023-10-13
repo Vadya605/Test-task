@@ -1,5 +1,4 @@
 import { ListItem } from '@mui/material';
-import Box from '@mui/material/Box';
 
 import LogoImg from '@/assets/img/Logo.svg'
 import AutoCompleteSearch from '@/components/AutoCompleteSearch';
@@ -12,8 +11,8 @@ import { DrawerServices } from '@/store/reducers';
 
 import {
   Aside, AsideButtonFavorites,
-  AsideButtonSearch, AvatarAside,   Drawer, DrawerContent, DrawerWrapper, ListSections,
-Logo
+  AsideButtonSearch, AvatarAside, Column, Drawer, DrawerContent, DrawerWrapper, ListSections,
+  Logo,
 } from './styled';
 
 export default function SideBar() {
@@ -26,14 +25,13 @@ export default function SideBar() {
   }
 
   return (
-    <Box>
       <Drawer variant="permanent" open={isOpen} className='drawer'>
-        <DrawerWrapper>
-          <Aside>
-            <Box>
-              <Logo onClick={() => dispatch(DrawerServices.actions.setOpen(!isOpen))}>
-                <img src={LogoImg} alt="Logo" />
-              </Logo>
+        <DrawerWrapper className='drawerWrapper'>
+          <Aside className='aside'>
+            <Logo onClick={() => dispatch(DrawerServices.actions.setOpen(!isOpen))}>
+              <img src={LogoImg} alt="Logo" />
+            </Logo>
+            <Column>
               <ListSections>
                 <ListItem disablePadding onClick={() => handleClickSectionItem('search')}>
                   <AsideButtonSearch>
@@ -42,19 +40,18 @@ export default function SideBar() {
                 </ListItem>
                 <ListItem disablePadding onClick={() => handleClickSectionItem('favorite')}>
                   <AsideButtonFavorites>
-                      <Favorite />
+                    <Favorite />
                   </AsideButtonFavorites>
                 </ListItem>
               </ListSections>
-            </Box>
-            <AvatarAside src='/Person.jpg' alt='Avatar' />
+              <AvatarAside src='/Person.jpg' alt='Avatar' />
+            </Column>
           </Aside>
-          <DrawerContent>
+          <DrawerContent className='drawerContent'>
             <AutoCompleteSearch />
             {isOpen && (selectedSection === 'search' ? <SearchPanel /> : <FavoritesPanel />)}
           </DrawerContent>
         </DrawerWrapper>
       </Drawer>
-    </Box>
   );
 }

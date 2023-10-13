@@ -12,19 +12,19 @@ import { convertPlaceResultToFavorite } from "@/utils/convert";
 import { getDirections } from '@/utils/route';
 
 import { CardPlaceProps } from "./interface";
-import { Actions,CardPlaceWrapper, PhotoPlace } from "./styled";
+import { Actions, CardPlaceWrapper, PhotoPlace } from "./styled";
 
 
 export default function CardPlace({ place }: CardPlaceProps) {
     const dispatch = useAppDispatch()
-    const {favorites} = useTypeSelector(state => state.Favorites)
-    const {center, map} = useTypeSelector(state => state.Map)
+    const { favorites } = useTypeSelector(state => state.Favorites)
+    const { center, map } = useTypeSelector(state => state.Map)
 
     const handleClickSave = () => {
         const favorite = convertPlaceResultToFavorite(place)
         console.log(favorite);
-        
-        if(isFavorite()){
+
+        if (isFavorite()) {
             return dispatch(FavoriteServices.actions.removeFavorite(favorite))
         }
 
@@ -43,7 +43,7 @@ export default function CardPlace({ place }: CardPlaceProps) {
                 lat: place.geometry?.location?.lat() || 0,
                 lng: place.geometry?.location?.lng() || 0
             }
-            
+
             const directionRequest = {
                 origin: center,
                 destination: placeLocation,
@@ -53,7 +53,7 @@ export default function CardPlace({ place }: CardPlaceProps) {
             const result = await getDirections(directionRequest)
             const distance = result?.routes[0].legs[0].distance?.value || 0
             const time = result?.routes[0].legs[0].duration?.text || ''
-            
+
             const directionsRenderer = new google.maps.DirectionsRenderer({
                 map: map,
                 directions: result
@@ -63,7 +63,7 @@ export default function CardPlace({ place }: CardPlaceProps) {
             dispatch(RouteDetailsServices.actions.setPlaceLocation(placeLocation))
             dispatch(RouteDetailsServices.actions.setTime(time))
             dispatch(DirectionsRendererServices.actions.setDirectionsRenderer(directionsRenderer))
-        }catch(e){
+        } catch (e) {
             console.log(e);
         }
     }
@@ -80,13 +80,13 @@ export default function CardPlace({ place }: CardPlaceProps) {
             }}
             onCloseClick={handleClickClose}
         >
-            <CardPlaceWrapper>
+            <CardPlaceWrapper className='cardPlaceWrapper'>
                 <Typography variant="h2" >{place.name}</Typography>
-                <PhotoPlace src={ place.photos?.[0]?.getUrl() || DoesntExistPhoto} alt="Photo place" />
+                <PhotoPlace src={place.photos?.[0]?.getUrl() || DoesntExistPhoto} alt="Photo place" />
                 <Actions>
                     <ButtonFavorite onClick={handleClickSave}>
                         <FavoriteSvg />
-                        <Typography variant="button" >{ isFavorite()?'Удалить': 'Добавить' }</Typography>
+                        <Typography variant="button" >{isFavorite() ? 'Удалить' : 'Добавить'}</Typography>
                     </ButtonFavorite>
                     <ButtonRoute onClick={handleClickRoute}>
                         <GeoSvg />

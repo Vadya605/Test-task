@@ -1,4 +1,3 @@
-import { Button } from "@mui/material";
 import Typography from '@mui/material/Typography';
 
 import ExpandMore from '@/assets/img/Arrow.svg'
@@ -10,7 +9,7 @@ import { FavoriteServices, SelectedFavoriteServices } from '@/store/reducers';
 import { strLimit } from "@/utils/textHelpers";
 
 import { CardProps } from "../interface";
-import { Actions, CardCollapsed, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper } from "./styled";
+import { Actions, CardCollapsed, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper, PhotoWrapper } from "./styled";
 
 export default function CollapsedCard({ favoriteItem }: CardProps){
     const dispatch = useAppDispatch()
@@ -27,22 +26,19 @@ export default function CollapsedCard({ favoriteItem }: CardProps){
         <CardCollapsed>
             <CardWrapper>
                 <CardHeader>
-                    <Photo backgroundUrl={favoriteItem.photo} >
+                    <PhotoWrapper>
+                        <Photo src={favoriteItem.photo} alt="Photo place" />
                         <PhotoIconsWrapper>
                             <PhotoIcon src={Car} alt="Photo icon" />
                             <PhotoIcon src={Car2} alt="Photo icon" />
                         </PhotoIconsWrapper>
-                    </Photo>
-                    <Typography variant="h3">{favoriteItem.name}</Typography>
+                    </PhotoWrapper>
+                    <Typography variant="h3">{strLimit(favoriteItem.name, 20)}</Typography>
                 </CardHeader>
                 <Typography variant="body2">{ strLimit(favoriteItem.description, 100) }</Typography>
                 <Actions>
-                    <Button onClick={handleClickFavorite}>
-                        <img src={Favorite} alt="Favorite" />
-                    </Button> 
-                    <Button onClick={handleClickExpandMore}>
-                        <img src={ExpandMore} alt="ExpandMore" />
-                    </Button>
+                    <img src={Favorite} alt="Favorite" onClick={handleClickFavorite} />
+                    <img src={ExpandMore} alt="ExpandMore" onClick={handleClickExpandMore} />
                 </Actions>
             </CardWrapper>
         </CardCollapsed>

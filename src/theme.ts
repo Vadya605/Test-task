@@ -31,6 +31,9 @@ declare module '@mui/material/styles' {
         },
         progress: {
             main: string
+        },
+        suggestionHover: {
+            main: string
         }
     }
     interface PaletteOptions {
@@ -62,6 +65,9 @@ declare module '@mui/material/styles' {
             main: string
         }
         progress: {
+            main: string
+        },
+        suggestionHover: {
             main: string
         }
     }
@@ -98,16 +104,19 @@ export const theme = createTheme({
         },
         progress: {
             main: '#E8EDF1'
+        },
+        suggestionHover: {
+            main: 'rgba(0, 0, 0, .1)'
         }
     },
     typography: {
         fontFamily: ['Mont', 'sans-serif'].join(','),
         h1: {
-            fontSize: 24,
+            fontSize: 'calc(16px + (24 - 16) * ((100vw - 375px) / (1920 - 375)))',
             fontWeight: 600
         },
         h2: {
-            fontSize: 20,
+            fontSize: 'calc(16px + (20 - 16) * ((100vw - 375px) / (1920 - 375)))',
             fontWeight: 600
         },
         h3: {
@@ -119,7 +128,7 @@ export const theme = createTheme({
             fontWeight: 500
         },
         body1: {
-            fontSize: 16,
+            fontSize: 'calc(14px + (16 - 14) * ((100vw - 375px) / (1920 - 375)))',
             fontWeight: 400
         },
         body2: {
@@ -128,11 +137,11 @@ export const theme = createTheme({
         },
         button: {
             textTransform: 'none',
-            fontSize: 14,
+            fontSize: 'calc(12px + (14 - 12) * ((100vw - 375px) / (1920 - 375)))',
             fontWeight: 600
         },
         caption: {
-            fontSize: 16,
+            fontSize: 'calc(12px + (16 - 12) * ((100vw - 375px) / (1920 - 375)))',
             opacity: .5,
             fontWeight: 400
         }

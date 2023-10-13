@@ -2,25 +2,25 @@ import { Box, Input, List, ListItem } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 import Search from '../svg/Search';
-
-interface SearchBoxProps {
-    isActive: boolean
-}
+import { SearchBoxProps } from './interface';
 
 export const AutoCompeteSearchWrapper = styled('div')(() => ({
     position:'relative',
 }))
 
-export const SearchBox = styled(Box)<SearchBoxProps>(({ isActive }) => ({
-    border: '3px solid #C4C4C4',
-    borderRadius: isActive?'10px 10px 0 0': '10px',
-    padding: '15px 30px',
+export const SearchBox = styled(Box)<SearchBoxProps>(({ theme, isActive }) => ({
+    border: `${theme.spacing(.3)} solid ${theme.palette.borderPrimary.main}`,
+    borderRadius: isActive? theme.spacing(1, 1, 0, 0): theme.spacing(1),
+    padding: theme.spacing(1.5, 3),
     display: 'flex',
     alignItems: 'center',
-    columnGap: '20px'
+    columnGap: theme.spacing(2)
 }))
 
-export const SearchIcon = styled(Search)(() => ({
+export const SearchIcon = styled(Search)(({theme}) => ({
+    [theme.breakpoints.down('sm')]: {
+        display: 'none'
+    },
     '& path':{
         fill: '#C4C4C4'
     }
@@ -28,37 +28,35 @@ export const SearchIcon = styled(Search)(() => ({
 
 
 export const SearchInput = styled(Input)(() => ({
-    width: '100%',
-    fontSize: '16px',
     '&::before, &::after':{
         content: 'none'
     },
 }))
 
 
-export const ListSuggestions = styled(List)(() => ({
+export const ListSuggestions = styled(List)(({theme}) => ({
     boxSizing: 'border-box',
     zIndex: '10',
-    top: '65px',
+    top: theme.spacing(6.5),
     width: '100%',
     backgroundColor: '#FFFFFF',
     position: 'absolute',
-    padding: '0px',
-    borderRadius: '0px 0px 10px 10px',
-    border: '3px solid #C4C4C4',
+    padding: 0,
+    borderRadius: theme.spacing(0, 0, 1, 1),
+    border: `${theme.spacing(.3)} solid ${theme.palette.borderPrimary.main}`,
     borderTop: 'none',
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
     whiteSpace: 'normal',
 }))
 
-export const ListSuggestionsItem = styled(ListItem)(() => ({
+export const ListSuggestionsItem = styled(ListItem)(({theme}) => ({
     wordWrap: 'normal',
     display: 'flex',
     flexDirection: 'column',
-    rowGap: '5px',
+    rowGap: theme.spacing(.5),
     alignItems: 'flex-start',
     "&:hover" : {
-        backgroundColor: 'rgba(0, 0, 0, 0.1)',
+        backgroundColor: theme.palette.suggestionHover.main,
         cursor: 'pointer'
     }
 }))

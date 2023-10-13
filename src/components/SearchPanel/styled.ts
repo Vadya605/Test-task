@@ -8,7 +8,8 @@ export const ButtonSearch = styled(Button)(({theme}) => ({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: theme.palette.primary.main,
-    padding: theme.spacing(1.9, 16.1),
+    padding: theme.spacing(1.9),
+    width: '100%',
     borderRadius: theme.spacing(1),
     '&:hover':{
         backgroundColor: theme.palette.primary.main
@@ -48,8 +49,12 @@ export const Place = styled('div')<PlaceProps>(({ isSelected, theme }) => ({
     alignItems: 'center',
     columnGap: theme.spacing(2),
     opacity: !isSelected? '0.5': 1,
+    whiteSpace: 'normal',
     '& img': {
         width: theme.spacing(3)
+    },
+    '&:hover': {
+        cursor: 'pointer'
     }
 }));
   
