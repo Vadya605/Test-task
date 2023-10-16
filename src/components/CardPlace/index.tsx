@@ -2,16 +2,16 @@ import Typography from '@mui/material/Typography';
 import { InfoWindow } from "@react-google-maps/api";
 
 import DoesntExistPhoto from '/public/doesntExist.jpg'
-import { ButtonFavorite } from "@/components/ElementsUI/ButtonFavorite";
-import { ButtonRoute } from "@/components/ElementsUI/ButtonRoute";
 import FavoriteSvg from "@/components/svg/Favorite";
 import GeoSvg from '@/components/svg/Geo'
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
 import { DirectionsRendererServices, FavoriteServices, RouteDetailsServices, SelectedPlaceServices } from "@/store/reducers";
+import { ButtonFavorite } from "@/UI/ButtonFavorite";
+import { ButtonRoute } from "@/UI/ButtonRoute";
 import { convertPlaceResultToFavorite } from "@/utils/convert";
 import { getDirections } from '@/utils/route';
 
-import { CardPlaceProps } from "./interface";
+import { CardPlaceProps } from "./interfaces";
 import { Actions, CardPlaceWrapper, PhotoPlace } from "./styled";
 
 

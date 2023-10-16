@@ -1,7 +1,7 @@
 import { Button, Input } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-import { PlaceProps } from './interface';
+import { PlaceProps } from './interfaces';
   
 export const ButtonSearch = styled(Button)(({theme}) => ({
     display: 'flex',

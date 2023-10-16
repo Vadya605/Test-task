@@ -26,13 +26,13 @@ export const CardHeader = styled('div')(({theme}) => ({
     flexDirection: 'column',
 }))
 
-export const PhotoWrapper = styled('div')(({theme}) => ({
-    width: 'auto',
-    display: 'flex',
-    justifyContent: 'end',
-    alignItems: 'end',
-    position: 'relative'
-}))
+export const PhotoWrapper = styled('div')`
+    width: auto;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    position: relative;
+`;
 
 export const Photo = styled('img')(({theme}) => ({
     borderRadius: theme.spacing(1),

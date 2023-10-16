@@ -7,6 +7,6 @@ export const HeaderPanel = styled('div')(({theme}) => ({
     marginBottom: theme.spacing(2),
 }))
 
-export const IconBack = styled('img')(() => ({
-    transform: 'rotate(180deg)',
-}))
+export const IconBack = styled('img')`
+    transform: rotate(180deg);
+`

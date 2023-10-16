@@ -5,7 +5,7 @@ import usePlacesAutocomplete, {
     getLatLng,
 } from "use-places-autocomplete";
 
-import { STATUSES } from "@/constants";
+import { STATUS_CODES } from "@/constants";
 import { useAppDispatch } from "@/hooks/redux";
 import { useGoogleMaps } from "@/hooks/useGoogleMaps";
 import { MapServices } from "@/store/reducers";
@@ -63,7 +63,7 @@ export default function AutoCompleteSearch() {
         });
     return (
         <AutoCompeteSearchWrapper ref={ref}>
-            <SearchBox isActive={status === STATUSES.OK}>
+            <SearchBox isActive={status === STATUS_CODES.OK}>
                 <SearchIcon />
                 <SearchInput
                     placeholder='Место адрес...'
@@ -72,7 +72,7 @@ export default function AutoCompleteSearch() {
                     disabled={!ready}
                 />
             </SearchBox>
-            {status === STATUSES.OK && <ListSuggestions>{renderSuggestions()}</ListSuggestions>}
+            {status === STATUS_CODES.OK && <ListSuggestions>{renderSuggestions()}</ListSuggestions>}
         </AutoCompeteSearchWrapper>
     )
 }

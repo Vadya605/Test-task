@@ -5,8 +5,8 @@ import BackIcon from '@/assets/img/Arrow.svg'
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
 import { SelectedFavoriteServices } from "@/store/reducers";
 
-import CollapsedCard from "../CardFavorite/CollapsedCard";
-import ExpandedCard from "../CardFavorite/ExpandedCard";
+import CollapsedCard from "../CardFavoriteCollapsed";
+import ExpandedCard from "../CardFavoriteExpanded";
 import { HeaderPanel, IconBack } from "./styled";
 
 export default function FavoritesPanel() {
