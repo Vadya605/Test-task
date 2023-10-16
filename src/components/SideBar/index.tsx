@@ -1,5 +1,6 @@
-import { ListItem, Box } from '@mui/material';
+import { ListItem } from '@mui/material';
 
+import Arrow from '@/assets/img/Arrow.svg'
 import LogoImg from '@/assets/img/Logo.svg'
 import AutoCompleteSearch from '@/components/AutoCompleteSearch';
 import FavoritesPanel from '@/components/FavoritesPanel';
@@ -8,7 +9,6 @@ import Favorite from '@/components/svg/Favorite';
 import Search from '@/components/svg/Search'
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux';
 import { DrawerServices } from '@/store/reducers';
-import Arrow from '@/assets/img/Arrow.svg'
 
 import {
   ArrowBox,

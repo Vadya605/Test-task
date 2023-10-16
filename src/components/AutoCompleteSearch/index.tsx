@@ -1,5 +1,4 @@
-import React from "react";
-import useOnclickOutside from "react-cool-onclickoutside";
+import React, {useRef} from "react";
 import usePlacesAutocomplete, {
     getGeocode,
     getLatLng,
@@ -8,6 +7,7 @@ import usePlacesAutocomplete, {
 import { STATUS_CODES } from "@/constants";
 import { useAppDispatch } from "@/hooks/redux";
 import { useGoogleMaps } from "@/hooks/useGoogleMaps";
+import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 import { MapServices } from "@/store/reducers";
 
 import {
@@ -22,6 +22,14 @@ import {
 export default function AutoCompleteSearch() {
     const isLoaded = useGoogleMaps()
 
+    const ref = useRef<HTMLDivElement>(null);
+
+    const handleClickOutside = () => {    
+        clearSuggestions();
+    };
+
+    useOnClickOutside(ref, handleClickOutside);
+
     React.useEffect(() => {
         isLoaded && init()
     }, [isLoaded])
@@ -29,10 +37,6 @@ export default function AutoCompleteSearch() {
     const dispatch = useAppDispatch()
 
     const { ready, value, suggestions: { status, data }, setValue, init, clearSuggestions, } = usePlacesAutocomplete({ initOnMount: false, debounce: 300 });
-
-    const ref = useOnclickOutside(() => {
-        clearSuggestions();
-    });
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value);
