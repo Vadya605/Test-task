@@ -2,11 +2,11 @@ import { Box, Input, List, ListItem } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 import Search from '../svg/Search';
-import { SearchBoxProps } from './interface';
+import { SearchBoxProps } from './interfaces';
 
-export const AutoCompeteSearchWrapper = styled('div')(() => ({
-    position:'relative',
-}))
+export const AutoCompeteSearchWrapper = styled('div')`
+    position: relative;
+`;
 
 export const SearchBox = styled(Box)<SearchBoxProps>(({ theme, isActive }) => ({
     border: `${theme.spacing(.3)} solid ${theme.palette.borderPrimary.main}`,
@@ -26,18 +26,16 @@ export const SearchIcon = styled(Search)(({theme}) => ({
     }
 }))
 
-
-export const SearchInput = styled(Input)(() => ({
-    '&::before, &::after':{
-        content: 'none'
-    },
-}))
-
+export const SearchInput = styled(Input)`
+    &::before, &::after{
+        content: none
+    }
+`;
 
 export const ListSuggestions = styled(List)(({theme}) => ({
     boxSizing: 'border-box',
     zIndex: '10',
-    top: theme.spacing(6.5),
+    top: theme.spacing(6.4),
     width: '100%',
     backgroundColor: '#FFFFFF',
     position: 'absolute',

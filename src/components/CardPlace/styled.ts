@@ -8,7 +8,6 @@ export const CardPlaceWrapper = styled('div')(({theme}) => ({
 
 export const PhotoPlace = styled('img')(({theme}) => ({
     marginTop: theme.spacing(1),
-    // maxWidth: theme.spacing(25),
     width: '100%',
     borderRadius: theme.spacing(.5),
 }))

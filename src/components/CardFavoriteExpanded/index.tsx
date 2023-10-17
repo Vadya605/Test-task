@@ -2,15 +2,15 @@ import Typography from '@mui/material/Typography';
 
 import Car from '@/assets/img/icons-markers/car-rear.svg'
 import Car2 from '@/assets/img/icons-markers/car-side.svg'
-import { ButtonFavorite } from "@/components/ElementsUI/ButtonFavorite";
-import { ButtonRoute } from "@/components/ElementsUI/ButtonRoute";
 import Favorite from "@/components/svg/Favorite";
 import Geo from "@/components/svg/Geo";
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
 import { DirectionsRendererServices, FavoriteServices, RouteDetailsServices, SelectedFavoriteServices } from "@/store/reducers";
+import { ButtonFavorite } from "@/UI/ButtonFavorite";
+import { ButtonRoute } from "@/UI/ButtonRoute";
 import { getDirections } from '@/utils/route';
 
-import { CardProps } from '../interface';
+import { CardProps } from './interfaces';
 import { Actions, CardExpanded, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper, PhotoWrapper } from "./styled";
 
 export default function ExpandedCard({ favoriteItem }: CardProps) {

@@ -1,13 +1,13 @@
-import React from "react";
-import useOnclickOutside from "react-cool-onclickoutside";
+import React, {useRef} from "react";
 import usePlacesAutocomplete, {
     getGeocode,
     getLatLng,
 } from "use-places-autocomplete";
 
-import { STATUSES } from "@/constants";
+import { STATUS_CODES } from "@/constants";
 import { useAppDispatch } from "@/hooks/redux";
 import { useGoogleMaps } from "@/hooks/useGoogleMaps";
+import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 import { MapServices } from "@/store/reducers";
 
 import {
@@ -22,6 +22,14 @@ import {
 export default function AutoCompleteSearch() {
     const isLoaded = useGoogleMaps()
 
+    const ref = useRef<HTMLDivElement>(null);
+
+    const handleClickOutside = () => {    
+        clearSuggestions();
+    };
+
+    useOnClickOutside(ref, handleClickOutside);
+
     React.useEffect(() => {
         isLoaded && init()
     }, [isLoaded])
@@ -29,10 +37,6 @@ export default function AutoCompleteSearch() {
     const dispatch = useAppDispatch()
 
     const { ready, value, suggestions: { status, data }, setValue, init, clearSuggestions, } = usePlacesAutocomplete({ initOnMount: false, debounce: 300 });
-
-    const ref = useOnclickOutside(() => {
-        clearSuggestions();
-    });
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value);
@@ -63,7 +67,7 @@ export default function AutoCompleteSearch() {
         });
     return (
         <AutoCompeteSearchWrapper ref={ref}>
-            <SearchBox isActive={status === STATUSES.OK}>
+            <SearchBox isActive={status === STATUS_CODES.OK}>
                 <SearchIcon />
                 <SearchInput
                     placeholder='Место адрес...'
@@ -72,7 +76,7 @@ export default function AutoCompleteSearch() {
                     disabled={!ready}
                 />
             </SearchBox>
-            {status === STATUSES.OK && <ListSuggestions>{renderSuggestions()}</ListSuggestions>}
+            {status === STATUS_CODES.OK && <ListSuggestions>{renderSuggestions()}</ListSuggestions>}
         </AutoCompeteSearchWrapper>
     )
 }

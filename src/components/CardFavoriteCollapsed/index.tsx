@@ -8,7 +8,7 @@ import { useAppDispatch } from "@/hooks/redux";
 import { FavoriteServices, SelectedFavoriteServices } from '@/store/reducers';
 import { strLimit } from "@/utils/textHelpers";
 
-import { CardProps } from "../interface";
+import { CardProps } from "./interfaces";
 import { Actions, CardCollapsed, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper, PhotoWrapper } from "./styled";
 
 export default function CollapsedCard({ favoriteItem }: CardProps){

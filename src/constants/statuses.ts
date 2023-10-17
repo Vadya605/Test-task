@@ -1,3 +1,3 @@
-export enum STATUSES {
+export enum STATUS_CODES {
     OK = 'OK'
 }
