@@ -8,9 +8,10 @@ import { useAppDispatch, useTypeSelector } from '@/hooks/redux'
 import { SearchServices } from '@/store/reducers'
 
 import { ButtonSearch,Place, Places, PlacesWrapper, RadiusBox, RadiusInput, SearchPanelWrapper } from './styled'
+import { AppDispatch } from '@/store/store';
 
 export default function SearchPanel() {
-    const dispatch = useAppDispatch()
+    const dispatch: AppDispatch = useAppDispatch()
     const { selectedPlaces, searchRadius } = useTypeSelector(state => state.Search)
     const { map } = useTypeSelector(state => state.Map)
 
@@ -28,10 +29,14 @@ export default function SearchPanel() {
         dispatch(SearchServices.actions.setSearchRadius(searchRadiusValue))
     }
 
-    const isSearchable = () => map && Number(searchRadius) && selectedPlaces.length
+    // const isSearchable = () => map && Number(searchRadius) && selectedPlaces.length
 
     const handleSearch = () => {
-        if(!isSearchable()){
+        // if(!isSearchable()){
+        //     return dispatch(SearchServices.actions.clearFoundPlaces())
+        // }
+
+        if(!(map && Number(searchRadius) && selectedPlaces.length)){
             return dispatch(SearchServices.actions.clearFoundPlaces())
         }
 

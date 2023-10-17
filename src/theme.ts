@@ -8,12 +8,6 @@ declare module '@mui/material/styles' {
         borderSecondary: {
             main: string
         },
-        buttonPrimary: {
-            main: string
-        },
-        buttonSecondary: {
-            main: string
-        },
         textButtonPrimary: {
             main: string
         },
@@ -41,12 +35,6 @@ declare module '@mui/material/styles' {
             main: string
         },
         borderSecondary: {
-            main: string
-        },
-        buttonPrimary: {
-            main: string
-        },
-        buttonSecondary: {
             main: string
         },
         textButtonPrimary: {

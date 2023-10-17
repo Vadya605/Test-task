@@ -1,7 +1,6 @@
 import { Typography } from "@mui/material"
 import { ErrorBoundaryWrapper } from "./styled"
 import { ButtonRetry } from "@/UI/ButtonRetry"
-import { MapErrorProps } from "./interfaces"
 
 export default function MapError(){
     const handleClickRetry = () => {
