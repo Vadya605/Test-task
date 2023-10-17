@@ -104,14 +104,13 @@ export const Logo = styled('div')`
     align-items: center;
 `
 
-export const AsideButtonSearch = styled(Button)<AsideButtonProps>(({ theme, isActive }) => ({
+export const AsideButtonSearch = styled('div')<AsideButtonProps>(({ theme, isActive }) => ({
     padding: theme.spacing(1.9),
     borderRadius: theme.spacing(.6),
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: isActive? theme.palette.common.white: theme.palette.primary.main,
-    // transition: 'all .3s ease-in-out',
 
     '&:hover':{
         outline: `${theme.spacing(.3)} solid ${theme.palette.borderSecondary.main}`,
@@ -130,7 +129,7 @@ export const AsideButtonSearch = styled(Button)<AsideButtonProps>(({ theme, isAc
     },
 }))
 
-export const AsideButtonFavorites = styled(Button)<AsideButtonProps>(({ theme, isActive }) => ({
+export const AsideButtonFavorites = styled('div')<AsideButtonProps>(({ theme, isActive }) => ({
     padding: theme.spacing(1.8, 2.1),
     borderRadius: theme.spacing(.6),
     display: 'flex',

@@ -80,7 +80,7 @@ export default function CardPlace({ place }: CardPlaceProps) {
             }}
             onCloseClick={handleClickClose}
         >
-            <CardPlaceWrapper className='cardPlaceWrapper'>
+            <CardPlaceWrapper>
                 <Typography variant="h2" >{place.name}</Typography>
                 <PhotoPlace src={place.photos?.[0]?.getUrl() || DoesntExistPhoto} alt="Photo place" />
                 <Actions>

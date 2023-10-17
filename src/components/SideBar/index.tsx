@@ -16,6 +16,8 @@ import {
   AsideButtonSearch, AvatarAside, Column, Container, Drawer, DrawerContent, DrawerWrapper, ListSections,
   Logo,
 } from './styled';
+import FavoritesError from '../FavoritesError';
+import ErrorBoundary from '../ErrorBoundary';
 
 export default function SideBar() {
   const dispatch = useAppDispatch()
@@ -56,7 +58,13 @@ export default function SideBar() {
           </Aside>
           <DrawerContent className='drawerContent'>
             <AutoCompleteSearch />
-            {isOpen && (selectedSection === 'search' ? <SearchPanel /> : <FavoritesPanel />)}
+            {isOpen && (selectedSection === 'search' ? (
+              <SearchPanel />
+            ) : (
+              <ErrorBoundary fallback={<FavoritesError />}>
+                <FavoritesPanel />
+              </ErrorBoundary>
+            ))}
           </DrawerContent>
         </DrawerWrapper>
       </Drawer>
