@@ -10,7 +10,7 @@ import { Details, DetailsWrapper, Progress, Row } from "./styled";
 export default function RouteDetails(){
     const dispatch = useAppDispatch()
     const {distanceTotal, distanceTraveled, placeLocation, time} = useTypeSelector(state => state.RouteDetails)
-    const {center, map} = useTypeSelector(state => state.Map)
+    const { map, userLocation} = useTypeSelector(state => state.Map)
     const {directionsRenderer} = useTypeSelector(state => state.DirectionsRenderer)
 
     const progress = (distanceTraveled / distanceTotal) * 100
@@ -21,7 +21,7 @@ export default function RouteDetails(){
     useEffect(() => {
         const fetchDirections = async () => {
             const directionRequest = {
-                origin: center,
+                origin: userLocation,
                 destination: placeLocation,
                 travelMode: google.maps.TravelMode.WALKING
             }
@@ -36,7 +36,7 @@ export default function RouteDetails(){
         }
 
         placeLocation && map && fetchDirections()
-    }, [center])
+    }, [userLocation])
     
     return (
         <Details>

@@ -6,27 +6,15 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 interface MapState {
     isLoaded: boolean,
     map: google.maps.Map | null,
-    center: ILocation
-    travelInfo: {
-        distanceTraveled: string,
-        distance: string,
-        placeGeometry: google.maps.LatLng | null,
-        time: string,
-        progress: number
-    }
+    center: ILocation,
+    userLocation: ILocation,
 }
 
 const initialState: MapState = {
     isLoaded: false,
     map: null,
     center: DEFAULT_CENTER,
-    travelInfo: {
-        distanceTraveled: '',
-        distance: '',
-        placeGeometry: null,
-        time: '',
-        progress: 0
-    }
+    userLocation: DEFAULT_CENTER
 }
 
 export const MapSlice = createSlice({
@@ -41,6 +29,9 @@ export const MapSlice = createSlice({
         },
         setIsLoaded(state, action: PayloadAction<boolean>){
             state.isLoaded = action.payload
+        },
+        setUserLocation(state, action: PayloadAction<ILocation>){
+            state.userLocation = action.payload
         }
     },
 })

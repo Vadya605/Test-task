@@ -13,7 +13,7 @@ import { Actions, CardExpanded, CardHeader, CardWrapper, Photo, PhotoIcon, Photo
 
 export default function ExpandedCard({ favoriteItem }: CardProps) {
     const dispatch = useAppDispatch()
-    const { center, map } = useTypeSelector(state => state.Map)
+    const { map, userLocation } = useTypeSelector(state => state.Map)
 
     const handleClickFavorite = () => {
         dispatch(SelectedFavoriteServices.actions.setSelected(''))
@@ -25,7 +25,7 @@ export default function ExpandedCard({ favoriteItem }: CardProps) {
             dispatch(DirectionsRendererServices.actions.clearDirections())
 
             const directionRequest = {
-                origin: center,
+                origin: userLocation,
                 destination: favoriteItem.location,
                 travelMode: google.maps.TravelMode.WALKING
             }

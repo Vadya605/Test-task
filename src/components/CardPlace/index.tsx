@@ -18,7 +18,7 @@ import { Actions, CardPlaceWrapper, PhotoPlace } from "./styled";
 export default function CardPlace({ place }: CardPlaceProps) {
     const dispatch = useAppDispatch()
     const { favorites } = useTypeSelector(state => state.Favorites)
-    const { center, map } = useTypeSelector(state => state.Map)
+    const { map, userLocation } = useTypeSelector(state => state.Map)
 
     const handleClickSave = () => {
         const favorite = convertPlaceResultToFavorite(place)
@@ -45,7 +45,7 @@ export default function CardPlace({ place }: CardPlaceProps) {
             }
 
             const directionRequest = {
-                origin: center,
+                origin: userLocation,
                 destination: placeLocation,
                 travelMode: google.maps.TravelMode.WALKING
             }

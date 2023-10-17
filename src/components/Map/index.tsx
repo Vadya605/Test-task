@@ -15,7 +15,7 @@ import { mapContainerStyle, MapWrapper } from './styled';
 
 export default function Map() {
     const dispatch = useAppDispatch()
-    const { center } = useTypeSelector(state => state.Map)
+    const { center, userLocation } = useTypeSelector(state => state.Map)
     
     const { foundPlaces } = useTypeSelector(state => state.Search)
     const {selectedPlace} = useTypeSelector(state => state.SelectedPlace)
@@ -25,9 +25,11 @@ export default function Map() {
     const onLoad = React.useCallback(async function callback(map: google.maps.Map) {
         getBrowserLocation()
             .then((location) => {
+                dispatch(MapServices.actions.setUserLocation(location))
                 dispatch(MapServices.actions.setCenter(location))
             })
             .catch((defaultLocation) => {
+                dispatch(MapServices.actions.setUserLocation(defaultLocation))
                 dispatch(MapServices.actions.setCenter(defaultLocation))
             }).finally(() => {
                 dispatch(MapServices.actions.setMap(map))
@@ -66,7 +68,7 @@ export default function Map() {
                     ))}
                     {selectedPlace && <CardPlace place={selectedPlace} />}
                     { directionsRenderer && <RouteDetails />}
-                    <CurrentLocation position={center} />
+                    <CurrentLocation position={userLocation} />
                 </GoogleMap>
             ) : (
                 <Loader />
