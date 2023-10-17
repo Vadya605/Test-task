@@ -1,7 +1,5 @@
 import Typography from '@mui/material/Typography';
 
-import Car from '@/assets/img/icons-markers/car-rear.svg'
-import Car2 from '@/assets/img/icons-markers/car-side.svg'
 import Favorite from "@/components/svg/Favorite";
 import Geo from "@/components/svg/Geo";
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
@@ -57,8 +55,7 @@ export default function ExpandedCard({ favoriteItem }: CardProps) {
                     <PhotoWrapper>
                         <Photo src={favoriteItem.photo} alt="Photo place" />
                         <PhotoIconsWrapper>
-                            <PhotoIcon src={Car} alt="Photo icon" />
-                            <PhotoIcon src={Car2} alt="Photo icon" />
+                            <PhotoIcon src={favoriteItem.icon} alt="Photo icon" />
                         </PhotoIconsWrapper>
                     </PhotoWrapper>
                     <Typography variant='h1' >{favoriteItem.name}</Typography>

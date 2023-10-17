@@ -3,7 +3,7 @@ export interface IFavorite {
     name: string,
     description: string,
     photo: string,
-    types: string[],
+    icon: string,
     location: {
         lat: number,
         lng: number

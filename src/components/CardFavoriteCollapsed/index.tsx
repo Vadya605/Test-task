@@ -2,8 +2,6 @@ import Typography from '@mui/material/Typography';
 
 import ExpandMore from '@/assets/img/Arrow.svg'
 import Favorite from '@/assets/img/Favorite.svg'
-import Car from '@/assets/img/icons-markers/car-rear.svg'
-import Car2 from '@/assets/img/icons-markers/car-side.svg'
 import { useAppDispatch } from "@/hooks/redux";
 import { FavoriteServices, SelectedFavoriteServices } from '@/store/reducers';
 import { strLimit } from "@/utils/textHelpers";
@@ -29,8 +27,7 @@ export default function CollapsedCard({ favoriteItem }: CardProps){
                     <PhotoWrapper>
                         <Photo src={favoriteItem.photo} alt="Photo place" />
                         <PhotoIconsWrapper>
-                            <PhotoIcon src={Car} alt="Photo icon" />
-                            <PhotoIcon src={Car2} alt="Photo icon" />
+                            <PhotoIcon src={favoriteItem.icon} alt="Photo icon" />
                         </PhotoIconsWrapper>
                     </PhotoWrapper>
                     <Typography variant="h3">{strLimit(favoriteItem.name, 20)}</Typography>

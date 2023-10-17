@@ -7,7 +7,7 @@ export function convertPlaceResultToFavorite(placeResult: google.maps.places.Pla
         name: placeResult.name || '',
         description: 'description', // как получить описание места
         photo:  placeResult.photos?.[0]?.getUrl() ||  DoesntExistPhoto,
-        types: [], // так как в типах неверные значения
+        icon: placeResult.icon || '',
         location: {
             lat: placeResult.geometry?.location?.lat() || 0,
             lng: placeResult.geometry?.location?.lng() || 0
