@@ -1,3 +1,4 @@
+import { ChevronLeft } from '@mui/icons-material'
 import { ListItem } from '@mui/material';
 
 import Arrow from '@/assets/img/Arrow.svg'
@@ -10,14 +11,15 @@ import Search from '@/components/svg/Search'
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux';
 import { DrawerServices } from '@/store/reducers';
 
+import ErrorBoundary from '../ErrorBoundary';
+import FavoritesError from '../FavoritesError';
 import {
-  ArrowBox,
+  ArrowClose,
+  ArrowOpen,
   Aside, AsideButtonFavorites,
   AsideButtonSearch, AvatarAside, Column, Container, Drawer, DrawerContent, DrawerWrapper, ListSections,
   Logo,
 } from './styled';
-import FavoritesError from '../FavoritesError';
-import ErrorBoundary from '../ErrorBoundary';
 
 export default function SideBar() {
   const dispatch = useAppDispatch()
@@ -31,13 +33,13 @@ export default function SideBar() {
   const handleClickArrow = () => {
     dispatch(DrawerServices.actions.setOpen(!isOpen))
   }
-
+  
   return (
     <Container>
-      <Drawer variant="permanent" open={isOpen} className='drawer'>
+      <Drawer variant="permanent" open={isOpen}>
         <DrawerWrapper className='drawerWrapper'>
           <Aside className='aside'>
-            <Logo onClick={() => dispatch(DrawerServices.actions.setOpen(!isOpen))}>
+            <Logo>
               <img src={LogoImg} alt="Logo" />
             </Logo>
             <Column>
@@ -57,6 +59,7 @@ export default function SideBar() {
             </Column> 
           </Aside>
           <DrawerContent className='drawerContent'>
+            { isOpen && <ArrowClose onClick={handleClickArrow} ><ChevronLeft/></ArrowClose> }
             <AutoCompleteSearch />
             {isOpen && (selectedSection === 'search' ? (
               <SearchPanel />
@@ -69,9 +72,9 @@ export default function SideBar() {
         </DrawerWrapper>
       </Drawer>
       {!isOpen &&
-      <ArrowBox onClick={handleClickArrow}>
+      <ArrowOpen onClick={handleClickArrow}>
         <img src={Arrow} alt="" />
-      </ArrowBox>}
+      </ArrowOpen>}
     </Container>
   );
 }

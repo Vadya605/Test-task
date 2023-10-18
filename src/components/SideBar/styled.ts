@@ -1,4 +1,4 @@
-import { CSSObject, styled, Theme } from '@mui/material';
+import { CSSObject, IconButton, styled, Theme } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import MuiDrawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -23,7 +23,7 @@ const closedMixin = (theme: Theme): CSSObject => ({
     width: theme.spacing(11),
     [theme.breakpoints.down('sm')]: {
         width: theme.spacing(7),
-    },
+    }
 });
 
 export const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -78,7 +78,7 @@ export const Aside = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    rowGap: theme.spacing(4),
+    rowGap: theme.spacing(2.5),
     borderRight: `${theme.spacing(.3)} solid ${theme.palette.borderSecondary.main}`,
     padding: theme.spacing(3, 2.5),
     [theme.breakpoints.down('sm')]: {
@@ -159,6 +159,7 @@ export const AvatarAside = styled(Avatar)(({ theme }) => ({
     width: theme.spacing(4.8),
     height: theme.spacing(4.8),
     [theme.breakpoints.down('sm')]: {
+        marginTop: theme.spacing(1.5),
         width: theme.spacing(3),
         height: theme.spacing(3),
     },
@@ -176,23 +177,26 @@ export const Container = styled('div')`
     position: relative;
 `
 
-export const ArrowBox = styled('div')(({theme}) => ({
+export const ArrowOpen = styled('div')(({theme}) => ({
     borderRadius: theme.spacing(0, 1, 1, 0),
     backgroundColor: theme.palette.common.white,
     position: 'absolute',
     top: '50%',
-    right: `-${theme.spacing(6.6)}`,
+    right: `-${theme.spacing(7)}`,
     padding: theme.spacing(3.2, 1.8),
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     transform: 'translate(-50%, -50%)',
     zIndex: 10000,
-    color: '#000',
-    // border: `${theme.spacing(.3)} solid ${theme.palette.borderSecondary.main}`,
+    border: `${theme.spacing(.3)} solid ${theme.palette.borderSecondary.main}`,
     borderLeft: 'none',
 
     '&:hover': {
         cursor: 'pointer'
     }
 }))
+
+export const ArrowClose = styled(IconButton)`
+    align-self: end;
+`
