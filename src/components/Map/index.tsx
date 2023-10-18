@@ -11,11 +11,15 @@ import { getBrowserLocation } from '@/utils/geo.ts';
 
 import Loader from "../Loader";
 import RouteDetails from "../RouteDetails";
-import { mapContainerStyle, MapWrapper } from './styled';
+import Plus from '@/assets/img/map-btn/plus.svg'
+import Minus from '@/assets/img/map-btn/minus.svg'
+import Delimeter from '@/assets/img/map-btn/del.svg'
+import Location from '@/assets/img/map-btn/location.svg'
+import { mapContainerStyle, MapWrapper, ButtonsControl, ButtonsZoom, ButtonZoom, ButtonLocation } from './styled';
 
 export default function Map() {
     const dispatch = useAppDispatch()
-    const { center, userLocation } = useTypeSelector(state => state.Map)
+    const { center, userLocation, zoom } = useTypeSelector(state => state.Map)
     
     const { foundPlaces } = useTypeSelector(state => state.Search)
     const {selectedPlace} = useTypeSelector(state => state.SelectedPlace)
@@ -44,6 +48,14 @@ export default function Map() {
         dispatch(SelectedPlaceServices.actions.setSelected(place))
     } 
 
+    const handleClickZoom = (value: number) => {
+        dispatch(MapServices.actions.setZoom(zoom + value))
+    }
+
+    const handleClickLocation = () => {
+        dispatch(MapServices.actions.setCenter(userLocation))
+    }
+
     return (
         <MapWrapper>
             {isLoaded ? (
@@ -52,7 +64,7 @@ export default function Map() {
                     onUnmount={onUnmount}
                     mapContainerStyle={mapContainerStyle}
                     center={center}
-                    zoom={15}
+                    zoom={zoom}
                     options={MAP_OPTIONS}
                 >
                     {foundPlaces && foundPlaces.map((place, index) => (
@@ -69,6 +81,20 @@ export default function Map() {
                     {selectedPlace && <CardPlace place={selectedPlace} />}
                     { directionsRenderer && <RouteDetails />}
                     <CurrentLocation position={userLocation} />
+                    <ButtonsControl>
+                        <ButtonLocation onClick={handleClickLocation}>
+                            <img src={Location} alt="Location" />
+                        </ButtonLocation>
+                        <ButtonsZoom>
+                            <ButtonZoom onClick={() => handleClickZoom(1)}>
+                                <img src={Plus} alt="Plus" />
+                            </ButtonZoom>
+                            <img src={Delimeter} alt="Delimeter" />
+                            <ButtonZoom onClick={() => handleClickZoom(-1)}>
+                                <img src={Minus} alt="Minus" />
+                            </ButtonZoom>
+                        </ButtonsZoom>
+                    </ButtonsControl>
                 </GoogleMap>
             ) : (
                 <Loader />

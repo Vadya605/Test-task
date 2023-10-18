@@ -8,13 +8,15 @@ interface MapState {
     map: google.maps.Map | null,
     center: ILocation,
     userLocation: ILocation,
+    zoom: number,
 }
 
 const initialState: MapState = {
     isLoaded: false,
     map: null,
     center: DEFAULT_CENTER,
-    userLocation: DEFAULT_CENTER
+    userLocation: DEFAULT_CENTER,
+    zoom: 15,
 }
 
 export const MapSlice = createSlice({
@@ -32,6 +34,9 @@ export const MapSlice = createSlice({
         },
         setUserLocation(state, action: PayloadAction<ILocation>){
             state.userLocation = action.payload
+        },
+        setZoom(state, action: PayloadAction<number>){
+            state.zoom = action.payload
         }
     },
 })
