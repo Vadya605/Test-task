@@ -1,16 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-
 interface SearchState {
     selectedPlaces: string[],
     foundPlaces: google.maps.places.PlaceResult[],
-    searchRadius: string
+    searchRadius: number,
 }
 
 const initialState: SearchState = {
     selectedPlaces: [],
     foundPlaces: [],
-    searchRadius: '',
+    searchRadius: 1,
 }
 
 export const SearchSlice = createSlice({
@@ -29,9 +28,9 @@ export const SearchSlice = createSlice({
         clearFoundPlaces(state){
             state.foundPlaces = []
         },
-        setSearchRadius(state, action: PayloadAction<string>){
+        setSearchRadius(state, action: PayloadAction<number>){
             state.searchRadius = action.payload
-        }
+        },
     },
 })
 

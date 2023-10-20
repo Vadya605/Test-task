@@ -1,9 +1,9 @@
-import { GoogleMap, Marker } from "@react-google-maps/api";
-import React from 'react'
+import { useCallback } from 'react'
+import { GoogleMap, Marker, Circle } from "@react-google-maps/api";
 
 import CardPlace from '@/components/CardPlace';
 import CurrentLocation from '@/components/CurrentLocation';
-import { MAP_OPTIONS } from '@/constants';
+import { CIRCLE_OPTIONS, MAP_OPTIONS } from '@/constants';
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux.ts';
 import { useGoogleMaps } from '@/hooks/useGoogleMaps.ts';
 import { MapServices, SelectedPlaceServices } from '@/store/reducers'
@@ -20,13 +20,13 @@ import { mapContainerStyle, MapWrapper, ButtonsControl, ButtonsZoom, ButtonZoom,
 export default function Map() {
     const dispatch = useAppDispatch()
     const { center, userLocation, zoom } = useTypeSelector(state => state.Map)
-    
-    const { foundPlaces } = useTypeSelector(state => state.Search)
-    const {selectedPlace} = useTypeSelector(state => state.SelectedPlace)
-    const {directionsRenderer} = useTypeSelector(state => state.DirectionsRenderer)
+
+    const { foundPlaces, searchRadius } = useTypeSelector(state => state.Search)
+    const { selectedPlace } = useTypeSelector(state => state.SelectedPlace)
+    const { directionsRenderer } = useTypeSelector(state => state.DirectionsRenderer)
     const isLoaded = useGoogleMaps()
 
-    const onLoad = React.useCallback(async function callback(map: google.maps.Map) {
+    const onLoad = useCallback(async function callback(map: google.maps.Map) {
         getBrowserLocation()
             .then((location) => {
                 dispatch(MapServices.actions.setUserLocation(location))
@@ -40,13 +40,13 @@ export default function Map() {
             })
     }, [])
 
-    const onUnmount = React.useCallback(function callback() {
+    const onUnmount = useCallback(function callback() {
         dispatch(MapServices.actions.setMap(null))
     }, [])
 
     const handleClickMarker = (place: google.maps.places.PlaceResult) => {
         dispatch(SelectedPlaceServices.actions.setSelected(place))
-    } 
+    }
 
     const handleClickZoom = (value: number) => {
         dispatch(MapServices.actions.setZoom(zoom + value))
@@ -67,6 +67,11 @@ export default function Map() {
                     zoom={zoom}
                     options={MAP_OPTIONS}
                 >
+                    {foundPlaces.length && <Circle
+                        center={userLocation}
+                        radius={searchRadius * 1000}
+                        options={CIRCLE_OPTIONS}
+                    />}
                     {foundPlaces && foundPlaces.map((place, index) => (
                         <Marker
                             onClick={() => handleClickMarker(place)}
@@ -79,8 +84,8 @@ export default function Map() {
                         />
                     ))}
                     {selectedPlace && <CardPlace place={selectedPlace} />}
-                    { directionsRenderer && <RouteDetails />}
-                    <CurrentLocation position={userLocation} />
+                    {directionsRenderer && <RouteDetails />}
+                    <CurrentLocation />
                     <ButtonsControl>
                         <ButtonLocation onClick={handleClickLocation}>
                             <img src={Location} alt="Location" />

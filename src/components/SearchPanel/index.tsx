@@ -1,6 +1,6 @@
+import React, { useState } from 'react'
 import { Box } from '@mui/material'
 import Typography from '@mui/material/Typography';
-import React from 'react'
 
 import Search from '@/components/svg/Search'
 import { PLACES } from '@/constants'
@@ -12,8 +12,11 @@ import { AppDispatch } from '@/store/store';
 
 export default function SearchPanel() {
     const dispatch: AppDispatch = useAppDispatch()
-    const { selectedPlaces, searchRadius } = useTypeSelector(state => state.Search)
+    const { selectedPlaces } = useTypeSelector(state => state.Search)
     const { map } = useTypeSelector(state => state.Map)
+
+    // если сразу кидать в redux, то Circle перерисуется, пока умнее не придумал, беда
+    const [searchRadius, setSearchRadius] = useState(1)
 
     const handleClickPlace = (name: string) => {
         if (!selectedPlaces.includes(name)) {
@@ -24,9 +27,9 @@ export default function SearchPanel() {
     }
 
     const handleChangeRadius = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const searchRadiusValue = e.target.value.replace(/[^0-9]/g, '')
+        const searchRadiusValue = Number(e.target.value.replace(/[^0-9]/g, ''))
 
-        dispatch(SearchServices.actions.setSearchRadius(searchRadiusValue))
+        setSearchRadius(searchRadiusValue)
     }
 
     // const isSearchable = () => map && Number(searchRadius) && selectedPlaces.length
@@ -36,14 +39,16 @@ export default function SearchPanel() {
         //     return dispatch(SearchServices.actions.clearFoundPlaces())
         // }
 
-        if(!(map && Number(searchRadius) && selectedPlaces.length)){
-            return dispatch(SearchServices.actions.clearFoundPlaces())
+        dispatch(SearchServices.actions.clearFoundPlaces())
+
+        if(!(map && selectedPlaces.length)){
+            return
         }
 
         const placesService = new google.maps.places.PlacesService(map);
         const request = {
             location: map.getCenter(),
-            radius: Number(searchRadius) * 1000,
+            radius: (searchRadius/2) * 1000, 
             keyword: ''
         };
 
@@ -61,6 +66,8 @@ export default function SearchPanel() {
                 }
             });
         })
+
+        dispatch(SearchServices.actions.setSearchRadius(searchRadius))
     };
 
     return (
@@ -83,7 +90,7 @@ export default function SearchPanel() {
                 </Places>
                 <Typography variant='h2'>В радиусе</Typography>
                 <RadiusBox>
-                    <RadiusInput name='radius' id='radius' value={searchRadius} onChange={handleChangeRadius} />
+                    <RadiusInput name='radius' id='radius' value={searchRadius || ''} onChange={handleChangeRadius} />
                     <Typography variant='h3'>км</Typography>
                 </RadiusBox>
                 <ButtonSearch onClick={handleSearch}>

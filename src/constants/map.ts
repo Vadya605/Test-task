@@ -1,3 +1,5 @@
+import { theme } from "@/theme"
+
 const MAP_THEME = [
     {
         "featureType": "all",
@@ -54,6 +56,12 @@ const MAP_THEME = [
         ]
     }
 ]
+
+export const CIRCLE_OPTIONS = {
+    fillColor: theme.palette.circleFill.main,
+    strokeColor: theme.palette.primary.main,
+    strokeWeight: 1 
+}
 
 export const MAP_OPTIONS = {
     panControl: true,

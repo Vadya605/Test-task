@@ -28,6 +28,9 @@ declare module '@mui/material/styles' {
         },
         suggestionHover: {
             main: string
+        },
+        circleFill: {
+            main: string
         }
     }
     interface PaletteOptions {
@@ -56,6 +59,9 @@ declare module '@mui/material/styles' {
             main: string
         },
         suggestionHover: {
+            main: string
+        },
+        circleFill: {
             main: string
         }
     }
@@ -95,6 +101,9 @@ export const theme = createTheme({
         },
         suggestionHover: {
             main: 'rgba(0, 0, 0, .1)'
+        },
+        circleFill: {
+            main: '#5E7BC7'
         }
     },
     typography: {
