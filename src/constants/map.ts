@@ -2,6 +2,13 @@ import { theme } from "@/theme"
 
 const MAP_THEME = [
     {
+        "featureType": "poi",
+        "elementType": "labels",
+        "stylers": [
+            { "visibility": "off" }
+        ]
+    },
+    {
         "featureType": "all",
         "elementType": "labels.text",
         "stylers": [
