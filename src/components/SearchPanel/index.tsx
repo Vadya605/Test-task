@@ -14,7 +14,7 @@ import PlacesPanel from '../PlacesPanel';
 export default function SearchPanel() {
     const dispatch: AppDispatch = useAppDispatch()
     const { selectedPlaces } = useTypeSelector(state => state.Search)
-    const { map } = useTypeSelector(state => state.Map)
+    const { map, userLocation } = useTypeSelector(state => state.Map)
     // если сразу кидать в redux, то Circle перерисуется, пока умнее не придумал, беда
     const [searchRadius, setSearchRadius] = useState(1)
 
@@ -33,8 +33,8 @@ export default function SearchPanel() {
 
         const placesService = new google.maps.places.PlacesService(map);
         const request = {
-            location: map.getCenter(),
-            radius: (searchRadius/2) * 1000, 
+            location: userLocation,
+            radius: (searchRadius * 1000) / 2, 
             keyword: ''
         };
 
