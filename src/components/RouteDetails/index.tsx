@@ -39,7 +39,7 @@ export default function RouteDetails(){
     }, [userLocation])
     
     return (
-        <Details>
+        <Details data-testid='route-details'>
             <DetailsWrapper>
                 <Progress variant="determinate" value={progress} />
                 <Row>

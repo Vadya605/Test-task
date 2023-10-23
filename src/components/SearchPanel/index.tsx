@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Box } from '@mui/material'
 import Typography from '@mui/material/Typography';
 
 import Search from '@/components/svg/Search'
@@ -27,14 +26,14 @@ export default function SearchPanel() {
     const handleSearch = () => {
         dispatch(SearchServices.actions.clearFoundPlaces())
 
-        if(!(map && selectedPlaces.length)){
+        if (!(map && selectedPlaces.length)) {
             return
         }
 
         const placesService = new google.maps.places.PlacesService(map);
         const request = {
             location: userLocation,
-            radius: (searchRadius * 1000) / 2, 
+            radius: (searchRadius * 1000) / 2,
             keyword: ''
         };
 
@@ -57,19 +56,17 @@ export default function SearchPanel() {
     };
 
     return (
-        <Box>
-            <SearchPanelWrapper>
-                <Typography variant='h2'>Искать</Typography>
-                <PlacesPanel />
-                <Typography variant='h2'>В радиусе</Typography>
-                <RadiusBox>
-                    <RadiusInput name='radius' id='radius' value={searchRadius || ''} onChange={handleChangeRadius} />
-                    <Typography variant='h3'>км</Typography>
-                </RadiusBox>
-                <ButtonSearch onClick={handleSearch}>
-                    <Search />
-                </ButtonSearch>
-            </SearchPanelWrapper>
-        </Box>
+        <SearchPanelWrapper data-testid='search-panel'>
+            <Typography variant='h2'>Искать</Typography>
+            <PlacesPanel />
+            <Typography variant='h2'>В радиусе</Typography>
+            <RadiusBox>
+                <RadiusInput name='radius' id='radius' value={searchRadius || ''} onChange={handleChangeRadius} />
+                <Typography variant='h3'>км</Typography>
+            </RadiusBox>
+            <ButtonSearch data-testid='button-search' onClick={handleSearch}>
+                <Search />
+            </ButtonSearch>
+        </SearchPanelWrapper>
     )
 }

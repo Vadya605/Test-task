@@ -7,7 +7,7 @@ import { SelectedFavoriteServices } from "@/store/reducers";
 
 import CollapsedCard from "../CardFavoriteCollapsed";
 import ExpandedCard from "../CardFavoriteExpanded";
-import { HeaderPanel, IconBack } from "./styled";
+import { HeaderPanel, ButtonBack } from "./styled";
 
 export default function FavoritesPanel() {
     const dispatch = useAppDispatch()
@@ -29,9 +29,9 @@ export default function FavoritesPanel() {
     }
 
     return (
-        <Box>
+        <Box data-testid='favorite-panel'>
             <HeaderPanel>
-                {selectedFavorite ? <IconBack src={BackIcon} alt='Back' onClick={handleClickBack} /> : null}
+                {selectedFavorite && <ButtonBack data-testid='button-back' onClick={handleClickBack}><img src={BackIcon} alt='Back' /></ButtonBack>}
                 <Typography variant='h2' >Избранное</Typography>
             </HeaderPanel>
             {

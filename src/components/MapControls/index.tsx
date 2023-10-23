@@ -21,7 +21,7 @@ export default function MapControls() {
     }
 
     return (
-        <ButtonsControl>
+        <ButtonsControl data-testid='map-controls'>
             <ButtonLocation onClick={handleClickLocation}>
                 <img src={Location} alt="Location" />
             </ButtonLocation>

@@ -1,7 +1,7 @@
 import Typography from '@mui/material/Typography';
 import { InfoWindow } from "@react-google-maps/api";
 
-import DoesntExistPhoto from '/public/doesntExist.jpg'
+import DoesntExistPhoto from 'public/doesntExist.png'
 import FavoriteSvg from "@/components/svg/Favorite";
 import GeoSvg from '@/components/svg/Geo'
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";

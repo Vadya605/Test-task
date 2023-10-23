@@ -1,4 +1,4 @@
-import { Card, CardActions } from '@mui/material';
+import { Card, CardActions, IconButton } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 export const CardCollapsed = styled(Card)(({ theme }) => ({
@@ -59,3 +59,8 @@ export const Actions = styled(CardActions)(({ theme }) => ({
         fill: theme.palette.favoriteIconPrimary.main
     }
 }))
+
+export const ButtonAction = styled(IconButton)`
+    padding: 0;
+    margin: 0;
+`

@@ -21,6 +21,8 @@ export default function ExpandedCard({ favoriteItem }: CardProps) {
     }
 
     const handleClickRoute = async () => {
+        console.log(favoriteItem.location);
+        
         try {
             dispatch(DirectionsRendererServices.actions.clearDirections())
 
@@ -49,7 +51,7 @@ export default function ExpandedCard({ favoriteItem }: CardProps) {
     }
 
     return (
-        <CardExpanded>
+        <CardExpanded data-testid='card-expanded'>
             <CardWrapper>
                 <CardHeader>
                     <PhotoWrapper>
@@ -62,11 +64,11 @@ export default function ExpandedCard({ favoriteItem }: CardProps) {
                 </CardHeader>
                 <Typography variant='body1'>{favoriteItem.description}</Typography>
                 <Actions>
-                    <ButtonFavorite onClick={handleClickFavorite}>
+                    <ButtonFavorite data-testid='button-remove' onClick={handleClickFavorite}>
                         <Favorite />
                         <Typography variant='button' >Удалить</Typography>
                     </ButtonFavorite>
-                    <ButtonRoute onClick={handleClickRoute}>
+                    <ButtonRoute data-testid='button-route' onClick={handleClickRoute}>
                         <Geo />
                         <Typography variant='button' >Маршрут</Typography>
                     </ButtonRoute>

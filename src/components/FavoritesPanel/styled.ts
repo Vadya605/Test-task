@@ -1,4 +1,4 @@
-import { styled } from "@mui/material/styles";
+import { styled, IconButton } from "@mui/material";
 
 export const HeaderPanel = styled('div')(({theme}) => ({
     display: 'flex',
@@ -7,6 +7,10 @@ export const HeaderPanel = styled('div')(({theme}) => ({
     marginBottom: theme.spacing(2),
 }))
 
-export const IconBack = styled('img')`
-    transform: rotate(180deg);
+export const ButtonBack = styled(IconButton)`
+    padding: 0;
+    margin: 0;
+    & img {
+        transform: rotate(180deg);
+    }
 `

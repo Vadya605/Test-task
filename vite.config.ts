@@ -11,7 +11,8 @@ export default defineConfig(({ mode }) => {
     plugins: [react()],
     resolve: {
       alias: {
-        '@': '/src'
+        '@': '/src',
+        "public": "/public",
       },
     },
   }

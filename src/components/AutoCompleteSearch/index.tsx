@@ -48,7 +48,7 @@ export default function AutoCompleteSearch() {
     };
 
     return (
-        <AutoCompeteSearchWrapper ref={ref}>
+        <AutoCompeteSearchWrapper data-testid='auto-compete-search' ref={ref}>
             <SearchBox isActive={status === STATUS_CODES.OK}>
                 <SearchIcon />
                 <SearchInput

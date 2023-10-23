@@ -23,12 +23,12 @@ export default function Aside() {
             </Logo>
             <Column>
                 <ListSections>
-                    <ListItem disablePadding onClick={() => handleClickSectionItem('search')}>
+                    <ListItem data-testid='button-search-section' disablePadding onClick={() => handleClickSectionItem('search')}>
                         <AsideButtonSearch isActive={selectedSection === 'search'}>
                             <Search />
                         </AsideButtonSearch>
                     </ListItem>
-                    <ListItem disablePadding onClick={() => handleClickSectionItem('favorite')}>
+                    <ListItem data-testid='button-favorite-section' disablePadding onClick={() => handleClickSectionItem('favorite')}>
                         <AsideButtonFavorites isActive={selectedSection === 'favorite'}>
                             <Favorite />
                         </AsideButtonFavorites>

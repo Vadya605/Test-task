@@ -7,7 +7,7 @@ import { FavoriteServices, SelectedFavoriteServices } from '@/store/reducers';
 import { strLimit } from "@/utils/textHelpers";
 
 import { CardProps } from "./interfaces";
-import { Actions, CardCollapsed, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper, PhotoWrapper } from "./styled";
+import { Actions, ButtonAction, CardCollapsed, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper, PhotoWrapper } from "./styled";
 
 export default function CollapsedCard({ favoriteItem }: CardProps){
     const dispatch = useAppDispatch()
@@ -21,7 +21,7 @@ export default function CollapsedCard({ favoriteItem }: CardProps){
     }
     
     return (
-        <CardCollapsed>
+        <CardCollapsed data-testid='card-collapsed'>
             <CardWrapper>
                 <CardHeader>
                     <PhotoWrapper>
@@ -34,8 +34,12 @@ export default function CollapsedCard({ favoriteItem }: CardProps){
                 </CardHeader>
                 <Typography variant="body2">{ strLimit(favoriteItem.description, 100) }</Typography>
                 <Actions>
-                    <img src={Favorite} alt="Favorite" onClick={handleClickFavorite} />
-                    <img src={ExpandMore} alt="ExpandMore" onClick={handleClickExpandMore} />
+                    <ButtonAction data-testid='button-remove' onClick={handleClickFavorite}>
+                        <img src={Favorite} alt="Favorite" />
+                    </ButtonAction>
+                    <ButtonAction data-testid='button-expand' onClick={handleClickExpandMore}>
+                        <img src={ExpandMore} alt="ExpandMore" />
+                    </ButtonAction>
                 </Actions>
             </CardWrapper>
         </CardCollapsed>

@@ -7,6 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "test": "jest --config jest.config.cjs",
+    "lint:fix": "eslint --fix .",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -17,9 +19,14 @@
     "@mui/styled-engine-sc": "^5.14.10",
     "@react-google-maps/api": "^2.19.2",
     "@reduxjs/toolkit": "^1.9.6",
+    "@testing-library/jest-dom": "^6.1.4",
+    "@testing-library/react": "^14.0.0",
+    "@types/jest": "^29.5.6",
     "@types/react-redux": "^7.1.27",
     "axios": "^1.5.1",
     "dotenv": "^16.3.1",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "react": "^18.2.0",
     "react-cool-onclickoutside": "^1.7.0",
     "react-dom": "^18.2.0",
@@ -27,6 +34,7 @@
     "redux-persist": "^6.0.0",
     "sccs": "^0.4.3",
     "styled-components": "^5.3.11",
+    "ts-jest": "^29.1.1",
     "tss-react": "^4.9.2",
     "use-places-autocomplete": "^4.0.1"
   },
