@@ -28,6 +28,24 @@ declare module '@mui/material/styles' {
         },
         suggestionHover: {
             main: string
+        },
+        circleFill: {
+            main: string
+        },
+        mapLabel: {
+            main: string
+        },
+        mapLandscape: {
+            main: string
+        }
+        mapHighway: {
+            main: string
+        },
+        mapHighwayStroke: {
+            main: string
+        },
+        mapWater: {
+            main: string
         }
     }
     interface PaletteOptions {
@@ -56,6 +74,24 @@ declare module '@mui/material/styles' {
             main: string
         },
         suggestionHover: {
+            main: string
+        },
+        circleFill: {
+            main: string
+        },
+        mapLabel: {
+            main: string
+        },
+        mapLandscape: {
+            main: string
+        }
+        mapHighway: {
+            main: string
+        },
+        mapHighwayStroke: {
+            main: string
+        },
+        mapWater: {
             main: string
         }
     }
@@ -95,6 +131,24 @@ export const theme = createTheme({
         },
         suggestionHover: {
             main: 'rgba(0, 0, 0, .1)'
+        },
+        circleFill: {
+            main: '#5E7BC7'
+        },
+        mapLabel: {
+            main: '#878787'
+        },
+        mapLandscape: {
+            main: '#f9f5ed'
+        },
+        mapHighway: {
+            main: '#f5f5f5'
+        },
+        mapHighwayStroke: {
+            main: '#c9c9c9'
+        },
+        mapWater: {
+            main: '#aee0f4'
         }
     },
     typography: {

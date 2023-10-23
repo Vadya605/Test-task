@@ -1,10 +1,12 @@
+import { theme } from "@/theme"
+
 const MAP_THEME = [
     {
         "featureType": "all",
         "elementType": "labels.text",
         "stylers": [
             {
-                "color": "#878787"
+                "color": theme.palette.mapLabel.main
             }
         ]
     },
@@ -22,7 +24,7 @@ const MAP_THEME = [
         "elementType": "all",
         "stylers": [
             {
-                "color": "#f9f5ed"
+                "color": theme.palette.mapLandscape.main
             }
         ]
     },
@@ -31,7 +33,7 @@ const MAP_THEME = [
         "elementType": "all",
         "stylers": [
             {
-                "color": "#f5f5f5"
+                "color": theme.palette.mapHighway.main
             }
         ]
     },
@@ -40,7 +42,7 @@ const MAP_THEME = [
         "elementType": "geometry.stroke",
         "stylers": [
             {
-                "color": "#c9c9c9"
+                "color": theme.palette.mapHighwayStroke.main
             }
         ]
     },
@@ -49,11 +51,17 @@ const MAP_THEME = [
         "elementType": "all",
         "stylers": [
             {
-                "color": "#aee0f4"
+                "color": theme.palette.mapWater.main
             }
         ]
     }
 ]
+
+export const CIRCLE_OPTIONS = {
+    fillColor: theme.palette.circleFill.main,
+    strokeColor: theme.palette.primary.main,
+    strokeWeight: 1 
+}
 
 export const MAP_OPTIONS = {
     panControl: true,

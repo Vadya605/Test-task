@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, { useRef } from "react";
 import usePlacesAutocomplete, {
     getGeocode,
     getLatLng,
@@ -12,59 +12,41 @@ import { MapServices } from "@/store/reducers";
 
 import {
     AutoCompeteSearchWrapper,
-    ListSuggestions,
-    ListSuggestionsItem,
     SearchBox,
     SearchIcon,
     SearchInput
 } from "./styled"
+import AutoCompleteSuggestions from "../AutoCompleteSuggestions";
 
 export default function AutoCompleteSearch() {
-    const isLoaded = useGoogleMaps()
-
+    const dispatch = useAppDispatch()
     const ref = useRef<HTMLDivElement>(null);
+    const { ready, value, suggestions, setValue, init, clearSuggestions } = usePlacesAutocomplete({ initOnMount: false, debounce: 300 });
+    const { status, data } = suggestions
 
-    const handleClickOutside = () => {    
-        clearSuggestions();
-    };
-
-    useOnClickOutside(ref, handleClickOutside);
+    const isLoaded = useGoogleMaps()
+    useOnClickOutside(ref, clearSuggestions);
 
     React.useEffect(() => {
         isLoaded && init()
     }, [isLoaded])
 
-    const dispatch = useAppDispatch()
-
-    const { ready, value, suggestions: { status, data }, setValue, init, clearSuggestions, } = usePlacesAutocomplete({ initOnMount: false, debounce: 300 });
-
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value);
     };
 
-    const handleSelect =
-        (description: string) =>
-            () => {
-                setValue(description, false);
-                clearSuggestions();
+    const handleSelect = (description: string) => {
+        console.log('test');
 
-                getGeocode({ address: description }).then((results) => {
-                    const { lat, lng } = getLatLng(results[0]);
-                    dispatch(MapServices.actions.setCenter({ lat, lng }))
-                });
-            };
+        setValue(description, false);
+        clearSuggestions();
 
-    const renderSuggestions = () =>
-        data.map((suggestion) => {
-            const { place_id, structured_formatting: { main_text, secondary_text } } = suggestion;
-
-            return (
-                <ListSuggestionsItem key={place_id} onClick={handleSelect(suggestion.description)}>
-                    <strong>{main_text}</strong>
-                    <small>{secondary_text}</small>
-                </ListSuggestionsItem>
-            );
+        getGeocode({ address: description }).then((results) => {
+            const { lat, lng } = getLatLng(results[0]);
+            dispatch(MapServices.actions.setCenter({ lat, lng }))
         });
+    };
+
     return (
         <AutoCompeteSearchWrapper ref={ref}>
             <SearchBox isActive={status === STATUS_CODES.OK}>
@@ -76,7 +58,7 @@ export default function AutoCompleteSearch() {
                     disabled={!ready}
                 />
             </SearchBox>
-            {status === STATUS_CODES.OK && <ListSuggestions>{renderSuggestions()}</ListSuggestions>}
+            {status === STATUS_CODES.OK && <AutoCompleteSuggestions suggestions={data} handleSelectSuggestion={handleSelect} />}
         </AutoCompeteSearchWrapper>
     )
 }
