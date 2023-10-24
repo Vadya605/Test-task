@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
+
 import Typography from '@mui/material/Typography';
 
 import Search from '@/components/svg/Search'
 import { PLACES } from '@/constants'
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux'
 import { SearchServices } from '@/store/reducers'
-
-import { ButtonSearch, RadiusBox, RadiusInput, SearchPanelWrapper } from './styled'
 import { AppDispatch } from '@/store/store';
+
 import PlacesPanel from '../PlacesPanel';
+import { ButtonSearch, RadiusBox, RadiusInput, SearchPanelWrapper } from './styled'
 
 export default function SearchPanel() {
     const dispatch: AppDispatch = useAppDispatch()

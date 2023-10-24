@@ -1,10 +1,11 @@
-import Plus from '@/assets/img/map-btn/plus.svg'
-import Minus from '@/assets/img/map-btn/minus.svg'
 import Delimeter from '@/assets/img/map-btn/del.svg'
 import Location from '@/assets/img/map-btn/location.svg'
-import { ButtonsControl, ButtonsZoom, ButtonZoom, ButtonLocation } from './styled'
+import Minus from '@/assets/img/map-btn/minus.svg'
+import Plus from '@/assets/img/map-btn/plus.svg'
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux'
 import { MapServices } from '@/store/reducers'
+
+import { ButtonLocation,ButtonsControl, ButtonsZoom, ButtonZoom } from './styled'
 
 export default function MapControls() {
 

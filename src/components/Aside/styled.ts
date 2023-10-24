@@ -1,4 +1,5 @@
-import { styled, Avatar, List } from '@mui/material'
+import { Avatar, List,styled } from '@mui/material'
+
 import { AsideButtonProps } from './interfaces'
 
 export const AsideWrapper = styled('div')(({ theme }) => ({

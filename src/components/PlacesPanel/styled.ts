@@ -1,4 +1,5 @@
 import { styled } from "@mui/material";
+
 import { PlaceProps } from "./interfaces";
 
 export const Places = styled('div')(({ theme }) => ({

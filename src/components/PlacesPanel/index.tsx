@@ -1,8 +1,10 @@
 import { Typography } from '@mui/material'
-import { Places, PlacesWrapper, Place } from "./styled"
-import { useAppDispatch, useTypeSelector } from '@/hooks/redux'
+
 import { PLACES } from '@/constants'
+import { useAppDispatch, useTypeSelector } from '@/hooks/redux'
 import { SearchServices } from '@/store/reducers'
+
+import { Place,Places, PlacesWrapper } from "./styled"
 
 export default function PlacesPanel() {
 

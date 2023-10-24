@@ -1,4 +1,4 @@
-import {styled, Button} from "@mui/material";
+import {Button,styled} from "@mui/material";
 
 export const ButtonRetry = styled(Button)(({theme}) => ({
     borderRadius: theme.spacing(.5),

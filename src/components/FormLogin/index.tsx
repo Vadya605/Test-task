@@ -1,14 +1,17 @@
 import { useState } from "react";
-import { ButtonAuth } from "@/UI/ButtonAuth";
-import { SupportAction } from "@/UI/SupportAction";
-import { FormAuth } from "@/UI/FormAuth";
+
+import { Button,TextField, Typography } from "@mui/material";
+
+import { ERRORS, ErrorsType } from "@/constants/errors";
 import { useAppDispatch } from "@/hooks/redux";
 import { AuthModalServices, UserServices } from "@/store/reducers";
-import { TextField, Typography, Button } from "@mui/material";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { FirebaseError } from "firebase/app";
-import { ERRORS, ErrorsType } from "@/constants/errors";
+import { ButtonAuth } from "@/UI/ButtonAuth";
 import { ErrorMessage } from "@/UI/ErrorMessage";
+import { FormAuth } from "@/UI/FormAuth";
+import { SupportAction } from "@/UI/SupportAction";
+
+import { FirebaseError } from "firebase/app";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 export default function FormLogin() {
     const dispatch = useAppDispatch()

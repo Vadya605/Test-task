@@ -1,9 +1,12 @@
-import { render } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { store } from '@/store/store';
 import { ReactNode } from 'react';
-import { theme } from '@/theme';
+
+import { Provider } from 'react-redux';
+
 import {ThemeProvider} from '@mui/material'
+
+import { store } from '@/store/store';
+import { theme } from '@/theme';
+import { render } from '@testing-library/react';
 
 const renderWithAllProviders = (component: ReactNode) => {
   return render(

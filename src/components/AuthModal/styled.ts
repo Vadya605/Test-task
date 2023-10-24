@@ -1,4 +1,4 @@
-import { styled, Dialog, DialogContent as Content } from "@mui/material";
+import { Dialog, DialogContent as Content,styled } from "@mui/material";
 
 export const DialogAuth = styled(Dialog)(({theme}) => ({
     '& .css-1t1j96h-MuiPaper-root-MuiDialog-paper': {

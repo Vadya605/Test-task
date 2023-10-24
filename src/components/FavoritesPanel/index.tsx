@@ -7,7 +7,7 @@ import { SelectedFavoriteServices } from "@/store/reducers";
 
 import CollapsedCard from "../CardFavoriteCollapsed";
 import ExpandedCard from "../CardFavoriteExpanded";
-import { HeaderPanel, ButtonBack } from "./styled";
+import { ButtonBack,HeaderPanel } from "./styled";
 
 export default function FavoritesPanel() {
     const dispatch = useAppDispatch()

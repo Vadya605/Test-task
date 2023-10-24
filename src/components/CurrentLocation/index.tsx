@@ -1,8 +1,6 @@
-import { Marker } from '@react-google-maps/api'
-
 import CurrentLocationIcon from '@/assets/img/CurrentLocation.svg'
-
 import { useTypeSelector } from '@/hooks/redux'
+import { Marker } from '@react-google-maps/api'
 
 export default function CurrentLocation() {
 

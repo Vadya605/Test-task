@@ -1,8 +1,4 @@
 import React, { useRef } from "react";
-import usePlacesAutocomplete, {
-    getGeocode,
-    getLatLng,
-} from "use-places-autocomplete";
 
 import { STATUS_CODES } from "@/constants";
 import { useAppDispatch } from "@/hooks/redux";
@@ -10,13 +6,17 @@ import { useGoogleMaps } from "@/hooks/useGoogleMaps";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 import { MapServices } from "@/store/reducers";
 
+import AutoCompleteSuggestions from "../AutoCompleteSuggestions";
 import {
     AutoCompeteSearchWrapper,
     SearchBox,
     SearchIcon,
     SearchInput
 } from "./styled"
-import AutoCompleteSuggestions from "../AutoCompleteSuggestions";
+import usePlacesAutocomplete, {
+    getGeocode,
+    getLatLng,
+} from "use-places-autocomplete";
 
 export default function AutoCompleteSearch() {
     const dispatch = useAppDispatch()

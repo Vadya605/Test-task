@@ -1,7 +1,8 @@
+import { ReactNode } from 'react';
+
 import { theme } from '@/theme';
 import { ThemeProvider } from '@emotion/react';
 import { render } from '@testing-library/react';
-import { ReactNode } from 'react';
 
 const renderWithTheme = (component: ReactNode) => {
   return render(

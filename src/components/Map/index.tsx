@@ -1,5 +1,4 @@
 import { useCallback } from 'react'
-import { GoogleMap } from "@react-google-maps/api";
 
 import CardPlace from '@/components/CardPlace';
 import CurrentLocation from '@/components/CurrentLocation';
@@ -8,12 +7,13 @@ import { useAppDispatch, useTypeSelector } from '@/hooks/redux.ts';
 import { useGoogleMaps } from '@/hooks/useGoogleMaps.ts';
 import { MapServices } from '@/store/reducers'
 import { getBrowserLocation } from '@/utils/geo.ts';
+import { GoogleMap } from "@react-google-maps/api";
 
+import FoundPlaces from '../FoundPlaces';
 import Loader from "../Loader";
+import MapControls from '../MapControls';
 import RouteDetails from "../RouteDetails";
 import { mapContainerStyle, MapWrapper } from './styled';
-import FoundPlaces from '../FoundPlaces';
-import MapControls from '../MapControls';
 
 export default function Map() {
     const dispatch = useAppDispatch()

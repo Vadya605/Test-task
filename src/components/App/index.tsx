@@ -1,11 +1,11 @@
+import AuthModal from '@/components/AuthModal'
+import ConfirmExit from '@/components/ConfirmExit'
+import ErrorBoundary from '@/components/ErrorBoundary'
 import Map from '@/components/Map'
+import MapError from '@/components/MapError'
 import SideBar from '@/components/SideBar'
 
 import { ContainerApp } from './styled'
-import ErrorBoundary from '@/components/ErrorBoundary'
-import MapError from '@/components/MapError'
-import AuthModal from '../AuthModal'
-import ConfirmExit from '../ConfirmExit'
 
 function App() {
     return (

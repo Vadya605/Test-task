@@ -1,9 +1,10 @@
-import '@testing-library/jest-dom'
-import { screen, fireEvent } from '@testing-library/react';
 import SideBar from '@/components/SideBar';
-import { renderWithAllProviders } from '../testHelpers/renderWithAllProviders';
-import { store } from '@/store/store';
 import { UserServices } from '@/store/reducers';
+import { store } from '@/store/store';
+import { fireEvent,screen } from '@testing-library/react';
+
+import '@testing-library/jest-dom'
+import { renderWithAllProviders } from '../testHelpers/renderWithAllProviders';
 
 
 

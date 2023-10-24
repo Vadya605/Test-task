@@ -1,12 +1,14 @@
 import { ListItem } from '@mui/material'
-import LogoImg from '@/assets/img/Logo.svg'
-import Search from '../svg/Search'
-import Favorite from '../svg/Favorite'
-import { AsideWrapper, Logo, Column, ListSections, AsideButtonSearch, AsideButtonFavorites, AvatarAside, Exit } from "./styled"
-import { useAppDispatch, useTypeSelector } from '@/hooks/redux'
-import { AuthModalServices, ConfirmExitServices, DrawerServices } from '@/store/reducers'
-import { useAuth } from '@/hooks/useAuth'
+
 import ExitIcon from '@/assets/img/Exit.svg'
+import LogoImg from '@/assets/img/Logo.svg'
+import { useAppDispatch, useTypeSelector } from '@/hooks/redux'
+import { useAuth } from '@/hooks/useAuth'
+import { AuthModalServices, ConfirmExitServices, DrawerServices } from '@/store/reducers'
+
+import Favorite from '../svg/Favorite'
+import Search from '../svg/Search'
+import { AsideButtonFavorites, AsideButtonSearch, AsideWrapper, AvatarAside, Column, Exit,ListSections, Logo } from "./styled"
 
 export default function Aside() {
 

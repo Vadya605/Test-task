@@ -1,7 +1,7 @@
 import { CIRCLE_OPTIONS } from "@/constants"
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux"
 import { SelectedPlaceServices } from "@/store/reducers"
-import { Marker, Circle } from "@react-google-maps/api"
+import { Circle,Marker } from "@react-google-maps/api"
 
 export default function FoundPlaces() {
     const dispatch = useAppDispatch()

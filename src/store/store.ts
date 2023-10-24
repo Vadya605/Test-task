@@ -1,4 +1,3 @@
-import { combineReducers,configureStore } from '@reduxjs/toolkit'
 import {
     FLUSH,
     PAUSE,
@@ -11,6 +10,10 @@ import {
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
+import { combineReducers,configureStore } from '@reduxjs/toolkit'
+
+import AuthModalReducer from './reducers/AuthModalSlice'
+import ConfirmExitReducer from './reducers/ConfirmExitSlice'
 import DirectionsRendererReducer from './reducers/DirectionsRendererSlice'
 import DrawerReducer from './reducers/DrawerSlice'
 import FavoriteReducer from './reducers/FavoriteSlice'
@@ -20,8 +23,6 @@ import SearchReducer from './reducers/SearchSlice'
 import SelectedFavoriteReducer from './reducers/SelectedFavoriteSlice'
 import SelectedPlaceReducer from './reducers/SelectedPlaceSlice'
 import UserReducer from './reducers/UserSlice'
-import AuthModalReducer from './reducers/AuthModalSlice'
-import ConfirmExitReducer from './reducers/ConfirmExitSlice'
 
 const persistConfig = {
     key: 'root',

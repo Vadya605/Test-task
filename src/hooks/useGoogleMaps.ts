@@ -1,5 +1,6 @@
-import { Libraries, useJsApiLoader } from '@react-google-maps/api';
 import { useEffect } from 'react';
+
+import { Libraries, useJsApiLoader } from '@react-google-maps/api';
 
 import { MapServices } from '../store/reducers';
 import { useAppDispatch } from './redux';

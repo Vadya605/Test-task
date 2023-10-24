@@ -7,13 +7,13 @@ import SearchPanel from '@/components/SearchPanel';
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux';
 import { DrawerServices } from '@/store/reducers';
 
+import Aside from '../Aside';
 import ErrorBoundary from '../ErrorBoundary';
 import FavoritesError from '../FavoritesError';
 import {
     ArrowClose, ArrowOpen,
     Container, Drawer, DrawerContent, DrawerWrapper,
 } from './styled';
-import Aside from '../Aside';
 
 export default function SideBar() {
     const dispatch = useAppDispatch()

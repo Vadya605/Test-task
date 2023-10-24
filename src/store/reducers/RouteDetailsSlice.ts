@@ -1,6 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
 import { ILocation } from '@/interfaces/ILocation'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface RouteDetailsState {
     distanceTotal: number,

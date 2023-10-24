@@ -1,19 +1,19 @@
 import Typography from '@mui/material/Typography';
-import { InfoWindow } from "@react-google-maps/api";
 
-import DoesntExistPhoto from '/public/doesntExist.png'
 import FavoriteSvg from "@/components/svg/Favorite";
 import GeoSvg from '@/components/svg/Geo'
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
+import { useAuth } from '@/hooks/useAuth';
 import { AuthModalServices, DirectionsRendererServices, FavoriteServices, RouteDetailsServices, SelectedPlaceServices } from "@/store/reducers";
 import { ButtonFavorite } from "@/UI/ButtonFavorite";
 import { ButtonRoute } from "@/UI/ButtonRoute";
 import { convertPlaceResultToFavorite } from "@/utils/convert";
 import { getDirections } from '@/utils/route';
+import { InfoWindow } from "@react-google-maps/api";
 
 import { CardPlaceProps } from "./interfaces";
 import { Actions, CardPlaceWrapper, PhotoPlace } from "./styled";
-import { useAuth } from '@/hooks/useAuth';
+import DoesntExistPhoto from '/public/doesntExist.png'
 
 
 export default function CardPlace({ place }: CardPlaceProps) {

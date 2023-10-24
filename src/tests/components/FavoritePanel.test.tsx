@@ -1,11 +1,12 @@
-import '@testing-library/jest-dom'
-import { screen, fireEvent, waitFor } from '@testing-library/react';
-import { renderWithAllProviders } from '../testHelpers/renderWithAllProviders';
 import Nature from '@/assets/img/icons-markers/nature.svg'
-import { IFavorite } from '@/interfaces/IFavorite';
 import FavoritesPanel from '@/components/FavoritesPanel';
+import { IFavorite } from '@/interfaces/IFavorite';
 import { FavoriteServices } from '@/store/reducers';
 import { store } from '@/store/store';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
+
+import '@testing-library/jest-dom'
+import { renderWithAllProviders } from '../testHelpers/renderWithAllProviders';
 
 
 describe('Тестирование FavoritePanel', () => {

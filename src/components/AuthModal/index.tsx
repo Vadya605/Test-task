@@ -1,7 +1,9 @@
-import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
-import { AuthModalServices } from "@/store/reducers";
 import { Close } from "@mui/icons-material";
 import { IconButton, Typography } from "@mui/material";
+
+import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
+import { AuthModalServices } from "@/store/reducers";
+
 import FormLogin from "../FormLogin";
 import FormSignup from "../FormSignup";
 import { DialogAuth, DialogContent, DialogHeader } from "./styled";

@@ -1,5 +1,6 @@
-import DoesntExistPhoto from '/public/doesntExist.png'
 import { IFavorite } from "@/interfaces/IFavorite";
+
+import DoesntExistPhoto from '/public/doesntExist.png'
 
 export function convertPlaceResultToFavorite(placeResult: google.maps.places.PlaceResult): IFavorite {
     const favorite: IFavorite = {

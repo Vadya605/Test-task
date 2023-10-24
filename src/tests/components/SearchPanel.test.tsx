@@ -1,8 +1,9 @@
-import '@testing-library/jest-dom'
-import { screen, fireEvent, waitFor } from '@testing-library/react';
 import SearchPanel from '@/components/SearchPanel';
-import { renderWithAllProviders } from '../testHelpers/renderWithAllProviders';
 import { store } from '@/store/store';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
+
+import '@testing-library/jest-dom'
+import { renderWithAllProviders } from '../testHelpers/renderWithAllProviders';
 
 describe('Тестирование панели поиска', () => {
     test('Отображение панели поиска', () => {

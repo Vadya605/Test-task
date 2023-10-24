@@ -1,4 +1,4 @@
-import { styled, IconButton } from "@mui/material";
+import { IconButton,styled } from "@mui/material";
 
 export const HeaderPanel = styled('div')(({theme}) => ({
     display: 'flex',

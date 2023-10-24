@@ -1,4 +1,4 @@
-import { styled, List, ListItem  } from '@mui/material'
+import { List, ListItem,styled  } from '@mui/material'
 
 export const ListSuggestions = styled(List)(({theme}) => ({
     boxSizing: 'border-box',
