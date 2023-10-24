@@ -4,16 +4,30 @@ import Search from '../svg/Search'
 import Favorite from '../svg/Favorite'
 import { AsideWrapper, Logo, Column, ListSections, AsideButtonSearch, AsideButtonFavorites, AvatarAside } from "./styled"
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux'
-import { DrawerServices } from '@/store/reducers'
+import { AuthModalServices, DrawerServices } from '@/store/reducers'
+import { useAuth } from '@/hooks/useAuth'
 
 export default function Aside() {
 
     const dispatch = useAppDispatch()
     const { selectedSection } = useTypeSelector(state => state.Drawer)
+    const { isAuth } = useAuth()
 
     const handleClickSectionItem = (name: string) => {
+        if(name === 'favorite' && !isAuth){
+            return dispatch(AuthModalServices.actions.setIsOpen(true))
+        }
+
         dispatch(DrawerServices.actions.setOpen(true))
         dispatch(DrawerServices.actions.setSelectedSection(name))
+    }
+
+    const handleClickAvatar = () => {
+        if(isAuth){
+            return console.log('Показать иконку для выхода');
+        }
+
+        return dispatch(AuthModalServices.actions.setIsOpen(true))
     }
 
     return (
@@ -34,7 +48,7 @@ export default function Aside() {
                         </AsideButtonFavorites>
                     </ListItem>
                 </ListSections>
-                <AvatarAside src='/Person.jpg' alt='Avatar' />
+                <AvatarAside onClick={handleClickAvatar} src='/Person.jpg' alt='Avatar' />
             </Column>
         </AsideWrapper>
     )
