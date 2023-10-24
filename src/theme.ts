@@ -46,6 +46,9 @@ declare module '@mui/material/styles' {
         },
         mapWater: {
             main: string
+        },
+        errorMessage: {
+            main: string
         }
     }
     interface PaletteOptions {
@@ -92,6 +95,9 @@ declare module '@mui/material/styles' {
             main: string
         },
         mapWater: {
+            main: string
+        },
+        errorMessage: {
             main: string
         }
     }
@@ -149,6 +155,9 @@ export const theme = createTheme({
         },
         mapWater: {
             main: '#aee0f4'
+        },
+        errorMessage: {
+            main: '#FF0000'
         }
     },
     typography: {

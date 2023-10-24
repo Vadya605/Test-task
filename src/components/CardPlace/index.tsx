@@ -1,11 +1,11 @@
 import Typography from '@mui/material/Typography';
 import { InfoWindow } from "@react-google-maps/api";
 
-import DoesntExistPhoto from 'public/doesntExist.png'
+import DoesntExistPhoto from '/public/doesntExist.png'
 import FavoriteSvg from "@/components/svg/Favorite";
 import GeoSvg from '@/components/svg/Geo'
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
-import { DirectionsRendererServices, FavoriteServices, RouteDetailsServices, SelectedPlaceServices } from "@/store/reducers";
+import { AuthModalServices, DirectionsRendererServices, FavoriteServices, RouteDetailsServices, SelectedPlaceServices } from "@/store/reducers";
 import { ButtonFavorite } from "@/UI/ButtonFavorite";
 import { ButtonRoute } from "@/UI/ButtonRoute";
 import { convertPlaceResultToFavorite } from "@/utils/convert";
@@ -13,16 +13,21 @@ import { getDirections } from '@/utils/route';
 
 import { CardPlaceProps } from "./interfaces";
 import { Actions, CardPlaceWrapper, PhotoPlace } from "./styled";
+import { useAuth } from '@/hooks/useAuth';
 
 
 export default function CardPlace({ place }: CardPlaceProps) {
     const dispatch = useAppDispatch()
+    const {isAuth} = useAuth()
     const { favorites } = useTypeSelector(state => state.Favorites)
     const { map, userLocation } = useTypeSelector(state => state.Map)
 
     const handleClickSave = () => {
+        if(!isAuth){
+            return dispatch(AuthModalServices.actions.setIsOpen(true))
+        }
+
         const favorite = convertPlaceResultToFavorite(place)
-        console.log(favorite);
 
         if (isFavorite()) {
             return dispatch(FavoriteServices.actions.removeFavorite(favorite))
@@ -69,7 +74,7 @@ export default function CardPlace({ place }: CardPlaceProps) {
     }
 
     const isFavorite = () => {
-        return favorites.some(f => f.place_id === place.place_id)
+        return isAuth && favorites.some(f => f.place_id === place.place_id)
     }
 
     return (

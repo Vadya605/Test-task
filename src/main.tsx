@@ -8,6 +8,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import App from './components/App'
 import { persistor, store } from './store/store.ts'
 import { theme } from './theme.ts'
+import './firebase.ts'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <Provider store={store} >
