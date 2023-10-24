@@ -21,6 +21,7 @@ import SelectedFavoriteReducer from './reducers/SelectedFavoriteSlice'
 import SelectedPlaceReducer from './reducers/SelectedPlaceSlice'
 import UserReducer from './reducers/UserSlice'
 import AuthModalReducer from './reducers/AuthModalSlice'
+import ConfirmExitReducer from './reducers/ConfirmExitSlice'
 
 const persistConfig = {
     key: 'root',
@@ -39,6 +40,7 @@ const rootReducer = combineReducers({
     RouteDetails: RouteDetailsReducer,
     User: UserReducer,
     AuthModal: AuthModalReducer,
+    ConfirmExit: ConfirmExitReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

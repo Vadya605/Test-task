@@ -93,9 +93,20 @@ export const AvatarAside = styled(Avatar)(({ theme }) => ({
     border: `${theme.spacing(.3)} solid ${theme.palette.borderPrimary.main}`,
     width: theme.spacing(4.8),
     height: theme.spacing(4.8),
+    cursor: 'pointer',
     [theme.breakpoints.down('sm')]: {
         marginTop: theme.spacing(1.5),
         width: theme.spacing(3),
         height: theme.spacing(3),
     },
+}))
+
+export const Exit = styled('div')(({theme}) => ({
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: theme.spacing(1.4, 1.4, 1.4, 1.2),
+    backgroundColor: theme.palette.textButtonSecondary.main,
+    borderRadius: theme.spacing(.6),
+    cursor: 'pointer'
 }))

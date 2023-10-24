@@ -2,10 +2,11 @@ import { ListItem } from '@mui/material'
 import LogoImg from '@/assets/img/Logo.svg'
 import Search from '../svg/Search'
 import Favorite from '../svg/Favorite'
-import { AsideWrapper, Logo, Column, ListSections, AsideButtonSearch, AsideButtonFavorites, AvatarAside } from "./styled"
+import { AsideWrapper, Logo, Column, ListSections, AsideButtonSearch, AsideButtonFavorites, AvatarAside, Exit } from "./styled"
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux'
-import { AuthModalServices, DrawerServices } from '@/store/reducers'
+import { AuthModalServices, ConfirmExitServices, DrawerServices } from '@/store/reducers'
 import { useAuth } from '@/hooks/useAuth'
+import ExitIcon from '@/assets/img/Exit.svg'
 
 export default function Aside() {
 
@@ -23,11 +24,11 @@ export default function Aside() {
     }
 
     const handleClickAvatar = () => {
-        if(isAuth){
-            return console.log('Показать иконку для выхода');
-        }
-
         return dispatch(AuthModalServices.actions.setIsOpen(true))
+    }
+
+    const handleClickExit = () => {
+        dispatch(ConfirmExitServices.actions.setIsOpen(true))
     }
 
     return (
@@ -48,7 +49,13 @@ export default function Aside() {
                         </AsideButtonFavorites>
                     </ListItem>
                 </ListSections>
-                <AvatarAside onClick={handleClickAvatar} src='/Person.jpg' alt='Avatar' />
+                { isAuth? (
+                    <Exit onClick={handleClickExit}>
+                        <img src={ExitIcon} alt="ExitIcon" />
+                    </Exit>
+                ): (
+                    <AvatarAside onClick={handleClickAvatar} src='/emptyAvatar.png' alt='Avatar' />
+                ) }
             </Column>
         </AsideWrapper>
     )
