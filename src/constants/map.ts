@@ -1,6 +1,9 @@
-import { theme } from "@/theme"
+import { getTheme } from "@/utils/getTheme"
 
-const MAP_THEME = [
+const lightTheme = getTheme('light')
+const darkTheme = getTheme('dark')
+
+export const MAP_STYLE_LIGHT = [
     {
         "featureType": "poi",
         "elementType": "labels",
@@ -13,7 +16,7 @@ const MAP_THEME = [
         "elementType": "labels.text",
         "stylers": [
             {
-                "color": theme.palette.mapLabel.main
+                "color": lightTheme.palette.mapLabel?.main
             }
         ]
     },
@@ -31,7 +34,7 @@ const MAP_THEME = [
         "elementType": "all",
         "stylers": [
             {
-                "color": theme.palette.mapLandscape.main
+                "color": lightTheme.palette.mapLandscape?.main
             }
         ]
     },
@@ -40,7 +43,7 @@ const MAP_THEME = [
         "elementType": "all",
         "stylers": [
             {
-                "color": theme.palette.mapHighway.main
+                "color": lightTheme.palette.mapHighway?.main
             }
         ]
     },
@@ -49,7 +52,7 @@ const MAP_THEME = [
         "elementType": "geometry.stroke",
         "stylers": [
             {
-                "color": theme.palette.mapHighwayStroke.main
+                "color": lightTheme.palette.mapHighwayStroke?.main
             }
         ]
     },
@@ -58,15 +61,183 @@ const MAP_THEME = [
         "elementType": "all",
         "stylers": [
             {
-                "color": theme.palette.mapWater.main
+                "color": lightTheme.palette.mapWater?.main
+            }
+        ]
+    }
+]
+
+export const MAP_STYLE_DARK = [
+    {
+        "featureType": "all",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "saturation": 36
+            },
+            {
+                "color": darkTheme.palette.common.black
+            },
+            {
+                "lightness": 40
+            }
+        ]
+    },
+    {
+        "featureType": "all",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "visibility": "on"
+            },
+            {
+                "color": darkTheme.palette.common.black
+            },
+            {
+                "lightness": 16
+            }
+        ]
+    },
+    {
+        "featureType": "all",
+        "elementType": "labels.icon",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": darkTheme.palette.common.black
+            },
+            {
+                "lightness": 20
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": darkTheme.palette.common.black
+            },
+            {
+                "lightness": 17
+            },
+            {
+                "weight": 1.2
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": darkTheme.palette.common.black
+            },
+            {
+                "lightness": 20
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": darkTheme.palette.common.black
+            },
+            {
+                "lightness": 21
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": darkTheme.palette.common.black
+            },
+            {
+                "lightness": 17
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": darkTheme.palette.common.black
+            },
+            {
+                "lightness": 29
+            },
+            {
+                "weight": 0.2
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": darkTheme.palette.common.black
+            },
+            {
+                "lightness": 18
+            }
+        ]
+    },
+    {
+        "featureType": "road.local",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": darkTheme.palette.common.black
+            },
+            {
+                "lightness": 16
+            }
+        ]
+    },
+    {
+        "featureType": "transit",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": darkTheme.palette.common.black
+            },
+            {
+                "lightness": 19
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": darkTheme.palette.common.black
+            },
+            {
+                "lightness": 17
             }
         ]
     }
 ]
 
 export const CIRCLE_OPTIONS = {
-    fillColor: theme.palette.circleFill.main,
-    strokeColor: theme.palette.primary.main,
+    fillColor: lightTheme.palette.circleFill?.main,
+    strokeColor: lightTheme.palette.primary?.main,
     strokeWeight: 1 
 }
 
@@ -84,7 +255,6 @@ export const MAP_OPTIONS = {
     fullScreenControl: false,
     disableDefaultUI: true,
     clickableIcons: false,
-    styles: MAP_THEME
 }
 
 export const DEFAULT_CENTER = {

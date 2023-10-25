@@ -1,6 +1,5 @@
 import { ChevronLeft } from '@mui/icons-material'
 
-import Arrow from '@/assets/img/Arrow.svg'
 import AutoCompleteSearch from '@/components/AutoCompleteSearch';
 import FavoritesPanel from '@/components/FavoritesPanel';
 import SearchPanel from '@/components/SearchPanel';
@@ -11,7 +10,7 @@ import Aside from '../Aside';
 import ErrorBoundary from '../ErrorBoundary';
 import FavoritesError from '../FavoritesError';
 import {
-    ArrowClose, ArrowOpen,
+    ArrowClose,
     Container, Drawer, DrawerContent, DrawerWrapper,
 } from './styled';
 
@@ -21,6 +20,7 @@ export default function SideBar() {
 
     const handleClickArrow = () => {
         dispatch(DrawerServices.actions.setOpen(!isOpen))
+        dispatch(DrawerServices.actions.setSelectedSection(''))
     }
 
     return (
@@ -41,10 +41,10 @@ export default function SideBar() {
                     </DrawerContent>
                 </DrawerWrapper>
             </Drawer>
-            {!isOpen &&
+            {/* {!isOpen &&
                 <ArrowOpen onClick={handleClickArrow}>
                     <img src={Arrow} alt="" />
-                </ArrowOpen>}
+                </ArrowOpen>} */}
         </Container>
     );
 }

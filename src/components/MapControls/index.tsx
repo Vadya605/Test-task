@@ -3,15 +3,18 @@ import Location from '@/assets/img/map-btn/location.svg'
 import Minus from '@/assets/img/map-btn/minus.svg'
 import Plus from '@/assets/img/map-btn/plus.svg'
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux'
-import { MapServices } from '@/store/reducers'
+import { MapServices, ModeServices } from '@/store/reducers'
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 
-import { ButtonLocation,ButtonsControl, ButtonsZoom, ButtonZoom } from './styled'
+import { ButtonLocation,ButtonsControl, ButtonsZoom, ButtonTheme, ButtonZoom } from './styled'
 
 export default function MapControls() {
 
     const dispatch = useAppDispatch()
 
     const {userLocation, zoom} = useTypeSelector(state => state.Map)
+    const {mode} = useTypeSelector(state => state.Mode)
 
     const handleClickZoom = (value: number) => {
         dispatch(MapServices.actions.setZoom(zoom + value))
@@ -19,6 +22,12 @@ export default function MapControls() {
 
     const handleClickLocation = () => {
         dispatch(MapServices.actions.setCenter(userLocation))
+    }
+
+    const handleClickTheme = () => {
+        const newMode = mode === 'light' ? 'dark': 'light'
+
+        dispatch(ModeServices.actions.setMode(newMode))
     }
 
     return (
@@ -35,6 +44,9 @@ export default function MapControls() {
                     <img src={Minus} alt="Minus" />
                 </ButtonZoom>
             </ButtonsZoom>
+            <ButtonTheme onClick={handleClickTheme}>
+                { mode === 'light'? <Brightness4Icon />: <Brightness7Icon />}
+            </ButtonTheme>
         </ButtonsControl>
     )
 }

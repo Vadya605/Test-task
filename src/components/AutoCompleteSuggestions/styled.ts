@@ -5,7 +5,7 @@ export const ListSuggestions = styled(List)(({theme}) => ({
     zIndex: '10',
     top: theme.spacing(6.4),
     width: '100%',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.palette.background.paper,
     position: 'absolute',
     padding: 0,
     borderRadius: theme.spacing(0, 0, 1, 1),

@@ -1,5 +1,4 @@
 import { Avatar, List,styled } from '@mui/material'
-
 import { AsideButtonProps } from './interfaces'
 
 export const AsideWrapper = styled('div')(({ theme }) => ({
@@ -7,7 +6,7 @@ export const AsideWrapper = styled('div')(({ theme }) => ({
     alignItems: 'center',
     flexDirection: 'column',
     rowGap: theme.spacing(2.5),
-    borderRight: `${theme.spacing(.3)} solid ${theme.palette.borderSecondary.main}`,
+    borderRight: `${theme.spacing(.3)} solid ${theme.palette.borderPrimary.main}`,
     padding: theme.spacing(3, 2.5),
     [theme.breakpoints.down('sm')]: {
         padding: theme.spacing(3, 1.5),
@@ -41,6 +40,7 @@ export const ListSections = styled(List)(({ theme }) => ({
 }))
 
 export const AsideButtonSearch = styled('div')<AsideButtonProps>(({ theme, isActive }) => ({
+    cursor: 'pointer',
     padding: theme.spacing(1.9),
     borderRadius: theme.spacing(.6),
     display: 'flex',
@@ -66,6 +66,7 @@ export const AsideButtonSearch = styled('div')<AsideButtonProps>(({ theme, isAct
 }))
 
 export const AsideButtonFavorites = styled('div')<AsideButtonProps>(({ theme, isActive }) => ({
+    cursor: 'pointer',
     padding: theme.spacing(1.8, 2.1),
     borderRadius: theme.spacing(.6),
     display: 'flex',

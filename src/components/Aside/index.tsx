@@ -11,7 +11,6 @@ import Search from '../svg/Search'
 import { AsideButtonFavorites, AsideButtonSearch, AsideWrapper, AvatarAside, Column, Exit,ListSections, Logo } from "./styled"
 
 export default function Aside() {
-
     const dispatch = useAppDispatch()
     const { selectedSection } = useTypeSelector(state => state.Drawer)
     const { isAuth } = useAuth()

@@ -14,14 +14,17 @@ import Loader from "../Loader";
 import MapControls from '../MapControls';
 import RouteDetails from "../RouteDetails";
 import { mapContainerStyle, MapWrapper } from './styled';
+import { getMapStyle } from '@/utils/getMapStyle';
 
 export default function Map() {
     const dispatch = useAppDispatch()
     const { center, zoom } = useTypeSelector(state => state.Map)
-
     const { foundPlaces } = useTypeSelector(state => state.Search)
     const { selectedPlace } = useTypeSelector(state => state.SelectedPlace)
     const { directionsRenderer } = useTypeSelector(state => state.DirectionsRenderer)
+    const { mode } = useTypeSelector(state => state.Mode)
+
+    const mapStyles = getMapStyle(mode)
     const isLoaded = useGoogleMaps()
 
     const onLoad = useCallback(async (map: google.maps.Map) => {
@@ -39,24 +42,26 @@ export default function Map() {
     }, [])
 
     return (
-        <MapWrapper>
-            {isLoaded ? (
-                <GoogleMap
-                    onLoad={onLoad}
-                    mapContainerStyle={mapContainerStyle}
-                    center={center}
-                    zoom={zoom}
-                    options={MAP_OPTIONS}
-                >
-                    {foundPlaces.length && <FoundPlaces />}
-                    {selectedPlace && <CardPlace place={selectedPlace} />}
-                    {directionsRenderer && <RouteDetails />}
-                    <CurrentLocation />
-                    <MapControls />
-                </GoogleMap>
-            ) : (
-                <Loader />
-            )}
-        </MapWrapper>
+        <>
+            <MapWrapper>
+                {isLoaded ? (
+                    <GoogleMap
+                        onLoad={onLoad}
+                        mapContainerStyle={mapContainerStyle}
+                        center={center}
+                        zoom={zoom}
+                        options={{ ...MAP_OPTIONS, styles: mapStyles }}
+                    >
+                        {foundPlaces.length && <FoundPlaces />}
+                        {selectedPlace && <CardPlace place={selectedPlace} />}
+                        { directionsRenderer && <RouteDetails /> }
+                        <CurrentLocation />
+                        <MapControls />
+                    </GoogleMap>
+                ) : (
+                    <Loader />
+                )}
+            </MapWrapper>
+        </>
     );
 }

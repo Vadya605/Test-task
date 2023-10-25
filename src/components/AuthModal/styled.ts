@@ -1,7 +1,7 @@
 import { Dialog, DialogContent as Content,styled } from "@mui/material";
 
 export const DialogAuth = styled(Dialog)(({theme}) => ({
-    '& .css-1t1j96h-MuiPaper-root-MuiDialog-paper': {
+    '& [role="dialog"]': {
         maxWidth: theme.spacing(40),
         width: '100%',
     }
