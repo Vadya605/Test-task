@@ -1,10 +1,11 @@
+import { useState } from 'react';
 import Typography from '@mui/material/Typography';
 
 import FavoriteSvg from "@/components/svg/Favorite";
 import GeoSvg from '@/components/svg/Geo'
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
 import { useAuth } from '@/hooks/useAuth';
-import { AuthModalServices, DirectionsRendererServices, FavoriteServices, RouteDetailsServices, SelectedPlaceServices } from "@/store/reducers";
+import { AuthModalServices, DirectionsRendererServices, FavoriteServices, FavoriteSlice, RouteDetailsServices, SelectedPlaceServices } from "@/store/reducers";
 import { ButtonFavorite } from "@/UI/ButtonFavorite";
 import { ButtonRoute } from "@/UI/ButtonRoute";
 import { convertPlaceResultToFavorite } from "@/utils/convert";
@@ -14,26 +15,42 @@ import { InfoWindow } from "@react-google-maps/api";
 import { CardPlaceProps } from "./interfaces";
 import { Actions, CardPlaceWrapper, PhotoPlace } from "./styled";
 import DoesntExistPhoto from '/public/doesntExist.png'
+import { addFavorite, removeFavorite } from '@/utils/favorite';
 
 
 export default function CardPlace({ place }: CardPlaceProps) {
     const dispatch = useAppDispatch()
-    const {isAuth} = useAuth()
+    const { isAuth } = useAuth()
     const { favorites } = useTypeSelector(state => state.Favorites)
     const { map, userLocation } = useTypeSelector(state => state.Map)
+    const { id: userId } = useTypeSelector(state => state.User)
+
+    const [loading, setLoading] = useState(false)
 
     const handleClickSave = () => {
-        if(!isAuth){
+        if (!isAuth) {
             return dispatch(AuthModalServices.actions.setIsOpen(true))
         }
 
         const favorite = convertPlaceResultToFavorite(place)
+        setLoading(true)
 
         if (isFavorite()) {
-            return dispatch(FavoriteServices.actions.removeFavorite(favorite))
+            return removeFavorite(userId, favorite.place_id)
+                .then(() => {
+                    dispatch(FavoriteServices.actions.removeFavorite(favorite))
+                })
+                .catch(err => console.log(err))
+                .finally(() => setLoading(false))
         }
 
-        return dispatch(FavoriteServices.actions.addFavorite(favorite))
+        return addFavorite(userId, favorite)
+            .then(() => {
+                dispatch(FavoriteSlice.actions.addFavorite(favorite))
+            })
+            .catch(err => console.log(err))
+            .finally(() => setLoading(false))
+
     }
 
     const handleClickClose = () => {
@@ -89,7 +106,7 @@ export default function CardPlace({ place }: CardPlaceProps) {
                 <Typography variant="h2" >{place.name}</Typography>
                 <PhotoPlace src={place.photos?.[0]?.getUrl() || DoesntExistPhoto} alt="Photo place" />
                 <Actions>
-                    <ButtonFavorite onClick={handleClickSave}>
+                    <ButtonFavorite loading={loading} onClick={handleClickSave}>
                         <FavoriteSvg />
                         <Typography variant="button" >{isFavorite() ? 'Удалить' : 'Добавить'}</Typography>
                     </ButtonFavorite>

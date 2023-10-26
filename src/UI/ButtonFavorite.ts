@@ -1,7 +1,7 @@
-import { Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import LoadingButton from '@mui/lab/LoadingButton';
 
-export const ButtonFavorite = styled(Button)(({ theme }) => ({
+export const ButtonFavorite = styled(LoadingButton)(({ theme }) => ({
     border: `${theme.spacing(.3)} solid ${theme.palette.borderPrimary.main}`,
     borderRadius: theme.spacing(.5),
     display: 'flex',

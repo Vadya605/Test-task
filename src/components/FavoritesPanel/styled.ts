@@ -1,4 +1,4 @@
-import { IconButton,styled } from "@mui/material";
+import { CircularProgress, IconButton,styled } from "@mui/material";
 
 export const HeaderPanel = styled('div')(({theme}) => ({
     display: 'flex',
@@ -14,3 +14,14 @@ export const ButtonBack = styled(IconButton)`
         transform: rotate(180deg);
     }
 `
+export const BoxLoader = styled('div')`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+
+export const Loader = styled(CircularProgress)(({theme}) => ({
+    width: theme.spacing(6),
+    height: theme.spacing(6)
+}))

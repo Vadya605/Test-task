@@ -29,7 +29,7 @@ import ModeReducer from './reducers/ModeSlice'
 const persistConfig = {
     key: 'root',
     storage: storage,
-    whitelist: ['Favorites'],
+    whitelist: [],
 }
 
 const rootReducer = combineReducers({

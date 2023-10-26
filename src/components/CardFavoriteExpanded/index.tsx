@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Typography from '@mui/material/Typography';
 
 import Favorite from "@/components/svg/Favorite";
@@ -10,19 +11,27 @@ import { getDirections } from '@/utils/route';
 
 import { CardProps } from './interfaces';
 import { Actions, CardExpanded, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper, PhotoWrapper } from "./styled";
+import { removeFavorite } from '@/utils/favorite';
 
 export default function ExpandedCard({ favoriteItem }: CardProps) {
     const dispatch = useAppDispatch()
     const { map, userLocation } = useTypeSelector(state => state.Map)
+    const {id: userId} = useTypeSelector(state => state.User)
+    const [loading, setLoading] = useState(false)
 
-    const handleClickFavorite = () => {
-        dispatch(SelectedFavoriteServices.actions.setSelected(''))
-        dispatch(FavoriteServices.actions.removeFavorite(favoriteItem))
+
+    const handleClickRemove = () => {
+        return removeFavorite(userId, favoriteItem.place_id)
+            .then(() => {
+                dispatch(SelectedFavoriteServices.actions.setSelected(''))
+                dispatch(FavoriteServices.actions.removeFavorite(favoriteItem))
+            })
+            .catch(err => console.log(err))
     }
 
     const handleClickRoute = async () => {
         console.log(favoriteItem.location);
-        
+
         try {
             dispatch(DirectionsRendererServices.actions.clearDirections())
 
@@ -64,7 +73,7 @@ export default function ExpandedCard({ favoriteItem }: CardProps) {
                 </CardHeader>
                 <Typography variant='body1'>{favoriteItem.description}</Typography>
                 <Actions>
-                    <ButtonFavorite data-testid='button-remove' onClick={handleClickFavorite}>
+                    <ButtonFavorite loading={loading} data-testid='button-remove' onClick={handleClickRemove}>
                         <Favorite />
                         <Typography variant='button' >Удалить</Typography>
                     </ButtonFavorite>
