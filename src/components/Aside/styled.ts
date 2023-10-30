@@ -110,5 +110,9 @@ export const Exit = styled('div')(({theme}) => ({
     padding: theme.spacing(1.4, 1.4, 1.4, 1.2),
     backgroundColor: theme.palette.textButtonSecondary.main,
     borderRadius: theme.spacing(.6),
-    cursor: 'pointer'
+    cursor: 'pointer',
+
+    [theme.breakpoints.down('sm')]: {
+        padding: theme.spacing(.8, .8, .8, .6)
+    },
 }))
