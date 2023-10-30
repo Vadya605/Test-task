@@ -19,7 +19,7 @@ export default function FavoritesPanel() {
     const selectedFavorite = favorites.length && favorites.find(item => item.place_id === selectedFavoriteId)
     const { id: userId } = useTypeSelector(state => state.User)
 
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
 
     const handleClickBack = () => {
         dispatch(SelectedFavoriteServices.actions.setSelected(''))
