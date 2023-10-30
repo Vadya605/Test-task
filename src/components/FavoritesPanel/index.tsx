@@ -41,7 +41,7 @@ export default function FavoritesPanel() {
 
         getFavorites(userId)
             .then((favorites) => {
-                dispatch(FavoriteServices.actions.setFavorites(favorites))
+                dispatch(FavoriteServices.actions.setFavorites(favorites || []))
             })
             .catch(err => console.log(err))
             .finally(() => setIsLoading(false))
