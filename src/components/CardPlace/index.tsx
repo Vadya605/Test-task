@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import Typography from '@mui/material/Typography';
 
 import FavoriteSvg from "@/components/svg/Favorite";
@@ -9,13 +10,13 @@ import { AuthModalServices, DirectionsRendererServices, FavoriteServices, Favori
 import { ButtonFavorite } from "@/UI/ButtonFavorite";
 import { ButtonRoute } from "@/UI/ButtonRoute";
 import { convertPlaceResultToFavorite } from "@/utils/convert";
+import { addFavorite, removeFavorite } from '@/utils/favorite';
 import { getDirections } from '@/utils/route';
 import { InfoWindow } from "@react-google-maps/api";
 
 import { CardPlaceProps } from "./interfaces";
 import { Actions, CardPlaceWrapper, PhotoPlace } from "./styled";
 import DoesntExistPhoto from '/public/doesntExist.png'
-import { addFavorite, removeFavorite } from '@/utils/favorite';
 
 
 export default function CardPlace({ place }: CardPlaceProps) {

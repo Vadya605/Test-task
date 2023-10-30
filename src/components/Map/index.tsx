@@ -7,6 +7,7 @@ import { useAppDispatch, useTypeSelector } from '@/hooks/redux.ts';
 import { useGoogleMaps } from '@/hooks/useGoogleMaps.ts';
 import { MapServices } from '@/store/reducers'
 import { getBrowserLocation } from '@/utils/geo.ts';
+import { getMapStyle } from '@/utils/getMapStyle';
 import { GoogleMap } from "@react-google-maps/api";
 
 import FoundPlaces from '../FoundPlaces';
@@ -14,7 +15,6 @@ import Loader from "../Loader";
 import MapControls from '../MapControls';
 import RouteDetails from "../RouteDetails";
 import { mapContainerStyle, MapWrapper } from './styled';
-import { getMapStyle } from '@/utils/getMapStyle';
 
 export default function Map() {
     const dispatch = useAppDispatch()

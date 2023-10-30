@@ -1,5 +1,5 @@
-import MapSlice, { MapServices } from "@/store/reducers/MapSlice";
 import { DEFAULT_CENTER } from "@/constants";
+import MapSlice, { MapServices } from "@/store/reducers/MapSlice";
 
 describe('Тестирование MapSlice', () => {
     const initialState = {

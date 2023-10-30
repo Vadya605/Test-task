@@ -4,11 +4,11 @@ import ExpandMore from '@/assets/img/Arrow.svg'
 import Favorite from '@/assets/img/Favorite.svg'
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
 import { FavoriteServices, SelectedFavoriteServices } from '@/store/reducers';
+import { removeFavorite } from '@/utils/favorite';
 import { strLimit } from "@/utils/textHelpers";
 
 import { CardProps } from "./interfaces";
 import { Actions, ButtonAction, CardCollapsed, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper, PhotoWrapper } from "./styled";
-import { removeFavorite } from '@/utils/favorite';
 
 export default function CollapsedCard({ favoriteItem }: CardProps) {
     const dispatch = useAppDispatch()

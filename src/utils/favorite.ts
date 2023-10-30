@@ -1,5 +1,6 @@
 import { IFavorite } from "@/interfaces/IFavorite";
-import { getDatabase, ref, set, push, get, remove } from "firebase/database";
+
+import { get, getDatabase, push, ref, remove,set } from "firebase/database";
 
 
 export function addFavorite(userId: string, favoriteItem: IFavorite) {
@@ -47,6 +48,6 @@ export async function getFavorites(userId: string) {
 
         return data;
     } catch (error) {
-        throw error;
+        console.log(error);
     }
 }

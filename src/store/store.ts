@@ -18,12 +18,12 @@ import DirectionsRendererReducer from './reducers/DirectionsRendererSlice'
 import DrawerReducer from './reducers/DrawerSlice'
 import FavoriteReducer from './reducers/FavoriteSlice'
 import MapReducer from './reducers/MapSlice'
+import ModeReducer from './reducers/ModeSlice'
 import RouteDetailsReducer from './reducers/RouteDetailsSlice'
 import SearchReducer from './reducers/SearchSlice'
 import SelectedFavoriteReducer from './reducers/SelectedFavoriteSlice'
 import SelectedPlaceReducer from './reducers/SelectedPlaceSlice'
 import UserReducer from './reducers/UserSlice'
-import ModeReducer from './reducers/ModeSlice'
 
 
 const persistConfig = {

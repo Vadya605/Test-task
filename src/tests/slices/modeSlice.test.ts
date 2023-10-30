@@ -1,5 +1,6 @@
-import ModeSlice, { ModeServices } from "@/store/reducers/ModeSlice";
 import { PaletteMode } from "@mui/material";
+
+import ModeSlice, { ModeServices } from "@/store/reducers/ModeSlice";
 
 describe('Тестирование среза ModeSlice', () => {
     const intestialState = {

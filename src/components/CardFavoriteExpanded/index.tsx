@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import Typography from '@mui/material/Typography';
 
 import Favorite from "@/components/svg/Favorite";
@@ -7,11 +8,11 @@ import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
 import { DirectionsRendererServices, FavoriteServices, RouteDetailsServices, SelectedFavoriteServices } from "@/store/reducers";
 import { ButtonFavorite } from "@/UI/ButtonFavorite";
 import { ButtonRoute } from "@/UI/ButtonRoute";
+import { removeFavorite } from '@/utils/favorite';
 import { getDirections } from '@/utils/route';
 
 import { CardProps } from './interfaces';
 import { Actions, CardExpanded, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper, PhotoWrapper } from "./styled";
-import { removeFavorite } from '@/utils/favorite';
 
 export default function ExpandedCard({ favoriteItem }: CardProps) {
     const dispatch = useAppDispatch()
