@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import Typography from '@mui/material/Typography';
 
@@ -13,15 +13,13 @@ import { ButtonSearch, RadiusBox, RadiusInput, SearchPanelWrapper } from './styl
 
 export default function SearchPanel() {
     const dispatch: AppDispatch = useAppDispatch()
-    const { selectedPlaces } = useTypeSelector(state => state.Search)
+    const { selectedPlaces, searchRadius } = useTypeSelector(state => state.Search)
     const { map, userLocation } = useTypeSelector(state => state.Map)
-    // если сразу кидать в redux, то Circle перерисуется, пока умнее не придумал, беда
-    const [searchRadius, setSearchRadius] = useState(1)
 
     const handleChangeRadius = (e: React.ChangeEvent<HTMLInputElement>) => {
         const searchRadiusValue = Number(e.target.value.replace(/[^0-9]/g, ''))
 
-        setSearchRadius(searchRadiusValue)
+        dispatch(SearchServices.actions.setSearchRadius(searchRadiusValue))
     }
 
     const handleSearch = () => {

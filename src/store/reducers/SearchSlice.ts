@@ -9,7 +9,7 @@ interface SearchState {
 const initialState: SearchState = {
     selectedPlaces: [],
     foundPlaces: [],
-    searchRadius: 1,
+    searchRadius: 2,
 }
 
 export const SearchSlice = createSlice({

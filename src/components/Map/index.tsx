@@ -19,7 +19,6 @@ import { getMapStyle } from '@/utils/getMapStyle';
 export default function Map() {
     const dispatch = useAppDispatch()
     const { center, zoom } = useTypeSelector(state => state.Map)
-    const { foundPlaces } = useTypeSelector(state => state.Search)
     const { selectedPlace } = useTypeSelector(state => state.SelectedPlace)
     const { directionsRenderer } = useTypeSelector(state => state.DirectionsRenderer)
     const { mode } = useTypeSelector(state => state.Mode)
@@ -52,7 +51,7 @@ export default function Map() {
                         zoom={zoom}
                         options={{ ...MAP_OPTIONS, styles: mapStyles }}
                     >
-                        {foundPlaces.length && <FoundPlaces />}
+                        <FoundPlaces />
                         {selectedPlace && <CardPlace place={selectedPlace} />}
                         { directionsRenderer && <RouteDetails /> }
                         <CurrentLocation />
