@@ -21,12 +21,14 @@ export default function ExpandedCard({ favoriteItem }: CardProps) {
 
 
     const handleClickRemove = () => {
+        setLoading(true)
         return removeFavorite(userId, favoriteItem.place_id)
             .then(() => {
                 dispatch(SelectedFavoriteServices.actions.setSelected(''))
                 dispatch(FavoriteServices.actions.removeFavorite(favoriteItem))
             })
             .catch(err => console.log(err))
+            .finally(() => setLoading(false))
     }
 
     const handleClickRoute = async () => {
