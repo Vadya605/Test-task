@@ -14,7 +14,15 @@ export const DetailsWrapper = styled('div')(({ theme }) => ({
 
 export const Row = styled('div')(({ theme }) => ({
     display: 'flex',
-    columnGap: theme.spacing(1)
+    columnGap: theme.spacing(1),
+
+    ...(theme.palette.mode === 'light' && {
+        color: theme.palette.common.black
+    }),
+
+    ...(theme.palette.mode === 'dark' && {
+        color: theme.palette.common.white
+    })
 }))
 
 export const Progress = styled(LinearProgress)(({ theme }) => ({

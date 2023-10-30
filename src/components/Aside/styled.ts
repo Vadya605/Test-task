@@ -108,7 +108,7 @@ export const Exit = styled('div')(({theme}) => ({
     justifyContent: 'center',
     alignItems: 'center',
     padding: theme.spacing(1.4, 1.4, 1.4, 1.2),
-    backgroundColor: theme.palette.textButtonSecondary.main,
+    backgroundColor: theme.palette.buttonExit.main,
     borderRadius: theme.spacing(.6),
     cursor: 'pointer',
 
