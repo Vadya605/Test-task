@@ -18,6 +18,7 @@ export const DirectionsRendererSlice = createSlice({
         },
         clearDirections(state){
             state.directionsRenderer?.setMap(null)
+            state.directionsRenderer = null
         }
     },
 })
