@@ -3,25 +3,35 @@ import Typography from '@mui/material/Typography';
 import ExpandMore from '@/assets/img/Arrow.svg'
 import Favorite from '@/assets/img/Favorite.svg'
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
-import { FavoriteServices, SelectedFavoriteServices } from '@/store/reducers';
+import { setSelectedFavorite, removeFavorite } from '@/store/reducers';
 import { strLimit } from "@/utils/textHelpers";
 
 import { CardProps } from "./interfaces";
-import { Actions, ButtonAction, CardCollapsed, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper, PhotoWrapper } from "./styled";
-import { removeFavorite } from '@/utils/favorite';
+import {
+    Actions,
+    ButtonAction,
+    CardCollapsed,
+    CardHeader,
+    CardWrapper,
+    Photo,
+    PhotoIcon,
+    PhotoIconsWrapper,
+    PhotoWrapper
+} from "./styled";
+import { deleteFavorite } from '@/utils/favorite';
 
 export default function CollapsedCard({ favoriteItem }: CardProps) {
     const dispatch = useAppDispatch()
     const { id: userId } = useTypeSelector(state => state.User)
 
     const handleClickExpandMore = () => {
-        dispatch(SelectedFavoriteServices.actions.setSelected(favoriteItem.place_id))
+        dispatch(setSelectedFavorite(favoriteItem.place_id))
     }
 
     const handleClickRemove = () => {
-        return removeFavorite(userId, favoriteItem.place_id)
+        return deleteFavorite(userId, favoriteItem.place_id)
             .then(() => {
-                dispatch(FavoriteServices.actions.removeFavorite(favoriteItem))
+                dispatch(removeFavorite(favoriteItem))
             })
             .catch(err => console.log(err))
     }

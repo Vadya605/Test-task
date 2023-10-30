@@ -4,7 +4,7 @@ import { STATUS_CODES } from "@/constants";
 import { useAppDispatch } from "@/hooks/redux";
 import { useGoogleMaps } from "@/hooks/useGoogleMaps";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
-import { MapServices } from "@/store/reducers";
+import { setCenter } from "@/store/reducers";
 
 import AutoCompleteSuggestions from "../AutoCompleteSuggestions";
 import {
@@ -43,7 +43,7 @@ export default function AutoCompleteSearch() {
 
         getGeocode({ address: description }).then((results) => {
             const { lat, lng } = getLatLng(results[0]);
-            dispatch(MapServices.actions.setCenter({ lat, lng }))
+            dispatch(setCenter({ lat, lng }))
         });
     };
 

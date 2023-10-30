@@ -6,18 +6,18 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux';
-import { ConfirmExitServices, UserServices } from '@/store/reducers';
+import { removeUser, setIsOpenConfirmExit } from '@/store/reducers';
 
 export default function ConfirmExit() {
     const dispatch = useAppDispatch()
     const { isOpen } = useTypeSelector(state => state.ConfirmExit)
 
     const handleClose = () => {
-        dispatch(ConfirmExitServices.actions.setIsOpen(false))
+        dispatch(setIsOpenConfirmExit(false))
     };
 
     const handleConfirmExit = () => {
-        dispatch(UserServices.actions.removeUser())
+        dispatch(removeUser())
         handleClose();
     };
 

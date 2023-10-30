@@ -3,7 +3,7 @@ import Location from '@/assets/img/map-btn/location.svg'
 import Minus from '@/assets/img/map-btn/minus.svg'
 import Plus from '@/assets/img/map-btn/plus.svg'
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux'
-import { MapServices, ModeServices } from '@/store/reducers'
+import { setCenter, setMode, setZoom } from '@/store/reducers'
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 
@@ -17,17 +17,17 @@ export default function MapControls() {
     const {mode} = useTypeSelector(state => state.Mode)
 
     const handleClickZoom = (value: number) => {
-        dispatch(MapServices.actions.setZoom(zoom + value))
+        dispatch(setZoom(zoom + value))
     }
 
     const handleClickLocation = () => {
-        dispatch(MapServices.actions.setCenter(userLocation))
+        dispatch(setCenter(userLocation))
     }
 
     const handleClickTheme = () => {
         const newMode = mode === 'light' ? 'dark': 'light'
 
-        dispatch(ModeServices.actions.setMode(newMode))
+        dispatch(setMode(newMode))
     }
 
     return (

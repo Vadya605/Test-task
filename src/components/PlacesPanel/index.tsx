@@ -2,9 +2,9 @@ import { Typography } from '@mui/material'
 
 import { PLACES } from '@/constants'
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux'
-import { SearchServices } from '@/store/reducers'
 
 import { Place,Places, PlacesWrapper } from "./styled"
+import { addSelectedPlace, removeSelectedPlace } from '@/store/reducers'
 
 export default function PlacesPanel() {
 
@@ -14,10 +14,10 @@ export default function PlacesPanel() {
 
     const handleClickPlace = (name: string) => {
         if (!selectedPlaces.includes(name)) {
-            return dispatch(SearchServices.actions.addSelectedPlace(name))
+            return dispatch(addSelectedPlace(name))
         }
 
-        return dispatch(SearchServices.actions.removeSelectedPlace(name))
+        return dispatch(removeSelectedPlace(name))
     }
 
     return (

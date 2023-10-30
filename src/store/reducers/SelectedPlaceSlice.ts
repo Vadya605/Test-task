@@ -13,14 +13,12 @@ export const SelectedPlaceSlice = createSlice({
     name: 'selectedPlace',
     initialState,
     reducers: {
-        setSelected(state, action: PayloadAction<google.maps.places.PlaceResult | null>){
+        setSelectedPlace(state, action: PayloadAction<google.maps.places.PlaceResult | null>){
             state.selectedPlace = action.payload
         }
     },
 })
 
-export const SelectedPlaceServices = {
-    actions: SelectedPlaceSlice.actions
-}
+export const { setSelectedPlace } = SelectedPlaceSlice.actions
 
 export default SelectedPlaceSlice.reducer;

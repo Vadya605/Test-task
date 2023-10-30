@@ -5,7 +5,7 @@ import CurrentLocation from '@/components/CurrentLocation';
 import { MAP_OPTIONS } from '@/constants';
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux.ts';
 import { useGoogleMaps } from '@/hooks/useGoogleMaps.ts';
-import { MapServices } from '@/store/reducers'
+import { setCenter, setMap, setUserLocation } from '@/store/reducers'
 import { getBrowserLocation } from '@/utils/geo.ts';
 import { GoogleMap } from "@react-google-maps/api";
 
@@ -29,14 +29,14 @@ export default function Map() {
     const onLoad = useCallback(async (map: google.maps.Map) => {
         getBrowserLocation()
             .then((location) => {
-                dispatch(MapServices.actions.setUserLocation(location))
-                dispatch(MapServices.actions.setCenter(location))
+                dispatch(setUserLocation(location))
+                dispatch(setCenter(location))
             })
             .catch((defaultLocation) => {
-                dispatch(MapServices.actions.setUserLocation(defaultLocation))
-                dispatch(MapServices.actions.setCenter(defaultLocation))
+                dispatch(setUserLocation(defaultLocation))
+                dispatch(setCenter(defaultLocation))
             }).finally(() => {
-                dispatch(MapServices.actions.setMap(map))
+                dispatch(setMap(map))
             })
     }, [])
 

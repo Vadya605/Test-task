@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { Libraries, useJsApiLoader } from '@react-google-maps/api';
 
-import { MapServices } from '../store/reducers';
+import { setIsLoaded } from '@/store/reducers';
 import { useAppDispatch } from './redux';
 
 export function useGoogleMaps() {
@@ -18,7 +18,7 @@ export function useGoogleMaps() {
     });
 
     useEffect(() => {
-        dispatch(MapServices.actions.setIsLoaded(isLoaded))
+        dispatch(setIsLoaded(isLoaded))
     }, [isLoaded]);
 
     return isLoaded;

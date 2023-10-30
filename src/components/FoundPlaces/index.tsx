@@ -1,6 +1,6 @@
 import { CIRCLE_OPTIONS } from "@/constants"
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux"
-import { SelectedPlaceServices } from "@/store/reducers"
+import { setSelectedPlace } from "@/store/reducers"
 import { Circle,Marker } from "@react-google-maps/api"
 
 export default function FoundPlaces() {
@@ -9,7 +9,7 @@ export default function FoundPlaces() {
     const { foundPlaces, searchRadius } = useTypeSelector(state => state.Search)
 
     const handleClickMarker = (place: google.maps.places.PlaceResult) => {
-        dispatch(SelectedPlaceServices.actions.setSelected(place))
+        dispatch(setSelectedPlace(place))
     }
 
     return (

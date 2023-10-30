@@ -4,7 +4,7 @@ import ExitIcon from '@/assets/img/Exit.svg'
 import LogoImg from '@/assets/img/Logo.svg'
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux'
 import { useAuth } from '@/hooks/useAuth'
-import { AuthModalServices, ConfirmExitServices, DrawerServices } from '@/store/reducers'
+import { setIsOpenAuthModal, setIsOpenConfirmExit, setIsOpenDrawer, setSelectedSection } from '@/store/reducers'
 
 import Favorite from '../svg/Favorite'
 import Search from '../svg/Search'
@@ -17,19 +17,19 @@ export default function Aside() {
 
     const handleClickSectionItem = (name: string) => {
         if(name === 'favorite' && !isAuth){
-            return dispatch(AuthModalServices.actions.setIsOpen(true))
+            return dispatch(setIsOpenAuthModal(true))
         }
 
-        dispatch(DrawerServices.actions.setOpen(true))
-        dispatch(DrawerServices.actions.setSelectedSection(name))
+        dispatch(setIsOpenDrawer(true))
+        dispatch(setSelectedSection(name))
     }
 
     const handleClickAvatar = () => {
-        return dispatch(AuthModalServices.actions.setIsOpen(true))
+        return dispatch(setIsOpenAuthModal(true))
     }
 
     const handleClickExit = () => {
-        dispatch(ConfirmExitServices.actions.setIsOpen(true))
+        dispatch(setIsOpenConfirmExit(true))
     }
 
     return (

@@ -4,14 +4,22 @@ import Typography from '@mui/material/Typography';
 import Favorite from "@/components/svg/Favorite";
 import Geo from "@/components/svg/Geo";
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
-import { DirectionsRendererServices, FavoriteServices, RouteDetailsServices, SelectedFavoriteServices } from "@/store/reducers";
+import { 
+    clearDirections, 
+    removeFavorite, 
+    setDirectionsRenderer, 
+    setDistanceTotal, 
+    setPlaceLocation, 
+    setSelectedFavorite, 
+    setTime 
+} from "@/store/reducers";
 import { ButtonFavorite } from "@/UI/ButtonFavorite";
 import { ButtonRoute } from "@/UI/ButtonRoute";
 import { getDirections } from '@/utils/route';
 
 import { CardProps } from './interfaces';
 import { Actions, CardExpanded, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper, PhotoWrapper } from "./styled";
-import { removeFavorite } from '@/utils/favorite';
+import { deleteFavorite } from '@/utils/favorite';
 
 export default function ExpandedCard({ favoriteItem }: CardProps) {
     const dispatch = useAppDispatch()
@@ -22,10 +30,10 @@ export default function ExpandedCard({ favoriteItem }: CardProps) {
 
     const handleClickRemove = () => {
         setLoading(true)
-        return removeFavorite(userId, favoriteItem.place_id)
+        return deleteFavorite(userId, favoriteItem.place_id)
             .then(() => {
-                dispatch(SelectedFavoriteServices.actions.setSelected(''))
-                dispatch(FavoriteServices.actions.removeFavorite(favoriteItem))
+                dispatch(setSelectedFavorite(''))
+                dispatch(removeFavorite(favoriteItem))
             })
             .catch(err => console.log(err))
             .finally(() => setLoading(false))
@@ -35,7 +43,7 @@ export default function ExpandedCard({ favoriteItem }: CardProps) {
         console.log(favoriteItem.location);
 
         try {
-            dispatch(DirectionsRendererServices.actions.clearDirections())
+            dispatch(clearDirections())
 
             const directionRequest = {
                 origin: userLocation,
@@ -52,10 +60,10 @@ export default function ExpandedCard({ favoriteItem }: CardProps) {
                 directions: result
             })
 
-            dispatch(RouteDetailsServices.actions.setDistanceTotal(distance))
-            dispatch(RouteDetailsServices.actions.setPlaceLocation(favoriteItem.location))
-            dispatch(RouteDetailsServices.actions.setTime(time))
-            dispatch(DirectionsRendererServices.actions.setDirectionsRenderer(directionsRenderer))
+            dispatch(setDistanceTotal(distance))
+            dispatch(setPlaceLocation(favoriteItem.location))
+            dispatch(setTime(time))
+            dispatch(setDirectionsRenderer(directionsRenderer))
         } catch (e) {
             console.log(e);
         }

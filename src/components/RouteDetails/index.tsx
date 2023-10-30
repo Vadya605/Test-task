@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { Typography } from '@mui/material'
 
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
-import { DirectionsRendererServices, RouteDetailsServices } from "@/store/reducers";
+import { setDirectionsRenderer, setTime, setdDistanceTraveled } from "@/store/reducers";
 import { getDirections } from '@/utils/route';
 
 import { Details, DetailsWrapper, Progress, Row } from "./styled";
@@ -31,9 +31,9 @@ export default function RouteDetails() {
             const distanceTraveled = distanceTotal - (result?.routes[0].legs[0].distance?.value || 0)
             const time = result?.routes[0].legs[0].duration?.text || ''
 
-            dispatch(RouteDetailsServices.actions.setdDistanceTraveled(distanceTraveled))
-            dispatch(RouteDetailsServices.actions.setTime(time))
-            dispatch(DirectionsRendererServices.actions.setDirectionsRenderer(directionsRenderer))
+            dispatch(setdDistanceTraveled(distanceTraveled))
+            dispatch(setTime(time))
+            dispatch(setDirectionsRenderer(directionsRenderer))
         }
 
         placeLocation && map && fetchDirections()

@@ -2,7 +2,7 @@ import { Close } from "@mui/icons-material";
 import { IconButton, Typography } from "@mui/material";
 
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
-import { AuthModalServices } from "@/store/reducers";
+import { setIsOpenAuthModal } from "@/store/reducers";
 
 import FormLogin from "../FormLogin";
 import FormSignup from "../FormSignup";
@@ -13,7 +13,7 @@ export default function AuthModal() {
     const { isOpen, selectedForm } = useTypeSelector(state => state.AuthModal)
 
     const handleClickClose = () => {
-        dispatch(AuthModalServices.actions.setIsOpen(false))
+        dispatch(setIsOpenAuthModal(false))
     }
 
     return (

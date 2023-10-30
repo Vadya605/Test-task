@@ -22,8 +22,6 @@ export const DirectionsRendererSlice = createSlice({
     },
 })
 
-export const DirectionsRendererServices = {
-    actions: DirectionsRendererSlice.actions
-}
+export const { setDirectionsRenderer, clearDirections } = DirectionsRendererSlice.actions
 
 export default DirectionsRendererSlice.reducer;

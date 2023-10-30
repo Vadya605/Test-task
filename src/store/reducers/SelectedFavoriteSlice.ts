@@ -13,14 +13,12 @@ export const SelectedFavoriteSlice = createSlice({
     name: 'selectedFavorite',
     initialState,
     reducers: {
-        setSelected(state, action: PayloadAction<string>){
+        setSelectedFavorite(state, action: PayloadAction<string>){
             state.place_id = action.payload
         }
     },
 })
 
-export const SelectedFavoriteServices = {
-    actions: SelectedFavoriteSlice.actions
-}
+export const { setSelectedFavorite } = SelectedFavoriteSlice.actions
 
 export default SelectedFavoriteSlice.reducer;

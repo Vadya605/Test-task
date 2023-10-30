@@ -5,7 +5,17 @@ import FavoriteSvg from "@/components/svg/Favorite";
 import GeoSvg from '@/components/svg/Geo'
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
 import { useAuth } from '@/hooks/useAuth';
-import { AuthModalServices, DirectionsRendererServices, FavoriteServices, FavoriteSlice, RouteDetailsServices, SelectedPlaceServices } from "@/store/reducers";
+import { 
+    addFavorite, 
+    clearDirections, 
+    removeFavorite, 
+    setDirectionsRenderer, 
+    setDistanceTotal, 
+    setIsOpenAuthModal, 
+    setPlaceLocation, 
+    setSelectedPlace, 
+    setTime 
+} from "@/store/reducers";
 import { ButtonFavorite } from "@/UI/ButtonFavorite";
 import { ButtonRoute } from "@/UI/ButtonRoute";
 import { convertPlaceResultToFavorite } from "@/utils/convert";
@@ -15,7 +25,7 @@ import { InfoWindow } from "@react-google-maps/api";
 import { CardPlaceProps } from "./interfaces";
 import { Actions, CardPlaceWrapper, PhotoPlace } from "./styled";
 import DoesntExistPhoto from '/public/doesntExist.png'
-import { addFavorite, removeFavorite } from '@/utils/favorite';
+import { addToFavorite, deleteFavorite } from '@/utils/favorite';
 
 
 export default function CardPlace({ place }: CardPlaceProps) {
@@ -29,24 +39,24 @@ export default function CardPlace({ place }: CardPlaceProps) {
 
     const handleClickSave = () => {
         if (!isAuth) {
-            return dispatch(AuthModalServices.actions.setIsOpen(true))
+            return dispatch(setIsOpenAuthModal(true))
         }
 
         const favorite = convertPlaceResultToFavorite(place)
         setLoading(true)
 
         if (isFavorite()) {
-            return removeFavorite(userId, favorite.place_id)
+            return deleteFavorite(userId, favorite.place_id)
                 .then(() => {
-                    dispatch(FavoriteServices.actions.removeFavorite(favorite))
+                    dispatch(removeFavorite(favorite))
                 })
                 .catch(err => console.log(err))
                 .finally(() => setLoading(false))
         }
 
-        return addFavorite(userId, favorite)
+        return addToFavorite(userId, favorite)
             .then(() => {
-                dispatch(FavoriteSlice.actions.addFavorite(favorite))
+                dispatch(addFavorite(favorite))
             })
             .catch(err => console.log(err))
             .finally(() => setLoading(false))
@@ -54,12 +64,12 @@ export default function CardPlace({ place }: CardPlaceProps) {
     }
 
     const handleClickClose = () => {
-        dispatch(SelectedPlaceServices.actions.setSelected(null))
+        dispatch(setSelectedPlace(null))
     }
 
     const handleClickRoute = async () => {
         try {
-            dispatch(DirectionsRendererServices.actions.clearDirections())
+            dispatch(clearDirections())
 
             const placeLocation = {
                 lat: place.geometry?.location?.lat() || 0,
@@ -81,10 +91,10 @@ export default function CardPlace({ place }: CardPlaceProps) {
                 directions: result
             })
 
-            dispatch(RouteDetailsServices.actions.setDistanceTotal(distance))
-            dispatch(RouteDetailsServices.actions.setPlaceLocation(placeLocation))
-            dispatch(RouteDetailsServices.actions.setTime(time))
-            dispatch(DirectionsRendererServices.actions.setDirectionsRenderer(directionsRenderer))
+            dispatch(setDistanceTotal(distance))
+            dispatch(setPlaceLocation(placeLocation))
+            dispatch(setTime(time))
+            dispatch(setDirectionsRenderer(directionsRenderer))
         } catch (e) {
             console.log(e);
         }

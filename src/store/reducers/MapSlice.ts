@@ -41,8 +41,6 @@ export const MapSlice = createSlice({
     },
 })
 
-export const MapServices = {
-    actions: MapSlice.actions
-}
+export const { setCenter, setMap, setIsLoaded, setUserLocation, setZoom } = MapSlice.actions
 
 export default MapSlice.reducer;

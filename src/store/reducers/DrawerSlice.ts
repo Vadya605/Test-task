@@ -15,7 +15,7 @@ export const DrawerSlice = createSlice({
     name: 'drawer',
     initialState,
     reducers: {
-        setOpen(state, action: PayloadAction<boolean>){
+        setIsOpenDrawer(state, action: PayloadAction<boolean>){
             state.isOpen = action.payload
         },
         setSelectedSection(state, action: PayloadAction<string>){
@@ -24,8 +24,6 @@ export const DrawerSlice = createSlice({
     },
 })
 
-export const DrawerServices = {
-    actions: DrawerSlice.actions
-}
+export const { setIsOpenDrawer, setSelectedSection } = DrawerSlice.actions
 
 export default DrawerSlice.reducer;

@@ -16,26 +16,30 @@ export const SearchSlice = createSlice({
     name: 'search',
     initialState,
     reducers: {
-        addSelectedPlace(state, action: PayloadAction<string>){
+        addSelectedPlace(state, action: PayloadAction<string>) {
             state.selectedPlaces.push(action.payload)
         },
-        removeSelectedPlace(state, action: PayloadAction<string>){
+        removeSelectedPlace(state, action: PayloadAction<string>) {
             state.selectedPlaces = state.selectedPlaces.filter(place => place !== action.payload)
         },
-        addFoundPlaces(state, action: PayloadAction<google.maps.places.PlaceResult[]>){
+        addFoundPlaces(state, action: PayloadAction<google.maps.places.PlaceResult[]>) {
             state.foundPlaces = state.foundPlaces.concat(action.payload)
         },
-        clearFoundPlaces(state){
+        clearFoundPlaces(state) {
             state.foundPlaces = []
         },
-        setSearchRadius(state, action: PayloadAction<number>){
+        setSearchRadius(state, action: PayloadAction<number>) {
             state.searchRadius = action.payload
         },
     },
 })
 
-export const SearchServices = {
-    actions: SearchSlice.actions
-}
+export const { 
+    addSelectedPlace, 
+    removeSelectedPlace, 
+    addFoundPlaces, 
+    clearFoundPlaces, 
+    setSearchRadius 
+} = SearchSlice.actions
 
 export default SearchSlice.reducer;

@@ -34,8 +34,11 @@ export const RouteDetailsSlice = createSlice({
     },
 })
 
-export const RouteDetailsServices = {
-    actions: RouteDetailsSlice.actions
-}
+export const { 
+    setPlaceLocation, 
+    setDistanceTotal, 
+    setdDistanceTraveled, 
+    setTime 
+} = RouteDetailsSlice.actions
 
 export default RouteDetailsSlice.reducer;

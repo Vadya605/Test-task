@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import { useEffect, useState } from 'react';
 import BackIcon from '@/assets/img/Arrow.svg'
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
-import { FavoriteServices, SelectedFavoriteServices } from "@/store/reducers";
+import { setFavorites, setSelectedFavorite } from "@/store/reducers";
 
 import CollapsedCard from "../CardFavoriteCollapsed";
 import ExpandedCard from "../CardFavoriteExpanded";
@@ -22,7 +22,7 @@ export default function FavoritesPanel() {
     const [isLoading, setIsLoading] = useState(false)
 
     const handleClickBack = () => {
-        dispatch(SelectedFavoriteServices.actions.setSelected(''))
+        dispatch(setSelectedFavorite(''))
     }
 
     const renderCollapsedCards = () => {
@@ -40,7 +40,7 @@ export default function FavoritesPanel() {
 
         getFavorites(userId)
             .then((favorites) => {
-                dispatch(FavoriteServices.actions.setFavorites(favorites))
+                dispatch(setFavorites(favorites))
             })
             .catch(err => console.log(err))
             .finally(() => setIsLoading(false))

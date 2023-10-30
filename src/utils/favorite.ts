@@ -2,7 +2,7 @@ import { IFavorite } from "@/interfaces/IFavorite";
 import { getDatabase, ref, set, push, get, remove } from "firebase/database";
 
 
-export function addFavorite(userId: string, favoriteItem: IFavorite) {
+export function addToFavorite(userId: string, favoriteItem: IFavorite) {
     const db = getDatabase();
     const favoritesRef = ref(db, `favorites/${userId}`);
 
@@ -11,7 +11,7 @@ export function addFavorite(userId: string, favoriteItem: IFavorite) {
     return set(newFavoriteRef, favoriteItem);
 }
 
-export function removeFavorite(userId: string, favoriteId: string) {
+export function deleteFavorite(userId: string, favoriteId: string) {
     const db = getDatabase();
     return new Promise((resolve, reject) => {
         const favoritesRef = ref(db, `favorites/${userId}`);

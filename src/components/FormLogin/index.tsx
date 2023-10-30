@@ -4,7 +4,7 @@ import { Button, TextField, Typography } from "@mui/material";
 
 import { ERRORS, ErrorsType } from "@/constants/errors";
 import { useAppDispatch } from "@/hooks/redux";
-import { AuthModalServices, UserServices } from "@/store/reducers";
+import { setIsOpenAuthModal, setSelectedForm, setUser } from "@/store/reducers";
 import { ButtonAuth } from "@/UI/ButtonAuth";
 import { ErrorMessage } from "@/UI/ErrorMessage";
 import { FormAuth } from "@/UI/FormAuth";
@@ -19,7 +19,7 @@ export default function FormLogin() {
     const [error, setError] = useState('')
 
     const handleClickSupport = () => {
-        dispatch(AuthModalServices.actions.setSelectedForm('signup'))
+        dispatch(setSelectedForm('signup'))
     }
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -33,12 +33,12 @@ export default function FormLogin() {
             const auth = getAuth()
             const user = (await signInWithEmailAndPassword(auth, email, password)).user
 
-            dispatch(UserServices.actions.setUser({
+            dispatch(setUser({
                 id: user.uid,
                 email: user.email || '',
                 token: user.refreshToken
             }))
-            dispatch(AuthModalServices.actions.setIsOpen(false))
+            dispatch(setIsOpenAuthModal(false))
         } catch (error) {
             if (error instanceof FirebaseError) {
                 const code = error.code as keyof ErrorsType

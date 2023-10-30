@@ -12,14 +12,12 @@ export const ConfirmExitSlice = createSlice({
     name: 'confirmExit',
     initialState,
     reducers: {
-        setIsOpen(state, action: PayloadAction<boolean>){
+        setIsOpenConfirmExit(state, action: PayloadAction<boolean>){
             state.isOpen = action.payload
         },
     },
 })
 
-export const ConfirmExitServices = {
-    actions: ConfirmExitSlice.actions
-}
+export const { setIsOpenConfirmExit } = ConfirmExitSlice.actions
 
 export default ConfirmExitSlice.reducer;

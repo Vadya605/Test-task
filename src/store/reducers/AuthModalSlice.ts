@@ -14,7 +14,7 @@ export const AuthModalSlice = createSlice({
     name: 'authModal',
     initialState,
     reducers: {
-        setIsOpen(state, action: PayloadAction<boolean>){
+        setIsOpenAuthModal(state, action: PayloadAction<boolean>){
             state.isOpen = action.payload
         },
         setSelectedForm(state, action: PayloadAction<string>){
@@ -23,8 +23,6 @@ export const AuthModalSlice = createSlice({
     },
 })
 
-export const AuthModalServices = {
-    actions: AuthModalSlice.actions
-}
+export const { setIsOpenAuthModal, setSelectedForm } = AuthModalSlice.actions
 
 export default AuthModalSlice.reducer;

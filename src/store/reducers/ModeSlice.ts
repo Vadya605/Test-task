@@ -19,8 +19,6 @@ export const ModeSlice = createSlice({
     },
 })
 
-export const ModeServices = {
-    actions: ModeSlice.actions
-}
+export const { setMode } = ModeSlice.actions
 
 export default ModeSlice.reducer;

@@ -5,8 +5,8 @@ import Typography from '@mui/material/Typography';
 import Search from '@/components/svg/Search'
 import { PLACES } from '@/constants'
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux'
-import { SearchServices } from '@/store/reducers'
 import { AppDispatch } from '@/store/store';
+import { addFoundPlaces, clearFoundPlaces, setSearchRadius } from '@/store/reducers';
 
 import PlacesPanel from '../PlacesPanel';
 import { ButtonSearch, RadiusBox, RadiusInput, SearchPanelWrapper } from './styled'
@@ -19,11 +19,11 @@ export default function SearchPanel() {
     const handleChangeRadius = (e: React.ChangeEvent<HTMLInputElement>) => {
         const searchRadiusValue = Number(e.target.value.replace(/[^0-9]/g, ''))
 
-        dispatch(SearchServices.actions.setSearchRadius(searchRadiusValue))
+        dispatch(setSearchRadius(searchRadiusValue))
     }
 
     const handleSearch = () => {
-        dispatch(SearchServices.actions.clearFoundPlaces())
+        dispatch(clearFoundPlaces())
 
         if (!(map && selectedPlaces.length)) {
             return
@@ -46,12 +46,10 @@ export default function SearchPanel() {
                         icon: PLACES.find(p => p.name === selectedPlace)?.icon
                     }));
 
-                    dispatch(SearchServices.actions.addFoundPlaces(updatedResults))
+                    dispatch(addFoundPlaces(updatedResults))
                 }
             });
         })
-
-        dispatch(SearchServices.actions.setSearchRadius(searchRadius))
     };
 
     return (

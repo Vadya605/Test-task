@@ -4,7 +4,7 @@ import AutoCompleteSearch from '@/components/AutoCompleteSearch';
 import FavoritesPanel from '@/components/FavoritesPanel';
 import SearchPanel from '@/components/SearchPanel';
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux';
-import { DrawerServices } from '@/store/reducers';
+import { setIsOpenDrawer, setSelectedSection } from '@/store/reducers';
 
 import Aside from '../Aside';
 import ErrorBoundary from '../ErrorBoundary';
@@ -18,9 +18,9 @@ export default function SideBar() {
     const dispatch = useAppDispatch()
     const { isOpen, selectedSection } = useTypeSelector(state => state.Drawer)
 
-    const handleClickArrow = () => {
-        dispatch(DrawerServices.actions.setOpen(!isOpen))
-        dispatch(DrawerServices.actions.setSelectedSection(''))
+    const handleClickArrowClose = () => {
+        dispatch(setIsOpenDrawer(false))
+        dispatch(setSelectedSection(''))
     }
 
     return (
@@ -29,7 +29,7 @@ export default function SideBar() {
                 <DrawerWrapper className='drawerWrapper'>
                     <Aside />
                     <DrawerContent className='drawerContent'>
-                        {isOpen && <ArrowClose onClick={handleClickArrow} ><ChevronLeft /></ArrowClose>}
+                        {isOpen && <ArrowClose onClick={handleClickArrowClose} ><ChevronLeft /></ArrowClose>}
                         <AutoCompleteSearch />
                         {isOpen && (selectedSection === 'search' ? (
                             <SearchPanel />
@@ -41,10 +41,6 @@ export default function SideBar() {
                     </DrawerContent>
                 </DrawerWrapper>
             </Drawer>
-            {/* {!isOpen &&
-                <ArrowOpen onClick={handleClickArrow}>
-                    <img src={Arrow} alt="" />
-                </ArrowOpen>} */}
         </Container>
     );
 }
