@@ -5,13 +5,13 @@ describe('Тестирование selected place slice', () => {
         selectedPlace: null
     }
 
-    it('Тестирование initial state', () => {
+    test('Тестирование initial state', () => {
         const result = SelectedPlaceSlice(initialState, { type: '' })
 
         expect(result).toEqual(initialState)
     })
 
-    it('Тестирование setSelected', () => {
+    test('Тестирование setSelected', () => {
         const payload = {
             name: 'test-place'
         }

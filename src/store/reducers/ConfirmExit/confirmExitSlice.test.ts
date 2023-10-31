@@ -5,12 +5,12 @@ describe('Тестирование confirmExitSlice', () => {
         isOpen: false,
     };
 
-    it('Тестирование начального состояния', () => {
+    test('Тестирование начального состояния', () => {
         const result = ConfirmExitSlice(initialState, { type: '' });
         expect(result).toEqual(initialState);
     });
 
-    it('Тестирование метода "setIsOpenConfirmExit"', () => {
+    test('Тестирование метода "setIsOpenConfirmExit"', () => {
         const payload = true;
         const action = {
             type: setIsOpenConfirmExit.type,

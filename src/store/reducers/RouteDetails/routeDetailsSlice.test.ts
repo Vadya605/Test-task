@@ -9,13 +9,13 @@ describe('Тестирование route details slice', () => {
         time: ''
     }
 
-    it('Тестирование initial state', () => {
+    test('Тестирование initial state', () => {
         const result = RouteDetailsSlice(initialState, { type: '' })
 
         expect(result).toEqual(initialState)
     })
 
-    it('Тестирование метода setRoute', () => {
+    test('Тестирование метода setRoute', () => {
         const payload = {
             directionsRenderer: null, // т.к тип google
             distanceTotal: 5,
@@ -36,7 +36,7 @@ describe('Тестирование route details slice', () => {
         expect(result.time).toEqual(payload.time)
     })
 
-    it('Тестирование метода updateRoute', () => {
+    test('Тестирование метода updateRoute', () => {
         const payload = {
             directionsRenderer: null, // т.к тип google
             distanceTraveled: 5,
@@ -55,7 +55,7 @@ describe('Тестирование route details slice', () => {
         expect(result.time).toEqual(payload.time)
     })
 
-    it('Тестирование метода clearRoute', () => {
+    test('Тестирование метода clearRoute', () => {
         const action = {
             type: clearRoute.type,
         }

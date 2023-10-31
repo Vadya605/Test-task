@@ -10,12 +10,12 @@ describe('Тестирование MapSlice', () => {
         zoom: 15,
     };
 
-    it('Тестирование initial state', () => {
+    test('Тестирование initial state', () => {
         const result = MapSlice(initialState, { type: '' });
         expect(result).toEqual(initialState);
     });
 
-    it('Тестирование метода setCenter ', () => {
+    test('Тестирование метода setCenter ', () => {
         const payload = { lat: 50, lng: 35 };
         const action = {
             type: setCenter.type,
@@ -25,7 +25,7 @@ describe('Тестирование MapSlice', () => {
         expect(result.center).toEqual(payload);
     });
 
-    it('Тестирование метода setIsLoaded ', () => {
+    test('Тестирование метода setIsLoaded ', () => {
         const payload = true;
         const action = {
             type: setIsLoaded.type,
@@ -35,7 +35,7 @@ describe('Тестирование MapSlice', () => {
         expect(result.isLoaded).toEqual(payload);
     });
 
-    it('Тестирование метода setUserLocation ', () => {
+    test('Тестирование метода setUserLocation ', () => {
         const payload = { lat: 40, lng: 30 };
         const action = {
             type: setUserLocation.type,
@@ -45,7 +45,7 @@ describe('Тестирование MapSlice', () => {
         expect(result.userLocation).toEqual(payload);
     });
 
-    it('Тестирование метода setZoom ', () => {
+    test('Тестирование метода setZoom ', () => {
         const payload = 10;
         const action = {
             type: setZoom.type,

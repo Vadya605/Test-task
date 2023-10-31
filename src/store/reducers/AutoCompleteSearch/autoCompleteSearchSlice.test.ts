@@ -5,12 +5,12 @@ describe('Тестирование AutoCompleteSearchSlice', () => {
         resultLocation: null,
     };
 
-    it('Тестирование initial state', () => {
+    test('Тестирование initial state', () => {
         const result = AutoCompleteSearchSlice(initialState, { type: '' });
         expect(result).toEqual(initialState);
     });
 
-    it('Тестирование метода "setIsOpenConfirmExit"', () => {
+    test('Тестирование метода "setIsOpenConfirmExit"', () => {
         const payload = { lat: 30, lng: 30 };
         const action = {
             type: setResultLocation.type,

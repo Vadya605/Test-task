@@ -6,12 +6,12 @@ describe('Тестирование DrawerSlice', () => {
         selectedSection: null,
     };
 
-    it('Тестирование initial state', () => {
+    test('Тестирование initial state', () => {
         const result = DrawerSlice(initialState, { type: '' });
         expect(result).toEqual(initialState);
     });
 
-    it('Тестирование метода "setOpen"', () => {
+    test('Тестирование метода "setOpen"', () => {
         const payload = true;
         const action = {
             type: setIsOpenDrawer.type,
@@ -21,7 +21,7 @@ describe('Тестирование DrawerSlice', () => {
         expect(result.isOpen).toEqual(payload);
     });
 
-    it('Тестирование метода "setSelectedSection"', () => {
+    test('Тестирование метода "setSelectedSection"', () => {
         const payload = 'exaple';
         const action = {
             type: setSelectedSection.type,
