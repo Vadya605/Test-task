@@ -1,4 +1,4 @@
-import SearchSlice, { SearchServices } from "@/store/reducers/SearchSlice";
+import SearchSlice, { addFoundPlaces, addSelectedPlace, clearFoundPlaces, removeSelectedPlace, setSearchRadius } from "@/store/reducers/Search";
 
 describe('Тестирование SearchSlice', () => {
     const initialState = {
@@ -15,7 +15,7 @@ describe('Тестирование SearchSlice', () => {
     test('Тестирование метода addSelectedPlace', () => {
         const payload = 'Природа';
         const action = {
-            type: SearchServices.actions.addSelectedPlace.type,
+            type: addSelectedPlace.type,
             payload: payload,
         };
         const result = SearchSlice(initialState, action);
@@ -30,7 +30,7 @@ describe('Тестирование SearchSlice', () => {
 
         const payload = 'Культура';
         const action = {
-            type: SearchServices.actions.removeSelectedPlace.type,
+            type: removeSelectedPlace.type,
             payload: payload,
         };
         const result = SearchSlice(initialStateWtesthPlace, action);
@@ -43,7 +43,7 @@ describe('Тестирование SearchSlice', () => {
             { name: 'Place 2' },
         ];
         const action = {
-            type: SearchServices.actions.addFoundPlaces.type,
+            type: addFoundPlaces.type,
             payload: payload,
         };
         const result = SearchSlice(initialState, action);
@@ -56,7 +56,7 @@ describe('Тестирование SearchSlice', () => {
             foundPlaces: [{ name: 'Place 1' }, { name: 'Place 2' }],
         };
         const action = {
-            type: SearchServices.actions.clearFoundPlaces.type,
+            type: clearFoundPlaces.type,
         };
         const result = SearchSlice(intestialStateWtesthFoundPlaces, action);
         expect(result.foundPlaces).toEqual([]);
@@ -65,7 +65,7 @@ describe('Тестирование SearchSlice', () => {
     test('Тестирование метода setSearchRadius', () => {
         const payload = 5;
         const action = {
-            type: SearchServices.actions.setSearchRadius.type,
+            type: setSearchRadius.type,
             payload: payload,
         };
         const result = SearchSlice(initialState, action);

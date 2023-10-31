@@ -3,7 +3,8 @@ import Typography from '@mui/material/Typography';
 import ExpandMore from '@/assets/img/Arrow.svg'
 import Favorite from '@/assets/img/Favorite.svg'
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
-import { setSelectedFavorite, removeFavorite } from '@/store/reducers';
+import { removeFavorite,setSelectedFavorite } from '@/store/reducers';
+import { deleteFavorite } from '@/utils/favorite';
 import { strLimit } from "@/utils/textHelpers";
 
 import { ICardProps } from "./interfaces";
@@ -18,7 +19,6 @@ import {
     PhotoIconsWrapper,
     PhotoWrapper
 } from "./styled";
-import { deleteFavorite } from '@/utils/favorite';
 
 export default function CollapsedCard({ favoriteItem }: ICardProps) {
     const dispatch = useAppDispatch()

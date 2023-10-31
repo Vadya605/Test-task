@@ -1,4 +1,4 @@
-import SelectedPlaceSlice, {SelectedPlaceServices} from "@/store/reducers/SelectedPlaceSlice"
+import SelectedPlaceSlice, {setSelectedPlace} from "@/store/reducers/SelectedPlace"
 
 describe('Тестирование selected place slice', () => {
     const initialState = {
@@ -17,7 +17,7 @@ describe('Тестирование selected place slice', () => {
         }
 
         const action = {
-            type: SelectedPlaceServices.actions.setSelected.type,
+            type: setSelectedPlace.type,
             payload: payload
         }
 

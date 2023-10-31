@@ -1,12 +1,13 @@
 import Nature from '@/assets/img/icons-markers/nature.svg'
 import FavoritesPanel from '@/components/FavoritesPanel';
 import { IFavorite } from '@/interfaces/IFavorite';
-import { store } from '@/store/store';
-import { screen, waitFor, act } from '@testing-library/react';
-import fetchMock from 'jest-fetch-mock';
-import '@testing-library/jest-dom'
-import { renderWithAllProviders } from '../testHelpers/renderWithAllProviders';
 import { addFavorite } from '@/store/reducers';
+import { store } from '@/store/store';
+import { renderWithAllProviders } from '@/utils';
+import { act,screen, waitFor } from '@testing-library/react';
+
+import '@testing-library/jest-dom'
+import fetchMock from 'jest-fetch-mock';
 
 
 describe('Тестирование FavoritePanel', () => {

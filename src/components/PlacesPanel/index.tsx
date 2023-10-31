@@ -2,9 +2,9 @@ import { Typography } from '@mui/material'
 
 import { PLACES } from '@/constants'
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux'
+import { addSelectedPlace, removeSelectedPlace } from '@/store/reducers'
 
 import { Place, Places, PlacesWrapper } from "./styled"
-import { addSelectedPlace, removeSelectedPlace } from '@/store/reducers'
 
 export default function PlacesPanel() {
 

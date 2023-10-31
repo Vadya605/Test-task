@@ -1,15 +1,16 @@
 import { useState } from 'react';
+
 import Typography from '@mui/material/Typography';
 
 import Favorite from "@/components/svg/Favorite";
 import Geo from "@/components/svg/Geo";
-import { useAppDispatch, useTypeSelector, useRoute } from "@/hooks";
+import { useAppDispatch, useRoute,useTypeSelector } from "@/hooks";
 import { clearRoute, removeFavorite, setRoute, setSelectedFavorite } from "@/store/reducers";
 import { ButtonFavorite, ButtonRoute } from "@/UI";
+import { deleteFavorite } from '@/utils/favorite';
 
 import { ICardProps } from './interfaces';
 import { Actions, CardExpanded, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper, PhotoWrapper } from "./styled";
-import { deleteFavorite } from '@/utils/favorite';
 
 export default function ExpandedCard({ favoriteItem }: ICardProps) {
     const dispatch = useAppDispatch()

@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 
+import { getTheme } from '@/utils/getTheme';
 import { ThemeProvider } from '@emotion/react';
 import { render } from '@testing-library/react';
-import { getTheme } from '@/utils/getTheme';
 
 const renderWithTheme = (component: ReactNode) => {
   const theme = getTheme('dark')

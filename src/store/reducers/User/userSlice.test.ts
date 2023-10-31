@@ -1,4 +1,4 @@
-import UserSlice, { UserServices } from "@/store/reducers/UserSlice";
+import UserSlice, { removeUser,setUser } from "@/store/reducers/User";
 
 describe('Тестирование UserSlice', () => {
     const initialState = {
@@ -19,7 +19,7 @@ describe('Тестирование UserSlice', () => {
             token: 'token123'
         };
         const action = {
-            type: UserServices.actions.setUser.type,
+            type: setUser.type,
             payload: payload,
         };
         const result = UserSlice(initialState, action);
@@ -33,7 +33,7 @@ describe('Тестирование UserSlice', () => {
             token: 'token123'
         };
         const action = {
-            type: UserServices.actions.removeUser.type,
+            type: removeUser.type,
         };
         const result = UserSlice(initialStateWithUser, action);
         expect(result).toEqual(initialState);

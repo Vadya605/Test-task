@@ -1,4 +1,4 @@
-import ConfirmExitSlice, { ConfirmExitServices } from "@/store/reducers/ConfirmExitSlice";
+import ConfirmExitSlice, { setIsOpenConfirmExit } from "@/store/reducers/ConfirmExit";
 
 describe('Тестирование confirmExitSlice', () => {
     const initialState = {
@@ -10,10 +10,10 @@ describe('Тестирование confirmExitSlice', () => {
         expect(result).toEqual(initialState);
     });
 
-    it('Тестирование метода "setIsOpen"', () => {
+    it('Тестирование метода "setIsOpenConfirmExit"', () => {
         const payload = true;
         const action = {
-            type: ConfirmExitServices.actions.setIsOpen.type,
+            type: setIsOpenConfirmExit.type,
             payload: payload,
         };
         const result = ConfirmExitSlice(initialState, action);

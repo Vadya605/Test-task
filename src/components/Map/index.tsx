@@ -1,12 +1,12 @@
 import { useCallback } from 'react'
-import { GoogleMap } from "@react-google-maps/api";
 
 import CardPlace from '@/components/CardPlace';
 import CurrentLocation from '@/components/CurrentLocation';
 import { MAP_OPTIONS } from '@/constants';
-import { useAppDispatch, useTypeSelector, useGoogleMaps } from '@/hooks';
+import { useAppDispatch, useGoogleMaps,useTypeSelector } from '@/hooks';
 import { setCenter, setMap, setUserLocation } from '@/store/reducers'
 import { getBrowserLocation, getMapStyle } from '@/utils';
+import { GoogleMap } from "@react-google-maps/api";
 
 import FoundPlaces from '../FoundPlaces';
 import Loader from "../Loader";

@@ -1,4 +1,4 @@
-import SelectedFavoriteSlice, { SelectedFavoriteServices } from "@/store/reducers/SelectedFavoriteSlice";
+import SelectedFavoriteSlice, { setSelectedFavorite } from "@/store/reducers/SelectedFavorite";
 
 describe('Тестирование SelectedFavoriteSlice', () => {
     const initialState = {
@@ -13,7 +13,7 @@ describe('Тестирование SelectedFavoriteSlice', () => {
     test('Тестирование метода "setSelected"', () => {
         const payload = '123456';
         const action = {
-            type: SelectedFavoriteServices.actions.setSelected.type,
+            type: setSelectedFavorite.type,
             payload: payload,
         };
         const result = SelectedFavoriteSlice(initialState, action);

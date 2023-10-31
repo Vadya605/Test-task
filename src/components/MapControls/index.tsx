@@ -1,13 +1,14 @@
 import React from 'react'
 
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+
 import Delimeter from '@/assets/img/map-btn/del.svg'
 import Location from '@/assets/img/map-btn/location.svg'
 import Minus from '@/assets/img/map-btn/minus.svg'
 import Plus from '@/assets/img/map-btn/plus.svg'
 import { useAppDispatch, useTypeSelector } from '@/hooks'
 import { setCenter, setMode, setZoom } from '@/store/reducers'
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 import { ButtonLocation,ButtonsControl, ButtonsZoom, ButtonTheme, ButtonZoom } from './styled'
 

@@ -1,13 +1,13 @@
 import { useState } from 'react';
+
 import Typography from '@mui/material/Typography';
 
 import FavoriteSvg from "@/components/svg/Favorite";
 import GeoSvg from '@/components/svg/Geo'
-import { useAppDispatch, useTypeSelector, useAuth, useRoute } from "@/hooks";
+import { useAppDispatch, useAuth, useRoute,useTypeSelector } from "@/hooks";
 import { addFavorite, clearRoute, removeFavorite, setIsOpenAuthModal, setRoute, setSelectedPlace } from "@/store/reducers";
 import { ButtonFavorite, ButtonRoute } from '@/UI';
-
-import { convertPlaceResultToFavorite, addToFavorite, deleteFavorite, checkFavorite } from "@/utils";
+import { addToFavorite, checkFavorite,convertPlaceResultToFavorite, deleteFavorite } from "@/utils";
 import { InfoWindow } from "@react-google-maps/api";
 
 import { Actions, CardPlaceWrapper, PhotoPlace } from "./styled";

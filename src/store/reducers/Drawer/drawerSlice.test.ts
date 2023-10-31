@@ -1,4 +1,4 @@
-import DrawerSlice, { DrawerServices } from "@/store/reducers/DrawerSlice";
+import DrawerSlice, { setIsOpenDrawer, setSelectedSection } from "@/store/reducers/Drawer";
 
 describe('Тестирование DrawerSlice', () => {
     const initialState = {
@@ -6,7 +6,7 @@ describe('Тестирование DrawerSlice', () => {
         selectedSection: null,
     };
 
-    it('Тестирование начального состояния', () => {
+    it('Тестирование initial state', () => {
         const result = DrawerSlice(initialState, { type: '' });
         expect(result).toEqual(initialState);
     });
@@ -14,7 +14,7 @@ describe('Тестирование DrawerSlice', () => {
     it('Тестирование метода "setOpen"', () => {
         const payload = true;
         const action = {
-            type: DrawerServices.actions.setOpen.type,
+            type: setIsOpenDrawer.type,
             payload: payload,
         };
         const result = DrawerSlice(initialState, action);
@@ -22,9 +22,9 @@ describe('Тестирование DrawerSlice', () => {
     });
 
     it('Тестирование метода "setSelectedSection"', () => {
-        const payload = 'settings';
+        const payload = 'exaple';
         const action = {
-            type: DrawerServices.actions.setSelectedSection.type,
+            type: setSelectedSection.type,
             payload: payload,
         };
         const result = DrawerSlice(initialState, action);

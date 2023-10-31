@@ -5,8 +5,8 @@ import Typography from '@mui/material/Typography';
 import Search from '@/components/svg/Search'
 import { PLACES } from '@/constants'
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux'
-import { AppDispatch } from '@/store/store';
 import { addFoundPlaces, clearFoundPlaces, setSearchRadius } from '@/store/reducers';
+import { AppDispatch } from '@/store/store';
 
 import PlacesPanel from '../PlacesPanel';
 import { ButtonSearch, RadiusBox, RadiusInput, SearchPanelWrapper } from './styled'

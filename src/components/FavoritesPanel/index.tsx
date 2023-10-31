@@ -1,15 +1,16 @@
+import { useEffect, useState } from 'react';
+
 import { Box, CircularProgress } from '@mui/material'
 import Typography from '@mui/material/Typography';
 
-import { useEffect, useState } from 'react';
 import BackIcon from '@/assets/img/Arrow.svg'
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
 import { setFavorites, setSelectedFavorite } from "@/store/reducers";
+import { getFavorites } from '@/utils/favorite';
 
 import CollapsedCard from "../CardFavoriteCollapsed";
 import ExpandedCard from "../CardFavoriteExpanded";
 import { BoxLoader, ButtonBack, HeaderPanel } from "./styled";
-import { getFavorites } from '@/utils/favorite';
 
 export default function FavoritesPanel() {
     const dispatch = useAppDispatch()

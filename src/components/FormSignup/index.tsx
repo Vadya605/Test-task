@@ -6,7 +6,7 @@ import { ERRORS, ErrorsType } from "@/constants";
 import { AuthError } from "@/errors";
 import { useAppDispatch } from "@/hooks";
 import { setIsOpenAuthModal, setSelectedForm, setUser } from "@/store/reducers";
-import { FormAuth, ButtonAuth, ErrorMessage, SupportAction } from "@/UI";
+import { ButtonAuth, ErrorMessage, FormAuth, SupportAction } from "@/UI";
 import { checkPasswordMatch } from "@/utils";
 
 import { FirebaseError } from "firebase/app";

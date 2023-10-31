@@ -1,9 +1,9 @@
 import SearchPanel from '@/components/SearchPanel';
 import { store } from '@/store/store';
+import { renderWithAllProviders } from '@/utils';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 
 import '@testing-library/jest-dom'
-import { renderWithAllProviders } from '../testHelpers/renderWithAllProviders';
 
 describe('Тестирование панели поиска', () => {
     test('Отображение панели поиска', () => {

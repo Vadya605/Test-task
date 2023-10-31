@@ -1,4 +1,4 @@
-import AuthModalSlice, { AuthModalServices } from "@/store/reducers/AuthModalSlice";
+import AuthModalSlice, { setIsOpenAuthModal, setSelectedForm } from "@/store/reducers/AuthModal";
 
 describe('Тестирование authModalSlice', () => {
     const initialState = {
@@ -11,10 +11,10 @@ describe('Тестирование authModalSlice', () => {
         expect(result).toEqual(initialState);
     });
 
-    test('Тестирование метода "setIsOpen"', () => {
+    test('Тестирование метода "setIsOpenAuthModal"', () => {
         const payload = true;
         const action = {
-            type: AuthModalServices.actions.setIsOpen.type,
+            type: setIsOpenAuthModal.type,
             payload: payload,
         };
         const result = AuthModalSlice(initialState, action);
@@ -24,7 +24,7 @@ describe('Тестирование authModalSlice', () => {
     test('Тестирование метода "setSelectedForm"', () => {
         const payload = 'sign up';
         const action = {
-            type: AuthModalServices.actions.setSelectedForm.type,
+            type: setSelectedForm.type,
             payload: payload,
         };
         const result = AuthModalSlice(initialState, action);

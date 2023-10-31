@@ -1,8 +1,8 @@
 import Autocomplete from '@/components/AutoCompleteSearch';
+import { renderWithAllProviders } from '@/utils';
 import { fireEvent, screen } from '@testing-library/react';
 
 import '@testing-library/jest-dom';
-import { renderWithAllProviders } from '../testHelpers/renderWithAllProviders';
 
 describe('Тестирование Autocomplete', () => {
     test('Тестирование ввода в поле', () => {

@@ -1,4 +1,4 @@
-import FavoriteSlice, { FavoriteServices } from "@/store/reducers/FavoriteSlice";
+import FavoriteSlice, { addFavorite, removeFavorite,setFavorites } from "@/store/reducers/Favorites";
 
 describe('Тестирование favoriteSlice', () => {
     const initialState = {
@@ -16,7 +16,7 @@ describe('Тестирование favoriteSlice', () => {
             { place_id: '2', name: 'Место 2' },
         ];
         const action = {
-            type: FavoriteServices.actions.setFavorites.type,
+            type: setFavorites.type,
             payload: payload,
         };
         const result = FavoriteSlice(initialState, action);
@@ -36,7 +36,7 @@ describe('Тестирование favoriteSlice', () => {
             }
         }
         const action = {
-            type: FavoriteServices.actions.addFavorite.type,
+            type: addFavorite.type,
             payload: favoriteItem,
         };
         const result = FavoriteSlice(initialState, action);
@@ -61,7 +61,7 @@ describe('Тестирование favoriteSlice', () => {
         };
         const itemToRemove = { place_id: '4', name: 'Место 4' };
         const action = {
-            type: FavoriteServices.actions.removeFavorite.type,
+            type: removeFavorite.type,
             payload: itemToRemove,
         };
         const result = FavoriteSlice(initialStateWithFavorites, action);

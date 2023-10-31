@@ -1,5 +1,5 @@
-import MapSlice, { MapServices } from "@/store/reducers/MapSlice";
 import { DEFAULT_CENTER } from "@/constants";
+import MapSlice, { setCenter, setIsLoaded, setUserLocation, setZoom } from "@/store/reducers/Map";
 
 describe('Тестирование MapSlice', () => {
     const initialState = {
@@ -18,7 +18,7 @@ describe('Тестирование MapSlice', () => {
     it('Тестирование метода setCenter ', () => {
         const payload = { lat: 50, lng: 35 };
         const action = {
-            type: MapServices.actions.setCenter.type,
+            type: setCenter.type,
             payload: payload,
         };
         const result = MapSlice(initialState, action);
@@ -28,7 +28,7 @@ describe('Тестирование MapSlice', () => {
     it('Тестирование метода setIsLoaded ', () => {
         const payload = true;
         const action = {
-            type: MapServices.actions.setIsLoaded.type,
+            type: setIsLoaded.type,
             payload: payload,
         };
         const result = MapSlice(initialState, action);
@@ -38,7 +38,7 @@ describe('Тестирование MapSlice', () => {
     it('Тестирование метода setUserLocation ', () => {
         const payload = { lat: 40, lng: 30 };
         const action = {
-            type: MapServices.actions.setUserLocation.type,
+            type: setUserLocation.type,
             payload: payload,
         };
         const result = MapSlice(initialState, action);
@@ -48,7 +48,7 @@ describe('Тестирование MapSlice', () => {
     it('Тестирование метода setZoom ', () => {
         const payload = 10;
         const action = {
-            type: MapServices.actions.setZoom.type,
+            type: setZoom.type,
             payload: payload,
         };
         const result = MapSlice(initialState, action);

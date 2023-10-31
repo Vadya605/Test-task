@@ -1,17 +1,15 @@
 import SideBar from '@/components/SideBar';
-import { UserServices } from '@/store/reducers';
+import { setUser } from '@/store/reducers';
 import { store } from '@/store/store';
+import { renderWithAllProviders } from '@/utils';
 import { fireEvent,screen } from '@testing-library/react';
 
 import '@testing-library/jest-dom'
-import { renderWithAllProviders } from '../testHelpers/renderWithAllProviders';
-
-
 
 describe('Тестирование Side Bar', () => {
     beforeAll(() => {
         const dispatch = store.dispatch
-        dispatch(UserServices.actions.setUser({
+        dispatch(setUser({
             id: '1',
             email: 'test@gmail.com',
             token: 'test_token'

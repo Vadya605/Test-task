@@ -1,5 +1,5 @@
 import { FirebaseApp, initializeApp } from 'firebase/app';
-import { Auth, UserCredential, getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { Auth, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword,UserCredential } from 'firebase/auth';
 
 jest.mock('firebase/auth', () => {
     const original = jest.requireActual('firebase/auth');
