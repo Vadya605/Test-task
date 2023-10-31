@@ -1,3 +1,3 @@
-export interface AsideButtonProps {
+export interface IAsideButtonProps {
     isActive: boolean
 }

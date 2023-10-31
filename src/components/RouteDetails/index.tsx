@@ -3,22 +3,24 @@ import { useEffect } from 'react'
 import { Typography } from '@mui/material'
 
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
-import { clearDirections, setDirectionsRenderer, setTime, setdDistanceTraveled } from "@/store/reducers";
+import { clearRoute, updateRoute } from "@/store/reducers";
 import { getDirections } from '@/utils/route';
 
 import { ButtonRemoveRoute, Details, DetailsWrapper, Progress, Row } from "./styled";
 
 export default function RouteDetails() {
     const dispatch = useAppDispatch()
-    const { distanceTotal, distanceTraveled, placeLocation, time } = useTypeSelector(state => state.RouteDetails)
-    const { map, userLocation } = useTypeSelector(state => state.Map)
-    const { directionsRenderer } = useTypeSelector(state => state.DirectionsRenderer)
-    console.log(directionsRenderer)
+    
+    const {
+        RouteDetails: { distanceTotal, distanceTraveled, placeLocation, time, directionsRenderer },
+        Map: { map, userLocation }
+    } = useTypeSelector(state => state)
+    
     const progress = (distanceTraveled / distanceTotal) * 100
     const distanceRemaining = ((distanceTotal - distanceTraveled) / 1000).toFixed(0)
 
     const handleClickRemoveRoute = () => {
-        dispatch(clearDirections())
+        dispatch(clearRoute())
     }
 
     useEffect(() => {
@@ -33,9 +35,7 @@ export default function RouteDetails() {
             const distanceTraveled = distanceTotal - (result?.routes[0].legs[0].distance?.value || 0)
             const time = result?.routes[0].legs[0].duration?.text || ''
 
-            dispatch(setdDistanceTraveled(distanceTraveled))
-            dispatch(setTime(time))
-            dispatch(setDirectionsRenderer(directionsRenderer))
+            dispatch(updateRoute({directionsRenderer, distanceTraveled, time}))
         }
 
         placeLocation && map && fetchDirections()

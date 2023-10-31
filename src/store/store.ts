@@ -14,7 +14,6 @@ import { combineReducers,configureStore } from '@reduxjs/toolkit'
 
 import AuthModalReducer from './reducers/AuthModalSlice'
 import ConfirmExitReducer from './reducers/ConfirmExitSlice'
-import DirectionsRendererReducer from './reducers/DirectionsRendererSlice'
 import DrawerReducer from './reducers/DrawerSlice'
 import FavoriteReducer from './reducers/FavoriteSlice'
 import MapReducer from './reducers/MapSlice'
@@ -39,7 +38,6 @@ const rootReducer = combineReducers({
     Search: SearchReducer,
     Favorites: FavoriteReducer,
     SelectedPlace: SelectedPlaceReducer,
-    DirectionsRenderer: DirectionsRendererReducer,
     RouteDetails: RouteDetailsReducer,
     User: UserReducer,
     AuthModal: AuthModalReducer,

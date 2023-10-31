@@ -1,23 +1,33 @@
-// // import Nature from '@/assets/img/icons-markers/nature.svg'
-// import FavoritesPanel from '@/components/FavoritesPanel';
-// // import { IFavorite } from '@/interfaces/IFavorite';
-// import { UserServices } from '@/store/reducers';
-// import { store } from '@/store/store';
-// import { screen, waitFor } from '@testing-library/react';
-
-// import '@testing-library/jest-dom'
-// import { renderWithAllProviders } from '../testHelpers/renderWithAllProviders';
+import Nature from '@/assets/img/icons-markers/nature.svg'
+import FavoritesPanel from '@/components/FavoritesPanel';
+import { IFavorite } from '@/interfaces/IFavorite';
+import { store } from '@/store/store';
+import { screen, waitFor, act } from '@testing-library/react';
+import fetchMock from 'jest-fetch-mock';
+import '@testing-library/jest-dom'
+import { renderWithAllProviders } from '../testHelpers/renderWithAllProviders';
+import { addFavorite } from '@/store/reducers';
 
 
 describe('Тестирование FavoritePanel', () => {
-    // const favoriteItem: IFavorite = {
-    //     place_id: 'test-place-id-1234455',
-    //     name: 'Test place',
-    //     description: 'description',
-    //     photo: Nature,
-    //     icon: Nature,
-    //     location: {lat: 55.18480229999999, lng: 30.2505758}
-    // }
+    const favoriteItems: IFavorite[] = [
+        {
+            place_id: 'test-place-id-1234455',
+            name: 'Test place',
+            description: 'description',
+            photo: Nature,
+            icon: Nature,
+            location: { lat: 55.18480229999999, lng: 30.2505758 }
+        },
+        {
+            place_id: 'test-place-id-1234456',
+            name: 'Test place2',
+            description: 'description2',
+            photo: Nature,
+            icon: Nature,
+            location: { lat: 52.18480229999999, lng: 31.2505758 }
+        }
+    ]
 
     // const user = {
     //     id: 'example-id',
@@ -31,19 +41,23 @@ describe('Тестирование FavoritePanel', () => {
     //     // dispatch(FavoriteServices.actions.addFavorite(favoriteItem))
     // })
 
-    // test('Тестирование отображения свернутой карточки', async () => {
-    //     renderWithAllProviders(<FavoritesPanel />)
-        
-    //     await waitFor(() => {
-    //         const loader = screen.getByTestId('favorite-loader')
-    //         expect(loader).toBeInTheDocument()
-    //     })
+    beforeEach(() => {
+        fetchMock.enableMocks();
+    });
 
-    //     await waitFor(() => {
-    //         const card = screen.getByTestId('card-collapsed')
-    //         expect(card).toBeInTheDocument()
-    //     })
-    // });
+    test('Тестирование отображения свернутой карточки', async () => {
+        renderWithAllProviders(<FavoritesPanel />)
+
+        await act(() => {
+            const dispatch = store.dispatch
+            dispatch(addFavorite(favoriteItems[0]))
+        })
+
+        await waitFor(() => {
+            const card = screen.getByTestId('card-collapsed')
+            expect(card).toBeInTheDocument()
+        })
+    });
 
     // test('Тестирование клика для развертывания карточки', () => {
     //     renderWithAllProviders(<FavoritesPanel />)
@@ -101,7 +115,4 @@ describe('Тестирование FavoritePanel', () => {
     //         expect(state.Favorites.favorites).not.toContain(favoriteItem)
     //     })
     // })
-    test('test', () => {
-        expect(1).toBe(1)
-    })
 })

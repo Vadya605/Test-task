@@ -13,8 +13,10 @@ import { ButtonSearch, RadiusBox, RadiusInput, SearchPanelWrapper } from './styl
 
 export default function SearchPanel() {
     const dispatch: AppDispatch = useAppDispatch()
-    const { selectedPlaces, searchRadius } = useTypeSelector(state => state.Search)
-    const { map, userLocation } = useTypeSelector(state => state.Map)
+    const {
+        Search: { selectedPlaces, searchRadius },
+        Map: { map, userLocation }
+    } = useTypeSelector(state => state)
 
     const handleChangeRadius = (e: React.ChangeEvent<HTMLInputElement>) => {
         const searchRadiusValue = Number(e.target.value.replace(/[^0-9]/g, ''))

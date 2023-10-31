@@ -1,3 +1,3 @@
-export interface PlaceProps {
+export interface IPlaceProps {
     isSelected: boolean;
 }

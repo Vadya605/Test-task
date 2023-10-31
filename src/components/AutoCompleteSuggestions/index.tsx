@@ -1,7 +1,7 @@
-import { AutoCompleteSuggestionsProps } from "./interfaces";
+import { IAutoCompleteSuggestionsProps } from "./interfaces";
 import { ListSuggestions, ListSuggestionsItem } from "./styled";
 
-export default function AutoCompleteSuggestions({ suggestions, handleSelectSuggestion }: AutoCompleteSuggestionsProps) {
+export default function AutoCompleteSuggestions({ suggestions, handleSelectSuggestion }: IAutoCompleteSuggestionsProps) {
     
     const handleClicktSuggestion = (description: string) => {
         handleSelectSuggestion(description)

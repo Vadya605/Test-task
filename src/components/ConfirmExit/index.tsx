@@ -10,7 +10,7 @@ import { removeUser, setIsOpenConfirmExit } from '@/store/reducers';
 
 export default function ConfirmExit() {
     const dispatch = useAppDispatch()
-    const { isOpen } = useTypeSelector(state => state.ConfirmExit)
+    const { ConfirmExit: { isOpen } } = useTypeSelector(state => state)
 
     const handleClose = () => {
         dispatch(setIsOpenConfirmExit(false))

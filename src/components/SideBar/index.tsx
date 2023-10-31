@@ -16,7 +16,7 @@ import {
 
 export default function SideBar() {
     const dispatch = useAppDispatch()
-    const { isOpen, selectedSection } = useTypeSelector(state => state.Drawer)
+    const { Drawer: { isOpen, selectedSection } } = useTypeSelector(state => state)
 
     const handleClickArrowClose = () => {
         dispatch(setIsOpenDrawer(false))

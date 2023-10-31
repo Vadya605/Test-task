@@ -8,15 +8,15 @@ import { setIsOpenAuthModal, setIsOpenConfirmExit, setIsOpenDrawer, setSelectedS
 
 import Favorite from '../svg/Favorite'
 import Search from '../svg/Search'
-import { AsideButtonFavorites, AsideButtonSearch, AsideWrapper, AvatarAside, Column, Exit,ListSections, Logo } from "./styled"
+import { AsideButtonFavorites, AsideButtonSearch, AsideWrapper, AvatarAside, Column, Exit, ListSections, Logo } from "./styled"
 
 export default function Aside() {
     const dispatch = useAppDispatch()
-    const { selectedSection } = useTypeSelector(state => state.Drawer)
+    const { Drawer: { selectedSection } } = useTypeSelector(state => state);
     const { isAuth } = useAuth()
 
     const handleClickSectionItem = (name: string) => {
-        if(name === 'favorite' && !isAuth){
+        if (name === 'favorite' && !isAuth) {
             return dispatch(setIsOpenAuthModal(true))
         }
 
@@ -39,24 +39,24 @@ export default function Aside() {
             </Logo>
             <Column>
                 <ListSections>
-                    <ListItem data-testid='button-search-section' disablePadding onClick={() => handleClickSectionItem('search')}>
+                    <ListItem data-testid='button-search-section' disablePadding onClick={handleClickSectionItem.bind(null, 'search')}>
                         <AsideButtonSearch isActive={selectedSection === 'search'}>
                             <Search />
                         </AsideButtonSearch>
                     </ListItem>
-                    <ListItem data-testid='button-favorite-section' disablePadding onClick={() => handleClickSectionItem('favorite')}>
+                    <ListItem data-testid='button-favorite-section' disablePadding onClick={handleClickSectionItem.bind(null, 'favorite')}>
                         <AsideButtonFavorites isActive={selectedSection === 'favorite'}>
                             <Favorite />
                         </AsideButtonFavorites>
                     </ListItem>
                 </ListSections>
-                { isAuth? (
+                {isAuth ? (
                     <Exit onClick={handleClickExit}>
                         <img src={ExitIcon} alt="ExitIcon" />
                     </Exit>
-                ): (
+                ) : (
                     <AvatarAside onClick={handleClickAvatar} src='/emptyAvatar.png' alt='Avatar' />
-                ) }
+                )}
             </Column>
         </AsideWrapper>
     )

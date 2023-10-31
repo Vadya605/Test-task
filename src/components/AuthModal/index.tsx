@@ -10,7 +10,7 @@ import { DialogAuth, DialogContent, DialogHeader } from "./styled";
 
 export default function AuthModal() {
     const dispatch = useAppDispatch()
-    const { isOpen, selectedForm } = useTypeSelector(state => state.AuthModal)
+    const { AuthModal: { isOpen, selectedForm } } = useTypeSelector(state => state);
 
     const handleClickClose = () => {
         dispatch(setIsOpenAuthModal(false))

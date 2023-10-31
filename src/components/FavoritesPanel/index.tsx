@@ -13,8 +13,11 @@ import { getFavorites } from '@/utils/favorite';
 
 export default function FavoritesPanel() {
     const dispatch = useAppDispatch()
-    const { place_id: selectedFavoriteId } = useTypeSelector(state => state.SelectedFavorite)
-    const { favorites } = useTypeSelector(state => state.Favorites)
+
+    const {
+        SelectedFavorite: { place_id: selectedFavoriteId },
+        Favorites: { favorites }
+    } = useTypeSelector(state => state)
 
     const selectedFavorite = favorites.length && favorites.find(item => item.place_id === selectedFavoriteId)
     const { id: userId } = useTypeSelector(state => state.User)
@@ -33,7 +36,6 @@ export default function FavoritesPanel() {
             />
         ))
     }
-
 
     useEffect(() => {
         setIsLoading(true)

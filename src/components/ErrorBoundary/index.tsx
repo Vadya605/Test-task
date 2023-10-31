@@ -1,10 +1,10 @@
 import { Component, ErrorInfo } from 'react';
 
-import { ErrorBoundaryProps, ErrorBoundaryState } from './interfaces';
+import { IErrorBoundaryProps, IErrorBoundaryState } from './interfaces';
 
 
-class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
-    constructor(props: ErrorBoundaryProps) {
+class ErrorBoundary extends Component<IErrorBoundaryProps, IErrorBoundaryState> {
+    constructor(props: IErrorBoundaryProps) {
         super(props);
         this.state = {
             hasError: false,

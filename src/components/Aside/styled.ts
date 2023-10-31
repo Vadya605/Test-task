@@ -1,5 +1,5 @@
 import { Avatar, List,styled } from '@mui/material'
-import { AsideButtonProps } from './interfaces'
+import { IAsideButtonProps } from './interfaces'
 
 export const AsideWrapper = styled('div')(({ theme }) => ({
     display: 'flex',
@@ -39,7 +39,7 @@ export const ListSections = styled(List)(({ theme }) => ({
     margin: 0,
 }))
 
-export const AsideButtonSearch = styled('div')<AsideButtonProps>(({ theme, isActive }) => ({
+export const AsideButtonSearch = styled('div')<IAsideButtonProps>(({ theme, isActive }) => ({
     cursor: 'pointer',
     padding: theme.spacing(1.9),
     borderRadius: theme.spacing(.6),
@@ -65,7 +65,7 @@ export const AsideButtonSearch = styled('div')<AsideButtonProps>(({ theme, isAct
     },
 }))
 
-export const AsideButtonFavorites = styled('div')<AsideButtonProps>(({ theme, isActive }) => ({
+export const AsideButtonFavorites = styled('div')<IAsideButtonProps>(({ theme, isActive }) => ({
     cursor: 'pointer',
     padding: theme.spacing(1.8, 2.1),
     borderRadius: theme.spacing(.6),

@@ -6,7 +6,7 @@ import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
 import { setSelectedFavorite, removeFavorite } from '@/store/reducers';
 import { strLimit } from "@/utils/textHelpers";
 
-import { CardProps } from "./interfaces";
+import { ICardProps } from "./interfaces";
 import {
     Actions,
     ButtonAction,
@@ -20,9 +20,9 @@ import {
 } from "./styled";
 import { deleteFavorite } from '@/utils/favorite';
 
-export default function CollapsedCard({ favoriteItem }: CardProps) {
+export default function CollapsedCard({ favoriteItem }: ICardProps) {
     const dispatch = useAppDispatch()
-    const { id: userId } = useTypeSelector(state => state.User)
+    const { User: { id: userId } } = useTypeSelector(state => state)
 
     const handleClickExpandMore = () => {
         dispatch(setSelectedFavorite(favoriteItem.place_id))
