@@ -2,12 +2,12 @@ import { ListItem } from '@mui/material'
 
 import ExitIcon from '@/assets/img/Exit.svg'
 import LogoImg from '@/assets/img/Logo.svg'
+import Favorite from '@/components/svg/Favorite'
+import Search from '@/components/svg/Search'
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux'
 import { useAuth } from '@/hooks/useAuth'
 import { setIsOpenAuthModal, setIsOpenConfirmExit, setIsOpenDrawer, setSelectedSection } from '@/store/reducers'
 
-import Favorite from '../svg/Favorite'
-import Search from '../svg/Search'
 import { AsideButtonFavorites, AsideButtonSearch, AsideWrapper, AvatarAside, Column, Exit, ListSections, Logo } from "./styled"
 
 export default function Aside() {

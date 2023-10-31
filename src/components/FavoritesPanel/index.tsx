@@ -4,12 +4,12 @@ import { Box, CircularProgress } from '@mui/material'
 import Typography from '@mui/material/Typography';
 
 import BackIcon from '@/assets/img/Arrow.svg'
+import CollapsedCard from "@/components/CardFavoriteCollapsed";
+import ExpandedCard from "@/components/CardFavoriteExpanded";
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
 import { setFavorites, setSelectedFavorite } from "@/store/reducers";
 import { getFavorites } from '@/utils/favorite';
 
-import CollapsedCard from "../CardFavoriteCollapsed";
-import ExpandedCard from "../CardFavoriteExpanded";
 import { BoxLoader, ButtonBack, HeaderPanel } from "./styled";
 
 export default function FavoritesPanel() {
@@ -48,7 +48,7 @@ export default function FavoritesPanel() {
             .catch(err => console.log(err))
             .finally(() => setIsLoading(false))
 
-    }, [favorites])
+    }, [favorites, userId, dispatch])
 
     return (
         <Box data-testid='favorite-panel'>

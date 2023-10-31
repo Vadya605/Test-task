@@ -5,10 +5,7 @@ import { Button, TextField, Typography } from "@mui/material";
 import { ERRORS, ErrorsType } from "@/constants/errors";
 import { useAppDispatch } from "@/hooks/redux";
 import { setIsOpenAuthModal, setSelectedForm, setUser } from "@/store/reducers";
-import { ButtonAuth } from "@/UI/ButtonAuth";
-import { ErrorMessage } from "@/UI/ErrorMessage";
-import { FormAuth } from "@/UI/FormAuth";
-import { SupportAction } from "@/UI/SupportAction";
+import { ButtonAuth, ErrorMessage, FormAuth, SupportAction } from "@/UI";
 
 import { FirebaseError } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";

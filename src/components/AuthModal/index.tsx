@@ -1,11 +1,11 @@
 import { Close } from "@mui/icons-material";
 import { IconButton, Typography } from "@mui/material";
 
+import FormLogin from "@/components/FormLogin";
+import FormSignup from "@/components/FormSignup";
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
 import { setIsOpenAuthModal } from "@/store/reducers";
 
-import FormLogin from "../FormLogin";
-import FormSignup from "../FormSignup";
 import { DialogAuth, DialogContent, DialogHeader } from "./styled";
 
 export default function AuthModal() {

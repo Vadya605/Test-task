@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { InfoWindow } from "@react-google-maps/api";
+
 import Typography from '@mui/material/Typography';
 
 import FavoriteSvg from "@/components/svg/Favorite";
@@ -8,7 +10,6 @@ import { useAppDispatch, useAuth, useRoute,useTypeSelector } from "@/hooks";
 import { addFavorite, clearRoute, removeFavorite, setIsOpenAuthModal, setRoute, setSelectedPlace } from "@/store/reducers";
 import { ButtonFavorite, ButtonRoute } from '@/UI';
 import { addToFavorite, checkFavorite,convertPlaceResultToFavorite, deleteFavorite } from "@/utils";
-import { InfoWindow } from "@react-google-maps/api";
 
 import { Actions, CardPlaceWrapper, PhotoPlace } from "./styled";
 import DoesntExistPhoto from '/public/doesntExist.png'

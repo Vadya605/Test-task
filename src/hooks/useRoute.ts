@@ -33,7 +33,7 @@ export const useRoute = ({origin, destination}: Params) => {
         };
 
         fetchData();
-    }, []);
+    }, [destination, origin]);
 
     return {
         directions,

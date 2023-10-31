@@ -10,7 +10,7 @@ import { ButtonRemoveRoute, Details, DetailsWrapper, Progress, Row } from "./sty
 
 export default function RouteDetails() {
     const dispatch = useAppDispatch()
-    
+
     const {
         RouteDetails: { distanceTotal, distanceTraveled, placeLocation, time, directionsRenderer },
         Map: { map, userLocation }
@@ -39,7 +39,7 @@ export default function RouteDetails() {
         }
 
         placeLocation && map && fetchDirections()
-    }, [userLocation])
+    }, [distanceTotal, distanceTraveled, placeLocation, time, directionsRenderer, map, dispatch, userLocation])
 
     return (
         <Details data-testid='route-details'>

@@ -1,12 +1,12 @@
 import React, { useRef } from "react";
 
+import AutoCompleteSuggestions from "@/components/AutoCompleteSuggestions";
 import { STATUS_CODES } from "@/constants";
 import { useAppDispatch } from "@/hooks/redux";
 import { useGoogleMaps } from "@/hooks/useGoogleMaps";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 import { setCenter } from "@/store/reducers";
 
-import AutoCompleteSuggestions from "../AutoCompleteSuggestions";
 import {
     AutoCompeteSearchWrapper,
     SearchBox,
@@ -29,7 +29,7 @@ export default function AutoCompleteSearch() {
 
     React.useEffect(() => {
         isLoaded && init()
-    }, [isLoaded])
+    }, [isLoaded, init])
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value);

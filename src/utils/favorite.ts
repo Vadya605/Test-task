@@ -1,6 +1,6 @@
 import { IFavorite } from "@/interfaces/IFavorite";
 
-import { get, getDatabase, push, ref, remove,set } from "firebase/database";
+import { get, getDatabase, push, ref, remove, set } from "firebase/database";
 
 
 export function addToFavorite(userId: string, favoriteItem: IFavorite) {
@@ -34,20 +34,16 @@ export function deleteFavorite(userId: string, favoriteId: string) {
 }
 
 export async function getFavorites(userId: string) {
-    try {
-        const db = getDatabase()
-        const starCountRef = ref(db, `favorites/${ userId }`);
-        const snapshot = await get(starCountRef);
-        const data: IFavorite[] = [];
+    const db = getDatabase()
+    const starCountRef = ref(db, `favorites/${userId}`);
+    const snapshot = await get(starCountRef);
+    const data: IFavorite[] = [];
 
-        if (snapshot.exists()) {
-            snapshot.forEach((childSnapshot) => {
-                data.push(childSnapshot.val());
-            });
-        }
-
-        return data;
-    } catch (error) {
-        throw error;
+    if (snapshot.exists()) {
+        snapshot.forEach((childSnapshot) => {
+            data.push(childSnapshot.val());
+        });
     }
+
+    return data;
 }

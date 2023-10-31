@@ -1,17 +1,18 @@
 import { useCallback } from 'react'
 
+import { GoogleMap } from "@react-google-maps/api";
+
 import CardPlace from '@/components/CardPlace';
 import CurrentLocation from '@/components/CurrentLocation';
+import FoundPlaces from '@/components/FoundPlaces';
+import Loader from "@/components/Loader";
+import MapControls from '@/components/MapControls';
+import RouteDetails from "@/components/RouteDetails";
 import { MAP_OPTIONS } from '@/constants';
 import { useAppDispatch, useGoogleMaps,useTypeSelector } from '@/hooks';
 import { setCenter, setMap, setUserLocation } from '@/store/reducers'
 import { getBrowserLocation, getMapStyle } from '@/utils';
-import { GoogleMap } from "@react-google-maps/api";
 
-import FoundPlaces from '../FoundPlaces';
-import Loader from "../Loader";
-import MapControls from '../MapControls';
-import RouteDetails from "../RouteDetails";
 import { mapContainerStyle, MapWrapper } from './styled';
 
 export default function Map() {
@@ -38,7 +39,7 @@ export default function Map() {
             }).finally(() => {
                 dispatch(setMap(map))
             })
-    }, [])
+    }, [dispatch])
 
     return (
         <>
