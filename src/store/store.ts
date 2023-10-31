@@ -23,6 +23,7 @@ import SearchReducer from './reducers/Search'
 import SelectedFavoriteReducer from './reducers/SelectedFavorite'
 import SelectedPlaceReducer from './reducers/SelectedPlace'
 import UserReducer from './reducers/User'
+import AutoCompleteSearchReducer from './reducers/AutoCompleteSearch'
 
 
 const persistConfig = {
@@ -43,6 +44,7 @@ const rootReducer = combineReducers({
     AuthModal: AuthModalReducer,
     ConfirmExit: ConfirmExitReducer,
     Mode: ModeReducer,
+    AutoCompleteSearch: AutoCompleteSearchReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

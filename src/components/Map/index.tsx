@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 
-import { GoogleMap } from "@react-google-maps/api";
+import { GoogleMap, Marker } from "@react-google-maps/api";
 
 import CardPlace from '@/components/CardPlace';
 import CurrentLocation from '@/components/CurrentLocation';
@@ -9,7 +9,7 @@ import Loader from "@/components/Loader";
 import MapControls from '@/components/MapControls';
 import RouteDetails from "@/components/RouteDetails";
 import { MAP_OPTIONS } from '@/constants';
-import { useAppDispatch, useGoogleMaps,useTypeSelector } from '@/hooks';
+import { useAppDispatch, useGoogleMaps, useTypeSelector } from '@/hooks';
 import { setCenter, setMap, setUserLocation } from '@/store/reducers'
 import { getBrowserLocation, getMapStyle } from '@/utils';
 
@@ -21,7 +21,8 @@ export default function Map() {
         Map: { center, zoom },
         SelectedPlace: { selectedPlace },
         RouteDetails: { directionsRenderer },
-        Mode: { mode }
+        Mode: { mode },
+        AutoCompleteSearch: { resultLocation }
     } = useTypeSelector(state => state)
 
     const mapStyles = getMapStyle(mode)
@@ -53,8 +54,9 @@ export default function Map() {
                         options={{ ...MAP_OPTIONS, styles: mapStyles }}
                     >
                         <FoundPlaces />
+                        { resultLocation && <Marker position={resultLocation} />}
                         {selectedPlace && <CardPlace />}
-                        { directionsRenderer && <RouteDetails /> }
+                        {directionsRenderer && <RouteDetails />}
                         <CurrentLocation />
                         <MapControls />
                     </GoogleMap>
