@@ -1,28 +1,29 @@
 import { useCallback } from 'react'
 
+import { GoogleMap, Marker } from "@react-google-maps/api";
+
 import CardPlace from '@/components/CardPlace';
 import CurrentLocation from '@/components/CurrentLocation';
+import FoundPlaces from '@/components/FoundPlaces';
+import Loader from "@/components/Loader";
+import MapControls from '@/components/MapControls';
+import RouteDetails from "@/components/RouteDetails";
 import { MAP_OPTIONS } from '@/constants';
-import { useAppDispatch, useTypeSelector } from '@/hooks/redux.ts';
-import { useGoogleMaps } from '@/hooks/useGoogleMaps.ts';
-import { MapServices } from '@/store/reducers'
-import { getBrowserLocation } from '@/utils/geo.ts';
-import { getMapStyle } from '@/utils/getMapStyle';
-import { GoogleMap } from "@react-google-maps/api";
+import { useAppDispatch, useGoogleMaps, useTypeSelector } from '@/hooks';
+import { setCenter, setMap, setUserLocation } from '@/store/reducers'
+import { getBrowserLocation, getMapStyle } from '@/utils';
 
-import FoundPlaces from '../FoundPlaces';
-import Loader from "../Loader";
-import MapControls from '../MapControls';
-import RouteDetails from "../RouteDetails";
 import { mapContainerStyle, MapWrapper } from './styled';
 
 export default function Map() {
     const dispatch = useAppDispatch()
-    const { center, zoom } = useTypeSelector(state => state.Map)
-    const { foundPlaces } = useTypeSelector(state => state.Search)
-    const { selectedPlace } = useTypeSelector(state => state.SelectedPlace)
-    const { directionsRenderer } = useTypeSelector(state => state.DirectionsRenderer)
-    const { mode } = useTypeSelector(state => state.Mode)
+    const {
+        Map: { center, zoom },
+        SelectedPlace: { selectedPlace },
+        RouteDetails: { directionsRenderer },
+        Mode: { mode },
+        AutoCompleteSearch: { resultLocation }
+    } = useTypeSelector(state => state)
 
     const mapStyles = getMapStyle(mode)
     const isLoaded = useGoogleMaps()
@@ -30,16 +31,16 @@ export default function Map() {
     const onLoad = useCallback(async (map: google.maps.Map) => {
         getBrowserLocation()
             .then((location) => {
-                dispatch(MapServices.actions.setUserLocation(location))
-                dispatch(MapServices.actions.setCenter(location))
+                dispatch(setUserLocation(location))
+                dispatch(setCenter(location))
             })
             .catch((defaultLocation) => {
-                dispatch(MapServices.actions.setUserLocation(defaultLocation))
-                dispatch(MapServices.actions.setCenter(defaultLocation))
+                dispatch(setUserLocation(defaultLocation))
+                dispatch(setCenter(defaultLocation))
             }).finally(() => {
-                dispatch(MapServices.actions.setMap(map))
+                dispatch(setMap(map))
             })
-    }, [])
+    }, [dispatch])
 
     return (
         <>
@@ -52,9 +53,10 @@ export default function Map() {
                         zoom={zoom}
                         options={{ ...MAP_OPTIONS, styles: mapStyles }}
                     >
-                        {foundPlaces.length && <FoundPlaces />}
-                        {selectedPlace && <CardPlace place={selectedPlace} />}
-                        { directionsRenderer && <RouteDetails /> }
+                        <FoundPlaces />
+                        { resultLocation && <Marker position={resultLocation} />}
+                        {selectedPlace && <CardPlace />}
+                        {directionsRenderer && <RouteDetails />}
                         <CurrentLocation />
                         <MapControls />
                     </GoogleMap>

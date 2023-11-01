@@ -1,9 +1,13 @@
 import { IFavorite } from "@/interfaces/IFavorite";
 
+<<<<<<< HEAD
 import { get, getDatabase, push, ref, remove,set } from "firebase/database";
+=======
+import { get, getDatabase, push, ref, remove, set } from "firebase/database";
+>>>>>>> feature/review-fixes
 
 
-export function addFavorite(userId: string, favoriteItem: IFavorite) {
+export function addToFavorite(userId: string, favoriteItem: IFavorite) {
     const db = getDatabase();
     const favoritesRef = ref(db, `favorites/${userId}`);
 
@@ -12,7 +16,7 @@ export function addFavorite(userId: string, favoriteItem: IFavorite) {
     return set(newFavoriteRef, favoriteItem);
 }
 
-export function removeFavorite(userId: string, favoriteId: string) {
+export function deleteFavorite(userId: string, favoriteId: string) {
     const db = getDatabase();
     return new Promise((resolve, reject) => {
         const favoritesRef = ref(db, `favorites/${userId}`);
@@ -34,12 +38,12 @@ export function removeFavorite(userId: string, favoriteId: string) {
 }
 
 export async function getFavorites(userId: string) {
-    try {
-        const db = getDatabase()
-        const starCountRef = ref(db, `favorites/${ userId }`);
-        const snapshot = await get(starCountRef);
-        const data: IFavorite[] = [];
+    const db = getDatabase()
+    const starCountRef = ref(db, `favorites/${userId}`);
+    const snapshot = await get(starCountRef);
+    const data: IFavorite[] = [];
 
+<<<<<<< HEAD
         if (snapshot.exists()) {
             snapshot.forEach((childSnapshot) => {
                 data.push(childSnapshot.val());
@@ -49,5 +53,13 @@ export async function getFavorites(userId: string) {
         return data;
     } catch (error) {
         console.log(error);
+=======
+    if (snapshot.exists()) {
+        snapshot.forEach((childSnapshot) => {
+            data.push(childSnapshot.val());
+        });
+>>>>>>> feature/review-fixes
     }
+
+    return data;
 }

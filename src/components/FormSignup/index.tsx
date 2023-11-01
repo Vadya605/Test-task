@@ -2,17 +2,15 @@ import { useState } from "react";
 
 import { Button,TextField, Typography } from "@mui/material";
 
-import { ERRORS, ErrorsType } from "@/constants/errors";
-import { AuthError } from "@/errors/AuthError";
-import { useAppDispatch } from "@/hooks/redux";
-import { AuthModalServices, UserServices } from "@/store/reducers";
-import { ButtonAuth } from "@/UI/ButtonAuth";
-import { ErrorMessage } from "@/UI/ErrorMessage";
-import { FormAuth } from "@/UI/FormAuth";
-import { SupportAction } from "@/UI/SupportAction";
+import { ERRORS, ErrorsType } from "@/constants";
+import { AuthError } from "@/errors";
+import { useAppDispatch } from "@/hooks";
+import { setIsOpenAuthModal, setSelectedForm, setUser } from "@/store/reducers";
+import { ButtonAuth, ErrorMessage, FormAuth, SupportAction } from "@/UI";
+import { checkPasswordMatch } from "@/utils";
 
 import { FirebaseError } from "firebase/app";
-import { createUserWithEmailAndPassword,getAuth } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 
 
 export default function FormSignup() {
@@ -28,25 +26,24 @@ export default function FormSignup() {
         const [email, password, passwordConfirm] = [form.email.value, form.password.value, form.passwordConfirm.value]
 
         try {
-            if (password !== passwordConfirm) {
+            if (!checkPasswordMatch(password, passwordConfirm)) {
                 throw new AuthError(ERRORS["password-mismatch"])
             }
 
             const auth = getAuth()
             const user = (await createUserWithEmailAndPassword(auth, email, password)).user
 
-            dispatch(UserServices.actions.setUser({
+            dispatch(setUser({
                 id: user.uid,
                 email: user.email || '',
                 token: user.refreshToken
             }))
-            dispatch(AuthModalServices.actions.setIsOpen(false))
+            dispatch(setIsOpenAuthModal(false))
         } catch (error) {
             if(error instanceof FirebaseError){
                 const code = error.code as keyof ErrorsType
                 setError(ERRORS[code])
             } else if(error instanceof AuthError){
-                console.log('auth error')
                 setError(error.message)
             }
         } finally {
@@ -55,7 +52,7 @@ export default function FormSignup() {
     }
 
     const handleClickSupport = () => {
-        dispatch(AuthModalServices.actions.setSelectedForm('login'))
+        dispatch(setSelectedForm('login'))
     }
 
     return (

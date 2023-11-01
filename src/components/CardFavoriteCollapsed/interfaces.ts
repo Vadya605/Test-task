@@ -1,5 +1,5 @@
 import { IFavorite } from "@/interfaces/IFavorite"
 
-export interface CardProps {
+export interface ICardProps {
     favoriteItem: IFavorite
 }

@@ -1,115 +1,85 @@
 import { useState } from 'react';
 
+import { InfoWindow } from "@react-google-maps/api";
+
 import Typography from '@mui/material/Typography';
 
 import FavoriteSvg from "@/components/svg/Favorite";
 import GeoSvg from '@/components/svg/Geo'
-import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
-import { useAuth } from '@/hooks/useAuth';
-import { AuthModalServices, DirectionsRendererServices, FavoriteServices, FavoriteSlice, RouteDetailsServices, SelectedPlaceServices } from "@/store/reducers";
-import { ButtonFavorite } from "@/UI/ButtonFavorite";
-import { ButtonRoute } from "@/UI/ButtonRoute";
-import { convertPlaceResultToFavorite } from "@/utils/convert";
-import { addFavorite, removeFavorite } from '@/utils/favorite';
-import { getDirections } from '@/utils/route';
-import { InfoWindow } from "@react-google-maps/api";
+import { useAppDispatch, useAuth, useRoute,useTypeSelector } from "@/hooks";
+import { addFavorite, clearRoute, removeFavorite, setIsOpenAuthModal, setRoute, setSelectedPlace } from "@/store/reducers";
+import { ButtonFavorite, ButtonRoute } from '@/UI';
+import { addToFavorite, checkFavorite,convertPlaceResultToFavorite, deleteFavorite } from "@/utils";
 
-import { CardPlaceProps } from "./interfaces";
 import { Actions, CardPlaceWrapper, PhotoPlace } from "./styled";
 import DoesntExistPhoto from '/public/doesntExist.png'
 
-
-export default function CardPlace({ place }: CardPlaceProps) {
+export default function CardPlace() {
     const dispatch = useAppDispatch()
     const { isAuth } = useAuth()
-    const { favorites } = useTypeSelector(state => state.Favorites)
-    const { map, userLocation } = useTypeSelector(state => state.Map)
-    const { id: userId } = useTypeSelector(state => state.User)
 
+    const {
+        SelectedPlace: { selectedPlace },
+        Favorites: { favorites },
+        Map: { map, userLocation },
+        User: { id: userId },
+    } = useTypeSelector(state => state);
+    
     const [loading, setLoading] = useState(false)
+    
+    const isFavorite = checkFavorite(selectedPlace, favorites)
+    const destination = {
+        lat: selectedPlace?.geometry?.location?.lat() || 0,
+        lng: selectedPlace?.geometry?.location?.lng() || 0
+    }
 
-    const handleClickSave = () => {
-        if (!isAuth) {
-            return dispatch(AuthModalServices.actions.setIsOpen(true))
+    const { directions, distanceTotal, placeLocation, time } = useRoute({ origin: userLocation, destination: destination })
+
+    const handleClickSave = async () => {
+        if (!isAuth || !selectedPlace) {
+            return dispatch(setIsOpenAuthModal(true));
         }
 
-        const favorite = convertPlaceResultToFavorite(place)
-        setLoading(true)
+        const favorite = convertPlaceResultToFavorite(selectedPlace);
+        setLoading(true);
 
-        if (isFavorite()) {
-            return removeFavorite(userId, favorite.place_id)
-                .then(() => {
-                    dispatch(FavoriteServices.actions.removeFavorite(favorite))
-                })
-                .catch(err => console.log(err))
-                .finally(() => setLoading(false))
+        try {
+            if (isFavorite) {
+                await deleteFavorite(userId, favorite.place_id);
+                dispatch(removeFavorite(favorite));
+            } else {
+                await addToFavorite(userId, favorite);
+                dispatch(addFavorite(favorite));
+            }
+        } catch (err) {
+            console.log(err);
+        } finally {
+            setLoading(false);
         }
-
-        return addFavorite(userId, favorite)
-            .then(() => {
-                dispatch(FavoriteSlice.actions.addFavorite(favorite))
-            })
-            .catch(err => console.log(err))
-            .finally(() => setLoading(false))
-
     }
 
     const handleClickClose = () => {
-        dispatch(SelectedPlaceServices.actions.setSelected(null))
+        dispatch(setSelectedPlace(null))
     }
 
     const handleClickRoute = async () => {
-        try {
-            dispatch(DirectionsRendererServices.actions.clearDirections())
-
-            const placeLocation = {
-                lat: place.geometry?.location?.lat() || 0,
-                lng: place.geometry?.location?.lng() || 0
-            }
-
-            const directionRequest = {
-                origin: userLocation,
-                destination: placeLocation,
-                travelMode: google.maps.TravelMode.WALKING
-            }
-
-            const result = await getDirections(directionRequest)
-            const distance = result?.routes[0].legs[0].distance?.value || 0
-            const time = result?.routes[0].legs[0].duration?.text || ''
-
-            const directionsRenderer = new google.maps.DirectionsRenderer({
-                map: map,
-                directions: result
-            })
-
-            dispatch(RouteDetailsServices.actions.setDistanceTotal(distance))
-            dispatch(RouteDetailsServices.actions.setPlaceLocation(placeLocation))
-            dispatch(RouteDetailsServices.actions.setTime(time))
-            dispatch(DirectionsRendererServices.actions.setDirectionsRenderer(directionsRenderer))
-        } catch (e) {
-            console.log(e);
-        }
-    }
-
-    const isFavorite = () => {
-        return isAuth && favorites.some(f => f.place_id === place.place_id)
+        dispatch(clearRoute())
+        const directionsRenderer = new google.maps.DirectionsRenderer({ map, directions })
+        dispatch(setRoute({ directionsRenderer, distanceTotal, placeLocation, time }))
     }
 
     return (
         <InfoWindow
-            position={{
-                lat: place?.geometry?.location?.lat() || 0,
-                lng: place?.geometry?.location?.lng() || 0,
-            }}
+            position={destination}
             onCloseClick={handleClickClose}
         >
             <CardPlaceWrapper>
-                <Typography variant="h2" >{place.name}</Typography>
-                <PhotoPlace src={place.photos?.[0]?.getUrl() || DoesntExistPhoto} alt="Photo place" />
+                <Typography variant="h2" >{selectedPlace?.name}</Typography>
+                <PhotoPlace src={selectedPlace?.photos?.[0]?.getUrl() || DoesntExistPhoto} alt="Photo place" />
                 <Actions>
                     <ButtonFavorite loading={loading} onClick={handleClickSave}>
                         <FavoriteSvg />
-                        <Typography variant="button" >{isFavorite() ? 'Удалить' : 'Добавить'}</Typography>
+                        <Typography variant="button" >{isFavorite ? 'Удалить' : 'Добавить'}</Typography>
                     </ButtonFavorite>
                     <ButtonRoute onClick={handleClickRoute}>
                         <GeoSvg />

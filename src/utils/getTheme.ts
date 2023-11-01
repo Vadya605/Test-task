@@ -49,6 +49,9 @@ declare module '@mui/material/styles' {
         },
         errorMessage: {
             main: string
+        },
+        buttonExit: {
+            main: string
         }
     }
     interface PaletteOptions {
@@ -98,6 +101,9 @@ declare module '@mui/material/styles' {
             main: string
         },
         errorMessage: {
+            main: string
+        },
+        buttonExit: {
             main: string
         }
     }
@@ -166,13 +172,18 @@ export const getTheme = (mode: PaletteMode) => {
                     },
                     errorMessage: {
                         main: '#FF0000'
+                    },
+                    buttonExit: {
+                        main: '#808080'
                     }
                 } : {
                     primary: {
-                        main: '#121B33',
+                        // main: '#121B33',
+                        main: '#20315D'
                     },
                     secondary: {
-                        main: '#331212'
+                        // main: '#331212'
+                        main: '#5D2020'
                     },
                     background: {
                         // default: '#22333B',
@@ -225,6 +236,9 @@ export const getTheme = (mode: PaletteMode) => {
                     },
                     errorMessage: {
                         main: '#FF0000'
+                    },
+                    buttonExit: {
+                        main: '#2C2C2C'
                     }
                 })
             },

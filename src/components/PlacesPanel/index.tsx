@@ -2,22 +2,22 @@ import { Typography } from '@mui/material'
 
 import { PLACES } from '@/constants'
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux'
-import { SearchServices } from '@/store/reducers'
+import { addSelectedPlace, removeSelectedPlace } from '@/store/reducers'
 
-import { Place,Places, PlacesWrapper } from "./styled"
+import { Place, Places, PlacesWrapper } from "./styled"
 
 export default function PlacesPanel() {
 
     const dispatch = useAppDispatch()
-    const {selectedPlaces} = useTypeSelector(state => state.Search)
+    const { Search: { selectedPlaces } } = useTypeSelector(state => state)
 
 
     const handleClickPlace = (name: string) => {
         if (!selectedPlaces.includes(name)) {
-            return dispatch(SearchServices.actions.addSelectedPlace(name))
+            return dispatch(addSelectedPlace(name))
         }
 
-        return dispatch(SearchServices.actions.removeSelectedPlace(name))
+        return dispatch(removeSelectedPlace(name))
     }
 
     return (

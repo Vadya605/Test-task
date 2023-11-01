@@ -4,62 +4,40 @@ import Typography from '@mui/material/Typography';
 
 import Favorite from "@/components/svg/Favorite";
 import Geo from "@/components/svg/Geo";
-import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
-import { DirectionsRendererServices, FavoriteServices, RouteDetailsServices, SelectedFavoriteServices } from "@/store/reducers";
-import { ButtonFavorite } from "@/UI/ButtonFavorite";
-import { ButtonRoute } from "@/UI/ButtonRoute";
-import { removeFavorite } from '@/utils/favorite';
-import { getDirections } from '@/utils/route';
+import { useAppDispatch, useRoute,useTypeSelector } from "@/hooks";
+import { clearRoute, removeFavorite, setRoute, setSelectedFavorite } from "@/store/reducers";
+import { ButtonFavorite, ButtonRoute } from "@/UI";
+import { deleteFavorite } from '@/utils/favorite';
 
-import { CardProps } from './interfaces';
+import { ICardProps } from './interfaces';
 import { Actions, CardExpanded, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper, PhotoWrapper } from "./styled";
 
-export default function ExpandedCard({ favoriteItem }: CardProps) {
+export default function ExpandedCard({ favoriteItem }: ICardProps) {
     const dispatch = useAppDispatch()
-    const { map, userLocation } = useTypeSelector(state => state.Map)
-    const {id: userId} = useTypeSelector(state => state.User)
-    const [loading, setLoading] = useState(false)
+    const { 
+        Map: { map, userLocation }, 
+        User: { id: userId } 
+    } = useTypeSelector(state => state);
 
+    const [loading, setLoading] = useState(false)
+    const { directions, distanceTotal, placeLocation, time } = useRoute({ origin: userLocation, destination: favoriteItem.location })
 
     const handleClickRemove = () => {
         setLoading(true)
-        return removeFavorite(userId, favoriteItem.place_id)
+
+        deleteFavorite(userId, favoriteItem.place_id)
             .then(() => {
-                dispatch(SelectedFavoriteServices.actions.setSelected(''))
-                dispatch(FavoriteServices.actions.removeFavorite(favoriteItem))
+                dispatch(setSelectedFavorite(''))
+                dispatch(removeFavorite(favoriteItem))
             })
             .catch(err => console.log(err))
             .finally(() => setLoading(false))
     }
 
     const handleClickRoute = async () => {
-        console.log(favoriteItem.location);
-
-        try {
-            dispatch(DirectionsRendererServices.actions.clearDirections())
-
-            const directionRequest = {
-                origin: userLocation,
-                destination: favoriteItem.location,
-                travelMode: google.maps.TravelMode.WALKING
-            }
-
-            const result = await getDirections(directionRequest)
-            const distance = result?.routes[0].legs[0].distance?.value || 0
-            const time = result?.routes[0].legs[0].duration?.text || ''
-
-            const directionsRenderer = new google.maps.DirectionsRenderer({
-                map: map,
-                directions: result
-            })
-
-            dispatch(RouteDetailsServices.actions.setDistanceTotal(distance))
-            dispatch(RouteDetailsServices.actions.setPlaceLocation(favoriteItem.location))
-            dispatch(RouteDetailsServices.actions.setTime(time))
-            dispatch(DirectionsRendererServices.actions.setDirectionsRenderer(directionsRenderer))
-        } catch (e) {
-            console.log(e);
-        }
+        dispatch(clearRoute())
+        const directionsRenderer = new google.maps.DirectionsRenderer({ map, directions })
+        dispatch(setRoute({ directionsRenderer, distanceTotal, placeLocation, time }))
     }
 
     return (

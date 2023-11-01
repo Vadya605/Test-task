@@ -1,12 +1,12 @@
 import React, { useRef } from "react";
 
+import AutoCompleteSuggestions from "@/components/AutoCompleteSuggestions";
 import { STATUS_CODES } from "@/constants";
-import { useAppDispatch } from "@/hooks/redux";
+import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
 import { useGoogleMaps } from "@/hooks/useGoogleMaps";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
-import { MapServices } from "@/store/reducers";
+import { setCenter } from "@/store/reducers";
 
-import AutoCompleteSuggestions from "../AutoCompleteSuggestions";
 import {
     AutoCompeteSearchWrapper,
     SearchBox,
@@ -17,9 +17,11 @@ import usePlacesAutocomplete, {
     getGeocode,
     getLatLng,
 } from "use-places-autocomplete";
+import { setResultLocation } from "@/store/reducers/AutoCompleteSearch";
 
 export default function AutoCompleteSearch() {
     const dispatch = useAppDispatch()
+    const { Map: { userLocation } } = useTypeSelector(state => state)
     const ref = useRef<HTMLDivElement>(null);
     const { ready, value, suggestions, setValue, init, clearSuggestions } = usePlacesAutocomplete({ initOnMount: false, debounce: 300 });
     const { status, data } = suggestions
@@ -29,10 +31,16 @@ export default function AutoCompleteSearch() {
 
     React.useEffect(() => {
         isLoaded && init()
-    }, [isLoaded])
+    }, [isLoaded, init])
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(e.target.value);
+        const searchValue = e.target.value
+        setValue(searchValue);
+        
+        if(!searchValue.length){
+            dispatch(setResultLocation(null))
+            dispatch(setCenter(userLocation))
+        }
     };
 
     const handleSelect = (description: string) => {
@@ -43,7 +51,8 @@ export default function AutoCompleteSearch() {
 
         getGeocode({ address: description }).then((results) => {
             const { lat, lng } = getLatLng(results[0]);
-            dispatch(MapServices.actions.setCenter({ lat, lng }))
+            dispatch(setCenter({ lat, lng }))
+            dispatch(setResultLocation({ lat, lng }))
         });
     };
 

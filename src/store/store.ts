@@ -12,24 +12,24 @@ import storage from 'redux-persist/lib/storage'
 
 import { combineReducers,configureStore } from '@reduxjs/toolkit'
 
-import AuthModalReducer from './reducers/AuthModalSlice'
-import ConfirmExitReducer from './reducers/ConfirmExitSlice'
-import DirectionsRendererReducer from './reducers/DirectionsRendererSlice'
-import DrawerReducer from './reducers/DrawerSlice'
-import FavoriteReducer from './reducers/FavoriteSlice'
-import MapReducer from './reducers/MapSlice'
-import ModeReducer from './reducers/ModeSlice'
-import RouteDetailsReducer from './reducers/RouteDetailsSlice'
-import SearchReducer from './reducers/SearchSlice'
-import SelectedFavoriteReducer from './reducers/SelectedFavoriteSlice'
-import SelectedPlaceReducer from './reducers/SelectedPlaceSlice'
-import UserReducer from './reducers/UserSlice'
+import AuthModalReducer from './reducers/AuthModal'
+import ConfirmExitReducer from './reducers/ConfirmExit'
+import DrawerReducer from './reducers/Drawer'
+import FavoriteReducer from './reducers/Favorites'
+import MapReducer from './reducers/Map'
+import ModeReducer from './reducers/Mode'
+import RouteDetailsReducer from './reducers/RouteDetails'
+import SearchReducer from './reducers/Search'
+import SelectedFavoriteReducer from './reducers/SelectedFavorite'
+import SelectedPlaceReducer from './reducers/SelectedPlace'
+import UserReducer from './reducers/User'
+import AutoCompleteSearchReducer from './reducers/AutoCompleteSearch'
 
 
 const persistConfig = {
     key: 'root',
     storage: storage,
-    whitelist: [],
+    whitelist: ['User', 'Mode'],
 }
 
 const rootReducer = combineReducers({
@@ -39,12 +39,12 @@ const rootReducer = combineReducers({
     Search: SearchReducer,
     Favorites: FavoriteReducer,
     SelectedPlace: SelectedPlaceReducer,
-    DirectionsRenderer: DirectionsRendererReducer,
     RouteDetails: RouteDetailsReducer,
     User: UserReducer,
     AuthModal: AuthModalReducer,
     ConfirmExit: ConfirmExitReducer,
     Mode: ModeReducer,
+    AutoCompleteSearch: AutoCompleteSearchReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

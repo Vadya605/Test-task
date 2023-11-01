@@ -4,18 +4,21 @@ import { Box, CircularProgress } from '@mui/material'
 import Typography from '@mui/material/Typography';
 
 import BackIcon from '@/assets/img/Arrow.svg'
+import CollapsedCard from "@/components/CardFavoriteCollapsed";
+import ExpandedCard from "@/components/CardFavoriteExpanded";
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
-import { FavoriteServices, SelectedFavoriteServices } from "@/store/reducers";
+import { setFavorites, setSelectedFavorite } from "@/store/reducers";
 import { getFavorites } from '@/utils/favorite';
 
-import CollapsedCard from "../CardFavoriteCollapsed";
-import ExpandedCard from "../CardFavoriteExpanded";
 import { BoxLoader, ButtonBack, HeaderPanel } from "./styled";
 
 export default function FavoritesPanel() {
     const dispatch = useAppDispatch()
-    const { place_id: selectedFavoriteId } = useTypeSelector(state => state.SelectedFavorite)
-    const { favorites } = useTypeSelector(state => state.Favorites)
+
+    const {
+        SelectedFavorite: { place_id: selectedFavoriteId },
+        Favorites: { favorites }
+    } = useTypeSelector(state => state)
 
     const selectedFavorite = favorites.length && favorites.find(item => item.place_id === selectedFavoriteId)
     const { id: userId } = useTypeSelector(state => state.User)
@@ -23,7 +26,7 @@ export default function FavoritesPanel() {
     const [isLoading, setIsLoading] = useState(false)
 
     const handleClickBack = () => {
-        dispatch(SelectedFavoriteServices.actions.setSelected(''))
+        dispatch(setSelectedFavorite(''))
     }
 
     const renderCollapsedCards = () => {
@@ -35,18 +38,17 @@ export default function FavoritesPanel() {
         ))
     }
 
-
     useEffect(() => {
         setIsLoading(true)
 
         getFavorites(userId)
             .then((favorites) => {
-                dispatch(FavoriteServices.actions.setFavorites(favorites || []))
+                dispatch(setFavorites(favorites))
             })
             .catch(err => console.log(err))
             .finally(() => setIsLoading(false))
 
-    }, [favorites])
+    }, [favorites, userId, dispatch])
 
     return (
         <Box data-testid='favorite-panel'>

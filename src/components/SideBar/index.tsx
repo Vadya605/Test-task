@@ -1,26 +1,23 @@
 import { ChevronLeft } from '@mui/icons-material'
 
+import Aside from '@/components/Aside';
 import AutoCompleteSearch from '@/components/AutoCompleteSearch';
+import ErrorBoundary from '@/components/ErrorBoundary';
+import FavoritesError from '@/components/FavoritesError';
 import FavoritesPanel from '@/components/FavoritesPanel';
 import SearchPanel from '@/components/SearchPanel';
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux';
-import { DrawerServices } from '@/store/reducers';
+import { setIsOpenDrawer, setSelectedSection } from '@/store/reducers';
 
-import Aside from '../Aside';
-import ErrorBoundary from '../ErrorBoundary';
-import FavoritesError from '../FavoritesError';
-import {
-    ArrowClose,
-    Container, Drawer, DrawerContent, DrawerWrapper,
-} from './styled';
+import { ArrowClose, Container, Drawer, DrawerContent, DrawerWrapper } from './styled';
 
 export default function SideBar() {
     const dispatch = useAppDispatch()
-    const { isOpen, selectedSection } = useTypeSelector(state => state.Drawer)
+    const { Drawer: { isOpen, selectedSection } } = useTypeSelector(state => state)
 
-    const handleClickArrow = () => {
-        dispatch(DrawerServices.actions.setOpen(!isOpen))
-        dispatch(DrawerServices.actions.setSelectedSection(''))
+    const handleClickArrowClose = () => {
+        dispatch(setIsOpenDrawer(false))
+        dispatch(setSelectedSection(''))
     }
 
     return (
@@ -29,7 +26,7 @@ export default function SideBar() {
                 <DrawerWrapper className='drawerWrapper'>
                     <Aside />
                     <DrawerContent className='drawerContent'>
-                        {isOpen && <ArrowClose onClick={handleClickArrow} ><ChevronLeft /></ArrowClose>}
+                        {isOpen && <ArrowClose onClick={handleClickArrowClose} ><ChevronLeft /></ArrowClose>}
                         <AutoCompleteSearch />
                         {isOpen && (selectedSection === 'search' ? (
                             <SearchPanel />
@@ -41,10 +38,6 @@ export default function SideBar() {
                     </DrawerContent>
                 </DrawerWrapper>
             </Drawer>
-            {/* {!isOpen &&
-                <ArrowOpen onClick={handleClickArrow}>
-                    <img src={Arrow} alt="" />
-                </ArrowOpen>} */}
         </Container>
     );
 }

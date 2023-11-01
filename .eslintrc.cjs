@@ -18,22 +18,18 @@ module.exports = {
       'error',
       {
         groups: [
-          // Группа 1: Импорты из 'react'
           ['^react'],
 
-          // Группа 2: Импорты из 'redux'
           ['^react-redux', '^redux'],
 
-          // Группа 3: Импорты из '@mui/material' (Material-UI)
+          ['^@react-google-maps/api'],
+
           ['^@mui'],
 
-          // Группа 4: Импорты из '@' (вашего приложения)
           ['^@'],
 
-          // Группа 5: Импорты из стилей
           ['^.css$'],
 
-          // Группа 6: Импорты из TypeScript файлов
           ['^.ts$'],
         ],
       },
