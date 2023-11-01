@@ -4,31 +4,18 @@ import { IFavorite } from '@/interfaces/IFavorite';
 import { addFavorite } from '@/store/reducers';
 import { store } from '@/store/store';
 import { renderWithAllProviders } from '@/utils';
-import { act,screen, waitFor } from '@testing-library/react';
-
+import { screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom'
-import fetchMock from 'jest-fetch-mock';
-
 
 describe('Тестирование FavoritePanel', () => {
-    const favoriteItems: IFavorite[] = [
-        {
-            place_id: 'test-place-id-1234455',
-            name: 'Test place',
-            description: 'description',
-            photo: Nature,
-            icon: Nature,
-            location: { lat: 55.18480229999999, lng: 30.2505758 }
-        },
-        {
-            place_id: 'test-place-id-1234456',
-            name: 'Test place2',
-            description: 'description2',
-            photo: Nature,
-            icon: Nature,
-            location: { lat: 52.18480229999999, lng: 31.2505758 }
-        }
-    ]
+    const favoriteItem: IFavorite = {
+        place_id: 'test-place-id-1234455',
+        name: 'Test place',
+        description: 'description',
+        photo: Nature,
+        icon: Nature,
+        location: { lat: 55.18480229999999, lng: 30.2505758 }
+    }
 
     // const user = {
     //     id: 'example-id',
@@ -36,23 +23,22 @@ describe('Тестирование FavoritePanel', () => {
     //     token: 'example-token'
     // }
 
-    // beforeAll(() => {
-    //     const dispatch = store.dispatch
-    //     dispatch(UserServices.actions.setUser(user))
-    //     // dispatch(FavoriteServices.actions.addFavorite(favoriteItem))
-    // })
+    beforeAll(() => {
+        const dispatch = store.dispatch
+        dispatch(addFavorite(favoriteItem))
+    })
 
-    beforeEach(() => {
-        fetchMock.enableMocks();
-    });
+    // beforeEach(() => {
+    //     fetchMock.enableMocks();
+    // });
 
     test('Тестирование отображения свернутой карточки', async () => {
         renderWithAllProviders(<FavoritesPanel />)
 
-        await act(() => {
-            const dispatch = store.dispatch
-            dispatch(addFavorite(favoriteItems[0]))
-        })
+        // await act(() => {
+        //     const dispatch = store.dispatch
+        //     dispatch(addFavorite(favoriteItem))
+        // })
 
         await waitFor(() => {
             const card = screen.getByTestId('card-collapsed')
@@ -60,10 +46,13 @@ describe('Тестирование FavoritePanel', () => {
         })
     });
 
-    // test('Тестирование клика для развертывания карточки', () => {
+    // test('Тестирование клика для развертывания карточки', async () => {
     //     renderWithAllProviders(<FavoritesPanel />)
-    //     const CardCollapsed = screen.getByTestId('card-collapsed')
-    //     expect(CardCollapsed).toBeInTheDocument()
+
+    //     await waitFor(() => {
+    //         const card = screen.getByTestId('card-collapsed')
+    //         expect(card).toBeInTheDocument()
+    //     })
 
     //     const buttonExpand = screen.getByTestId('button-expand')
     //     expect(buttonExpand).toBeInTheDocument()
@@ -85,7 +74,6 @@ describe('Тестирование FavoritePanel', () => {
     //     const CardCollapsed = screen.getByTestId('card-collapsed')
     //     expect(CardCollapsed).toBeInTheDocument()
     // })
-
 
     // test('Тестирование клика для построения маршрута', async () => {
     //     renderWithAllProviders(<FavoritesPanel />)
