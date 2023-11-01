@@ -1,10 +1,6 @@
 import { IFavorite } from "@/interfaces/IFavorite";
 
-<<<<<<< HEAD
-import { get, getDatabase, push, ref, remove,set } from "firebase/database";
-=======
 import { get, getDatabase, push, ref, remove, set } from "firebase/database";
->>>>>>> feature/review-fixes
 
 
 export function addToFavorite(userId: string, favoriteItem: IFavorite) {
@@ -43,22 +39,10 @@ export async function getFavorites(userId: string) {
     const snapshot = await get(starCountRef);
     const data: IFavorite[] = [];
 
-<<<<<<< HEAD
-        if (snapshot.exists()) {
-            snapshot.forEach((childSnapshot) => {
-                data.push(childSnapshot.val());
-            });
-        }
-
-        return data;
-    } catch (error) {
-        console.log(error);
-=======
     if (snapshot.exists()) {
         snapshot.forEach((childSnapshot) => {
             data.push(childSnapshot.val());
         });
->>>>>>> feature/review-fixes
     }
 
     return data;

@@ -1,9 +1,5 @@
 import { DEFAULT_CENTER } from "@/constants";
-<<<<<<< HEAD:src/tests/slices/mapSlice.test.ts
-import MapSlice, { MapServices } from "@/store/reducers/MapSlice";
-=======
 import MapSlice, { setCenter, setIsLoaded, setUserLocation, setZoom } from "@/store/reducers/Map";
->>>>>>> feature/review-fixes:src/store/reducers/Map/mapSlice.test.ts
 
 describe('Тестирование MapSlice', () => {
     const initialState = {
