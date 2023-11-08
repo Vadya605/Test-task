@@ -8,12 +8,13 @@ import FoundPlaces from '@/components/FoundPlaces';
 import Loader from "@/components/Loader";
 import MapControls from '@/components/MapControls';
 import RouteDetails from "@/components/RouteDetails";
-import { MAP_OPTIONS } from '@/constants';
+import { DEFAULT_CENTER, ERRORS, MAP_OPTIONS } from '@/constants';
 import { useAppDispatch, useGoogleMaps, useTypeSelector } from '@/hooks';
 import { setCenter, setMap, setUserLocation } from '@/store/reducers'
 import { getBrowserLocation, getMapStyle } from '@/utils';
 
 import { mapContainerStyle, MapWrapper } from './styled';
+import { toast } from 'react-toastify';
 
 export default function Map() {
     const dispatch = useAppDispatch()
@@ -29,18 +30,18 @@ export default function Map() {
     const isLoaded = useGoogleMaps()
 
     const onLoad = useCallback(async (map: google.maps.Map) => {
-        getBrowserLocation()
-            .then((location) => {
-                dispatch(setUserLocation(location))
-                dispatch(setCenter(location))
-            })
-            .catch((defaultLocation) => {
-                dispatch(setUserLocation(defaultLocation))
-                dispatch(setCenter(defaultLocation))
-            }).finally(() => {
-                dispatch(setMap(map))
-            })
-    }, [dispatch])
+        try {
+            const location = await getBrowserLocation()
+            dispatch(setUserLocation(location))
+            dispatch(setCenter(location))
+        } catch {
+            toast(ERRORS['error-geo'], { type: 'warning' })
+            dispatch(setUserLocation(DEFAULT_CENTER))
+            dispatch(setCenter(DEFAULT_CENTER))
+        } finally {
+            dispatch(setMap(map))
+        }
+    }, [])
 
     return (
         <>
@@ -54,7 +55,7 @@ export default function Map() {
                         options={{ ...MAP_OPTIONS, styles: mapStyles }}
                     >
                         <FoundPlaces />
-                        { resultLocation && <Marker position={resultLocation} />}
+                        {resultLocation && <Marker position={resultLocation} />}
                         {selectedPlace && <CardPlace />}
                         {directionsRenderer && <RouteDetails />}
                         <CurrentLocation />

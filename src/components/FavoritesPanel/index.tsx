@@ -11,6 +11,8 @@ import { setFavorites, setSelectedFavorite } from "@/store/reducers";
 import { getFavorites } from '@/utils/favorite';
 
 import { BoxLoader, ButtonBack, HeaderPanel } from "./styled";
+import { toast } from 'react-toastify';
+import { ERRORS } from '@/constants';
 
 export default function FavoritesPanel() {
     const dispatch = useAppDispatch()
@@ -39,16 +41,21 @@ export default function FavoritesPanel() {
     }
 
     useEffect(() => {
-        setIsLoading(true)
+        async function fetchFavorites() {
+            try {
+                setIsLoading(true)
 
-        getFavorites(userId)
-            .then((favorites) => {
+                const favorites = await getFavorites(userId)
                 dispatch(setFavorites(favorites))
-            })
-            .catch(err => console.log(err))
-            .finally(() => setIsLoading(false))
+            } catch {
+                toast(ERRORS['error-getting-favorites'], { type: 'error' })
+            } finally {
+                setIsLoading(false)
+            }
+        }
 
-    }, [favorites, userId, dispatch])
+        fetchFavorites()
+    }, [])
 
     return (
         <Box data-testid='favorite-panel'>

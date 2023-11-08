@@ -1,6 +1,7 @@
 import { Typography } from '@mui/material'
 
 import { ButtonRetry } from '@/UI'
+import { ERRORS } from '@/constants'
 
 export default function FavoritesError(){
     
@@ -10,7 +11,7 @@ export default function FavoritesError(){
     
     return (
         <>
-            <Typography variant='h1' >Не удалось загрузить избранное</Typography>
+            <Typography variant='h1' >{ ERRORS['error-favorites'] } </Typography>
             <ButtonRetry onClick={handleClickRetry}>Повторить</ButtonRetry>
         </>
     )

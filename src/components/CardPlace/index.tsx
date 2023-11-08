@@ -13,6 +13,8 @@ import { addToFavorite, checkFavorite,convertPlaceResultToFavorite, deleteFavori
 
 import { Actions, CardPlaceWrapper, PhotoPlace } from "./styled";
 import DoesntExistPhoto from '/public/doesntExist.png'
+import { toast } from 'react-toastify';
+import { ERRORS } from '@/constants';
 
 export default function CardPlace() {
     const dispatch = useAppDispatch()
@@ -52,7 +54,11 @@ export default function CardPlace() {
                 dispatch(addFavorite(favorite));
             }
         } catch (err) {
-            console.log(err);
+            if(isFavorite){
+                toast(ERRORS['error-removing-favorites'], { type: 'error' })
+            } else {
+                toast(ERRORS['error-adding-favorites'], { type: 'error' })
+            }
         } finally {
             setLoading(false);
         }

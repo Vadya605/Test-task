@@ -11,10 +11,14 @@ import { getTheme } from '@/utils/getTheme'
 
 import { ContainerApp } from './styled'
 
+// import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify'
+
 function App() {
-    const {mode} = useTypeSelector(state => state.Mode)
+    const { mode } = useTypeSelector(state => state.Mode)
     const theme = getTheme(mode)
-    
+
     return (
         <ThemeProvider theme={theme}>
             <ContainerApp>
@@ -24,6 +28,7 @@ function App() {
                 <ErrorBoundary fallback={<MapError />}>
                     <Map />
                 </ErrorBoundary>
+                <ToastContainer theme={mode} position='top-center' />
             </ContainerApp>
         </ThemeProvider>
     )

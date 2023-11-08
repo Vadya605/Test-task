@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import ExpandMore from '@/assets/img/Arrow.svg'
 import Favorite from '@/assets/img/Favorite.svg'
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
-import { removeFavorite,setSelectedFavorite } from '@/store/reducers';
+import { removeFavorite, setSelectedFavorite } from '@/store/reducers';
 import { deleteFavorite } from '@/utils/favorite';
 import { strLimit } from "@/utils/textHelpers";
 
@@ -19,6 +19,8 @@ import {
     PhotoIconsWrapper,
     PhotoWrapper
 } from "./styled";
+import { toast } from 'react-toastify';
+import { ERRORS } from '@/constants';
 
 export default function CollapsedCard({ favoriteItem }: ICardProps) {
     const dispatch = useAppDispatch()
@@ -28,12 +30,13 @@ export default function CollapsedCard({ favoriteItem }: ICardProps) {
         dispatch(setSelectedFavorite(favoriteItem.place_id))
     }
 
-    const handleClickRemove = () => {
-        return deleteFavorite(userId, favoriteItem.place_id)
-            .then(() => {
-                dispatch(removeFavorite(favoriteItem))
-            })
-            .catch(err => console.log(err))
+    const handleClickRemove = async () => {
+        try {
+            await deleteFavorite(userId, favoriteItem.place_id)
+            dispatch(removeFavorite(favoriteItem))
+        } catch {
+            toast(ERRORS['error-removing-favorites'], { type: 'error' })
+        }
     }
 
     return (

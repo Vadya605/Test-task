@@ -3,6 +3,7 @@ import { Typography } from "@mui/material"
 import { ButtonRetry } from "@/UI"
 
 import { ErrorBoundaryWrapper } from "./styled"
+import { ERRORS } from "@/constants"
 
 export default function MapError(){
     const handleClickRetry = () => {
@@ -11,7 +12,7 @@ export default function MapError(){
     
     return (
         <ErrorBoundaryWrapper>
-            <Typography variant="h1">С картой пошло что-то не так, попроуйте еще раз</Typography>
+            <Typography variant="h1">{ ERRORS['error-map'] }</Typography>
             <ButtonRetry onClick={handleClickRetry}>
                 Повторить
             </ButtonRetry>
