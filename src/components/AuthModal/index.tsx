@@ -7,6 +7,7 @@ import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
 import { setIsOpenAuthModal } from "@/store/reducers";
 
 import { DialogAuth, DialogContent, DialogHeader } from "./styled";
+import FormResetPassword from "../FormResetPassword";
 
 export default function AuthModal() {
     const dispatch = useAppDispatch()
@@ -20,7 +21,7 @@ export default function AuthModal() {
         <DialogAuth open={isOpen} onClose={handleClickClose}>
             <DialogHeader>
                 <Typography variant='h1'>
-                    { selectedForm === 'login'? 'Авторизация': 'Регистрация' }
+                    {selectedForm === 'login' ? 'Авторизация' : selectedForm === 'signup' ? 'Регистрация' : 'Восстановление пароля'}
                 </Typography>
                 <IconButton onClick={handleClickClose}>
                     <Close />
@@ -29,8 +30,10 @@ export default function AuthModal() {
             <DialogContent>
                 {selectedForm === 'login' ? (
                     <FormLogin />
-                ) : (
+                ) : selectedForm === 'signup' ? (
                     <FormSignup />
+                ) : (
+                    <FormResetPassword />
                 )}
             </DialogContent>
         </DialogAuth>

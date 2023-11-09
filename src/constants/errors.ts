@@ -12,6 +12,8 @@ export type ErrorsType = {
     'error-adding-favorites': string;
 
     'error-geo': string;
+
+    'error-sending-mail': string;
 };
 
 export const ERRORS: ErrorsType = {
@@ -28,4 +30,6 @@ export const ERRORS: ErrorsType = {
     'error-adding-favorites': 'Не удалось добавить в избранное',
 
     'error-geo': 'Не удалось определить ваше текущее местоположение, проверьте настройки браузера',
+
+    'error-sending-mail': 'Не удалось отпрвить письмо вам на почту'
 }

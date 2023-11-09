@@ -15,6 +15,8 @@ export default function FormLogin() {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
 
+    const auth = getAuth()
+
     const handleClickSupport = () => {
         dispatch(setSelectedForm('signup'))
     }
@@ -27,7 +29,6 @@ export default function FormLogin() {
         const [email, password] = [form.email.value, form.password.value]
 
         try {
-            const auth = getAuth()
             const user = (await signInWithEmailAndPassword(auth, email, password)).user
 
             dispatch(setUser({
@@ -46,6 +47,10 @@ export default function FormLogin() {
         }
     }
 
+    const handleClickForgotPassword = () => {
+        dispatch(setSelectedForm('forgot'))
+    }
+
     return (
         <FormAuth onSubmit={handleSubmit}>
             <TextField required name='email' label="Email" type="email" fullWidth variant="standard" />
@@ -61,6 +66,9 @@ export default function FormLogin() {
             <SupportAction>
                 <Typography variant='caption'>Нет аккаунта?</Typography>
                 <Button onClick={handleClickSupport}>Создать</Button>
+            </SupportAction>
+            <SupportAction>
+                <Button onClick={handleClickForgotPassword}>Забыли пароль?</Button>
             </SupportAction>
         </FormAuth>
     )
