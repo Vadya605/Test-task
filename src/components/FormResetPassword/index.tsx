@@ -1,12 +1,16 @@
 import { useState } from "react";
-import { TextField } from "@mui/material";
-import { ButtonAuth, FormAuth } from "@/UI";
+import { Button, TextField, Typography } from "@mui/material";
+import { ButtonAuth, FormAuth, SupportAction } from "@/UI";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { toast } from "react-toastify";
 import { ERRORS } from "@/constants";
 import { SUCCESS } from "@/constants/success";
+import { useAppDispatch } from "@/hooks";
+import { setSelectedForm } from "@/store/reducers";
 
 export default function FormResetPassword() {
+    const dispatch = useAppDispatch()
+
     const [loading, setLoading] = useState(false)
     const [email, setEmail] = useState('')
 
@@ -29,10 +33,18 @@ export default function FormResetPassword() {
         setEmail(e.target.value)
     }
 
+    const handleClickComeBack = () => {
+        dispatch(setSelectedForm('login'))
+    }
+
     return (
         <FormAuth onSubmit={handleSubmit}>
             <TextField onChange={handleChangeEmail} required name='email' label="Email" type="email" fullWidth variant="standard" />
             <ButtonAuth loading={loading} type="submit" variant='contained'>Сбросить</ButtonAuth>
+            <SupportAction>
+                <Typography variant='caption'>Вспомнили?</Typography>
+                <Button onClick={handleClickComeBack}>Вернуться</Button>
+            </SupportAction>
         </FormAuth>
     )
 }
