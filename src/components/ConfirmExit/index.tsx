@@ -6,7 +6,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux';
-import { removeUser, setIsOpenConfirmExit } from '@/store/reducers';
+import { removeUser, setIsOpenConfirmExit, setIsOpenDrawer, setSelectedSection } from '@/store/reducers';
 
 export default function ConfirmExit() {
     const dispatch = useAppDispatch()
@@ -18,6 +18,9 @@ export default function ConfirmExit() {
 
     const handleConfirmExit = () => {
         dispatch(removeUser())
+        dispatch(setIsOpenDrawer(false))
+        dispatch(setSelectedSection(''))
+        
         handleClose();
     };
 

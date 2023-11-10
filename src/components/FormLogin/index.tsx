@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-import { Button, TextField, Typography } from "@mui/material";
+import { Button, IconButton, TextField, Typography } from "@mui/material";
+import { Google } from '@mui/icons-material';
 
 import { ERRORS, ErrorsType } from "@/constants/errors";
 import { useAppDispatch } from "@/hooks/redux";
@@ -8,7 +9,8 @@ import { setIsOpenAuthModal, setSelectedForm, setUser } from "@/store/reducers";
 import { ButtonAuth, ErrorMessage, FormAuth, SupportAction } from "@/UI";
 
 import { FirebaseError } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { toast } from "react-toastify";
 
 export default function FormLogin() {
     const dispatch = useAppDispatch()
@@ -34,7 +36,7 @@ export default function FormLogin() {
             dispatch(setUser({
                 id: user.uid,
                 email: user.email || '',
-                token: user.refreshToken
+                token: user.refreshToken // access здесь почему-то нету
             }))
             dispatch(setIsOpenAuthModal(false))
         } catch (error) {
@@ -51,11 +53,33 @@ export default function FormLogin() {
         dispatch(setSelectedForm('forgot'))
     }
 
+    const handleClickGoogleAuth = async () => {
+        const provider = new GoogleAuthProvider()
+
+        try {
+            const result = await signInWithPopup(auth, provider)
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential?.accessToken;
+            const user = result.user;
+
+            dispatch(setUser({
+                id: user.uid,
+                email: user.email || '',
+                token: token || ''
+            }))
+            dispatch(setIsOpenAuthModal(false))
+        } catch (error) {
+            if(error instanceof Error){
+                toast(error.message, { type: 'error' })
+            }
+        }
+    }
+
     return (
         <FormAuth onSubmit={handleSubmit}>
             <TextField required name='email' label="Email" type="email" fullWidth variant="standard" />
             <TextField required name='password' label="Пароль" type="password" fullWidth variant="standard" />
-            { error && <ErrorMessage variant="caption">{ error }</ErrorMessage>}
+            {error && <ErrorMessage variant="caption">{error}</ErrorMessage>}
             <ButtonAuth
                 type="submit"
                 variant="contained"
@@ -63,6 +87,9 @@ export default function FormLogin() {
             >
                 Войти
             </ButtonAuth>
+            <IconButton onClick={handleClickGoogleAuth}>
+                <Google />
+            </IconButton>
             <SupportAction>
                 <Typography variant='caption'>Нет аккаунта?</Typography>
                 <Button onClick={handleClickSupport}>Создать</Button>
