@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { Button, IconButton, TextField, Typography } from "@mui/material";
-import { Google } from '@mui/icons-material';
+import { Google, GitHub } from '@mui/icons-material';
 
 import { ERRORS, ErrorsType } from "@/constants/errors";
 import { useAppDispatch } from "@/hooks/redux";
@@ -9,8 +9,9 @@ import { setIsOpenAuthModal, setSelectedForm, setUser } from "@/store/reducers";
 import { ButtonAuth, ErrorMessage, FormAuth, SupportAction } from "@/UI";
 
 import { FirebaseError } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { toast } from "react-toastify";
+import { AuthProvider, getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithEmailAndPassword } from "firebase/auth";
+import { authWithProvider } from "@/utils";
+import { AuthProviders } from "./styled";
 
 export default function FormLogin() {
     const dispatch = useAppDispatch()
@@ -53,26 +54,27 @@ export default function FormLogin() {
         dispatch(setSelectedForm('forgot'))
     }
 
-    const handleClickGoogleAuth = async () => {
-        const provider = new GoogleAuthProvider()
-
+    const handleAuthWithProvider = async (provider: AuthProvider) => {
         try {
-            const result = await signInWithPopup(auth, provider)
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential?.accessToken;
-            const user = result.user;
-
-            dispatch(setUser({
-                id: user.uid,
-                email: user.email || '',
-                token: token || ''
-            }))
+            const user = await authWithProvider(auth, provider)
+            dispatch(setUser(user))
             dispatch(setIsOpenAuthModal(false))
         } catch (error) {
-            if(error instanceof Error){
-                toast(error.message, { type: 'error' })
+            if (error instanceof FirebaseError) {
+                const code = error.code as keyof ErrorsType
+                setError(ERRORS[code])
             }
         }
+    }
+
+    const handleClickGoogleAuth = () => {
+        const provider = new GoogleAuthProvider()
+        handleAuthWithProvider(provider)
+    }
+
+    const handleClickGitHubAuth = () => {
+        const provider = new GithubAuthProvider()
+        handleAuthWithProvider(provider)
     }
 
     return (
@@ -87,9 +89,14 @@ export default function FormLogin() {
             >
                 Войти
             </ButtonAuth>
-            <IconButton onClick={handleClickGoogleAuth}>
-                <Google />
-            </IconButton>
+            <AuthProviders>
+                <IconButton onClick={handleClickGoogleAuth}>
+                    <Google />
+                </IconButton>
+                <IconButton onClick={handleClickGitHubAuth}>
+                    <GitHub />
+                </IconButton>
+            </AuthProviders>
             <SupportAction>
                 <Typography variant='caption'>Нет аккаунта?</Typography>
                 <Button onClick={handleClickSupport}>Создать</Button>
