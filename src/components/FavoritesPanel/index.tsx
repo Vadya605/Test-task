@@ -60,7 +60,13 @@ export default function FavoritesPanel() {
     return (
         <Box data-testid='favorite-panel'>
             <HeaderPanel>
-                {selectedFavorite && <ButtonBack data-testid='button-back' onClick={handleClickBack}><img src={BackIcon} alt='Back' /></ButtonBack>}
+                {
+                    selectedFavorite ? (
+                        <ButtonBack data-testid='button-back' onClick={handleClickBack}>
+                            <img src={BackIcon} alt='Back' />
+                        </ButtonBack>
+                    ) : null
+                }
                 <Typography variant='h2'>Избранное</Typography>
             </HeaderPanel>
             {

@@ -92,6 +92,32 @@ export const AsideButtonFavorites = styled('div')<IAsideButtonProps>(({ theme, i
     },
 }))
 
+export const AsideButtonRecommendation = styled('div')<IAsideButtonProps>(({ theme, isActive }) => ({
+    cursor: 'pointer',
+    padding: theme.spacing(1.9),
+    borderRadius: theme.spacing(.6),
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: isActive? theme.palette.common.white: theme.palette.recommendation.main,
+
+    '&:hover':{
+        outline: `${theme.spacing(.3)} solid ${theme.palette.borderSecondary.main}`,
+        backgroundColor: isActive? theme.palette.common.white: theme.palette.recommendation.main,
+    },
+
+    ...(isActive && {
+        outline: `${theme.spacing(.3)} solid ${theme.palette.borderSecondary.main}`,
+        '& svg path': {
+            fill: theme.palette.recommendation.main,
+        }
+    }),
+
+    [theme.breakpoints.down('sm')]: {
+        padding: theme.spacing(.8, 1.1)
+    },
+}))
+
 export const AvatarAside = styled(Avatar)(({ theme }) => ({
     border: `${theme.spacing(.3)} solid ${theme.palette.borderPrimary.main}`,
     width: theme.spacing(4.8),

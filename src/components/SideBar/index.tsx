@@ -10,6 +10,8 @@ import { useAppDispatch, useTypeSelector } from '@/hooks/redux';
 import { setIsOpenDrawer, setSelectedSection } from '@/store/reducers';
 
 import { ArrowClose, Container, Drawer, DrawerContent, DrawerWrapper } from './styled';
+import { SECTIONS } from '@/constants';
+import RecommendationsPanel from '../RecommendationsPanel';
 
 export default function SideBar() {
     const dispatch = useAppDispatch()
@@ -28,13 +30,12 @@ export default function SideBar() {
                     <DrawerContent className='drawerContent'>
                         {isOpen && <ArrowClose onClick={handleClickArrowClose} ><ChevronLeft /></ArrowClose>}
                         <AutoCompleteSearch />
-                        {isOpen && (selectedSection === 'search' ? (
-                            <SearchPanel />
-                        ) : (
-                            <ErrorBoundary fallback={<FavoritesError />}>
-                                <FavoritesPanel />
-                            </ErrorBoundary>
-                        ))}
+                        {selectedSection === SECTIONS.SEARCH && <SearchPanel />}
+                        {
+                            selectedSection === SECTIONS.FAVORITE &&
+                                <ErrorBoundary fallback={<FavoritesError />} ><FavoritesPanel /></ErrorBoundary>
+                        }
+                        {selectedSection === SECTIONS.RECOMMENDATION && <RecommendationsPanel />}
                     </DrawerContent>
                 </DrawerWrapper>
             </Drawer>

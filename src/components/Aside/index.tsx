@@ -4,11 +4,12 @@ import ExitIcon from '@/assets/img/Exit.svg'
 import LogoImg from '@/assets/img/Logo.svg'
 import Favorite from '@/components/svg/Favorite'
 import Search from '@/components/svg/Search'
-import { useAppDispatch, useTypeSelector } from '@/hooks/redux'
-import { useAuth } from '@/hooks/useAuth'
+import Recommendation from '@/components/svg/Recommendation'
+import { SECTIONS } from '@/constants'
+import { useAppDispatch, useTypeSelector, useAuth } from '@/hooks'
 import { setIsOpenAuthModal, setIsOpenConfirmExit, setIsOpenDrawer, setSelectedSection } from '@/store/reducers'
 
-import { AsideButtonFavorites, AsideButtonSearch, AsideWrapper, AvatarAside, Column, Exit, ListSections, Logo } from "./styled"
+import { AsideButtonFavorites, AsideButtonRecommendation, AsideButtonSearch, AsideWrapper, AvatarAside, Column, Exit, ListSections, Logo } from "./styled"
 
 export default function Aside() {
     const dispatch = useAppDispatch()
@@ -16,7 +17,7 @@ export default function Aside() {
     const { isAuth } = useAuth()
 
     const handleClickSectionItem = (name: string) => {
-        if (name === 'favorite' && !isAuth) {
+        if (name === SECTIONS.FAVORITE && !isAuth) {
             return dispatch(setIsOpenAuthModal(true))
         }
 
@@ -39,15 +40,20 @@ export default function Aside() {
             </Logo>
             <Column>
                 <ListSections>
-                    <ListItem data-testid='button-search-section' disablePadding onClick={handleClickSectionItem.bind(null, 'search')}>
-                        <AsideButtonSearch isActive={selectedSection === 'search'}>
+                    <ListItem data-testid='button-search-section' disablePadding onClick={handleClickSectionItem.bind(null, SECTIONS.SEARCH)}>
+                        <AsideButtonSearch isActive={selectedSection === SECTIONS.SEARCH}>
                             <Search />
                         </AsideButtonSearch>
                     </ListItem>
-                    <ListItem data-testid='button-favorite-section' disablePadding onClick={handleClickSectionItem.bind(null, 'favorite')}>
-                        <AsideButtonFavorites isActive={selectedSection === 'favorite'}>
+                    <ListItem data-testid='button-favorite-section' disablePadding onClick={handleClickSectionItem.bind(null, SECTIONS.FAVORITE)}>
+                        <AsideButtonFavorites isActive={selectedSection === SECTIONS.FAVORITE}>
                             <Favorite />
                         </AsideButtonFavorites>
+                    </ListItem>
+                    <ListItem data-testid='button-favorite-section' disablePadding onClick={handleClickSectionItem.bind(null, SECTIONS.RECOMMENDATION)}>
+                        <AsideButtonRecommendation isActive={selectedSection === SECTIONS.RECOMMENDATION}>
+                            <Recommendation />
+                        </AsideButtonRecommendation>
                     </ListItem>
                 </ListSections>
                 {isAuth ? (

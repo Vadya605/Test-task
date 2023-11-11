@@ -1,0 +1,15 @@
+{
+    "recommendations": [
+        {
+            "place_id": "place_id",
+            "name": "Name",
+            "description": "description",
+            "icon": "/src/assets/img/icons-markers/sports-soccer.svg",
+            "photo": "https://maps.googleapis.com/maps/api/place/js/PhotoService.GetPhoto?1sAcJnMuHWI57Q3-vuVOhFZdmQINyXgglZxKFnXGdidVx_gCmKqa59owGfVmvZWPphonOUG6xaKDHniDSqXKiOeq4-Ko8z1V5UE5BF6swSAYlLv8zMOo-SmN_iQig-Fdru-gVYCri6VlrWj0doyEfoP_VOBOJFS__j4QLAC7TbuCsQJxT6kh-f&3u1366&5m1&2e1&callback=none&key=AIzaSyAr6akkks5v1NqRJUQgwRzA6-hG8Ulf8XY&token=77190",
+            "location": {
+                "lat": 55.1904000,
+                "lng": 30.2049000
+            }
+        }
+    ]
+}

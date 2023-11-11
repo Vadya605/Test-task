@@ -52,6 +52,9 @@ declare module '@mui/material/styles' {
         },
         buttonExit: {
             main: string
+        },
+        recommendation: {
+            main: string
         }
     }
     interface PaletteOptions {
@@ -104,6 +107,9 @@ declare module '@mui/material/styles' {
             main: string
         },
         buttonExit: {
+            main: string
+        },
+        recommendation: {
             main: string
         }
     }
@@ -175,6 +181,9 @@ export const getTheme = (mode: PaletteMode) => {
                     },
                     buttonExit: {
                         main: '#808080'
+                    },
+                    recommendation: {
+                        main: '#F3A712'
                     }
                 } : {
                     primary: {
@@ -239,6 +248,9 @@ export const getTheme = (mode: PaletteMode) => {
                     },
                     buttonExit: {
                         main: '#2C2C2C'
+                    },
+                    recommendation: {
+                        main: '#583C04'
                     }
                 })
             },
