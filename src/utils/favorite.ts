@@ -2,6 +2,9 @@ import { IFavorite } from "@/interfaces/IFavorite";
 
 import { get, getDatabase, push, ref, remove, set } from "firebase/database";
 
+export const checkFavorite = (place: google.maps.places.PlaceResult | null, favoriteItems: IFavorite[]): boolean => {
+    return favoriteItems.some(f => f.place_id === place?.place_id)
+}
 
 export function addToFavorite(userId: string, favoriteItem: IFavorite) {
     const db = getDatabase();

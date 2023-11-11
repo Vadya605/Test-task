@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-import { Button, TextField, Typography } from "@mui/material";
+import { Button, IconButton, TextField, Typography } from "@mui/material";
+import { Google, GitHub } from '@mui/icons-material';
 
 import { ERRORS, ErrorsType } from "@/constants/errors";
 import { useAppDispatch } from "@/hooks/redux";
@@ -8,7 +9,9 @@ import { setIsOpenAuthModal, setSelectedForm, setUser } from "@/store/reducers";
 import { ButtonAuth, ErrorMessage, FormAuth, SupportAction } from "@/UI";
 
 import { FirebaseError } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { AuthProvider, getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithEmailAndPassword } from "firebase/auth";
+import { authWithProvider } from "@/utils";
+import { AuthProviders } from "./styled";
 
 export default function FormLogin() {
     const dispatch = useAppDispatch()
@@ -34,7 +37,7 @@ export default function FormLogin() {
             dispatch(setUser({
                 id: user.uid,
                 email: user.email || '',
-                token: user.refreshToken
+                token: user.refreshToken // access здесь почему-то нету
             }))
             dispatch(setIsOpenAuthModal(false))
         } catch (error) {
@@ -51,11 +54,34 @@ export default function FormLogin() {
         dispatch(setSelectedForm('forgot'))
     }
 
+    const handleAuthWithProvider = async (provider: AuthProvider) => {
+        try {
+            const user = await authWithProvider(auth, provider)
+            dispatch(setUser(user))
+            dispatch(setIsOpenAuthModal(false))
+        } catch (error) {
+            if (error instanceof FirebaseError) {
+                const code = error.code as keyof ErrorsType
+                setError(ERRORS[code])
+            }
+        }
+    }
+
+    const handleClickGoogleAuth = () => {
+        const provider = new GoogleAuthProvider()
+        handleAuthWithProvider(provider)
+    }
+
+    const handleClickGitHubAuth = () => {
+        const provider = new GithubAuthProvider()
+        handleAuthWithProvider(provider)
+    }
+
     return (
         <FormAuth onSubmit={handleSubmit}>
             <TextField required name='email' label="Email" type="email" fullWidth variant="standard" />
             <TextField required name='password' label="Пароль" type="password" fullWidth variant="standard" />
-            { error && <ErrorMessage variant="caption">{ error }</ErrorMessage>}
+            {error && <ErrorMessage variant="caption">{error}</ErrorMessage>}
             <ButtonAuth
                 type="submit"
                 variant="contained"
@@ -63,6 +89,14 @@ export default function FormLogin() {
             >
                 Войти
             </ButtonAuth>
+            <AuthProviders>
+                <IconButton onClick={handleClickGoogleAuth}>
+                    <Google />
+                </IconButton>
+                <IconButton onClick={handleClickGitHubAuth}>
+                    <GitHub />
+                </IconButton>
+            </AuthProviders>
             <SupportAction>
                 <Typography variant='caption'>Нет аккаунта?</Typography>
                 <Button onClick={handleClickSupport}>Создать</Button>

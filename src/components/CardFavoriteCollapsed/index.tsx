@@ -5,7 +5,7 @@ import Favorite from '@/assets/img/Favorite.svg'
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
 import { removeFavorite, setSelectedFavorite } from '@/store/reducers';
 import { deleteFavorite } from '@/utils/favorite';
-import { strLimit } from "@/utils/textHelpers";
+import { strLimit } from "@/utils/textHelpers/strLimit";
 
 import { ICardProps } from "./interfaces";
 import {

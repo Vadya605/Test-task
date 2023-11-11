@@ -1,12 +1,7 @@
+import { IUser } from '@/interfaces/IUser'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-interface UserState {
-    id: string,
-    email: string,
-    token: string
-}
-
-const initialState: UserState = {
+const initialState: IUser = {
     id: '',
     email: '',
     token: ''
@@ -16,7 +11,7 @@ export const UserSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        setUser(state, action: PayloadAction<UserState>) {
+        setUser(state, action: PayloadAction<IUser>) {
             state.email = action.payload.email
             state.token = action.payload.token
             state.id = action.payload.id
