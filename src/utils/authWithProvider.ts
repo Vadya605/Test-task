@@ -1,5 +1,6 @@
 import { IUser } from "@/interfaces/IUser";
-import { Auth, FacebookAuthProvider, GoogleAuthProvider, UserCredential, signInWithPopup, AuthProvider } from "firebase/auth";
+
+import { Auth, AuthProvider,FacebookAuthProvider, GoogleAuthProvider, signInWithPopup, UserCredential } from "firebase/auth";
 
 export const authWithProvider = async (auth: Auth, providerObj: AuthProvider): Promise<IUser> => {
     try {

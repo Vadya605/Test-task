@@ -1,9 +1,10 @@
-import '@testing-library/jest-dom'
-import { fireEvent, screen } from '@testing-library/react';
 import SideBar from '@/components/SideBar';
-import { renderWithAllProviders } from '@/utils';
-import { store } from '@/store/store';
 import { setUser } from '@/store/reducers';
+import { store } from '@/store/store';
+import { renderWithAllProviders } from '@/utils';
+import { fireEvent, screen } from '@testing-library/react';
+
+import '@testing-library/jest-dom'
 
 
 describe('Тестирование Side Bar', () => {

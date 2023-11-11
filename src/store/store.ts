@@ -10,9 +10,11 @@ import {
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
+import { recommendationsAPI } from '@/api'
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
 import AuthModalReducer from './reducers/AuthModal'
+import AutoCompleteSearchReducer from './reducers/AutoCompleteSearch'
 import ConfirmExitReducer from './reducers/ConfirmExit'
 import DrawerReducer from './reducers/Drawer'
 import FavoriteReducer from './reducers/Favorites'
@@ -23,8 +25,6 @@ import SearchReducer from './reducers/Search'
 import SelectedFavoriteReducer from './reducers/SelectedFavorite'
 import SelectedPlaceReducer from './reducers/SelectedPlace'
 import UserReducer from './reducers/User'
-import AutoCompleteSearchReducer from './reducers/AutoCompleteSearch'
-import { recommendationsAPI } from '@/api'
 
 
 const persistConfig = {

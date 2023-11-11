@@ -1,12 +1,15 @@
 import { useState } from "react";
-import { Button, TextField, Typography } from "@mui/material";
-import { ButtonAuth, FormAuth, SupportAction } from "@/UI";
-import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { toast } from "react-toastify";
+
+import { Button, TextField, Typography } from "@mui/material";
+
 import { ERRORS } from "@/constants";
 import { SUCCESS } from "@/constants/success";
 import { useAppDispatch } from "@/hooks";
 import { setSelectedForm } from "@/store/reducers";
+import { ButtonAuth, FormAuth, SupportAction } from "@/UI";
+
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 
 export default function FormResetPassword() {
     const dispatch = useAppDispatch()

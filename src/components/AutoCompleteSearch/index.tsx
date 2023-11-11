@@ -6,6 +6,7 @@ import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
 import { useGoogleMaps } from "@/hooks/useGoogleMaps";
 import { useOnClickOutside } from "@/hooks/useOnClickOutside";
 import { setCenter } from "@/store/reducers";
+import { setResultLocation } from "@/store/reducers/AutoCompleteSearch";
 
 import {
     AutoCompeteSearchWrapper,
@@ -17,7 +18,6 @@ import usePlacesAutocomplete, {
     getGeocode,
     getLatLng,
 } from "use-places-autocomplete";
-import { setResultLocation } from "@/store/reducers/AutoCompleteSearch";
 
 export default function AutoCompleteSearch() {
     const dispatch = useAppDispatch()

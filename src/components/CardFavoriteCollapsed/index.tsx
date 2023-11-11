@@ -1,7 +1,10 @@
+import { toast } from 'react-toastify';
+
 import Typography from '@mui/material/Typography';
 
 import ExpandMore from '@/assets/img/Arrow.svg'
 import Favorite from '@/assets/img/Favorite.svg'
+import { ERRORS } from '@/constants';
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
 import { removeFavorite, setSelectedFavorite } from '@/store/reducers';
 import { deleteFavorite } from '@/utils/favorite';
@@ -19,8 +22,6 @@ import {
     PhotoIconsWrapper,
     PhotoWrapper
 } from "./styled";
-import { toast } from 'react-toastify';
-import { ERRORS } from '@/constants';
 
 export default function CollapsedCard({ favoriteItem }: ICardProps) {
     const dispatch = useAppDispatch()

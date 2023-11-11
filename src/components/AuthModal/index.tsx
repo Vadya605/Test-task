@@ -6,8 +6,8 @@ import FormSignup from "@/components/FormSignup";
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
 import { setIsOpenAuthModal } from "@/store/reducers";
 
-import { DialogAuth, DialogContent, DialogHeader } from "./styled";
 import FormResetPassword from "../FormResetPassword";
+import { DialogAuth, DialogContent, DialogHeader } from "./styled";
 
 export default function AuthModal() {
     const dispatch = useAppDispatch()

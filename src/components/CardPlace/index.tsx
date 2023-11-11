@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { InfoWindow } from "@react-google-maps/api";
 
@@ -6,6 +7,7 @@ import Typography from '@mui/material/Typography';
 
 import FavoriteSvg from "@/components/svg/Favorite";
 import GeoSvg from '@/components/svg/Geo'
+import { ERRORS } from '@/constants';
 import { useAppDispatch, useAuth, useRoute,useTypeSelector } from "@/hooks";
 import { addFavorite, clearRoute, removeFavorite, setIsOpenAuthModal, setRoute, setSelectedPlace } from "@/store/reducers";
 import { ButtonFavorite, ButtonRoute } from '@/UI';
@@ -13,8 +15,6 @@ import { addToFavorite, checkFavorite,convertPlaceResultToFavorite, deleteFavori
 
 import { Actions, CardPlaceWrapper, PhotoPlace } from "./styled";
 import DoesntExistPhoto from '/public/doesntExist.png'
-import { toast } from 'react-toastify';
-import { ERRORS } from '@/constants';
 
 export default function CardPlace() {
     const dispatch = useAppDispatch()

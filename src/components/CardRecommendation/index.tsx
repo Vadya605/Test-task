@@ -1,9 +1,11 @@
 import { Typography } from "@mui/material";
-import { ICardRecommendationProps } from "./interfaces";
-import { CardRecommendationWrapper, PhotoPlace } from "./styled";
-import { ButtonFavorite, ButtonRoute, CardActions } from "@/UI";
+
 import FavoriteIcon from "@/assets/img/Favorite.svg";
 import GeoIcon from '@/assets/img/Geo.svg'
+import { ButtonFavorite, ButtonRoute, CardActions } from "@/UI";
+
+import { ICardRecommendationProps } from "./interfaces";
+import { CardRecommendationWrapper, PhotoPlace } from "./styled";
 
 export default function CardRecommendation({ recommendationItem }: ICardRecommendationProps) {
     return (

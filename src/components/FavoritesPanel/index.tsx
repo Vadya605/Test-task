@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { Box, CircularProgress } from '@mui/material'
 import Typography from '@mui/material/Typography';
@@ -6,13 +7,12 @@ import Typography from '@mui/material/Typography';
 import BackIcon from '@/assets/img/Arrow.svg'
 import CollapsedCard from "@/components/CardFavoriteCollapsed";
 import ExpandedCard from "@/components/CardFavoriteExpanded";
+import { ERRORS } from '@/constants';
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
 import { setFavorites, setSelectedFavorite } from "@/store/reducers";
 import { getFavorites } from '@/utils/favorite';
 
 import { BoxLoader, ButtonBack, HeaderPanel } from "./styled";
-import { toast } from 'react-toastify';
-import { ERRORS } from '@/constants';
 
 export default function FavoritesPanel() {
     const dispatch = useAppDispatch()

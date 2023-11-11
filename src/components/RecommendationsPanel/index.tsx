@@ -1,7 +1,8 @@
-import { Typography, Box, Button } from "@mui/material";
-import CardRecommendation from "../CardRecommendation";
+import { Button,Typography } from "@mui/material";
+
 import { useFetchRecommendationsQuery } from "@/api";
 
+import CardRecommendation from "../CardRecommendation";
 import { RecommendationPanelWrapper, RecommendationSelector } from "./styled";
 
 export default function RecommendationsPanel() {

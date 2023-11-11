@@ -3,10 +3,10 @@ import { ListItem } from '@mui/material'
 import ExitIcon from '@/assets/img/Exit.svg'
 import LogoImg from '@/assets/img/Logo.svg'
 import Favorite from '@/components/svg/Favorite'
-import Search from '@/components/svg/Search'
 import Recommendation from '@/components/svg/Recommendation'
+import Search from '@/components/svg/Search'
 import { SECTIONS } from '@/constants'
-import { useAppDispatch, useTypeSelector, useAuth } from '@/hooks'
+import { useAppDispatch, useAuth,useTypeSelector } from '@/hooks'
 import { setIsOpenAuthModal, setIsOpenConfirmExit, setIsOpenDrawer, setSelectedSection } from '@/store/reducers'
 
 import { AsideButtonFavorites, AsideButtonRecommendation, AsideButtonSearch, AsideWrapper, AvatarAside, Column, Exit, ListSections, Logo } from "./styled"

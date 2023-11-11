@@ -5,6 +5,7 @@ import { addFavorite } from '@/store/reducers';
 import { store } from '@/store/store';
 import { renderWithAllProviders } from '@/utils';
 import { screen, waitFor } from '@testing-library/react';
+
 import '@testing-library/jest-dom'
 
 describe('Тестирование FavoritePanel', () => {

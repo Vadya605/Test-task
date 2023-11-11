@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import { Button, IconButton, TextField, Typography} from "@mui/material";
 import { Info } from '@mui/icons-material';
+import { Button, IconButton, TextField, Typography} from "@mui/material";
 
 import { ERRORS, ErrorsType } from "@/constants";
 import { AuthError } from "@/errors";
@@ -10,9 +10,9 @@ import { setIsOpenAuthModal, setSelectedForm, setUser } from "@/store/reducers";
 import { ButtonAuth, ErrorMessage, FormAuth, SupportAction } from "@/UI";
 import { calculatePasswordStrength, checkPasswordMatch } from "@/utils";
 
+import { PasswordBox, PasswordInput, PasswordStrengthMeter, PasswordTooltip,Row } from "./styled";
 import { FirebaseError } from "firebase/app";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import { Row, PasswordBox, PasswordInput, PasswordStrengthMeter, PasswordTooltip } from "./styled";
 
 
 export default function FormSignup() {

@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material'
 
-import { ButtonRetry } from '@/UI'
 import { ERRORS } from '@/constants'
+import { ButtonRetry } from '@/UI'
 
 export default function FavoritesError(){
     

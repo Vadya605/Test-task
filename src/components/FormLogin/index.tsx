@@ -1,17 +1,17 @@
 import { useState } from "react";
 
+import { GitHub,Google } from '@mui/icons-material';
 import { Button, IconButton, TextField, Typography } from "@mui/material";
-import { Google, GitHub } from '@mui/icons-material';
 
 import { ERRORS, ErrorsType } from "@/constants/errors";
 import { useAppDispatch } from "@/hooks/redux";
 import { setIsOpenAuthModal, setSelectedForm, setUser } from "@/store/reducers";
 import { ButtonAuth, ErrorMessage, FormAuth, SupportAction } from "@/UI";
+import { authWithProvider } from "@/utils";
 
+import { AuthProviders } from "./styled";
 import { FirebaseError } from "firebase/app";
 import { AuthProvider, getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithEmailAndPassword } from "firebase/auth";
-import { authWithProvider } from "@/utils";
-import { AuthProviders } from "./styled";
 
 export default function FormLogin() {
     const dispatch = useAppDispatch()

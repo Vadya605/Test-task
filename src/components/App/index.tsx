@@ -1,4 +1,5 @@
 import { ToastContainer } from 'react-toastify'
+
 import { ThemeProvider } from '@mui/material'
 
 import AuthModal from '@/components/AuthModal'
@@ -10,8 +11,8 @@ import SideBar from '@/components/SideBar'
 import { useTypeSelector } from '@/hooks/redux'
 import { getTheme } from '@/utils/getTheme'
 
-import { ContainerApp } from './styled'
 import 'react-toastify/dist/ReactToastify.css';
+import { ContainerApp } from './styled'
 
 function App() {
     const { mode } = useTypeSelector(state => state.Mode)

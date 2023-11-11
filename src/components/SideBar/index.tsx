@@ -6,12 +6,12 @@ import ErrorBoundary from '@/components/ErrorBoundary';
 import FavoritesError from '@/components/FavoritesError';
 import FavoritesPanel from '@/components/FavoritesPanel';
 import SearchPanel from '@/components/SearchPanel';
+import { SECTIONS } from '@/constants';
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux';
 import { setIsOpenDrawer, setSelectedSection } from '@/store/reducers';
 
-import { ArrowClose, Container, Drawer, DrawerContent, DrawerWrapper } from './styled';
-import { SECTIONS } from '@/constants';
 import RecommendationsPanel from '../RecommendationsPanel';
+import { ArrowClose, Container, Drawer, DrawerContent, DrawerWrapper } from './styled';
 
 export default function SideBar() {
     const dispatch = useAppDispatch()
