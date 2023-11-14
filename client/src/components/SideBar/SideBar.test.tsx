@@ -1,5 +1,5 @@
 import SideBar from '@/components/SideBar';
-import { setUser } from '@/store/reducers';
+import { setPersonalData } from '@/store/reducers';
 import { store } from '@/store/store';
 import { renderWithAllProviders } from '@/utils';
 import { fireEvent, screen } from '@testing-library/react';
@@ -9,7 +9,7 @@ import '@testing-library/jest-dom'
 
 describe('Тестирование Side Bar', () => {
     test('Отображение боковой панели', () => {
-        renderWithAllProviders(<SideBar />,)
+        renderWithAllProviders(<SideBar />)
         const buttonSearch = screen.getByTestId('button-search-section')
         expect(buttonSearch).toBeInTheDocument()
     });
@@ -40,7 +40,7 @@ describe('Тестирование Side Bar', () => {
 
     test('Отображение панели избранного при клике на кнопку избранного(пользователь авторизован)', () => {
         const dispatch = store.dispatch
-        dispatch(setUser({
+        dispatch(setPersonalData({
             id: '1',
             email: 'test@gmail.com',
             token: 'test_token'

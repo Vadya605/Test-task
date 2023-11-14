@@ -1,8 +1,8 @@
-import { IUser } from "@/interfaces/IUser";
+import { IUserPersonalData } from "@/interfaces";
 
 import { Auth, AuthProvider,FacebookAuthProvider, GoogleAuthProvider, signInWithPopup, UserCredential } from "firebase/auth";
 
-export const authWithProvider = async (auth: Auth, providerObj: AuthProvider): Promise<IUser> => {
+export const authWithProvider = async (auth: Auth, providerObj: AuthProvider): Promise<IUserPersonalData> => {
     try {
         let provider = null;
 

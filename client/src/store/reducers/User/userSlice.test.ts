@@ -1,10 +1,12 @@
-import UserSlice, { removeUser,setUser } from "@/store/reducers/User";
+import UserSlice, { removeUser,setPersonalData, setGeographicData } from "@/store/reducers/User";
 
 describe('Тестирование UserSlice', () => {
     const initialState = {
         id: '',
         email: '',
-        token: ''
+        token: '',
+        city: '',
+        country: ''
     };
 
     test('Тестирование начального состояния', () => {
@@ -12,25 +14,43 @@ describe('Тестирование UserSlice', () => {
         expect(result).toEqual(initialState);
     });
 
-    test('Тестирование метода "setUser"', () => {
+    test('Тестирование метода "setPersonalData"', () => {
         const payload = {
             id: '12345',
             email: 'example@example.com',
             token: 'token123'
         };
         const action = {
-            type: setUser.type,
+            type: setPersonalData.type,
             payload: payload,
         };
         const result = UserSlice(initialState, action);
-        expect(result).toEqual(payload);
+        expect(result.id).toEqual(payload.id);
+        expect(result.email).toEqual(payload.email);
+        expect(result.token).toEqual(payload.token);
+    });
+
+    test('Тестирование метода "setGeographicData"', () => {
+        const payload = {
+            city: 'city',
+            country: 'country'
+        };
+        const action = {
+            type: setGeographicData.type,
+            payload: payload,
+        };
+        const result = UserSlice(initialState, action);
+        expect(result.city).toEqual(payload.city);
+        expect(result.country).toEqual(payload.country);
     });
 
     test('Тестирование метода "removeUser"', () => {
         const initialStateWithUser = {
             id: '12345',
             email: 'example@example.com',
-            token: 'token123'
+            token: 'token123',
+            city: 'city',
+            country: 'country'
         };
         const action = {
             type: removeUser.type,
