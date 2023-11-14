@@ -1,0 +1,30 @@
+{
+    "recommendations": [
+        {
+            "place_id": "ChIJqY8AgauPxEYRYi3ua6pGAj8",
+            "name": "Trenazhornyy Zal VTB",
+            "description": "Trenazhornyy Zal Shkol'naya Ulitsa 1, Polatsk",
+            "icon": "/src/assets/img/icons-markers/sports-soccer.svg",
+            "photo": "https://maps.googleapis.com/maps/api/place/js/PhotoService.GetPhoto?1sAcJnMuGm26WOozVkEJAAEgBmxBFTd0kNL0QF1g1L184Ig1DK9HbYbsclul2zlMR9PG_tWUx9yczgdFL1ZXNeNPH9pfby-eS2R9QCKmxDEW5_gKzvXDW_IcxOASuyTk2qz8BfdVKbfxrbi7G3aSBS_JWFz9YgXcKE6zGXspdNbpWXGOB5XYsF&3u1920&5m1&2e1&callback=none&key=AIzaSyAr6akkks5v1NqRJUQgwRzA6-hG8Ulf8XY&token=43191",
+            "location": {
+                "lat": 55.5115055,
+                "lng": 28.7698911
+            },
+            "city": "Viciebsk",
+            "country": "Belarus"
+        },
+        {
+            "place_id": "ChIJqY8AgauPxEYRYi3ua6pGAj8",
+            "name": "Trenazhornyy Zal BRS",
+            "description": "Trenazhornyy Zal Shkol'naya Ulitsa 1, Polatsk",
+            "icon": "/src/assets/img/icons-markers/sports-soccer.svg",
+            "photo": "https://maps.googleapis.com/maps/api/place/js/PhotoService.GetPhoto?1sAcJnMuGm26WOozVkEJAAEgBmxBFTd0kNL0QF1g1L184Ig1DK9HbYbsclul2zlMR9PG_tWUx9yczgdFL1ZXNeNPH9pfby-eS2R9QCKmxDEW5_gKzvXDW_IcxOASuyTk2qz8BfdVKbfxrbi7G3aSBS_JWFz9YgXcKE6zGXspdNbpWXGOB5XYsF&3u1920&5m1&2e1&callback=none&key=AIzaSyAr6akkks5v1NqRJUQgwRzA6-hG8Ulf8XY&token=43191",
+            "location": {
+                "lat": 52.0975500,
+                "lng": 23.6877500
+            },
+            "city": "Brest",
+            "country": "Belarus"
+        }
+    ]
+}
