@@ -50,7 +50,7 @@ export default function Aside() {
                             <Favorite />
                         </AsideButtonFavorites>
                     </ListItem>
-                    <ListItem data-testid='button-favorite-section' disablePadding onClick={handleClickSectionItem.bind(null, SECTIONS_SIDEBAR.RECOMMENDATION)}>
+                    <ListItem data-testid='button-recommendation-section' disablePadding onClick={handleClickSectionItem.bind(null, SECTIONS_SIDEBAR.RECOMMENDATION)}>
                         <AsideButtonRecommendation isActive={selectedSection === SECTIONS_SIDEBAR.RECOMMENDATION}>
                             <Recommendation />
                         </AsideButtonRecommendation>
