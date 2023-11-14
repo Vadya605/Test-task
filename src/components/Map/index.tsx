@@ -9,9 +9,9 @@ import FoundPlaces from '@/components/FoundPlaces';
 import Loader from "@/components/Loader";
 import MapControls from '@/components/MapControls';
 import RouteDetails from "@/components/RouteDetails";
-import { DEFAULT_CENTER, ERRORS, MAP_OPTIONS } from '@/constants';
+import { DEFAULT_CENTER, MAP_OPTIONS } from '@/constants';
 import { useAppDispatch, useGoogleMaps, useTypeSelector } from '@/hooks';
-import { setCenter, setMap, setUserLocation } from '@/store/reducers'
+import { setCenter, setGeographicData, setMap, setUserLocation } from '@/store/reducers'
 import { getBrowserLocation, getMapStyle } from '@/utils';
 
 import { mapContainerStyle, MapWrapper } from './styled';
@@ -31,14 +31,17 @@ export default function Map() {
 
     const onLoad = useCallback(async (map: google.maps.Map) => {
         try {
-
-            const location = await getBrowserLocation()
+            const {location, city, country} = await getBrowserLocation()
             dispatch(setUserLocation(location))
             dispatch(setCenter(location))
-        } catch {
-            toast(ERRORS['error-geo'], { type: 'warning' })
-            dispatch(setUserLocation(DEFAULT_CENTER))
-            dispatch(setCenter(DEFAULT_CENTER))
+            console.log(city, country)
+            dispatch(setGeographicData({ city, country }))
+        } catch(error) {
+            if(error instanceof Error){
+                toast(error.message, { type: 'warning' })
+                dispatch(setUserLocation(DEFAULT_CENTER))
+                dispatch(setCenter(DEFAULT_CENTER))
+            }
         } finally {
             dispatch(setMap(map))
         }

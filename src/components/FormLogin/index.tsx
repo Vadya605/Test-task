@@ -5,7 +5,7 @@ import { Button, IconButton, TextField, Typography } from "@mui/material";
 
 import { ERRORS, ErrorsType } from "@/constants/errors";
 import { useAppDispatch } from "@/hooks/redux";
-import { setIsOpenAuthModal, setSelectedForm, setUser } from "@/store/reducers";
+import { setIsOpenAuthModal, setPersonalData, setSelectedForm } from "@/store/reducers";
 import { ButtonAuth, ErrorMessage, FormAuth, SupportAction } from "@/UI";
 import { authWithProvider } from "@/utils";
 
@@ -34,7 +34,7 @@ export default function FormLogin() {
         try {
             const user = (await signInWithEmailAndPassword(auth, email, password)).user
 
-            dispatch(setUser({
+            dispatch(setPersonalData({
                 id: user.uid,
                 email: user.email || '',
                 token: user.refreshToken // access здесь почему-то нету
@@ -57,7 +57,7 @@ export default function FormLogin() {
     const handleAuthWithProvider = async (provider: AuthProvider) => {
         try {
             const user = await authWithProvider(auth, provider)
-            dispatch(setUser(user))
+            dispatch(setPersonalData(user))
             dispatch(setIsOpenAuthModal(false))
         } catch (error) {
             if (error instanceof FirebaseError) {

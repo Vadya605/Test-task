@@ -1,1 +1,1 @@
-export * from './recommemdations'
+export * from './recommendation'

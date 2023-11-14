@@ -6,7 +6,7 @@ import ErrorBoundary from '@/components/ErrorBoundary';
 import FavoritesError from '@/components/FavoritesError';
 import FavoritesPanel from '@/components/FavoritesPanel';
 import SearchPanel from '@/components/SearchPanel';
-import { SECTIONS } from '@/constants';
+import { SECTIONS_SIDEBAR } from '@/constants';
 import { useAppDispatch, useTypeSelector } from '@/hooks/redux';
 import { setIsOpenDrawer, setSelectedSection } from '@/store/reducers';
 
@@ -30,12 +30,12 @@ export default function SideBar() {
                     <DrawerContent className='drawerContent'>
                         {isOpen && <ArrowClose onClick={handleClickArrowClose} ><ChevronLeft /></ArrowClose>}
                         <AutoCompleteSearch />
-                        {selectedSection === SECTIONS.SEARCH && <SearchPanel />}
+                        {selectedSection === SECTIONS_SIDEBAR.SEARCH && <SearchPanel />}
                         {
-                            selectedSection === SECTIONS.FAVORITE &&
+                            selectedSection === SECTIONS_SIDEBAR.FAVORITE &&
                                 <ErrorBoundary fallback={<FavoritesError />} ><FavoritesPanel /></ErrorBoundary>
                         }
-                        {selectedSection === SECTIONS.RECOMMENDATION && <RecommendationsPanel />}
+                        {selectedSection === SECTIONS_SIDEBAR.RECOMMENDATION && <RecommendationsPanel />}
                     </DrawerContent>
                 </DrawerWrapper>
             </Drawer>

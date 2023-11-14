@@ -1,6 +1,6 @@
 export * from './convert'
 export * from './favorite'
-export * from './geo'
+export * from './location'
 export * from './getMapStyle'
 export * from './getTheme'
 export * from './route'

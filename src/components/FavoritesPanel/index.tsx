@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 
 import BackIcon from '@/assets/img/Arrow.svg'
 import CollapsedCard from "@/components/CardFavoriteCollapsed";
-import ExpandedCard from "@/components/CardFavoriteExpanded";
+import ExpandedCard from "@/components/CardExpanded";
 import { ERRORS } from '@/constants';
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
 import { setFavorites, setSelectedFavorite } from "@/store/reducers";
@@ -73,7 +73,7 @@ export default function FavoritesPanel() {
                 !isLoading ? (
                     selectedFavorite ? (
                         <ExpandedCard
-                            favoriteItem={selectedFavorite}
+                            cardItem={selectedFavorite}
                             key={selectedFavorite.place_id}
                         />
                     ) : (

@@ -2,26 +2,45 @@ import { Button,Typography } from "@mui/material";
 
 import { useFetchRecommendationsQuery } from "@/api";
 
-import CardRecommendation from "../CardRecommendation";
 import { RecommendationPanelWrapper, RecommendationSelector } from "./styled";
+import { useTypeSelector } from "@/hooks";
+import { useState } from "react";
+import { RECOMMENDATION_SECTION } from "@/constants";
+import ExpandedCard from "../CardExpanded";
 
 export default function RecommendationsPanel() {
+    const [recommendationSection, setRerecommendationSection] = useState<string>(RECOMMENDATION_SECTION.CITY)
+    const { User } = useTypeSelector(state => state)
+    const params = { [recommendationSection]: User[recommendationSection] }
+    const { data: recommendations } = useFetchRecommendationsQuery(params)
 
-    const { data: recommendations } = useFetchRecommendationsQuery()
-    console.log(recommendations)
+    const handleClickButtonSelector = (section: string) => {
+        setRerecommendationSection(section)
+    }
+
 
     return (
         <RecommendationPanelWrapper>
             <Typography variant="h1">Рекомендации</Typography>
                 <RecommendationSelector>
-                    <Button variant='contained'>По городу</Button>
-                    <Button variant='contained'>По стране</Button>
+                    <Button 
+                        onClick={handleClickButtonSelector.bind(null, RECOMMENDATION_SECTION.CITY)} 
+                        variant={ recommendationSection === RECOMMENDATION_SECTION.CITY ? 'outlined': 'contained'}
+                    >
+                        По городу
+                    </Button>
+                    <Button 
+                        onClick={handleClickButtonSelector.bind(null, RECOMMENDATION_SECTION.COUNTRY)} 
+                        variant={ recommendationSection === RECOMMENDATION_SECTION.COUNTRY ? 'outlined': 'contained'}
+                    >
+                        По стране
+                    </Button>
                 </RecommendationSelector>
             {
                 recommendations?.map(recommendation => (
-                    <CardRecommendation 
+                    <ExpandedCard
                         key={recommendation.place_id}
-                        recommendationItem={recommendation} 
+                        cardItem={recommendation}
                     />
                 ))
             }

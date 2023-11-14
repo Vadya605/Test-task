@@ -14,22 +14,24 @@ import { deleteFavorite } from '@/utils/favorite';
 import { ICardProps } from './interfaces';
 import { Actions, CardExpanded, CardHeader, CardWrapper, Photo, PhotoIcon, PhotoIconsWrapper, PhotoWrapper } from "./styled";
 
-export default function ExpandedCard({ favoriteItem }: ICardProps) {
+export default function ExpandedCard({ cardItem }: ICardProps) {
     const dispatch = useAppDispatch()
     const {
         Map: { map, userLocation },
         User: { id: userId }
     } = useTypeSelector(state => state);
 
+    console.log(cardItem)
+
     const [loading, setLoading] = useState(false)
-    const { directions, distanceTotal, placeLocation, time } = useRoute({ origin: userLocation, destination: favoriteItem.location })
+    const { directions, distanceTotal, placeLocation, time } = useRoute({ origin: userLocation, destination: cardItem.location })
 
     const handleClickRemove = async () => {
         try {
             setLoading(true)
-            await deleteFavorite(userId, favoriteItem.place_id)
+            await deleteFavorite(userId, cardItem.place_id)
             dispatch(setSelectedFavorite(''))
-            dispatch(removeFavorite(favoriteItem))
+            dispatch(removeFavorite(cardItem))
 
         } catch {
             toast(ERRORS['error-removing-favorites'], { type: 'error' })
@@ -49,14 +51,14 @@ return (
         <CardWrapper>
             <CardHeader>
                 <PhotoWrapper>
-                    <Photo src={favoriteItem.photo} alt="Photo place" />
+                    <Photo src={cardItem.photo} alt="Photo place" />
                     <PhotoIconsWrapper>
-                        <PhotoIcon src={favoriteItem.icon} alt="Photo icon" />
+                        <PhotoIcon src={cardItem.icon} alt="Photo icon" />
                     </PhotoIconsWrapper>
                 </PhotoWrapper>
-                <Typography variant='h1' >{favoriteItem.name}</Typography>
+                <Typography variant='h1' >{cardItem.name}</Typography>
             </CardHeader>
-            <Typography variant='body1'>{favoriteItem.description}</Typography>
+            <Typography variant='body1'>{cardItem.description}</Typography>
             <Actions>
                 <ButtonFavorite loading={loading} data-testid='button-remove' onClick={handleClickRemove}>
                     <Favorite />

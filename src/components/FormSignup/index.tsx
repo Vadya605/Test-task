@@ -6,7 +6,7 @@ import { Button, IconButton, TextField, Typography} from "@mui/material";
 import { ERRORS, ErrorsType } from "@/constants";
 import { AuthError } from "@/errors";
 import { useAppDispatch } from "@/hooks";
-import { setIsOpenAuthModal, setSelectedForm, setUser } from "@/store/reducers";
+import { setIsOpenAuthModal, setPersonalData, setSelectedForm } from "@/store/reducers";
 import { ButtonAuth, ErrorMessage, FormAuth, SupportAction } from "@/UI";
 import { calculatePasswordStrength, checkPasswordMatch } from "@/utils";
 
@@ -36,7 +36,7 @@ export default function FormSignup() {
             const auth = getAuth()
             const user = (await createUserWithEmailAndPassword(auth, email, password)).user
 
-            dispatch(setUser({
+            dispatch(setPersonalData({
                 id: user.uid,
                 email: user.email || '',
                 token: user.refreshToken
