@@ -1,7 +1,7 @@
-import { IUser } from '@/interfaces/IUser'
 import { IUserGeographicData } from '@/interfaces'
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { IUser } from '@/interfaces/IUser'
 import { IUserPersonalData } from '@/interfaces/IUserPersonalData'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 const initialState: IUser = {
     id: '',

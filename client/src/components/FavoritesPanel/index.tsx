@@ -5,8 +5,8 @@ import { Box, CircularProgress } from '@mui/material'
 import Typography from '@mui/material/Typography';
 
 import BackIcon from '@/assets/img/Arrow.svg'
-import CollapsedCard from "@/components/CardFavoriteCollapsed";
 import ExpandedCard from "@/components/CardExpanded";
+import CollapsedCard from "@/components/CardFavoriteCollapsed";
 import { ERRORS } from '@/constants';
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
 import { setFavorites, setSelectedFavorite } from "@/store/reducers";

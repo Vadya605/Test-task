@@ -1,4 +1,5 @@
 import { ERRORS } from "@/constants";
+
 import { ILocationResult } from "./interfaces";
 
 export const getBrowserLocation = (): Promise<ILocationResult> => {

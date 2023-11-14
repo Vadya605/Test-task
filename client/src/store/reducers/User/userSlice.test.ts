@@ -1,4 +1,4 @@
-import UserSlice, { removeUser,setPersonalData, setGeographicData } from "@/store/reducers/User";
+import UserSlice, { removeUser,setGeographicData,setPersonalData } from "@/store/reducers/User";
 
 describe('Тестирование UserSlice', () => {
     const initialState = {

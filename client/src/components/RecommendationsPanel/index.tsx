@@ -1,12 +1,13 @@
+import { useState } from "react";
+
 import { Button,Typography } from "@mui/material";
 
 import { useFetchRecommendationsQuery } from "@/api";
-
-import { RecommendationPanelWrapper, RecommendationSelector } from "./styled";
-import { useTypeSelector } from "@/hooks";
-import { useState } from "react";
 import { RECOMMENDATION_SECTION } from "@/constants";
+import { useTypeSelector } from "@/hooks";
+
 import ExpandedCard from "../CardExpanded";
+import { RecommendationPanelWrapper, RecommendationSelector } from "./styled";
 
 export default function RecommendationsPanel() {
     const [recommendationSection, setRerecommendationSection] = useState<string>(RECOMMENDATION_SECTION.CITY)
