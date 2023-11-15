@@ -14,3 +14,10 @@ export const RecommendationSelector = styled('div')(({theme}) => ({
     }
 }))
 
+export const BoxLoader = styled('div')`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+
