@@ -26,12 +26,14 @@ export default function RecommendationsPanel() {
                 <Button
                     onClick={handleClickButtonSelector.bind(null, RECOMMENDATION_SECTION.CITY)}
                     variant={recommendationSection === RECOMMENDATION_SECTION.CITY ? 'outlined' : 'contained'}
+                    disabled={isLoading}
                 >
                     По городу
                 </Button>
                 <Button
                     onClick={handleClickButtonSelector.bind(null, RECOMMENDATION_SECTION.COUNTRY)}
                     variant={recommendationSection === RECOMMENDATION_SECTION.COUNTRY ? 'outlined' : 'contained'}
+                    disabled={isLoading}
                 >
                     По стране
                 </Button>

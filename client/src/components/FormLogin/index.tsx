@@ -67,16 +67,6 @@ export default function FormLogin() {
         }
     }
 
-    const handleClickGoogleAuth = () => {
-        const provider = new GoogleAuthProvider()
-        handleAuthWithProvider(provider)
-    }
-
-    const handleClickGitHubAuth = () => {
-        const provider = new GithubAuthProvider()
-        handleAuthWithProvider(provider)
-    }
-
     return (
         <FormAuth onSubmit={handleSubmit}>
             <TextField required name='email' label="Email" type="email" fullWidth variant="standard" />
@@ -90,10 +80,10 @@ export default function FormLogin() {
                 Войти
             </ButtonAuth>
             <AuthProviders>
-                <IconButton onClick={handleClickGoogleAuth}>
+                <IconButton onClick={handleAuthWithProvider.bind(null, new GoogleAuthProvider())}>
                     <Google />
                 </IconButton>
-                <IconButton onClick={handleClickGitHubAuth}>
+                <IconButton onClick={handleAuthWithProvider.bind(null, new GithubAuthProvider())}>
                     <GitHub />
                 </IconButton>
             </AuthProviders>

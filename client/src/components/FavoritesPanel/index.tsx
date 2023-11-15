@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
 
 import { Box, CircularProgress } from '@mui/material'
@@ -19,11 +19,13 @@ export default function FavoritesPanel() {
 
     const {
         SelectedFavorite: { place_id: selectedFavoriteId },
-        Favorites: { favorites }
+        Favorites: { favorites },
+        User: {id: userId}
     } = useTypeSelector(state => state)
 
-    const selectedFavorite = favorites.length && favorites.find(item => item.place_id === selectedFavoriteId)
-    const { id: userId } = useTypeSelector(state => state.User)
+    const selectedFavorite = useMemo(() => {
+        return favorites.length && favorites.find(item => item.place_id === selectedFavoriteId);
+    }, [favorites, selectedFavoriteId]);
 
     const [isLoading, setIsLoading] = useState(false)
 

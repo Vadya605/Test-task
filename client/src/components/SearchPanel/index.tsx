@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 
 import Typography from '@mui/material/Typography';
 
@@ -24,7 +24,7 @@ export default function SearchPanel() {
         dispatch(setSearchRadius(searchRadiusValue))
     }
 
-    const handleSearch = () => {
+    const handleSearch = useCallback(() => {
         dispatch(clearFoundPlaces())
 
         if (!(map && selectedPlaces.length)) {
@@ -52,7 +52,7 @@ export default function SearchPanel() {
                 }
             });
         })
-    };
+    }, [selectedPlaces, searchRadius, userLocation])
 
     return (
         <SearchPanelWrapper data-testid='search-panel'>
