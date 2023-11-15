@@ -6,13 +6,13 @@ import Typography from '@mui/material/Typography';
 
 import BackIcon from '@/assets/img/Arrow.svg'
 import ExpandedCard from "@/components/CardExpanded";
-import CollapsedCard from "@/components/CardFavoriteCollapsed";
 import { ERRORS } from '@/constants';
 import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
 import { setFavorites, setSelectedFavorite } from "@/store/reducers";
 import { getFavorites } from '@/utils/favorite';
 
 import { BoxLoader, ButtonBack, HeaderPanel } from "./styled";
+import ListCollapsedCard from '../ListCollapsedCard';
 
 export default function FavoritesPanel() {
     const dispatch = useAppDispatch()
@@ -29,15 +29,6 @@ export default function FavoritesPanel() {
 
     const handleClickBack = () => {
         dispatch(setSelectedFavorite(''))
-    }
-
-    const renderCollapsedCards = () => {
-        return favorites.map(favoriteItem => (
-            <CollapsedCard
-                favoriteItem={favoriteItem}
-                key={favoriteItem.place_id}
-            />
-        ))
     }
 
     useEffect(() => {
@@ -77,7 +68,7 @@ export default function FavoritesPanel() {
                             key={selectedFavorite.place_id}
                         />
                     ) : (
-                        renderCollapsedCards()
+                        <ListCollapsedCard />
                     )
                 ) : (
                     <BoxLoader><CircularProgress color='primary' /></BoxLoader>
