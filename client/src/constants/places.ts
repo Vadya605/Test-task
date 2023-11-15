@@ -21,110 +21,110 @@ import Sport from '@/assets/img/icons-markers/sports-soccer.svg'
 export const PLACES = [
     {
         id: 1,
-        name: 'Природа', 
-        icon: Nature, 
-        types: ['natural_feature']
+        name: 'Природа',
+        icon: Nature,
+        type: 'Nature'
     },
-    { 
-        id: 2, 
-        name: 'Культура', 
-        icon: Culture, 
-        types: ['museum'] 
+    {
+        id: 2,
+        name: 'Культура',
+        icon: Culture,
+        type: 'Culture'
     },
-    { 
-        id: 3, 
+    {
+        id: 3,
         name: 'История',
-        icon: History, 
-        types: ['point_of_interest'] 
+        icon: History,
+        type: 'History'
     },
-    { 
-        id: 4, 
-        name: 'Религия', 
-        icon: Religion, 
-        types: ['place_of_worship'] 
+    {
+        id: 4,
+        name: 'Религия',
+        icon: Religion,
+        type: 'Religion'
     },
-    { 
-        id: 5, 
-        name: 'Архитектура', 
-        icon: Architecture, 
-        types: ['architectural_feature'] 
+    {
+        id: 5,
+        name: 'Архитектура',
+        icon: Architecture,
+        type: 'Architecture'
     },
-    { 
-        id: 6, 
-        name: 'Индустриальные объекты', 
-        icon: Industrial, 
-        types: ['industrial_feature'] 
+    {
+        id: 6,
+        name: 'Индустриальные объекты',
+        icon: Industrial,
+        type: 'Industrial'
     },
-    { 
-        id: 7, 
-        name: 'Разное', 
+    {
+        id: 7,
+        name: 'Разное',
         icon: Other,
-        types: [''
-]    },
-    { 
-        id: 8, 
-        name: 'Развлечения', 
-        icon: Entertainment ,
-        types: ['amusement_park']
+        type: 'Other'
     },
-    { 
-        id: 9, 
-        name: 'Спорт', 
+    {
+        id: 8,
+        name: 'Развлечения',
+        icon: Entertainment,
+        type: 'Entertainment'
+    },
+    {
+        id: 9,
+        name: 'Спорт',
         icon: Sport,
-        types: ['stadium', 'gym', 'health'] 
+        type: 'Sport'
     },
-    { 
-        id: 10, 
-        name: 'Для взрослых', 
-        icon: Adult ,
-        types: ['']
+    {
+        id: 10,
+        name: '18+',
+        icon: Adult,
+        type: 'Erotic'
     },
-    { 
-        id: 11, 
-        name: 'Авто', 
+    {
+        id: 11,
+        name: 'Авто',
         icon: Car,
-        types: ['car_dealer']
+        type: 'car'
     },
-    { 
-        id: 12, 
-        name: 'Заправки', 
+    {
+        id: 12,
+        name: 'Заправки',
         icon: GasStation,
-        types: ['gas_station']
+        type: 'gas-station'
     },
-    { 
-        id: 13, 
-        name: 'Велосипеды', 
+    {
+        id: 13,
+        name: 'Велосипеды',
         icon: Bike,
-        types: ['bicycle_store']
+        type: 'tourist-attraction'
     },
-    { 
-        id: 14, 
-        name: 'Магазины', 
+    {
+        id: 14,
+        name: 'Магазины',
         icon: Shop,
-        types: ['store']
+        type: 'shop'
     },
-    { 
-        id: 15, 
-        name: 'Еда', 
+    {
+        id: 15,
+        name: 'Еда',
         icon: Food,
-        types: ['restaurant']
+        type: 'food'
     },
-    { 
-        id: 16, 
-        name: 'Кофе / чай', 
+    {
+        id: 16,
+        name: 'Кофе / чай',
         icon: Coffee,
-        types: ['cafe'], 
+        type: 'cafe'
     },
-    { 
-        id: 17, 
-        name: 'Банки', 
+    {
+        id: 17,
+        name: 'Банки',
         icon: Bank,
-        types: ['bank']
+        type: 'bank'
     },
-    { 
-        id: 18, 
-        name: 'Место для сна', 
+    {
+        id: 18,
+        name: 'Отель',
         icon: Sleep,
-        types: ['lodging']
+        type: 'hotel'
     },
 ]

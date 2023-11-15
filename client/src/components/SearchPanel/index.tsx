@@ -45,7 +45,7 @@ export default function SearchPanel() {
                 if (status === google.maps.places.PlacesServiceStatus.OK && results) {
                     const updatedResults = results.map(result => ({
                         ...result,
-                        icon: PLACES.find(p => p.name === selectedPlace)?.icon
+                        icon: PLACES.find(p => p.type === selectedPlace)?.icon
                     }));
 
                     dispatch(addFoundPlaces(updatedResults))

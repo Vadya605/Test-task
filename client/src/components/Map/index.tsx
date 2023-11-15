@@ -34,7 +34,6 @@ export default function Map() {
             const {location, city, country} = await getBrowserLocation()
             dispatch(setUserLocation(location))
             dispatch(setCenter(location))
-            console.log(city, country)
             dispatch(setGeographicData({ city, country }))
         } catch(error) {
             if(error instanceof Error){
