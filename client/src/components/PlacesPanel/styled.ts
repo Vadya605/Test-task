@@ -1,6 +1,6 @@
 import { styled } from "@mui/material";
 
-import { IPlaceProps } from "./interfaces";
+import { IActiveProps } from '@/interfaces'
 
 export const Places = styled('div')(({ theme }) => ({
     padding: theme.spacing(1, 1.7, .3, 1.7),
@@ -30,11 +30,11 @@ export const PlacesWrapper = styled('div')(({ theme }) => ({
     }
 }))
 
-export const Place = styled('div')<IPlaceProps>(({ isSelected, theme }) => ({
+export const Place = styled('div')<IActiveProps>(({ isActive, theme }) => ({
     display: 'flex',
     alignItems: 'center',
     columnGap: theme.spacing(2),
-    opacity: !isSelected ? '0.5' : 1,
+    opacity: !isActive ? '0.5' : 1,
     whiteSpace: 'normal',
     '& img': {
         width: theme.spacing(3)

@@ -1,6 +1,6 @@
 import { Avatar, List, styled, Theme } from '@mui/material'
 
-import { IAsideButtonProps } from './interfaces'
+import { IActiveProps } from '@/interfaces'
 import { CSSObject } from '@emotion/react'
 
 export const AsideWrapper = styled('div')(({ theme }) => ({
@@ -62,7 +62,7 @@ const AsideButtonMixin = (theme: Theme, isActive: boolean, bgColor: string): CSS
     }),
 })
 
-export const AsideButtonSearch = styled('div')<IAsideButtonProps>(({ theme, isActive }) => ({
+export const AsideButtonSearch = styled('div')<IActiveProps>(({ theme, isActive }) => ({
     ...AsideButtonMixin(theme, isActive, theme.palette.primary.main),
     padding: theme.spacing(1.9),
     [theme.breakpoints.down('sm')]: {
@@ -70,7 +70,7 @@ export const AsideButtonSearch = styled('div')<IAsideButtonProps>(({ theme, isAc
     },
 }))
 
-export const AsideButtonFavorites = styled('div')<IAsideButtonProps>(({ theme, isActive }) => ({
+export const AsideButtonFavorites = styled('div')<IActiveProps>(({ theme, isActive }) => ({
     ...AsideButtonMixin(theme, isActive, theme.palette.secondary.main),
     padding: theme.spacing(1.8, 2.1),
     [theme.breakpoints.down('sm')]: {
@@ -78,7 +78,7 @@ export const AsideButtonFavorites = styled('div')<IAsideButtonProps>(({ theme, i
     },
 }))
 
-export const AsideButtonRecommendation = styled('div')<IAsideButtonProps>(({ theme, isActive }) => ({
+export const AsideButtonRecommendation = styled('div')<IActiveProps>(({ theme, isActive }) => ({
     ...AsideButtonMixin(theme, isActive, theme.palette.recommendation.main),
     padding: theme.spacing(1.9),
     [theme.breakpoints.down('sm')]: {

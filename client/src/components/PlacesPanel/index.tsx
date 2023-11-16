@@ -26,7 +26,7 @@ export default function PlacesPanel() {
                 {PLACES.map(place =>
                     <Place
                         key={place.name}
-                        isSelected={selectedPlaces.includes(place.type)}
+                        isActive={selectedPlaces.includes(place.type)}
                         onClick={handleClickPlace.bind(null, place.type)}
                     >
                         <img src={place.icon} alt="Place icon" />
