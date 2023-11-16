@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect } from 'react'
 
-import { Libraries, useJsApiLoader } from '@react-google-maps/api';
+import { Libraries, useJsApiLoader } from '@react-google-maps/api'
 
-import { setIsLoaded } from '@/store/reducers';
+import { setIsLoaded } from '@/store/reducers'
 
-import { useAppDispatch } from './redux';
+import { useAppDispatch } from './redux'
 
 export function useGoogleMaps() {
     const dispatch = useAppDispatch()
@@ -16,11 +16,11 @@ export function useGoogleMaps() {
         id: 'google-map-script',
         googleMapsApiKey: apiKey,
         libraries: libraries,
-    });
+    })
 
     useEffect(() => {
         dispatch(setIsLoaded(isLoaded))
-    }, [isLoaded, dispatch]);
+    }, [isLoaded, dispatch])
 
-    return isLoaded;
+    return isLoaded
 }

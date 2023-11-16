@@ -1,4 +1,4 @@
-import { calculatePasswordStrength, checkPasswordMatch } from "."
+import { calculatePasswordStrength, checkPasswordMatch } from '.'
 
 describe('Тестирование методов валидации пароля', () => {
     describe('Тестирование метода checkPasswordMatch', () => {

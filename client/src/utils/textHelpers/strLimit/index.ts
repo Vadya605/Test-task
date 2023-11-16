@@ -1,5 +1,5 @@
 export const strLimit = (str: string, limit: number) => {
-    if(str.length <= limit){
+    if (str.length <= limit) {
         return str
     }
 

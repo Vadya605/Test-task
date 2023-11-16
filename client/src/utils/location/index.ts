@@ -1,6 +1,6 @@
-import { ERRORS } from "@/constants";
+import { ERRORS } from '@/constants'
 
-import { ILocationResult } from "./interfaces";
+import { ILocationResult } from './interfaces'
 
 export const getBrowserLocation = (): Promise<ILocationResult> => {
     return new Promise((resolve, reject) => {
@@ -12,7 +12,7 @@ export const getBrowserLocation = (): Promise<ILocationResult> => {
             (position) => {
                 const location = {
                     lat: position.coords.latitude,
-                    lng: position.coords.longitude
+                    lng: position.coords.longitude,
                 }
 
                 // const location = {
@@ -22,18 +22,27 @@ export const getBrowserLocation = (): Promise<ILocationResult> => {
 
                 const geocoder = new google.maps.Geocoder()
 
-                geocoder.geocode({ location }, (results: google.maps.GeocoderResult[] | null, status: google.maps.GeocoderStatus) => {
-                    if (status !== google.maps.GeocoderStatus.OK || !results || !results.length) {
-                        return reject(ERRORS['error-geo']);
-                    }
+                geocoder.geocode(
+                    { location },
+                    (results: google.maps.GeocoderResult[] | null, status: google.maps.GeocoderStatus) => {
+                        if (status !== google.maps.GeocoderStatus.OK || !results || !results.length) {
+                            return reject(ERRORS['error-geo'])
+                        }
 
-                    const city = results[0].address_components.find(address => address.types.includes('locality') || address.types.includes("postal_town"))?.long_name || '';
-                    const country = results[0].address_components.find(address => address.types.includes('country'))?.long_name || '';
+                        const city =
+                            results[0].address_components.find(
+                                (address) =>
+                                    address.types.includes('locality') || address.types.includes('postal_town'),
+                            )?.long_name || ''
+                        const country =
+                            results[0].address_components.find((address) => address.types.includes('country'))
+                                ?.long_name || ''
 
-                    resolve({ location, city, country })
-                });
+                        resolve({ location, city, country })
+                    },
+                )
             },
-            () => reject(new Error(ERRORS['error-geo']))
-        );
-    });
-};
+            () => reject(new Error(ERRORS['error-geo'])),
+        )
+    })
+}

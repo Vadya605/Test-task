@@ -1,7 +1,5 @@
-import { LoaderWrapper } from "./styled";
+import { LoaderWrapper } from './styled'
 
-export default function Loader(){
-    return (
-        <LoaderWrapper />
-    )
+export default function Loader() {
+    return <LoaderWrapper />
 }

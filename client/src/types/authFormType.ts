@@ -1,1 +1,1 @@
-export type AuthFormType = 'login' | 'signup' | 'forgot';
+export type AuthFormType = 'login' | 'signup' | 'forgot'

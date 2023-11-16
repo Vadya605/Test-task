@@ -1,18 +1,20 @@
-import FormLogin from "../FormLogin";
-import FormSignup from "../FormSignup";
-import FormResetPassword from "../FormResetPassword";
-import { useTypeSelector } from "@/hooks";
+import FormLogin from '../FormLogin'
+import FormSignup from '../FormSignup'
+import FormResetPassword from '../FormResetPassword'
+import { useTypeSelector } from '@/hooks'
 
 export default function AuthModalContent() {
-    const { AuthModal: { selectedForm } }  = useTypeSelector(state => state)
+    const {
+        AuthModal: { selectedForm },
+    } = useTypeSelector((state) => state)
     switch (selectedForm) {
         case 'login':
-            return <FormLogin />;
+            return <FormLogin />
         case 'signup':
-            return <FormSignup />;
+            return <FormSignup />
         case 'forgot':
-            return <FormResetPassword />;
+            return <FormResetPassword />
         default:
-            return null;
+            return null
     }
 }

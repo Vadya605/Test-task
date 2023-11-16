@@ -1,5 +1,5 @@
-import { DEFAULT_CENTER } from "@/constants";
-import MapSlice, { setCenter, setIsLoaded, setUserLocation, setZoom } from "@/store/reducers/Map";
+import { DEFAULT_CENTER } from '@/constants'
+import MapSlice, { setCenter, setIsLoaded, setUserLocation, setZoom } from '@/store/reducers/Map'
 
 describe('Тестирование MapSlice', () => {
     const initialState = {
@@ -8,50 +8,50 @@ describe('Тестирование MapSlice', () => {
         center: DEFAULT_CENTER,
         userLocation: DEFAULT_CENTER,
         zoom: 15,
-    };
+    }
 
     test('Тестирование initial state', () => {
-        const result = MapSlice(initialState, { type: '' });
-        expect(result).toEqual(initialState);
-    });
+        const result = MapSlice(initialState, { type: '' })
+        expect(result).toEqual(initialState)
+    })
 
     test('Тестирование метода setCenter ', () => {
-        const payload = { lat: 50, lng: 35 };
+        const payload = { lat: 50, lng: 35 }
         const action = {
             type: setCenter.type,
             payload: payload,
-        };
-        const result = MapSlice(initialState, action);
-        expect(result.center).toEqual(payload);
-    });
+        }
+        const result = MapSlice(initialState, action)
+        expect(result.center).toEqual(payload)
+    })
 
     test('Тестирование метода setIsLoaded ', () => {
-        const payload = true;
+        const payload = true
         const action = {
             type: setIsLoaded.type,
             payload: payload,
-        };
-        const result = MapSlice(initialState, action);
-        expect(result.isLoaded).toEqual(payload);
-    });
+        }
+        const result = MapSlice(initialState, action)
+        expect(result.isLoaded).toEqual(payload)
+    })
 
     test('Тестирование метода setUserLocation ', () => {
-        const payload = { lat: 40, lng: 30 };
+        const payload = { lat: 40, lng: 30 }
         const action = {
             type: setUserLocation.type,
             payload: payload,
-        };
-        const result = MapSlice(initialState, action);
-        expect(result.userLocation).toEqual(payload);
-    });
+        }
+        const result = MapSlice(initialState, action)
+        expect(result.userLocation).toEqual(payload)
+    })
 
     test('Тестирование метода setZoom ', () => {
-        const payload = 10;
+        const payload = 10
         const action = {
             type: setZoom.type,
             payload: payload,
-        };
-        const result = MapSlice(initialState, action);
-        expect(result.zoom).toEqual(payload);
-    });
-});
+        }
+        const result = MapSlice(initialState, action)
+        expect(result.zoom).toEqual(payload)
+    })
+})

@@ -1,6 +1,6 @@
-import { IRecommendation } from '@/interfaces';
-import { IUserGeographicData } from '@/interfaces';
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { IRecommendation } from '@/interfaces'
+import { IUserGeographicData } from '@/interfaces'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const recommendationsAPI = createApi({
     reducerPath: 'recommendationsApi',
@@ -9,10 +9,10 @@ export const recommendationsAPI = createApi({
         fetchRecommendations: builder.query<IRecommendation[], IUserGeographicData>({
             query: (params: IUserGeographicData) => ({
                 url: '/recommendations',
-                params: params
+                params: params,
             }),
         }),
     }),
-});
+})
 
-export const { useFetchRecommendationsQuery } = recommendationsAPI;
+export const { useFetchRecommendationsQuery } = recommendationsAPI

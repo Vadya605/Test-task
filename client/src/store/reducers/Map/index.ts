@@ -2,13 +2,12 @@ import { DEFAULT_CENTER } from '@/constants'
 import { ILocation } from '@/interfaces/ILocation'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-
 interface MapState {
-    isLoaded: boolean,
-    map: google.maps.Map | null,
-    center: ILocation,
-    userLocation: ILocation,
-    zoom: number,
+    isLoaded: boolean
+    map: google.maps.Map | null
+    center: ILocation
+    userLocation: ILocation
+    zoom: number
 }
 
 const initialState: MapState = {
@@ -23,24 +22,24 @@ export const MapSlice = createSlice({
     name: 'map',
     initialState,
     reducers: {
-        setCenter(state, action: PayloadAction<ILocation>){
+        setCenter(state, action: PayloadAction<ILocation>) {
             state.center = action.payload
         },
-        setMap(state, action: PayloadAction<google.maps.Map | null>){
+        setMap(state, action: PayloadAction<google.maps.Map | null>) {
             state.map = action.payload
         },
-        setIsLoaded(state, action: PayloadAction<boolean>){
+        setIsLoaded(state, action: PayloadAction<boolean>) {
             state.isLoaded = action.payload
         },
-        setUserLocation(state, action: PayloadAction<ILocation>){
+        setUserLocation(state, action: PayloadAction<ILocation>) {
             state.userLocation = action.payload
         },
-        setZoom(state, action: PayloadAction<number>){
+        setZoom(state, action: PayloadAction<number>) {
             state.zoom = action.payload
-        }
+        },
     },
 })
 
 export const { setCenter, setMap, setIsLoaded, setUserLocation, setZoom } = MapSlice.actions
 
-export default MapSlice.reducer;
+export default MapSlice.reducer

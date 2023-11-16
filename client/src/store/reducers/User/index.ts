@@ -8,7 +8,7 @@ const initialState: IUser = {
     email: '',
     token: '',
     city: '',
-    country: ''
+    country: '',
 }
 
 export const UserSlice = createSlice({
@@ -20,7 +20,7 @@ export const UserSlice = createSlice({
             state.token = action.payload.token
             state.id = action.payload.id
         },
-        setGeographicData(state, action: PayloadAction<IUserGeographicData>){
+        setGeographicData(state, action: PayloadAction<IUserGeographicData>) {
             state.city = action.payload.city || ''
             state.country = action.payload.country || ''
         },
@@ -36,4 +36,4 @@ export const UserSlice = createSlice({
 
 export const { setPersonalData, setGeographicData, removeUser } = UserSlice.actions
 
-export default UserSlice.reducer;
+export default UserSlice.reducer

@@ -6,5 +6,5 @@ export enum SECTIONS_SIDEBAR {
 
 export enum RECOMMENDATION_SECTION {
     CITY = 'city',
-    COUNTRY = 'country'
+    COUNTRY = 'country',
 }

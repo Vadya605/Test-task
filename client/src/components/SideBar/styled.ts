@@ -1,7 +1,5 @@
-import { CSSObject, IconButton, styled, Theme } from '@mui/material';
-import MuiDrawer from '@mui/material/Drawer';
-
-
+import { CSSObject, IconButton, styled, Theme } from '@mui/material'
+import MuiDrawer from '@mui/material/Drawer'
 
 const openedMixin = (theme: Theme): CSSObject => ({
     transition: theme.transitions.create('width', {
@@ -9,7 +7,7 @@ const openedMixin = (theme: Theme): CSSObject => ({
         duration: theme.transitions.duration.enteringScreen,
     }),
     overflowY: 'hidden',
-});
+})
 
 const closedMixin = (theme: Theme): CSSObject => ({
     transition: theme.transitions.create('width', {
@@ -20,24 +18,24 @@ const closedMixin = (theme: Theme): CSSObject => ({
     width: theme.spacing(11),
     [theme.breakpoints.down('sm')]: {
         width: theme.spacing(7),
-    }
-});
+    },
+})
 
-export const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
-    ({ theme, open }) => ({
-        flexShrink: 0,
-        whiteSpace: 'nowrap',
-        boxSizing: 'border-box',
-        ...(open && {
-            ...openedMixin(theme),
-            '& .MuiDrawer-paper': openedMixin(theme),
-        }),
-        ...(!open && {
-            ...closedMixin(theme),
-            '& .MuiDrawer-paper': closedMixin(theme),
-        }),
+export const Drawer = styled(MuiDrawer, {
+    shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme, open }) => ({
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+    boxSizing: 'border-box',
+    ...(open && {
+        ...openedMixin(theme),
+        '& .MuiDrawer-paper': openedMixin(theme),
     }),
-);
+    ...(!open && {
+        ...closedMixin(theme),
+        '& .MuiDrawer-paper': closedMixin(theme),
+    }),
+}))
 
 export const DrawerWrapper = styled('div')`
     display: flex;
@@ -53,15 +51,15 @@ export const DrawerContent = styled('div')(({ theme }) => ({
     overflowY: 'auto',
     maxHeight: '100vh',
     '&::-webkit-scrollbar': {
-        width: theme.spacing(.5)
+        width: theme.spacing(0.5),
     },
 
     '&::-webkit-scrollbar-track': {
-        backgroundColor: ' transparent'
+        backgroundColor: ' transparent',
     },
 
     '&::-webkit-scrollbar-thumb': {
-        borderRadius: theme.spacing(.4),
+        borderRadius: theme.spacing(0.4),
         backgroundColor: theme.palette.scroll.main,
     },
 
@@ -71,12 +69,11 @@ export const DrawerContent = styled('div')(({ theme }) => ({
     position: 'relative',
 }))
 
-
 export const Container = styled('div')`
     position: relative;
 `
 
-export const ArrowOpen = styled('div')(({theme}) => ({
+export const ArrowOpen = styled('div')(({ theme }) => ({
     borderRadius: theme.spacing(0, 1, 1, 0),
     backgroundColor: theme.palette.common.white,
     position: 'absolute',
@@ -88,12 +85,12 @@ export const ArrowOpen = styled('div')(({theme}) => ({
     alignItems: 'center',
     transform: 'translate(-50%, -50%)',
     zIndex: 10000,
-    border: `${theme.spacing(.3)} solid ${theme.palette.borderSecondary.main}`,
+    border: `${theme.spacing(0.3)} solid ${theme.palette.borderSecondary.main}`,
     borderLeft: 'none',
 
     '&:hover': {
-        cursor: 'pointer'
-    }
+        cursor: 'pointer',
+    },
 }))
 
 export const ArrowClose = styled(IconButton)`

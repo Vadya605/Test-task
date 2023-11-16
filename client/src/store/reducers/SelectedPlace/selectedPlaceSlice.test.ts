@@ -1,8 +1,8 @@
-import SelectedPlaceSlice, {setSelectedPlace} from "@/store/reducers/SelectedPlace"
+import SelectedPlaceSlice, { setSelectedPlace } from '@/store/reducers/SelectedPlace'
 
 describe('Тестирование selected place slice', () => {
     const initialState = {
-        selectedPlace: null
+        selectedPlace: null,
     }
 
     test('Тестирование initial state', () => {
@@ -13,17 +13,16 @@ describe('Тестирование selected place slice', () => {
 
     test('Тестирование setSelected', () => {
         const payload = {
-            name: 'test-place'
+            name: 'test-place',
         }
 
         const action = {
             type: setSelectedPlace.type,
-            payload: payload
+            payload: payload,
         }
 
         const result = SelectedPlaceSlice(initialState, action)
 
         expect(result.selectedPlace).toEqual(payload)
     })
-
 })

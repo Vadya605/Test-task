@@ -1,4 +1,4 @@
-import { styled } from '@mui/material';
+import { styled } from '@mui/material'
 
 export const ErrorBoundaryWrapper = styled('div')`
     display: flex;
@@ -7,4 +7,4 @@ export const ErrorBoundaryWrapper = styled('div')`
     justify-content: center;
     row-gap: 10px;
     width: 100%;
-`;
+`

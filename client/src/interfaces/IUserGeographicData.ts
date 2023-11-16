@@ -1,4 +1,4 @@
 export interface IUserGeographicData {
-    city?: string,
-    country?: string;
+    city?: string
+    country?: string
 }

@@ -1,16 +1,16 @@
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'
 
-import Typography from '@mui/material/Typography';
+import Typography from '@mui/material/Typography'
 
 import ExpandMore from '@/assets/img/Arrow.svg'
 import Favorite from '@/assets/img/Favorite.svg'
-import { ERRORS } from '@/constants';
-import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
-import { removeFavorite, setSelectedFavorite } from '@/store/reducers';
-import { deleteFavorite } from '@/utils/favorite';
-import { strLimit } from "@/utils/textHelpers/strLimit";
+import { ERRORS } from '@/constants'
+import { useAppDispatch, useTypeSelector } from '@/hooks/redux'
+import { removeFavorite, setSelectedFavorite } from '@/store/reducers'
+import { deleteFavorite } from '@/utils/favorite'
+import { strLimit } from '@/utils/textHelpers/strLimit'
 
-import { ICardProps } from "./interfaces";
+import { ICardProps } from './interfaces'
 import {
     Actions,
     ButtonAction,
@@ -20,12 +20,14 @@ import {
     Photo,
     PhotoIcon,
     PhotoIconsWrapper,
-    PhotoWrapper
-} from "./styled";
+    PhotoWrapper,
+} from './styled'
 
 export default function CollapsedCard({ favoriteItem }: ICardProps) {
     const dispatch = useAppDispatch()
-    const { User: { id: userId } } = useTypeSelector(state => state)
+    const {
+        User: { id: userId },
+    } = useTypeSelector((state) => state)
 
     const handleClickExpandMore = () => {
         dispatch(setSelectedFavorite(favoriteItem.place_id))
@@ -41,7 +43,7 @@ export default function CollapsedCard({ favoriteItem }: ICardProps) {
     }
 
     return (
-        <CardCollapsed data-testid='card-collapsed'>
+        <CardCollapsed data-testid="card-collapsed">
             <CardWrapper>
                 <CardHeader>
                     <PhotoWrapper>
@@ -54,10 +56,10 @@ export default function CollapsedCard({ favoriteItem }: ICardProps) {
                 </CardHeader>
                 <Typography variant="body2">{strLimit(favoriteItem.description, 100)}</Typography>
                 <Actions>
-                    <ButtonAction data-testid='button-remove' onClick={handleClickRemove}>
+                    <ButtonAction data-testid="button-remove" onClick={handleClickRemove}>
                         <img src={Favorite} alt="Favorite" />
                     </ButtonAction>
-                    <ButtonAction data-testid='button-expand' onClick={handleClickExpandMore}>
+                    <ButtonAction data-testid="button-expand" onClick={handleClickExpandMore}>
                         <img src={ExpandMore} alt="ExpandMore" />
                     </ButtonAction>
                 </Actions>

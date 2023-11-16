@@ -1,18 +1,17 @@
-import { Component } from 'react';
+import { Component } from 'react'
 
-import { IErrorBoundaryProps, IErrorBoundaryState } from './interfaces';
-
+import { IErrorBoundaryProps, IErrorBoundaryState } from './interfaces'
 
 class ErrorBoundary extends Component<IErrorBoundaryProps, IErrorBoundaryState> {
     constructor(props: IErrorBoundaryProps) {
-        super(props);
+        super(props)
         this.state = {
             hasError: false,
-        };
+        }
     }
 
     componentDidCatch() {
-        this.setState({ hasError: true });
+        this.setState({ hasError: true })
     }
 
     static getDerivedStateFromError() {
@@ -23,9 +22,9 @@ class ErrorBoundary extends Component<IErrorBoundaryProps, IErrorBoundaryState> 
         if (this.state.hasError) {
             return this.props.fallback
         }
-        
-        return this.props.children;
+
+        return this.props.children
     }
 }
 
-export default ErrorBoundary;
+export default ErrorBoundary

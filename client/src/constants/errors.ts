@@ -1,4 +1,4 @@
-import { ErrorsType } from "@/types";
+import { ErrorsType } from '@/types'
 
 export const ERRORS: ErrorsType = {
     'error-map': 'С картой пошло что-то не так, попроуйте еще раз',
@@ -16,5 +16,5 @@ export const ERRORS: ErrorsType = {
 
     'error-geo': 'Не удалось определить ваше текущее местоположение, проверьте настройки браузера',
 
-    'error-sending-mail': 'Не удалось отпрвить письмо вам на почту'
+    'error-sending-mail': 'Не удалось отпрвить письмо вам на почту',
 }

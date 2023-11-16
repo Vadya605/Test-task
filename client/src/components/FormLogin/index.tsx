@@ -1,18 +1,24 @@
-import { useState } from "react";
+import { useState } from 'react'
 
-import { GitHub,Google } from '@mui/icons-material';
-import { Button, IconButton, TextField, Typography } from "@mui/material";
+import { GitHub, Google } from '@mui/icons-material'
+import { Button, IconButton, TextField, Typography } from '@mui/material'
 
-import { ERRORS } from "@/constants";
-import { useAppDispatch } from "@/hooks/redux";
-import { setIsOpenAuthModal, setPersonalData, setSelectedForm } from "@/store/reducers";
-import { ButtonAuth, ErrorMessage, FormAuth, SupportAction } from "@/UI";
-import { authWithProvider } from "@/utils";
+import { ERRORS } from '@/constants'
+import { useAppDispatch } from '@/hooks/redux'
+import { setIsOpenAuthModal, setPersonalData, setSelectedForm } from '@/store/reducers'
+import { ButtonAuth, ErrorMessage, FormAuth, SupportAction } from '@/UI'
+import { authWithProvider } from '@/utils'
 
-import { AuthProviders } from "./styled";
-import { FirebaseError } from "firebase/app";
-import { AuthProvider, getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithEmailAndPassword } from "firebase/auth";
-import { ErrorsType } from "@/types";
+import { AuthProviders } from './styled'
+import { FirebaseError } from 'firebase/app'
+import {
+    AuthProvider,
+    getAuth,
+    GithubAuthProvider,
+    GoogleAuthProvider,
+    signInWithEmailAndPassword,
+} from 'firebase/auth'
+import { ErrorsType } from '@/types'
 
 export default function FormLogin() {
     const dispatch = useAppDispatch()
@@ -29,17 +35,19 @@ export default function FormLogin() {
         e.preventDefault()
         setLoading(true)
 
-        const form = e.target as HTMLFormElement;
+        const form = e.target as HTMLFormElement
         const [email, password] = [form.email.value, form.password.value]
 
         try {
             const user = (await signInWithEmailAndPassword(auth, email, password)).user
 
-            dispatch(setPersonalData({
-                id: user.uid,
-                email: user.email || '',
-                token: user.refreshToken // access здесь почему-то нету
-            }))
+            dispatch(
+                setPersonalData({
+                    id: user.uid,
+                    email: user.email || '',
+                    token: user.refreshToken, // access здесь почему-то нету
+                }),
+            )
             dispatch(setIsOpenAuthModal(false))
         } catch (error) {
             if (error instanceof FirebaseError) {
@@ -70,14 +78,10 @@ export default function FormLogin() {
 
     return (
         <FormAuth onSubmit={handleSubmit}>
-            <TextField required name='email' label="Email" type="email" fullWidth variant="standard" />
-            <TextField required name='password' label="Пароль" type="password" fullWidth variant="standard" />
+            <TextField required name="email" label="Email" type="email" fullWidth variant="standard" />
+            <TextField required name="password" label="Пароль" type="password" fullWidth variant="standard" />
             {error && <ErrorMessage variant="caption">{error}</ErrorMessage>}
-            <ButtonAuth
-                type="submit"
-                variant="contained"
-                loading={loading}
-            >
+            <ButtonAuth type="submit" variant="contained" loading={loading}>
                 Войти
             </ButtonAuth>
             <AuthProviders>
@@ -89,7 +93,7 @@ export default function FormLogin() {
                 </IconButton>
             </AuthProviders>
             <SupportAction>
-                <Typography variant='caption'>Нет аккаунта?</Typography>
+                <Typography variant="caption">Нет аккаунта?</Typography>
                 <Button onClick={handleClickSupport}>Создать</Button>
             </SupportAction>
             <SupportAction>

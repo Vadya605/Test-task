@@ -1,10 +1,10 @@
 import Nature from '@/assets/img/icons-markers/nature.svg'
-import FavoritesPanel from '@/components/FavoritesPanel';
-import { IFavorite } from '@/interfaces/IFavorite';
-import { addFavorite } from '@/store/reducers';
-import { store } from '@/store/store';
-import { renderWithAllProviders } from '@/utils';
-import { screen, waitFor } from '@testing-library/react';
+import FavoritesPanel from '@/components/FavoritesPanel'
+import { IFavorite } from '@/interfaces/IFavorite'
+import { addFavorite } from '@/store/reducers'
+import { store } from '@/store/store'
+import { renderWithAllProviders } from '@/utils'
+import { screen, waitFor } from '@testing-library/react'
 
 import '@testing-library/jest-dom'
 
@@ -15,7 +15,7 @@ describe('Тестирование FavoritePanel', () => {
         description: 'description',
         photo: Nature,
         icon: Nature,
-        location: { lat: 55.18480229999999, lng: 30.2505758 }
+        location: { lat: 55.18480229999999, lng: 30.2505758 },
     }
 
     // const user = {
@@ -45,7 +45,7 @@ describe('Тестирование FavoritePanel', () => {
             const card = screen.getByTestId('card-collapsed')
             expect(card).toBeInTheDocument()
         })
-    });
+    })
 
     // test('Тестирование клика для развертывания карточки', async () => {
     //     renderWithAllProviders(<FavoritesPanel />)

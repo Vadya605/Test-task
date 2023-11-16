@@ -1,4 +1,4 @@
-import RouteDetailsSlice, { clearRoute,setRoute, updateRoute } from "@/store/reducers/RouteDetails";
+import RouteDetailsSlice, { clearRoute, setRoute, updateRoute } from '@/store/reducers/RouteDetails'
 
 describe('Тестирование route details slice', () => {
     const initialState = {
@@ -6,7 +6,7 @@ describe('Тестирование route details slice', () => {
         distanceTotal: 0,
         distanceTraveled: 0,
         placeLocation: { lat: 0, lng: 0 },
-        time: ''
+        time: '',
     }
 
     test('Тестирование initial state', () => {
@@ -20,12 +20,12 @@ describe('Тестирование route details slice', () => {
             directionsRenderer: null, // т.к тип google
             distanceTotal: 5,
             placeLocation: { lat: 30, lng: 40 },
-            time: '5 hour'
+            time: '5 hour',
         }
 
         const action = {
             type: setRoute.type,
-            payload: payload
+            payload: payload,
         }
 
         const result = RouteDetailsSlice(initialState, action)
@@ -40,12 +40,12 @@ describe('Тестирование route details slice', () => {
         const payload = {
             directionsRenderer: null, // т.к тип google
             distanceTraveled: 5,
-            time: '5 hour'
+            time: '5 hour',
         }
 
         const action = {
             type: updateRoute.type,
-            payload: payload
+            payload: payload,
         }
 
         const result = RouteDetailsSlice(initialState, action)

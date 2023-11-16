@@ -1,6 +1,6 @@
-import { List, ListItem,styled  } from '@mui/material'
+import { List, ListItem, styled } from '@mui/material'
 
-export const ListSuggestions = styled(List)(({theme}) => ({
+export const ListSuggestions = styled(List)(({ theme }) => ({
     boxSizing: 'border-box',
     zIndex: '10',
     top: theme.spacing(6.4),
@@ -9,20 +9,20 @@ export const ListSuggestions = styled(List)(({theme}) => ({
     position: 'absolute',
     padding: 0,
     borderRadius: theme.spacing(0, 0, 1, 1),
-    border: `${theme.spacing(.3)} solid ${theme.palette.borderPrimary.main}`,
+    border: `${theme.spacing(0.3)} solid ${theme.palette.borderPrimary.main}`,
     borderTop: 'none',
     boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
     whiteSpace: 'normal',
 }))
 
-export const ListSuggestionsItem = styled(ListItem)(({theme}) => ({
+export const ListSuggestionsItem = styled(ListItem)(({ theme }) => ({
     wordWrap: 'normal',
     display: 'flex',
     flexDirection: 'column',
-    rowGap: theme.spacing(.5),
+    rowGap: theme.spacing(0.5),
     alignItems: 'flex-start',
-    "&:hover" : {
+    '&:hover': {
         backgroundColor: theme.palette.suggestionHover.main,
-        cursor: 'pointer'
-    }
+        cursor: 'pointer',
+    },
 }))

@@ -1,20 +1,19 @@
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent } from 'react'
 
-import { Info } from '@mui/icons-material';
-import { Button, IconButton, TextField, Typography} from "@mui/material";
+import { Info } from '@mui/icons-material'
+import { Button, IconButton, TextField, Typography } from '@mui/material'
 
-import { ERRORS } from "@/constants";
-import { AuthError } from "@/errors";
-import { useAppDispatch } from "@/hooks";
-import { setIsOpenAuthModal, setPersonalData, setSelectedForm } from "@/store/reducers";
-import { ButtonAuth, ErrorMessage, FormAuth, SupportAction } from "@/UI";
-import { calculatePasswordStrength, checkPasswordMatch } from "@/utils";
+import { ERRORS } from '@/constants'
+import { AuthError } from '@/errors'
+import { useAppDispatch } from '@/hooks'
+import { setIsOpenAuthModal, setPersonalData, setSelectedForm } from '@/store/reducers'
+import { ButtonAuth, ErrorMessage, FormAuth, SupportAction } from '@/UI'
+import { calculatePasswordStrength, checkPasswordMatch } from '@/utils'
 
-import { PasswordBox, PasswordInput, PasswordStrengthMeter, PasswordTooltip,Row } from "./styled";
-import { FirebaseError } from "firebase/app";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import { ErrorsType } from "@/types";
-
+import { PasswordBox, PasswordInput, PasswordStrengthMeter, PasswordTooltip, Row } from './styled'
+import { FirebaseError } from 'firebase/app'
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
+import { ErrorsType } from '@/types'
 
 export default function FormSignup() {
     const dispatch = useAppDispatch()
@@ -26,22 +25,24 @@ export default function FormSignup() {
         e.preventDefault()
         setLoading(true)
 
-        const form = e.target as HTMLFormElement;
+        const form = e.target as HTMLFormElement
         const [email, password, passwordConfirm] = [form.email.value, form.password.value, form.passwordConfirm.value]
 
         try {
             if (!checkPasswordMatch(password, passwordConfirm)) {
-                throw new AuthError(ERRORS["password-mismatch"])
+                throw new AuthError(ERRORS['password-mismatch'])
             }
 
             const auth = getAuth()
             const user = (await createUserWithEmailAndPassword(auth, email, password)).user
 
-            dispatch(setPersonalData({
-                id: user.uid,
-                email: user.email || '',
-                token: user.refreshToken
-            }))
+            dispatch(
+                setPersonalData({
+                    id: user.uid,
+                    email: user.email || '',
+                    token: user.refreshToken,
+                }),
+            )
             dispatch(setIsOpenAuthModal(false))
         } catch (error) {
             if (error instanceof FirebaseError) {
@@ -74,33 +75,44 @@ export default function FormSignup() {
                 <li>Хотя бы одна заглавная буква</li>
             </ul>
         </div>
-    );
+    )
 
     return (
         <FormAuth onSubmit={handleSubmit}>
-            <TextField required name='email' label="Email" type="email" fullWidth variant="standard" />
+            <TextField required name="email" label="Email" type="email" fullWidth variant="standard" />
             <PasswordBox>
                 <Row>
-                    <PasswordInput onChange={handleChangePassword} required name='password' label="Пароль" type="password" fullWidth variant="standard" />
+                    <PasswordInput
+                        onChange={handleChangePassword}
+                        required
+                        name="password"
+                        label="Пароль"
+                        type="password"
+                        fullWidth
+                        variant="standard"
+                    />
                     <PasswordTooltip title={passwordCriteria}>
                         <IconButton>
                             <Info />
                         </IconButton>
                     </PasswordTooltip>
                 </Row>
-                <PasswordStrengthMeter variant='determinate' value={passwordStrength} />
+                <PasswordStrengthMeter variant="determinate" value={passwordStrength} />
             </PasswordBox>
-            <TextField required name='passwordConfirm' label="Повторите пароль" type="password" fullWidth variant="standard" />
+            <TextField
+                required
+                name="passwordConfirm"
+                label="Повторите пароль"
+                type="password"
+                fullWidth
+                variant="standard"
+            />
             {error && <ErrorMessage variant="caption">{error}</ErrorMessage>}
-            <ButtonAuth
-                type="submit"
-                variant="contained"
-                loading={loading}
-            >
+            <ButtonAuth type="submit" variant="contained" loading={loading}>
                 Зарегистрироваться
             </ButtonAuth>
             <SupportAction>
-                <Typography variant='caption'>Уже есть аккаунт?</Typography>
+                <Typography variant="caption">Уже есть аккаунт?</Typography>
                 <Button onClick={handleClickSupport}>Войти</Button>
             </SupportAction>
         </FormAuth>

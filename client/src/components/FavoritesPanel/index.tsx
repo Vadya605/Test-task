@@ -1,18 +1,18 @@
-import { useEffect, useMemo, useState } from 'react';
-import { toast } from 'react-toastify';
+import { useEffect, useMemo, useState } from 'react'
+import { toast } from 'react-toastify'
 
 import { Box, CircularProgress } from '@mui/material'
-import Typography from '@mui/material/Typography';
+import Typography from '@mui/material/Typography'
 
 import BackIcon from '@/assets/img/Arrow.svg'
-import ExpandedCard from "@/components/CardExpanded";
-import { ERRORS } from '@/constants';
-import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
-import { setFavorites, setSelectedFavorite } from "@/store/reducers";
-import { getFavorites } from '@/utils/favorite';
+import ExpandedCard from '@/components/CardExpanded'
+import { ERRORS } from '@/constants'
+import { useAppDispatch, useTypeSelector } from '@/hooks/redux'
+import { setFavorites, setSelectedFavorite } from '@/store/reducers'
+import { getFavorites } from '@/utils/favorite'
 
-import { BoxLoader, ButtonBack, HeaderPanel } from "./styled";
-import ListCollapsedCard from '../ListCollapsedCard';
+import { BoxLoader, ButtonBack, HeaderPanel } from './styled'
+import ListCollapsedCard from '../ListCollapsedCard'
 
 export default function FavoritesPanel() {
     const dispatch = useAppDispatch()
@@ -20,12 +20,12 @@ export default function FavoritesPanel() {
     const {
         SelectedFavorite: { place_id: selectedFavoriteId },
         Favorites: { favorites },
-        User: {id: userId}
-    } = useTypeSelector(state => state)
+        User: { id: userId },
+    } = useTypeSelector((state) => state)
 
     const selectedFavorite = useMemo(() => {
-        return favorites.length && favorites.find(item => item.place_id === selectedFavoriteId);
-    }, [favorites, selectedFavoriteId]);
+        return favorites.length && favorites.find((item) => item.place_id === selectedFavoriteId)
+    }, [favorites, selectedFavoriteId])
 
     const [isLoading, setIsLoading] = useState(false)
 
@@ -51,31 +51,26 @@ export default function FavoritesPanel() {
     }, [])
 
     return (
-        <Box data-testid='favorite-panel'>
+        <Box data-testid="favorite-panel">
             <HeaderPanel>
-                {
-                    selectedFavorite ? (
-                        <ButtonBack data-testid='button-back' onClick={handleClickBack}>
-                            <img src={BackIcon} alt='Back' />
-                        </ButtonBack>
-                    ) : null
-                }
-                <Typography variant='h2'>Избранное</Typography>
+                {selectedFavorite ? (
+                    <ButtonBack data-testid="button-back" onClick={handleClickBack}>
+                        <img src={BackIcon} alt="Back" />
+                    </ButtonBack>
+                ) : null}
+                <Typography variant="h2">Избранное</Typography>
             </HeaderPanel>
-            {
-                !isLoading ? (
-                    selectedFavorite ? (
-                        <ExpandedCard
-                            cardItem={selectedFavorite}
-                            key={selectedFavorite.place_id}
-                        />
-                    ) : (
-                        <ListCollapsedCard />
-                    )
+            {!isLoading ? (
+                selectedFavorite ? (
+                    <ExpandedCard cardItem={selectedFavorite} key={selectedFavorite.place_id} />
                 ) : (
-                    <BoxLoader><CircularProgress color='primary' /></BoxLoader>
+                    <ListCollapsedCard />
                 )
-            }
+            ) : (
+                <BoxLoader>
+                    <CircularProgress color="primary" />
+                </BoxLoader>
+            )}
         </Box>
     )
 }
