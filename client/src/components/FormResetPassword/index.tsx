@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, FormEvent, ChangeEvent } from "react";
 import { toast } from "react-toastify";
 
 import { Button, TextField, Typography } from "@mui/material";
@@ -17,7 +17,7 @@ export default function FormResetPassword() {
     const [loading, setLoading] = useState(false)
     const [email, setEmail] = useState('')
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setLoading(true)
 
@@ -32,7 +32,7 @@ export default function FormResetPassword() {
         }
     }
 
-    const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value)
     }
 

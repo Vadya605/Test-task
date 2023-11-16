@@ -68,7 +68,7 @@ export default function CardPlace() {
         dispatch(setSelectedPlace(null))
     }
 
-    const handleClickRoute = async () => {
+    const handleClickRoute = () => {
         dispatch(clearRoute())
         const directionsRenderer = new google.maps.DirectionsRenderer({ map, directions })
         dispatch(setRoute({ directionsRenderer, distanceTotal, placeLocation, time }))

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import { useCallback, ChangeEvent } from 'react'
 
 import Typography from '@mui/material/Typography';
 
@@ -18,7 +18,7 @@ export default function SearchPanel() {
         Map: { map, userLocation }
     } = useTypeSelector(state => state)
 
-    const handleChangeRadius = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeRadius = (e: ChangeEvent<HTMLInputElement>) => {
         const searchRadiusValue = Number(e.target.value.replace(/[^0-9]/g, ''))
 
         dispatch(setSearchRadius(searchRadiusValue))

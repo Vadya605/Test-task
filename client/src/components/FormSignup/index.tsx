@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 
 import { Info } from '@mui/icons-material';
 import { Button, IconButton, TextField, Typography} from "@mui/material";
@@ -22,7 +22,7 @@ export default function FormSignup() {
     const [error, setError] = useState('')
     const [passwordStrength, setPasswordStrength] = useState(0)
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setLoading(true)
 
@@ -55,7 +55,7 @@ export default function FormSignup() {
         }
     }
 
-    const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
         const passwordStrength = calculatePasswordStrength(e.target.value)
         console.log(passwordStrength)
         setPasswordStrength(passwordStrength)

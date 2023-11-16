@@ -25,7 +25,7 @@ export default function FoundPlaces() {
             />
             {foundPlaces.map((place, index) => (
                 <Marker
-                    onClick={() => handleClickMarker(place)}
+                    onClick={handleClickMarker.bind(null, place)}
                     key={`${place.place_id}-${index}`}
                     position={place.geometry?.location || {lat: 0, lng: 0}}
                     icon={place.icon}

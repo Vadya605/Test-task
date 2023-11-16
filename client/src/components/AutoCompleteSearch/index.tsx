@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef, useEffect, ChangeEvent } from "react";
 
 import AutoCompleteSuggestions from "@/components/AutoCompleteSuggestions";
 import { STATUS_CODES } from "@/constants";
@@ -29,11 +29,11 @@ export default function AutoCompleteSearch() {
     const isLoaded = useGoogleMaps()
     useOnClickOutside(ref, clearSuggestions);
 
-    React.useEffect(() => {
+    useEffect(() => {
         isLoaded && init()
     }, [isLoaded, init])
 
-    const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
         const searchValue = e.target.value
         setValue(searchValue);
         

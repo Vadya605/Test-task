@@ -1,5 +1,3 @@
-import React from 'react'
-
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 
@@ -20,10 +18,8 @@ export default function MapControls() {
         Mode: { mode }
     } = useTypeSelector(state => state)
 
-    const handleClickZoom = (e:React.MouseEvent<HTMLButtonElement>) => {
-        const value = e.currentTarget.getAttribute('data-zoom')
-        console.log(value)
-        dispatch(setZoom(zoom + Number(value)))
+    const handleClickZoom = (value: number) => {
+        dispatch(setZoom(zoom + value))
     }
 
     const handleClickLocation = () => {
@@ -41,11 +37,11 @@ export default function MapControls() {
                 <img src={Location} alt="Location" />
             </ButtonLocation>
             <ButtonsZoom>
-                <ButtonZoom data-zoom='1' onClick={handleClickZoom}>
+                <ButtonZoom onClick={handleClickZoom.bind(null, 1)}>
                     <img src={Plus} alt="Plus" />
                 </ButtonZoom>
                 <img src={Delimeter} alt="Delimeter" />
-                <ButtonZoom data-zoom='-1' onClick={handleClickZoom}>
+                <ButtonZoom onClick={handleClickZoom.bind(null, -1)}>
                     <img src={Minus} alt="Minus" />
                 </ButtonZoom>
             </ButtonsZoom>
