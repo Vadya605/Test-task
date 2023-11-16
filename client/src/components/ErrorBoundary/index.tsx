@@ -1,4 +1,4 @@
-import { Component, ErrorInfo } from 'react';
+import { Component } from 'react';
 
 import { IErrorBoundaryProps, IErrorBoundaryState } from './interfaces';
 
@@ -11,13 +11,11 @@ class ErrorBoundary extends Component<IErrorBoundaryProps, IErrorBoundaryState> 
         };
     }
 
-    componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-        console.log('Ошибка', error, errorInfo);
+    componentDidCatch() {
         this.setState({ hasError: true });
     }
 
-    static getDerivedStateFromError(error: Error) {
-        console.log(error)
+    static getDerivedStateFromError() {
         return { hasError: true }
     }
 

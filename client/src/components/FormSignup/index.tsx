@@ -57,7 +57,6 @@ export default function FormSignup() {
 
     const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
         const passwordStrength = calculatePasswordStrength(e.target.value)
-        console.log(passwordStrength)
         setPasswordStrength(passwordStrength)
     }
 

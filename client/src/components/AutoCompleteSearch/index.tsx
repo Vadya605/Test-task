@@ -44,8 +44,6 @@ export default function AutoCompleteSearch() {
     };
 
     const handleSelect = (description: string) => {
-        console.log('test');
-
         setValue(description, false);
         clearSuggestions();
 

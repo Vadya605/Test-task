@@ -34,8 +34,6 @@ export default function ExpandedCard({ cardItem }: ICardProps) {
         }
 
         const favorite = convertRecommendationToFavorite(cardItem);
-        console.log(favorite)
-
         setLoading(true);
 
         try {
