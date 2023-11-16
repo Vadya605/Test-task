@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { Button, CircularProgress, Typography } from "@mui/material";
 
-import { useFetchRecommendationsQuery } from "@/api";
+import { useFetchRecommendationsQuery } from "@/api/recommendationsAPI";
 import { RECOMMENDATION_SECTION } from "@/constants";
 import { useTypeSelector } from "@/hooks";
 

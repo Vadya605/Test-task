@@ -2,6 +2,7 @@ import { ListItem } from '@mui/material'
 
 import ExitIcon from '@/assets/img/Exit.svg'
 import LogoImg from '@/assets/img/Logo.svg'
+import EmptyAvatar from '/public/emptyAvatar.png'
 import Favorite from '@/components/svg/Favorite'
 import Recommendation from '@/components/svg/Recommendation'
 import Search from '@/components/svg/Search'
@@ -34,23 +35,35 @@ export default function Aside() {
     }
 
     return (
-        <AsideWrapper className='aside'>
+        <AsideWrapper>
             <Logo>
                 <img src={LogoImg} alt="Logo" />
             </Logo>
             <Column>
                 <ListSections>
-                    <ListItem data-testid='button-search-section' disablePadding onClick={handleClickSectionItem.bind(null, SECTIONS_SIDEBAR.SEARCH)}>
+                    <ListItem 
+                        data-testid='button-search-section' 
+                        onClick={handleClickSectionItem.bind(null, SECTIONS_SIDEBAR.SEARCH)}
+                        disablePadding 
+                    >
                         <AsideButtonSearch isActive={selectedSection === SECTIONS_SIDEBAR.SEARCH}>
                             <Search />
                         </AsideButtonSearch>
                     </ListItem>
-                    <ListItem data-testid='button-favorite-section' disablePadding onClick={handleClickSectionItem.bind(null, SECTIONS_SIDEBAR.FAVORITE)}>
+                    <ListItem 
+                        data-testid='button-favorite-section' 
+                        onClick={handleClickSectionItem.bind(null, SECTIONS_SIDEBAR.FAVORITE)}
+                        disablePadding 
+                    >
                         <AsideButtonFavorites isActive={selectedSection === SECTIONS_SIDEBAR.FAVORITE}>
                             <Favorite />
                         </AsideButtonFavorites>
                     </ListItem>
-                    <ListItem data-testid='button-recommendation-section' disablePadding onClick={handleClickSectionItem.bind(null, SECTIONS_SIDEBAR.RECOMMENDATION)}>
+                    <ListItem 
+                        data-testid='button-recommendation-section' 
+                        onClick={handleClickSectionItem.bind(null, SECTIONS_SIDEBAR.RECOMMENDATION)}
+                        disablePadding 
+                    >
                         <AsideButtonRecommendation isActive={selectedSection === SECTIONS_SIDEBAR.RECOMMENDATION}>
                             <Recommendation />
                         </AsideButtonRecommendation>
@@ -61,7 +74,7 @@ export default function Aside() {
                         <img src={ExitIcon} alt="ExitIcon" />
                     </Exit>
                 ) : (
-                    <AvatarAside onClick={handleClickAvatar} src='/emptyAvatar.png' alt='Avatar' />
+                    <AvatarAside onClick={handleClickAvatar} src={EmptyAvatar} alt='Avatar' />
                 )}
             </Column>
         </AsideWrapper>

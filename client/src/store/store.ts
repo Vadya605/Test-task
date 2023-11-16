@@ -10,7 +10,7 @@ import {
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
-import { recommendationsAPI } from '@/api'
+import { recommendationsAPI } from '@/api/recommendationsAPI'
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 
 import AuthModalReducer from './reducers/AuthModal'
