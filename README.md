@@ -20,21 +20,23 @@
     git clone https://github.com/Vadya605/Test-task.git
 
 2. Перейдите в клиентсвую чать приложения и установите зависимости:
-    cd client
-    npm install
+
+    - cd client
+    - npm install
 
 3. Перейдите в серверную чать приложения и установите зависимости:
-    cd server
-    npm install
+
+    - cd server
+    - npm install
 
 4. Создайте файл `.env` из файла `.env.example` предварительно снегерировав все необходимые ключи и токены.
 
 5. Запустите приложение:
-    cd client
-    npm run dev
+    - cd client
+    - npm run dev
 
-    cd server 
-    npm run dev
+    - cd server 
+    - npm run dev
 
 6. Откройте веб-браузер и перейдите по адресу, который будет указан в терминале.
 
