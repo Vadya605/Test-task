@@ -1,8 +1,9 @@
+import { AuthFormType } from '@/types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface AuthModalState {
     isOpen: boolean,
-    selectedForm: string
+    selectedForm: AuthFormType
 }
 
 const initialState: AuthModalState = {
@@ -17,7 +18,7 @@ export const AuthModalSlice = createSlice({
         setIsOpenAuthModal(state, action: PayloadAction<boolean>){
             state.isOpen = action.payload
         },
-        setSelectedForm(state, action: PayloadAction<string>){
+        setSelectedForm(state, action: PayloadAction<AuthFormType>){
             state.selectedForm = action.payload
         }
     },

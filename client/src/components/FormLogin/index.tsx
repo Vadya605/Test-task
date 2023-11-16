@@ -3,7 +3,7 @@ import { useState } from "react";
 import { GitHub,Google } from '@mui/icons-material';
 import { Button, IconButton, TextField, Typography } from "@mui/material";
 
-import { ERRORS, ErrorsType } from "@/constants/errors";
+import { ERRORS } from "@/constants";
 import { useAppDispatch } from "@/hooks/redux";
 import { setIsOpenAuthModal, setPersonalData, setSelectedForm } from "@/store/reducers";
 import { ButtonAuth, ErrorMessage, FormAuth, SupportAction } from "@/UI";
@@ -12,6 +12,7 @@ import { authWithProvider } from "@/utils";
 import { AuthProviders } from "./styled";
 import { FirebaseError } from "firebase/app";
 import { AuthProvider, getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithEmailAndPassword } from "firebase/auth";
+import { ErrorsType } from "@/types";
 
 export default function FormLogin() {
     const dispatch = useAppDispatch()

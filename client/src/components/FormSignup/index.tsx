@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Info } from '@mui/icons-material';
 import { Button, IconButton, TextField, Typography} from "@mui/material";
 
-import { ERRORS, ErrorsType } from "@/constants";
+import { ERRORS } from "@/constants";
 import { AuthError } from "@/errors";
 import { useAppDispatch } from "@/hooks";
 import { setIsOpenAuthModal, setPersonalData, setSelectedForm } from "@/store/reducers";
@@ -13,6 +13,7 @@ import { calculatePasswordStrength, checkPasswordMatch } from "@/utils";
 import { PasswordBox, PasswordInput, PasswordStrengthMeter, PasswordTooltip,Row } from "./styled";
 import { FirebaseError } from "firebase/app";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { ErrorsType } from "@/types";
 
 
 export default function FormSignup() {
