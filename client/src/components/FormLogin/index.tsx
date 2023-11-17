@@ -2,11 +2,12 @@ import { useState } from 'react'
 
 import { GitHub, Google } from '@mui/icons-material'
 import { Button, IconButton, TextField, Typography } from '@mui/material'
+import { ButtonAuth } from 'ui-library-city-guide'
 
 import { ERRORS } from '@/constants'
-import { useAppDispatch } from '@/hooks/redux'
+import { useAppDispatch } from '@/hooks'
 import { setIsOpenAuthModal, setPersonalData, setSelectedForm } from '@/store/reducers'
-import { ButtonAuth, ErrorMessage, FormAuth, SupportAction } from '@/UI'
+import { ErrorMessage, FormAuth, SupportAction } from '@/UI'
 import { authWithProvider } from '@/utils'
 
 import { AuthProviders } from './styled'
@@ -45,7 +46,7 @@ export default function FormLogin() {
                 setPersonalData({
                     id: user.uid,
                     email: user.email || '',
-                    token: user.refreshToken, // access здесь почему-то нету
+                    token: user.refreshToken,
                 }),
             )
             dispatch(setIsOpenAuthModal(false))

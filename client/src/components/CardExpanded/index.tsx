@@ -3,12 +3,13 @@ import { toast } from 'react-toastify'
 
 import Typography from '@mui/material/Typography'
 
-import Favorite from '@/components/svg/Favorite'
-import Geo from '@/components/svg/Geo'
+import Favorite from '@/assets/img/Favorite.svg'
+import Geo from '@/assets/img/Geo.svg'
+
 import { ERRORS } from '@/constants'
 import { useAppDispatch, useAuth, useRoute, useTypeSelector } from '@/hooks'
 import { addFavorite, clearRoute, removeFavorite, setIsOpenAuthModal, setRoute } from '@/store/reducers'
-import { ButtonFavorite, ButtonRoute } from '@/UI'
+import { ButtonFavorite, ButtonRoute } from 'ui-library-city-guide'
 import { addToFavorite, checkFavorite, convertRecommendationToFavorite, deleteFavorite } from '@/utils'
 
 import { ICardProps } from './interfaces'
@@ -97,12 +98,20 @@ export default function ExpandedCard({ cardItem }: ICardProps) {
                 </CardHeader>
                 <Typography variant="body1">{cardItem.description}</Typography>
                 <Actions>
-                    <ButtonFavorite loading={loading} data-testid="button-remove" onClick={handleClickFavorite}>
-                        <Favorite />
+                    <ButtonFavorite
+                        startIcon={<img src={Favorite} alt="Favorite" />}
+                        loading={loading}
+                        data-testid="button-remove"
+                        onClick={handleClickFavorite}
+                    >
                         <Typography variant="button">{isFavorite ? 'Удалить' : 'Добавить'}</Typography>
                     </ButtonFavorite>
-                    <ButtonRoute data-testid="button-route" onClick={handleClickRoute}>
-                        <Geo />
+                    <ButtonRoute
+                        variant="contained"
+                        startIcon={<img src={Geo} alt="Favorite" />}
+                        data-testid="button-route"
+                        onClick={handleClickRoute}
+                    >
                         <Typography variant="button">Маршрут</Typography>
                     </ButtonRoute>
                 </Actions>

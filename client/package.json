@@ -60,5 +60,8 @@
         "typescript": "^5.0.2",
         "use-places-autocomplete": "^4.0.1",
         "vite": "^4.4.5"
+    },
+    "dependencies": {
+        "ui-library-city-guide": "^1.0.1"
     }
 }

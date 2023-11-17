@@ -2,12 +2,13 @@ import { useState, ChangeEvent, FormEvent } from 'react'
 
 import { Info } from '@mui/icons-material'
 import { Button, IconButton, TextField, Typography } from '@mui/material'
+import { ButtonAuth } from 'ui-library-city-guide'
 
 import { ERRORS } from '@/constants'
 import { AuthError } from '@/errors'
 import { useAppDispatch } from '@/hooks'
 import { setIsOpenAuthModal, setPersonalData, setSelectedForm } from '@/store/reducers'
-import { ButtonAuth, ErrorMessage, FormAuth, SupportAction } from '@/UI'
+import { ErrorMessage, FormAuth, SupportAction } from '@/UI'
 import { calculatePasswordStrength, checkPasswordMatch } from '@/utils'
 
 import { PasswordBox, PasswordInput, PasswordStrengthMeter, PasswordTooltip, Row } from './styled'

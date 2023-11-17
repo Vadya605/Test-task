@@ -5,8 +5,9 @@ import { InfoWindow } from '@react-google-maps/api'
 
 import Typography from '@mui/material/Typography'
 
-import FavoriteSvg from '@/components/svg/Favorite'
-import GeoSvg from '@/components/svg/Geo'
+import Favorite from '@/assets/img/Favorite.svg'
+import Geo from '@/assets/img/Geo.svg'
+
 import { ERRORS } from '@/constants'
 import { useAppDispatch, useAuth, useRoute, useTypeSelector } from '@/hooks'
 import {
@@ -17,7 +18,7 @@ import {
     setRoute,
     setSelectedPlace,
 } from '@/store/reducers'
-import { ButtonFavorite, ButtonRoute } from '@/UI'
+import { ButtonFavorite, ButtonRoute } from 'ui-library-city-guide'
 import { addToFavorite, checkFavorite, convertPlaceResultToFavorite, deleteFavorite } from '@/utils'
 
 import { Actions, CardPlaceWrapper, PhotoPlace } from './styled'
@@ -47,7 +48,7 @@ export default function CardPlace() {
         destination: destination,
     })
 
-    const handleClickSave = async () => {
+    const handleClickFavorite = async () => {
         if (!isAuth || !selectedPlace) {
             return dispatch(setIsOpenAuthModal(true))
         }
@@ -100,12 +101,20 @@ export default function CardPlace() {
                 <Typography variant="h2">{selectedPlace?.name}</Typography>
                 <PhotoPlace src={selectedPlace?.photos?.[0]?.getUrl() || DoesntExistPhoto} alt="Photo place" />
                 <Actions>
-                    <ButtonFavorite loading={loading} onClick={handleClickSave}>
-                        <FavoriteSvg />
+                    <ButtonFavorite
+                        startIcon={<img src={Favorite} alt="Favorite" />}
+                        loading={loading}
+                        data-testid="button-remove"
+                        onClick={handleClickFavorite}
+                    >
                         <Typography variant="button">{isFavorite ? 'Удалить' : 'Добавить'}</Typography>
                     </ButtonFavorite>
-                    <ButtonRoute onClick={handleClickRoute}>
-                        <GeoSvg />
+                    <ButtonRoute
+                        variant="contained"
+                        startIcon={<img src={Geo} alt="Favorite" />}
+                        data-testid="button-route"
+                        onClick={handleClickRoute}
+                    >
                         <Typography variant="button">Маршрут</Typography>
                     </ButtonRoute>
                 </Actions>

@@ -15,11 +15,6 @@ export const getBrowserLocation = (): Promise<ILocationResult> => {
                     lng: position.coords.longitude,
                 }
 
-                // const location = {
-                //     lat: 52.0975500,
-                //     lng: 23.6877500,
-                // }
-
                 const geocoder = new google.maps.Geocoder()
 
                 geocoder.geocode(
