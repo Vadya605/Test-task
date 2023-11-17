@@ -2,7 +2,7 @@ import { ListItem } from '@mui/material'
 
 import ExitIcon from '@/assets/img/Exit.svg'
 import LogoImg from '@/assets/img/Logo.svg'
-import EmptyAvatar from '/public/emptyAvatar.png'
+import EmptyAvatar from '/emptyAvatar.png'
 import Favorite from '@/components/svg/Favorite'
 import Recommendation from '@/components/svg/Recommendation'
 import Search from '@/components/svg/Search'

@@ -1,9 +1,10 @@
 import AuthModalSlice, { setIsOpenAuthModal, setSelectedForm } from '@/store/reducers/AuthModal'
+import { AuthFormType } from '@/types'
 
 describe('Тестирование authModalSlice', () => {
     const initialState = {
         isOpen: false,
-        selectedForm: 'login',
+        selectedForm: 'login' as AuthFormType,
     }
 
     test('Тестирование начального состояния', () => {
