@@ -11,11 +11,11 @@ import SideBar from '@/components/SideBar'
 import { useTypeSelector } from '@/hooks/redux'
 import { getTheme } from '@/utils/getTheme'
 
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css'
 import { ContainerApp } from './styled'
 
 function App() {
-    const { mode } = useTypeSelector(state => state.Mode)
+    const { mode } = useTypeSelector((state) => state.Mode)
     const theme = getTheme(mode)
 
     return (
@@ -27,7 +27,7 @@ function App() {
                 <ErrorBoundary fallback={<MapError />}>
                     <Map />
                 </ErrorBoundary>
-                <ToastContainer theme={mode} position='top-center' />
+                <ToastContainer theme={mode} position="top-center" />
             </ContainerApp>
         </ThemeProvider>
     )

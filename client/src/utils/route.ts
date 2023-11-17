@@ -1,4 +1,6 @@
-export const getDirections = (directionRequest: google.maps.DirectionsRequest): Promise<google.maps.DirectionsResult | null> => {
+export const getDirections = (
+    directionRequest: google.maps.DirectionsRequest,
+): Promise<google.maps.DirectionsResult | null> => {
     return new Promise((resolve, reject) => {
         const directionService = new google.maps.DirectionsService()
 
@@ -9,5 +11,5 @@ export const getDirections = (directionRequest: google.maps.DirectionsRequest): 
                 reject(null) // что тогда?
             }
         })
-    });
-};
+    })
+}

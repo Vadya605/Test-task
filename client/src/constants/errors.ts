@@ -1,21 +1,4 @@
-export type ErrorsType = {
-    'error-map': string;
-    'error-favorites': string;
-
-    'auth/invalid-login-credentials': string;
-    'auth/email-already-in-use': string;
-    'auth/account-exists-with-different-credential': string;
-    'auth/weak-password': string;
-    'password-mismatch': string;
-
-    'error-getting-favorites': string;
-    'error-removing-favorites': string;
-    'error-adding-favorites': string;
-
-    'error-geo': string;
-
-    'error-sending-mail': string;
-};
+import { ErrorsType } from '@/types'
 
 export const ERRORS: ErrorsType = {
     'error-map': 'С картой пошло что-то не так, попроуйте еще раз',
@@ -33,5 +16,5 @@ export const ERRORS: ErrorsType = {
 
     'error-geo': 'Не удалось определить ваше текущее местоположение, проверьте настройки браузера',
 
-    'error-sending-mail': 'Не удалось отпрвить письмо вам на почту'
+    'error-sending-mail': 'Не удалось отпрвить письмо вам на почту',
 }

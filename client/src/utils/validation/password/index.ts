@@ -9,5 +9,5 @@ export const calculatePasswordStrength = (password: string) => {
     const uppercaseCriteria = Number(/[A-Z]/.test(password))
 
     const strengthLevel = lengthCriteria + digitCriteria + lowercaseCriteria + uppercaseCriteria
-    return (strengthLevel / 4) * 100;
+    return (strengthLevel / 4) * 100
 }

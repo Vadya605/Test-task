@@ -1,5 +1,5 @@
-import { IRecommendation } from "@/interfaces";
-import { IFavorite } from "@/interfaces/IFavorite";
+import { IRecommendation } from '@/interfaces'
+import { IFavorite } from '@/interfaces/IFavorite'
 
 export function convertPlaceResultToFavorite(placeResult: google.maps.places.PlaceResult): IFavorite {
     const favorite: IFavorite = {
@@ -10,15 +10,15 @@ export function convertPlaceResultToFavorite(placeResult: google.maps.places.Pla
         icon: placeResult.icon || '',
         location: {
             lat: placeResult.geometry?.location?.lat() || 0,
-            lng: placeResult.geometry?.location?.lng() || 0
-        }
-    };
+            lng: placeResult.geometry?.location?.lng() || 0,
+        },
+    }
 
-    return favorite;
+    return favorite
 }
 
 export const convertRecommendationToFavorite = (recommendationItem: IRecommendation) => {
-    const favorite: IFavorite = { ...recommendationItem };
+    const favorite: IFavorite = { ...recommendationItem }
 
-    return favorite;
+    return favorite
 }

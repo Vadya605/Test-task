@@ -1,17 +1,17 @@
-import { useState } from "react";
+import { useState } from 'react'
 
-import { Button, CircularProgress, Typography } from "@mui/material";
+import { Button, CircularProgress, Typography } from '@mui/material'
 
-import { useFetchRecommendationsQuery } from "@/api";
-import { RECOMMENDATION_SECTION } from "@/constants";
-import { useTypeSelector } from "@/hooks";
+import { useFetchRecommendationsQuery } from '@/api/recommendationsAPI'
+import { RECOMMENDATION_SECTION } from '@/constants'
+import { useTypeSelector } from '@/hooks'
 
-import ExpandedCard from "../CardExpanded";
-import { BoxLoader, RecommendationPanelWrapper, RecommendationSelector } from "./styled";
+import ExpandedCard from '../CardExpanded'
+import { BoxLoader, RecommendationPanelWrapper, RecommendationSelector } from './styled'
 
 export default function RecommendationsPanel() {
     const [recommendationSection, setRerecommendationSection] = useState<string>(RECOMMENDATION_SECTION.CITY)
-    const { User } = useTypeSelector(state => state)
+    const { User } = useTypeSelector((state) => state)
     const params = { [recommendationSection]: User[recommendationSection] }
     const { data: recommendations, isLoading } = useFetchRecommendationsQuery(params)
 
@@ -38,15 +38,14 @@ export default function RecommendationsPanel() {
                     По стране
                 </Button>
             </RecommendationSelector>
-            { isLoading && <BoxLoader><CircularProgress color='primary' /></BoxLoader> }
-            {
-                recommendations?.map(recommendation => (
-                    <ExpandedCard
-                        key={recommendation.place_id}
-                        cardItem={recommendation}
-                    />
-                ))
-            }
+            {isLoading && (
+                <BoxLoader>
+                    <CircularProgress color="primary" />
+                </BoxLoader>
+            )}
+            {recommendations?.map((recommendation) => (
+                <ExpandedCard key={recommendation.place_id} cardItem={recommendation} />
+            ))}
         </RecommendationPanelWrapper>
     )
 }

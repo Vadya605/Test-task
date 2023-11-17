@@ -1,7 +1,9 @@
 @font-face {
     font-family: 'Mont';
     src: url('Mont-Black.eot');
-    src: local('Mont Black'), local('Mont-Black'),
+    src:
+        local('Mont Black'),
+        local('Mont-Black'),
         url('Mont-Black.eot?#iefix') format('embedded-opentype'),
         url('Mont-Black.woff2') format('woff2'),
         url('Mont-Black.woff') format('woff'),
@@ -13,7 +15,9 @@
 @font-face {
     font-family: 'Mont';
     src: url('Mont-ThinItalic.eot');
-    src: local('Mont Thin Italic'), local('Mont-ThinItalic'),
+    src:
+        local('Mont Thin Italic'),
+        local('Mont-ThinItalic'),
         url('Mont-ThinItalic.eot?#iefix') format('embedded-opentype'),
         url('Mont-ThinItalic.woff2') format('woff2'),
         url('Mont-ThinItalic.woff') format('woff'),
@@ -25,7 +29,9 @@
 @font-face {
     font-family: 'Mont';
     src: url('Mont-ExtraLight.eot');
-    src: local('Mont ExtraLight'), local('Mont-ExtraLight'),
+    src:
+        local('Mont ExtraLight'),
+        local('Mont-ExtraLight'),
         url('Mont-ExtraLight.eot?#iefix') format('embedded-opentype'),
         url('Mont-ExtraLight.woff2') format('woff2'),
         url('Mont-ExtraLight.woff') format('woff'),
@@ -37,7 +43,9 @@
 @font-face {
     font-family: 'Mont';
     src: url('Mont-Bold.eot');
-    src: local('Mont Bold'), local('Mont-Bold'),
+    src:
+        local('Mont Bold'),
+        local('Mont-Bold'),
         url('Mont-Bold.eot?#iefix') format('embedded-opentype'),
         url('Mont-Bold.woff2') format('woff2'),
         url('Mont-Bold.woff') format('woff'),
@@ -49,7 +57,9 @@
 @font-face {
     font-family: 'Mont';
     src: url('Mont-HeavyItalic.eot');
-    src: local('Mont Heavy Italic'), local('Mont-HeavyItalic'),
+    src:
+        local('Mont Heavy Italic'),
+        local('Mont-HeavyItalic'),
         url('Mont-HeavyItalic.eot?#iefix') format('embedded-opentype'),
         url('Mont-HeavyItalic.woff2') format('woff2'),
         url('Mont-HeavyItalic.woff') format('woff'),
@@ -61,7 +71,9 @@
 @font-face {
     font-family: 'Mont';
     src: url('Mont-BlackItalic.eot');
-    src: local('Mont Black Italic'), local('Mont-BlackItalic'),
+    src:
+        local('Mont Black Italic'),
+        local('Mont-BlackItalic'),
         url('Mont-BlackItalic.eot?#iefix') format('embedded-opentype'),
         url('Mont-BlackItalic.woff2') format('woff2'),
         url('Mont-BlackItalic.woff') format('woff'),
@@ -73,7 +85,9 @@
 @font-face {
     font-family: 'Mont';
     src: url('Mont-ExtraLightItalic.eot');
-    src: local('Mont ExtraLight Italic'), local('Mont-ExtraLightItalic'),
+    src:
+        local('Mont ExtraLight Italic'),
+        local('Mont-ExtraLightItalic'),
         url('Mont-ExtraLightItalic.eot?#iefix') format('embedded-opentype'),
         url('Mont-ExtraLightItalic.woff2') format('woff2'),
         url('Mont-ExtraLightItalic.woff') format('woff'),
@@ -85,7 +99,9 @@
 @font-face {
     font-family: 'Mont';
     src: url('Mont-Heavy.eot');
-    src: local('Mont Heavy'), local('Mont-Heavy'),
+    src:
+        local('Mont Heavy'),
+        local('Mont-Heavy'),
         url('Mont-Heavy.eot?#iefix') format('embedded-opentype'),
         url('Mont-Heavy.woff2') format('woff2'),
         url('Mont-Heavy.woff') format('woff'),
@@ -97,7 +113,9 @@
 @font-face {
     font-family: 'Mont';
     src: url('Mont-SemiBold.eot');
-    src: local('Mont SemiBold'), local('Mont-SemiBold'),
+    src:
+        local('Mont SemiBold'),
+        local('Mont-SemiBold'),
         url('Mont-SemiBold.eot?#iefix') format('embedded-opentype'),
         url('Mont-SemiBold.woff2') format('woff2'),
         url('Mont-SemiBold.woff') format('woff'),
@@ -109,7 +127,9 @@
 @font-face {
     font-family: 'Mont';
     src: url('Mont-RegularItalic.eot');
-    src: local('Mont Regular Italic'), local('Mont-RegularItalic'),
+    src:
+        local('Mont Regular Italic'),
+        local('Mont-RegularItalic'),
         url('Mont-RegularItalic.eot?#iefix') format('embedded-opentype'),
         url('Mont-RegularItalic.woff2') format('woff2'),
         url('Mont-RegularItalic.woff') format('woff'),
@@ -121,7 +141,9 @@
 @font-face {
     font-family: 'Mont';
     src: url('Mont-BoldItalic.eot');
-    src: local('Mont Bold Italic'), local('Mont-BoldItalic'),
+    src:
+        local('Mont Bold Italic'),
+        local('Mont-BoldItalic'),
         url('Mont-BoldItalic.eot?#iefix') format('embedded-opentype'),
         url('Mont-BoldItalic.woff2') format('woff2'),
         url('Mont-BoldItalic.woff') format('woff'),
@@ -133,7 +155,9 @@
 @font-face {
     font-family: 'Mont';
     src: url('Mont-SemiBoldItalic.eot');
-    src: local('Mont SemiBold Italic'), local('Mont-SemiBoldItalic'),
+    src:
+        local('Mont SemiBold Italic'),
+        local('Mont-SemiBoldItalic'),
         url('Mont-SemiBoldItalic.eot?#iefix') format('embedded-opentype'),
         url('Mont-SemiBoldItalic.woff2') format('woff2'),
         url('Mont-SemiBoldItalic.woff') format('woff'),
@@ -145,7 +169,9 @@
 @font-face {
     font-family: 'Mont';
     src: url('Mont-LightItalic.eot');
-    src: local('Mont Light Italic'), local('Mont-LightItalic'),
+    src:
+        local('Mont Light Italic'),
+        local('Mont-LightItalic'),
         url('Mont-LightItalic.eot?#iefix') format('embedded-opentype'),
         url('Mont-LightItalic.woff2') format('woff2'),
         url('Mont-LightItalic.woff') format('woff'),
@@ -157,7 +183,9 @@
 @font-face {
     font-family: 'Mont';
     src: url('Mont-Thin.eot');
-    src: local('Mont Thin'), local('Mont-Thin'),
+    src:
+        local('Mont Thin'),
+        local('Mont-Thin'),
         url('Mont-Thin.eot?#iefix') format('embedded-opentype'),
         url('Mont-Thin.woff2') format('woff2'),
         url('Mont-Thin.woff') format('woff'),
@@ -169,7 +197,9 @@
 @font-face {
     font-family: 'Mont';
     src: url('Mont-Regular.eot');
-    src: local('Mont Regular'), local('Mont-Regular'),
+    src:
+        local('Mont Regular'),
+        local('Mont-Regular'),
         url('Mont-Regular.eot?#iefix') format('embedded-opentype'),
         url('Mont-Regular.woff2') format('woff2'),
         url('Mont-Regular.woff') format('woff'),
@@ -181,7 +211,9 @@
 @font-face {
     font-family: 'Mont';
     src: url('Mont-Light.eot');
-    src: local('Mont Light'), local('Mont-Light'),
+    src:
+        local('Mont Light'),
+        local('Mont-Light'),
         url('Mont-Light.eot?#iefix') format('embedded-opentype'),
         url('Mont-Light.woff2') format('woff2'),
         url('Mont-Light.woff') format('woff'),
@@ -189,4 +221,3 @@
     font-weight: 300;
     font-style: normal;
 }
-

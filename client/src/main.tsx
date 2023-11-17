@@ -11,11 +11,11 @@ import './firebase.ts'
 // import { theme } from './theme.ts'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <Provider store={store} >
-    <PersistGate persistor={persistor} >
-      {/* <React.StrictMode> */}
-          <App />
-      {/* </React.StrictMode> */}
-    </PersistGate>
-  </Provider>
+    <Provider store={store}>
+        <PersistGate persistor={persistor}>
+            {/* <React.StrictMode> */}
+            <App />
+            {/* </React.StrictMode> */}
+        </PersistGate>
+    </Provider>,
 )

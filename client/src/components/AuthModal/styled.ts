@@ -1,10 +1,10 @@
-import { Dialog, DialogContent as Content,styled } from "@mui/material";
+import { Dialog, DialogContent as Content, styled } from '@mui/material'
 
-export const DialogAuth = styled(Dialog)(({theme}) => ({
+export const DialogAuth = styled(Dialog)(({ theme }) => ({
     '& [role="dialog"]': {
         maxWidth: theme.spacing(40),
         width: '100%',
-    }
+    },
 }))
 
 export const DialogHeader = styled('div')(({ theme }) => ({
@@ -14,8 +14,8 @@ export const DialogHeader = styled('div')(({ theme }) => ({
     alignItems: 'center',
 }))
 
-export const DialogContent = styled(Content)(({theme}) => ({
+export const DialogContent = styled(Content)(({ theme }) => ({
     display: 'flex',
     flexDirection: 'column',
-    rowGap: theme.spacing(1)
+    rowGap: theme.spacing(1),
 }))

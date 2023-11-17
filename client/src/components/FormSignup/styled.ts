@@ -1,4 +1,4 @@
-import { LinearProgress, styled,TextField, Tooltip } from "@mui/material";
+import { LinearProgress, styled, TextField, Tooltip } from '@mui/material'
 
 export const PasswordBox = styled('div')`
     display: flex;
@@ -25,10 +25,10 @@ export const PasswordInput = styled(TextField)`
 `
 
 export const PasswordStrengthMeter = styled(LinearProgress)(({ theme }) => ({
-    height: theme.spacing(.2),
+    height: theme.spacing(0.2),
     backgroundColor: theme.palette.progress.main,
 
     '& span': {
-        backgroundColor: theme.palette.secondary.main
-    }
+        backgroundColor: theme.palette.secondary.main,
+    },
 }))

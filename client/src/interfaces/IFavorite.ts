@@ -1,11 +1,11 @@
 export interface IFavorite {
-    place_id: string,
-    name: string,
-    description: string,
-    photo: string,
-    icon: string,
+    place_id: string
+    name: string
+    description: string
+    photo: string
+    icon: string
     location: {
-        lat: number,
+        lat: number
         lng: number
     }
 }

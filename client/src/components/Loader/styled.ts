@@ -1,6 +1,6 @@
-import { keyframes,styled } from "@mui/material";
+import { keyframes, styled } from '@mui/material'
 
-export const LoaderWrapper = styled('div')(({theme}) => ({
+export const LoaderWrapper = styled('div')(({ theme }) => ({
     position: 'absolute',
     top: '50%',
     left: '50%',
@@ -12,12 +12,12 @@ export const LoaderWrapper = styled('div')(({theme}) => ({
         display: 'block',
         width: theme.spacing(12.4),
         height: theme.spacing(12.4),
-        margin: theme.spacing(.8),
+        margin: theme.spacing(0.8),
         borderRadius: '50%',
-        border: `${theme.spacing(.6)} solid ${theme.palette.loader.main}`,
+        border: `${theme.spacing(0.6)} solid ${theme.palette.loader.main}`,
         borderColor: `${theme.palette.loader.main} transparent ${theme.palette.loader.main} transparent`,
-        animation: `${spin} 1.2s linear infinite`
-    }
+        animation: `${spin} 1.2s linear infinite`,
+    },
 }))
 
 const spin = keyframes`
@@ -27,4 +27,4 @@ const spin = keyframes`
   100% {
     transform: rotate(360deg);
   }
-`;
+`

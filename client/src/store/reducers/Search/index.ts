@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface SearchState {
-    selectedPlaces: string[],
-    foundPlaces: google.maps.places.PlaceResult[],
-    searchRadius: number,
+    selectedPlaces: string[]
+    foundPlaces: google.maps.places.PlaceResult[]
+    searchRadius: number
 }
 
 const initialState: SearchState = {
@@ -20,7 +20,7 @@ export const SearchSlice = createSlice({
             state.selectedPlaces.push(action.payload)
         },
         removeSelectedPlace(state, action: PayloadAction<string>) {
-            state.selectedPlaces = state.selectedPlaces.filter(place => place !== action.payload)
+            state.selectedPlaces = state.selectedPlaces.filter((place) => place !== action.payload)
         },
         addFoundPlaces(state, action: PayloadAction<google.maps.places.PlaceResult[]>) {
             state.foundPlaces = state.foundPlaces.concat(action.payload)
@@ -34,12 +34,7 @@ export const SearchSlice = createSlice({
     },
 })
 
-export const { 
-    addSelectedPlace, 
-    removeSelectedPlace, 
-    addFoundPlaces, 
-    clearFoundPlaces, 
-    setSearchRadius 
-} = SearchSlice.actions
+export const { addSelectedPlace, removeSelectedPlace, addFoundPlaces, clearFoundPlaces, setSearchRadius } =
+    SearchSlice.actions
 
-export default SearchSlice.reducer;
+export default SearchSlice.reducer

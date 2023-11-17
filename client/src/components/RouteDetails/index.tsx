@@ -2,20 +2,20 @@ import { useEffect } from 'react'
 
 import { Typography } from '@mui/material'
 
-import { useAppDispatch, useTypeSelector } from "@/hooks/redux";
-import { clearRoute, updateRoute } from "@/store/reducers";
-import { getDirections } from '@/utils/route';
+import { useAppDispatch, useTypeSelector } from '@/hooks/redux'
+import { clearRoute, updateRoute } from '@/store/reducers'
+import { getDirections } from '@/utils/route'
 
-import { ButtonRemoveRoute, Details, DetailsWrapper, Progress, Row } from "./styled";
+import { ButtonRemoveRoute, Details, DetailsWrapper, Progress, Row } from './styled'
 
 export default function RouteDetails() {
     const dispatch = useAppDispatch()
 
     const {
         RouteDetails: { distanceTotal, distanceTraveled, placeLocation, time, directionsRenderer },
-        Map: { map, userLocation }
-    } = useTypeSelector(state => state)
-    
+        Map: { map, userLocation },
+    } = useTypeSelector((state) => state)
+
     const progress = (distanceTraveled / distanceTotal) * 100
     const distanceRemaining = ((distanceTotal - distanceTraveled) / 1000).toFixed(0)
 
@@ -28,21 +28,21 @@ export default function RouteDetails() {
             const directionRequest = {
                 origin: userLocation,
                 destination: placeLocation,
-                travelMode: google.maps.TravelMode.WALKING
+                travelMode: google.maps.TravelMode.WALKING,
             }
 
             const result = await getDirections(directionRequest)
             const distanceTraveled = distanceTotal - (result?.routes[0].legs[0].distance?.value || 0)
             const time = result?.routes[0].legs[0].duration?.text || ''
 
-            dispatch(updateRoute({directionsRenderer, distanceTraveled, time}))
+            dispatch(updateRoute({ directionsRenderer, distanceTraveled, time }))
         }
 
         placeLocation && map && fetchDirections()
     }, [distanceTotal, distanceTraveled, placeLocation, time, directionsRenderer, map, dispatch, userLocation])
 
     return (
-        <Details data-testid='route-details'>
+        <Details data-testid="route-details">
             <DetailsWrapper>
                 <Progress variant="determinate" value={progress} />
                 <Row>

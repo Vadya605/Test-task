@@ -1,13 +1,14 @@
-import { Avatar, List,styled } from '@mui/material'
+import { Avatar, List, styled, Theme } from '@mui/material'
 
-import { IAsideButtonProps } from './interfaces'
+import { IActiveProps } from '@/interfaces'
+import { CSSObject } from '@emotion/react'
 
 export const AsideWrapper = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
     rowGap: theme.spacing(2.5),
-    borderRight: `${theme.spacing(.3)} solid ${theme.palette.borderPrimary.main}`,
+    borderRight: `${theme.spacing(0.3)} solid ${theme.palette.borderPrimary.main}`,
     padding: theme.spacing(3, 2.5),
     [theme.breakpoints.down('sm')]: {
         padding: theme.spacing(3, 1.5),
@@ -28,7 +29,7 @@ export const Column = styled('div')(({ theme }) => ({
     alignItems: 'center',
     height: '96%',
     [theme.breakpoints.down('sm')]: {
-        flexDirection: 'column-reverse'
+        flexDirection: 'column-reverse',
     },
 }))
 
@@ -40,86 +41,53 @@ export const ListSections = styled(List)(({ theme }) => ({
     margin: 0,
 }))
 
-export const AsideButtonSearch = styled('div')<IAsideButtonProps>(({ theme, isActive }) => ({
+const AsideButtonMixin = (theme: Theme, isActive: boolean, bgColor: string): CSSObject => ({
     cursor: 'pointer',
-    padding: theme.spacing(1.9),
-    borderRadius: theme.spacing(.6),
+    borderRadius: theme.spacing(0.6),
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: isActive? theme.palette.common.white: theme.palette.primary.main,
+    backgroundColor: isActive ? theme.palette.common.white : bgColor,
 
-    '&:hover':{
-        outline: `${theme.spacing(.3)} solid ${theme.palette.borderSecondary.main}`,
-        backgroundColor: isActive? theme.palette.common.white: theme.palette.primary.main,
+    '&:hover': {
+        outline: `${theme.spacing(0.3)} solid ${theme.palette.borderSecondary.main}`,
+        backgroundColor: isActive ? theme.palette.common.white : bgColor,
     },
 
     ...(isActive && {
-        outline: `${theme.spacing(.3)} solid ${theme.palette.borderSecondary.main}`,
+        outline: `${theme.spacing(0.3)} solid ${theme.palette.borderSecondary.main}`,
         '& svg path': {
-            fill: theme.palette.primary.main,
-        }
+            fill: bgColor,
+        },
     }),
+})
 
+export const AsideButtonSearch = styled('div')<IActiveProps>(({ theme, isActive }) => ({
+    ...AsideButtonMixin(theme, isActive, theme.palette.primary.main),
+    padding: theme.spacing(1.9),
     [theme.breakpoints.down('sm')]: {
-        padding: theme.spacing(.8, .9),
+        padding: theme.spacing(0.8, 0.9),
     },
 }))
 
-export const AsideButtonFavorites = styled('div')<IAsideButtonProps>(({ theme, isActive }) => ({
-    cursor: 'pointer',
+export const AsideButtonFavorites = styled('div')<IActiveProps>(({ theme, isActive }) => ({
+    ...AsideButtonMixin(theme, isActive, theme.palette.secondary.main),
     padding: theme.spacing(1.8, 2.1),
-    borderRadius: theme.spacing(.6),
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: isActive? theme.palette.common.white: theme.palette.secondary.main,
-
-    '&:hover':{
-        outline: `${theme.spacing(.3)} solid ${theme.palette.borderSecondary.main}`,
-        backgroundColor: isActive? theme.palette.common.white: theme.palette.secondary.main,
-    },
-
-    ...(isActive && {
-        outline: `${theme.spacing(.3)} solid ${theme.palette.borderSecondary.main}`,
-        '& svg path': {
-            fill: theme.palette.secondary.main,
-        }
-    }),
-
     [theme.breakpoints.down('sm')]: {
-        padding: theme.spacing(.8, 1.1)
+        padding: theme.spacing(0.8, 1.1),
     },
 }))
 
-export const AsideButtonRecommendation = styled('div')<IAsideButtonProps>(({ theme, isActive }) => ({
-    cursor: 'pointer',
+export const AsideButtonRecommendation = styled('div')<IActiveProps>(({ theme, isActive }) => ({
+    ...AsideButtonMixin(theme, isActive, theme.palette.recommendation.main),
     padding: theme.spacing(1.9),
-    borderRadius: theme.spacing(.6),
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: isActive? theme.palette.common.white: theme.palette.recommendation.main,
-
-    '&:hover':{
-        outline: `${theme.spacing(.3)} solid ${theme.palette.borderSecondary.main}`,
-        backgroundColor: isActive? theme.palette.common.white: theme.palette.recommendation.main,
-    },
-
-    ...(isActive && {
-        outline: `${theme.spacing(.3)} solid ${theme.palette.borderSecondary.main}`,
-        '& svg path': {
-            fill: theme.palette.recommendation.main,
-        }
-    }),
-
     [theme.breakpoints.down('sm')]: {
-        padding: theme.spacing(.8, 1.1)
+        padding: theme.spacing(0.8, 1.1),
     },
 }))
 
 export const AvatarAside = styled(Avatar)(({ theme }) => ({
-    border: `${theme.spacing(.3)} solid ${theme.palette.borderPrimary.main}`,
+    border: `${theme.spacing(0.3)} solid ${theme.palette.borderPrimary.main}`,
     width: theme.spacing(4.8),
     height: theme.spacing(4.8),
     cursor: 'pointer',
@@ -130,16 +98,16 @@ export const AvatarAside = styled(Avatar)(({ theme }) => ({
     },
 }))
 
-export const Exit = styled('div')(({theme}) => ({
+export const Exit = styled('div')(({ theme }) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     padding: theme.spacing(1.4, 1.4, 1.4, 1.2),
     backgroundColor: theme.palette.buttonExit.main,
-    borderRadius: theme.spacing(.6),
+    borderRadius: theme.spacing(0.6),
     cursor: 'pointer',
 
     [theme.breakpoints.down('sm')]: {
-        padding: theme.spacing(.8, .8, .8, .6)
+        padding: theme.spacing(0.8, 0.8, 0.8, 0.6),
     },
 }))

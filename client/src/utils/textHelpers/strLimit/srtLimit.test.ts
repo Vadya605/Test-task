@@ -1,4 +1,4 @@
-import { strLimit } from "."
+import { strLimit } from '.'
 
 describe('Проверка метода strLimit', () => {
     test('Тестирование лимита меньшего, чем длина', () => {

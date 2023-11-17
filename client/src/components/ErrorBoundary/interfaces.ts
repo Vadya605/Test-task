@@ -1,10 +1,10 @@
-import { ReactNode } from 'react';
+import { ReactNode } from 'react'
 
 export interface IErrorBoundaryProps {
-    children: ReactNode;
-    fallback: ReactNode;
+    children: ReactNode
+    fallback: ReactNode
 }
 
 export interface IErrorBoundaryState {
-    hasError: boolean;
+    hasError: boolean
 }

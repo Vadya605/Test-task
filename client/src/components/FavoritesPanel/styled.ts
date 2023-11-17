@@ -1,6 +1,6 @@
-import { CircularProgress, IconButton,styled } from "@mui/material";
+import { CircularProgress, IconButton, styled } from '@mui/material'
 
-export const HeaderPanel = styled('div')(({theme}) => ({
+export const HeaderPanel = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     columnGap: theme.spacing(1.5),
@@ -21,7 +21,7 @@ export const BoxLoader = styled('div')`
     justify-content: center;
 `
 
-export const Loader = styled(CircularProgress)(({theme}) => ({
+export const Loader = styled(CircularProgress)(({ theme }) => ({
     width: theme.spacing(6),
-    height: theme.spacing(6)
+    height: theme.spacing(6),
 }))

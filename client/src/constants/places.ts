@@ -17,114 +17,113 @@ import Religion from '@/assets/img/icons-markers/religion1.svg'
 import Shop from '@/assets/img/icons-markers/shopping-basket.svg'
 import Sport from '@/assets/img/icons-markers/sports-soccer.svg'
 
-
 export const PLACES = [
     {
         id: 1,
         name: 'Природа',
         icon: Nature,
-        type: 'Nature'
+        type: 'Nature',
     },
     {
         id: 2,
         name: 'Культура',
         icon: Culture,
-        type: 'Culture'
+        type: 'Culture',
     },
     {
         id: 3,
         name: 'История',
         icon: History,
-        type: 'History'
+        type: 'History',
     },
     {
         id: 4,
         name: 'Религия',
         icon: Religion,
-        type: 'Religion'
+        type: 'Religion',
     },
     {
         id: 5,
         name: 'Архитектура',
         icon: Architecture,
-        type: 'Architecture'
+        type: 'Architecture',
     },
     {
         id: 6,
         name: 'Индустриальные объекты',
         icon: Industrial,
-        type: 'Industrial'
+        type: 'Industrial',
     },
     {
         id: 7,
         name: 'Разное',
         icon: Other,
-        type: 'Other'
+        type: 'Other',
     },
     {
         id: 8,
         name: 'Развлечения',
         icon: Entertainment,
-        type: 'Entertainment'
+        type: 'Entertainment',
     },
     {
         id: 9,
         name: 'Спорт',
         icon: Sport,
-        type: 'Sport'
+        type: 'Sport',
     },
     {
         id: 10,
         name: '18+',
         icon: Adult,
-        type: 'Erotic'
+        type: 'Erotic',
     },
     {
         id: 11,
         name: 'Авто',
         icon: Car,
-        type: 'car'
+        type: 'car',
     },
     {
         id: 12,
         name: 'Заправки',
         icon: GasStation,
-        type: 'gas-station'
+        type: 'gas-station',
     },
     {
         id: 13,
         name: 'Велосипеды',
         icon: Bike,
-        type: 'tourist-attraction'
+        type: 'tourist-attraction',
     },
     {
         id: 14,
         name: 'Магазины',
         icon: Shop,
-        type: 'shop'
+        type: 'shop',
     },
     {
         id: 15,
         name: 'Еда',
         icon: Food,
-        type: 'food'
+        type: 'food',
     },
     {
         id: 16,
         name: 'Кофе / чай',
         icon: Coffee,
-        type: 'cafe'
+        type: 'cafe',
     },
     {
         id: 17,
         name: 'Банки',
         icon: Bank,
-        type: 'bank'
+        type: 'bank',
     },
     {
         id: 18,
         name: 'Отель',
         icon: Sleep,
-        type: 'hotel'
+        type: 'hotel',
     },
 ]
